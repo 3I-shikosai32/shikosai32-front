@@ -1,0 +1,17 @@
+overwrite: true
+schema: 'https://shikosai-3i-server-develop.herokuapp.com/graphql'
+documents: 'src/libs/graphql/operation/**/*.gql'
+generates:
+  src/libs/graphql/schema.json:
+    plugins:
+      - 'introspection'
+  ./src/libs/graphql/generated/index.ts:
+    plugins:
+      - 'typescript'
+  ./src/libs/graphql/generated/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: ./src/libs/graphql/generated/index.ts
+    plugins:
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
