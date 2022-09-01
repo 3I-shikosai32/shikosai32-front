@@ -1,0 +1,65 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  lint-build:
+    name: Lint and Build
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT}}
+      NEXT_PUBLIC_WS_ENDPOINT: ${{secrets.NEXT_PUBLIC_WS_ENDPOINT}}
+      NEXT_PUBLIC_REVALIDATION_SECRET: ${{secrets.NEXT_PUBLIC_REVALIDATION_SECRET}}
+      NEXT_PUBLIC_FIREBASE_API_KEY: ${{secrets.NEXT_PUBLIC_FIREBASE_API_KEY}}
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}}
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID}}
+      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET}}
+      NEXT_PUBLIC_FIREBASE_SENDER_ID: ${{secrets.NEXT_PUBLIC_FIREBASE_SENDER_ID}}
+      NEXT_PUBLIC_FIREBASE_APP_ID: ${{secrets.NEXT_PUBLIC_FIREBASE_APP_ID}}
+      NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}}
+      FIREBASE_ADMIN_PROJECT_ID: ${{secrets.FIREBASE_ADMIN_PROJECT_ID}}
+      FIREBASE_ADMIN_PRIVATE_KEY: ${{secrets.FIREBASE_ADMIN_PRIVATE_KEY}}
+      FIREBASE_ADMIN_CLIENT_EMAIL: ${{secrets.FIREBASE_ADMIN_CLIENT_EMAIL}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint --max-warnings=0
+
+      - name: Build
+        run: yarn build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT}}
+      NEXT_PUBLIC_WS_ENDPOINT: ${{secrets.NEXT_PUBLIC_WS_ENDPOINT}}
+      NEXT_PUBLIC_REVALIDATION_SECRET: ${{secrets.NEXT_PUBLIC_REVALIDATION_SECRET}}
+      NEXT_PUBLIC_FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{secrets.FIREBASE_AUTH_DOMAIN}}
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{secrets.FIREBASE_PROJECT_ID}}
+      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET}}
+      NEXT_PUBLIC_FIREBASE_SENDER_ID: ${{secrets.FIREBASE_SENDER_ID}}
+      NEXT_PUBLIC_FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+      NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{secrets.FIREBASE_MEASUREMENT_ID}}
+      FIREBASE_ADMIN_PROJECT_ID: ${{secrets.FIREBASE_ADMIN_PROJECT_ID}}
+      FIREBASE_ADMIN_PRIVATE_KEY: ${{secrets.FIREBASE_ADMIN_PRIVATE_KEY}}
+      FIREBASE_ADMIN_CLIENT_EMAIL: ${{secrets.FIREBASE_ADMIN_CLIENT_EMAIL}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Unit Test
+        run: yarn test
+
+      - name: E2E Test
+        run: yarn test:e2e

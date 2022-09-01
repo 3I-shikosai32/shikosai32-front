@@ -1,0 +1,12 @@
+overwrite: true
+schema: ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+documents: 'src/libs/graphql/documents/**/*.gql'
+generates:
+  src/libs/graphql/generated/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-urql'
+  src/libs/graphql/schema.json:
+    plugins:
+      - 'introspection'

@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "shikosai32-front": {
+      "schema": ["./src/libs/graphql/schema.json"]
+    }
+  }
+}
