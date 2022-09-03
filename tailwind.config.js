@@ -140,7 +140,7 @@ const config = {
             g1: '#5CFFE2',
             g2: '#35B0CB',
           },
-          daifugo: {
+          president: {
             // 大富豪の英語訳に決定的なものが見つからなかったので、ローマ字表記を使用する
             g1: '#FF5C5C',
             g2: '#CB8F35',
