@@ -8,5 +8,11 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-export const Opaque: ComponentStory<typeof Button> = () => <Button text="ここをクリックする" onClick={() => {}} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+
+export const Opaque = Template.bind({});
+Opaque.args = {
+  text: 'ボタン',
+  onClick: () => {},
+};
 Opaque.storyName = '塗りつぶし型の見た目のボタン';
