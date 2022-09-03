@@ -149,7 +149,7 @@ const config = {
             g1: '#FF5CA1',
             g2: '#CB3535',
           },
-          notestplay: {
+          playtest: {
             // wedidnttestplayだと長過ぎるので...
             g1: '#B5B5C9',
             g2: '#333356',
