@@ -13,16 +13,27 @@ const meta: ComponentMeta<typeof Button> = {
   component: Button,
   args: {
     onClick: action('onClick'),
+    type: 'button',
   },
   argTypes: {
+    children: {
+      description: '`<ButtonIcon>`の子として`react-icon`コンポーネントを渡すとアイコンを配置することができる。そのアイコンのテキストのみが望ましい。',
+    },
     type: {
+      description: 'ほぼHTML準拠。a11yに従いtypeを要求する。formの値を初期化する動作を与えてしまう`reset`を除いた`button`,`submit`が使用可能',
       options: ['button', 'submit'],
       control: { type: 'radio' },
     },
     disabled: {
+      description: 'HTML準拠。ボタンを無効化し、onClickイベントを発火させなくする。',
       control: { type: 'boolean' },
     },
     outlined: {
+      description: 'ボタンの見た目を枠線と白抜きの背景にする',
+      control: { type: 'boolean' },
+    },
+    circle: {
+      description: 'ボタンを円形化する',
       control: { type: 'boolean' },
     },
   },
@@ -32,14 +43,12 @@ export default meta;
 
 export const Default: Story = {
   args: {
-    type: 'button',
     children: 'デフォルトボタン',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    type: 'button',
     disabled: true,
     children: '無効化されたボタン',
   },
@@ -47,7 +56,6 @@ export const Disabled: Story = {
 
 export const Outlined: Story = {
   args: {
-    type: 'button',
     outlined: true,
     children: '枠線付きボタン',
   },
@@ -55,7 +63,6 @@ export const Outlined: Story = {
 
 export const StyleOverriden: Story = {
   args: {
-    type: 'button',
     className: 'bg-gradient-to-br gradient-primary',
     children: 'スタイルが上書きされたボタン',
   },
@@ -63,7 +70,6 @@ export const StyleOverriden: Story = {
 
 export const WithReactIcon: Story = {
   args: {
-    type: 'button',
     className: 'bg-success-700',
   },
   render: (args) => (
@@ -76,10 +82,9 @@ export const WithReactIcon: Story = {
   ),
 };
 
-export const OnlyReactIcon: Story = {
+export const CircleWithIcon: Story = {
   args: {
-    type: 'button',
-    className: 'p-4 text-neutral-500',
+    circle: true,
   },
   render: (args) => (
     <Button {...args}>
