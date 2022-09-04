@@ -24,9 +24,9 @@ const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props
           }}
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="button"
-          className={`flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
+          className={`${className} flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
             outlined ? `border-2 border-neutral-200 bg-white text-neutral-900` : ` bg-neutral-900 text-white`
-          } ${className}`}
+          } `}
           {...props}
         >
           {children}
@@ -42,9 +42,9 @@ const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props
           }}
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="submit"
-          className={`flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
+          className={`${className} flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
             outlined ? `border-2 border-neutral-200 bg-white text-neutral-900` : ` bg-neutral-900 text-white`
-          } ${className}`}
+          } `}
           {...props}
         >
           {children}
@@ -56,6 +56,7 @@ const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props
 const ButtonIcon: FC<{ children: ReactNode }> = ({ children }) => {
   const iconContextValue = useMemo(() => ({ size: '1.5rem' }), []);
   return (
+    // react-iconsのサイズを変更するために提供されているIconContext.Providerを使う
     <div className="flex aspect-square max-h-6 items-center justify-center fill-current">
       <IconContext.Provider value={iconContextValue}>{children}</IconContext.Provider>
     </div>

@@ -1,6 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
+import { AiOutlinePlus } from 'react-icons/ai';
 import { MdAccessibilityNew } from 'react-icons/md';
 import { Button, ButtonIcon } from './index';
 
@@ -9,7 +12,7 @@ type Story = ComponentStoryObj<typeof Button>;
 const meta: ComponentMeta<typeof Button> = {
   component: Button,
   args: {
-    onClick: () => {},
+    onClick: action('onClick'),
   },
   argTypes: {
     type: {
@@ -54,14 +57,14 @@ export const StyleOverriden: Story = {
   args: {
     type: 'button',
     className: 'bg-gradient-to-br gradient-primary',
-    children: 'スタイルづけされたボタン',
+    children: 'スタイルが上書きされたボタン',
   },
 };
 
 export const WithReactIcon: Story = {
   args: {
     type: 'button',
-    className: 'bg-success-700',
+    className: '!bg-success-700',
   },
   render: (args) => (
     <Button {...args}>
@@ -69,6 +72,20 @@ export const WithReactIcon: Story = {
         <MdAccessibilityNew />
       </ButtonIcon>
       <i>react-icon</i>を使ったボタン
+    </Button>
+  ),
+};
+
+export const OnlyReactIcon: Story = {
+  args: {
+    type: 'button',
+    className: 'p-4 text-neutral-500',
+  },
+  render: (args) => (
+    <Button {...args}>
+      <ButtonIcon>
+        <AiOutlinePlus />
+      </ButtonIcon>
     </Button>
   ),
 };
