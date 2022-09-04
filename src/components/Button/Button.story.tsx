@@ -64,7 +64,7 @@ export const StyleOverriden: Story = {
 export const WithReactIcon: Story = {
   args: {
     type: 'button',
-    className: '!bg-success-700',
+    className: 'bg-success-700',
   },
   render: (args) => (
     <Button {...args}>

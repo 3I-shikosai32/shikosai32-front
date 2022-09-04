@@ -1,11 +1,12 @@
 import { motion, MotionProps } from 'framer-motion';
 import { FC, ReactNode, ComponentPropsWithoutRef, useMemo } from 'react';
 import { IconContext } from 'react-icons';
+import twMerge from '../../libs/twmerge';
 
 export type ButtonProps = ComponentPropsWithoutRef<'button'> &
   MotionProps & {
     type: 'button' | 'submit'; // a11yに従いtypeを要求する。'reset'はformの値を初期化する動作を与えてしまうから使わない。
-    outlined?: boolean; // 簡易にスタイルを切り替えるためのフラグ
+    outlined?: boolean; // 枠線を付けるかどうか
   };
 
 const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props }) => {
@@ -24,9 +25,11 @@ const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props
           }}
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="button"
-          className={`${className} flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
-            outlined ? `border-2 border-neutral-200 bg-white text-neutral-900` : ` bg-neutral-900 text-white`
-          } `}
+          className={twMerge(
+            'flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50',
+            outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
+            className,
+          )}
           {...props}
         >
           {children}
@@ -42,9 +45,11 @@ const Button: FC<ButtonProps> = ({ type, outlined, className, children, ...props
           }}
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="submit"
-          className={`${className} flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50 ${
-            outlined ? `border-2 border-neutral-200 bg-white text-neutral-900` : ` bg-neutral-900 text-white`
-          } `}
+          className={twMerge(
+            'flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50',
+            outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
+            className,
+          )}
           {...props}
         >
           {children}
