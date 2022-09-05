@@ -11,6 +11,19 @@ const config = {
       branding: ['Oxygen', '"Noto Sans JP"', 'sans-serif'],
     },
     extend: {
+      borderRadius: {
+        // Figmaでおおよそ使われている角丸の値
+        base: '1.5rem',
+      },
+      boxShadow: {
+        // Figmaの`Elevations/Z*`準拠
+        // offset-x | offset-y | blur-radius | spread-radius | color
+        z4: '0 4px 4px 0 rgba(8, 15, 22, 0.1)',
+        z8: '0 6px 8px 0 rgba(8, 15, 22, 0.125)',
+        z16: '0 8px 16px 0 rgba(8, 15, 22, 0.15)',
+        z16: '0 12px 24px 0 rgba(8, 15, 22, 0.20)',
+        z32: '0 16px 32px 0 rgba(8, 15, 22, 0.25)',
+      },
       colors: {
         primary: {
           900: '#5d0f38',
@@ -141,7 +154,6 @@ const config = {
             g2: '#35B0CB',
           },
           president: {
-            // 大富豪の英語訳に決定的なものが見つからなかったので、ローマ字表記を使用する
             g1: '#FF5C5C',
             g2: '#CB8F35',
           },
@@ -150,7 +162,6 @@ const config = {
             g2: '#CB3535',
           },
           playtest: {
-            // wedidnttestplayだと長過ぎるので...
             g1: '#B5B5C9',
             g2: '#333356',
           },
@@ -205,9 +216,9 @@ const config = {
         'character-goku',
         'game-xeno',
         'game-iceraze',
-        'game-daifugo',
+        'game-president',
         'game-poker',
-        'game-notestplay',
+        'game-playtest',
         'game-coindrop',
       ];
       const resolveColorObjectByName = (name) => name.split('-').reduce((acc, current) => acc[current] || undefined, config.theme.extend.colors);
