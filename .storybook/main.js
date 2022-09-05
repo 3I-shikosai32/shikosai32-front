@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   stories: ['../src/**/*.story.mdx', '../src/**/*.story.@(js|jsx|ts|tsx)'],
-  staticDirs: ["../public"],
+  staticDirs: ['../public'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -33,6 +33,10 @@ module.exports = {
       ],
       include: path.resolve(__dirname, '../'),
     });
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src'),
+    };
     return config;
   },
   framework: '@storybook/react',
