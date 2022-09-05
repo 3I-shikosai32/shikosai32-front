@@ -16,7 +16,8 @@
     "gql:gen": "graphql-codegen --config codegen.yml -r dotenv/config",
     "sb": "start-storybook -p 6006",
     "sb:build": "build-storybook -o ./.storybook/static",
-    "sb:docs": "start-storybook -p 6006 --docs"
+    "sb:docs": "start-storybook -p 6006 --docs",
+    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@urql/devtools": "^2.0.3",
@@ -67,6 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.35.1",
     "autoprefixer": "^10.4.8",
+    "chromatic": "^6.9.0",
     "css-loader": "^6.7.1",
     "eslint": "8.23.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -87,5 +89,7 @@
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "typescript": "4.8.2"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "shikosai32-front@0.1.0"
 }
