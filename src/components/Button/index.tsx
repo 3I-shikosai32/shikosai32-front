@@ -1,13 +1,13 @@
 import { motion, MotionProps } from 'framer-motion';
 import { FC, ReactNode, ComponentPropsWithoutRef, useMemo } from 'react';
 import { IconContext } from 'react-icons';
-import twMerge from '../../libs/twmerge';
+import twMerge from '@/libs/twmerge';
 
 export type ButtonProps = ComponentPropsWithoutRef<'button'> &
   MotionProps & {
-    type?: 'button' | 'submit'; // a11yに従いtypeを要求する。'reset'はformの値を初期化する動作を与えてしまうから使わない。
-    outlined?: boolean; // 枠線を付けるかどうか
-    circle?: boolean; // 円形にするかどうか
+    type?: 'button' | 'submit';
+    outlined?: boolean;
+    circle?: boolean;
   };
 
 const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, ...props }) => {
@@ -63,14 +63,17 @@ const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, 
 
 const ButtonIcon: FC<{ children: ReactNode }> = ({ children }) => {
   const iconContextValue = useMemo(() => ({ size: '1.5rem' }), []);
+  //
+  // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
+  // 再描画の抑制のためにuseMemo()を使う
+  // react-iconsのサイズを変更するために提供されているIconContext.Providerを使う
+  //
   return (
-    // react-iconsのサイズを変更するために提供されているIconContext.Providerを使う
     <div className="flex aspect-square max-h-6 items-center justify-center overflow-hidden fill-current">
       <IconContext.Provider value={iconContextValue}>{children}</IconContext.Provider>
     </div>
   );
 };
-
 Button.defaultProps = {
   type: 'button',
   outlined: false,
