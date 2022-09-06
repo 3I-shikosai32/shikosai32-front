@@ -20,6 +20,7 @@
     "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.0",
     "@urql/devtools": "^2.0.3",
     "@urql/exchange-auth": "^1.0.0",
     "daisyui": "^2.24.0",

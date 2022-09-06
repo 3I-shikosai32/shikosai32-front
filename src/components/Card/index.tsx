@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { FC, ComponentPropsWithRef, ReactNode } from 'react';
+import type { FC, ComponentPropsWithRef, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import twMerge from '@/libs/twmerge';
 
@@ -21,6 +21,8 @@ Card.defaultProps = {
   className: '',
   children: null,
 };
+
+export type MotionCardProps = ComponentPropsWithoutRef<typeof MotionCard>;
 
 // `framer-motion`でアニメーション可能なCardコンポーネント
 export const MotionCard = motion(Card);
