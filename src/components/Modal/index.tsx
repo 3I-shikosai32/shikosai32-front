@@ -1,5 +1,4 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { AnimatePresence } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import type { ButtonProps } from '@/components/Button';
 import { MotionCard, MotionCardProps } from '@/components/Card';
@@ -48,16 +47,14 @@ export type ModalProps = Pick<ComponentPropsWithoutRef<typeof Dialog.Root>, 'ope
 
 // モーダルのトリガーとなるボタンとモーダルの中身を受け取り、モーダルを表示する本体となるコンポーネント
 export const Modal: FC<ModalProps> = ({ open, onOpenChange, trigger, children }) => (
-  <AnimatePresence>
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 flex min-h-screen w-screen items-center justify-center bg-neutral-900/50">
-          <Dialog.Content asChild>
-            <ModalContent>{children}</ModalContent>
-          </Dialog.Content>
-        </Dialog.Overlay>
-      </Dialog.Portal>
-    </Dialog.Root>
-  </AnimatePresence>
+  <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+    <Dialog.Portal>
+      <Dialog.Overlay className="fixed inset-0 z-50 flex min-h-screen w-screen items-center justify-center bg-neutral-900/50">
+        <Dialog.Content asChild>
+          <ModalContent>{children}</ModalContent>
+        </Dialog.Content>
+      </Dialog.Overlay>
+    </Dialog.Portal>
+  </Dialog.Root>
 );
