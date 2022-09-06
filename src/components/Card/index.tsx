@@ -11,7 +11,7 @@ export type CardProps = ComponentPropsWithRef<'div'> & {
 // `framer-motion`でアニメーションを付加できるようにするため`forwardRef`でrefを受け取れるようにする
 // 型推論はできているのに`<HTMLDivElement, CardProps>`で明示的に型ジェネリクスを指定しないとeslint`react/prop-types`エラーになるため指定
 export const Card: FC<CardProps> = forwardRef<HTMLDivElement, CardProps>(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={twMerge('rounded-3xl shadow-xl bg-white', className)} {...props}>
+  <div ref={ref} className={twMerge('rounded-3xl shadow-md bg-white p-4 flex flex-col gap-2', className)} {...props}>
     {children}
   </div>
 ));
