@@ -27,7 +27,7 @@ const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, 
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="button"
           className={twMerge(
-            'flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50',
+            'flex flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-z16 hover:shadow-z24 active:shadow-none disabled:shadow-none disabled:contrast-50',
             outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
             circle && 'rounded-full aspect-square p-2',
             className,
@@ -48,7 +48,7 @@ const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, 
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="submit"
           className={twMerge(
-            'flex flex-row items-center justify-center gap-2 rounded-3xl px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-lg hover:shadow-xl active:shadow-none disabled:shadow-none disabled:contrast-50',
+            'flex flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-z16 hover:shadow-z24 active:shadow-none disabled:shadow-none disabled:contrast-50',
             outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
             circle && 'rounded-full aspect-square',
             className,
