@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
-import { Card } from './index';
+
+import { Card, MotionCard } from './index';
 import { Button } from '@/components/Button';
 
 type Story = ComponentStoryObj<typeof Card>;
@@ -32,5 +33,15 @@ export const CustomContent: Story = {
     <Card className="max-w-sm" {...args}>
       <h1 className="font-branding text-3xl font-bold">カードの題名です</h1>カードの内容です<Button>ボタン</Button>
     </Card>
+  ),
+};
+
+export const WithEnteringAnimation: Story = {
+  render: () => (
+    <MotionCard initial={{ opacity: 0, scale: 1.2 }} whileInView={{ opacity: 1, scale: 1.0 }} className="max-w-sm">
+      <h1 className="font-branding text-3xl font-bold">ふわっと出現</h1>
+      {'<MotionCard>でアニメーションを施しています。'}
+      <Button>ボタン</Button>
+    </MotionCard>
   ),
 };
