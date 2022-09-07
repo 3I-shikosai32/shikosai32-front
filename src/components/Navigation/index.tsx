@@ -1,5 +1,4 @@
 import * as PrimitiveNavMenu from '@radix-ui/react-navigation-menu';
-import { motion, AnimatePresence } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import { MotionCard, MotionCardProps } from '@/components/Card';
 import twMerge from '@/libs/twmerge';
@@ -8,7 +7,7 @@ export type NavigationLinkProps = Omit<ComponentPropsWithoutRef<typeof Primitive
   children: ReactNode;
 };
 
-// `<PrimitiveNavMenu>`のなかで使用するリンク用のラッパーコンポーネント
+// 項目`<NavigationItem>`のなかで使用するリンク用のラッパーコンポーネント
 export const NavigationLink: FC<NavigationLinkProps> = ({ children, ...props }) => (
   <PrimitiveNavMenu.Link asChild {...props}>
     {children}
@@ -19,27 +18,25 @@ export type NavigationTriggerProps = Omit<ComponentPropsWithoutRef<typeof Primit
   children: ReactElement;
 };
 
-// `<NavigationItem>`のなかで使用する、吹き出しメニューを開くトリガーとなるボタン用のラッパーコンポーネント
+// 項目`<NavigationItem>`のなかで使用する、その項目の吹き出しメニューを開くトリガーとなるボタン用のラッパーコンポーネント
 export const NavigationTrigger: FC<NavigationTriggerProps> = ({ children, ...props }) => (
   <PrimitiveNavMenu.Trigger asChild {...props}>
     {children}
   </PrimitiveNavMenu.Trigger>
 );
 
-const MotionPrimitiveNavMenuContent = motion(PrimitiveNavMenu.Content);
-
 export type NavigationContentProps = MotionCardProps;
 
-// `<NavigationItem>`のなかで使用する、吹き出しメニューの中身用のコンポーネント
+// 項目`<NavigationItem>`のなかで使用する、その項目の吹き出しメニューの中身用のコンポーネント
 export const NavigationContent: FC<NavigationContentProps> = ({ className, children, ...props }) => (
-  <MotionPrimitiveNavMenuContent asChild>
-    <MotionCard initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={twMerge('', className)} {...props}>
+  <PrimitiveNavMenu.Content asChild>
+    <MotionCard initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={twMerge('shadow-z16', className)} {...props}>
       {children}
     </MotionCard>
-  </MotionPrimitiveNavMenuContent>
+  </PrimitiveNavMenu.Content>
 );
 
-export type NavigationItemProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Item>, 'asChild' | 'children'> &
+export type NavigationItemProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Item>, 'asChild' | 'children' | 'value'> &
   (
     | {
         // 吹き出しメニューが持つ場合の子要素。`<NavigationTrigger>`と`<NavigationContent>`を持つ。
@@ -51,34 +48,28 @@ export type NavigationItemProps = Omit<ComponentPropsWithoutRef<typeof Primitive
       }
   );
 
+// ナヴィゲーションメニューの項目を表すコンポーネント
 export const NavigationItem: FC<NavigationItemProps> = ({ children, ...props }) => (
   <PrimitiveNavMenu.Item {...props}>{children}</PrimitiveNavMenu.Item>
 );
 
-export type NavigationListProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.List>, 'asChild' | 'children'> & {
-  // `<NavigationList>`は一つ以上の`<NavigationItemProps>`しか子要素として受け取ることができない。
+export type PrimitiveNavMenuProps = Omit<
+  ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Root>,
+  'asChild' | 'children' | 'orientation' | 'value' | 'defaultValue' | 'onValueChange'
+> & {
   children: Array<ReactElement<NavigationItemProps>> | ReactElement<NavigationItemProps>;
+  viewportClassName?: string;
 };
 
-export const NavigationList: FC<NavigationListProps> = ({ className, children, ...props }) => (
-  <PrimitiveNavMenu.List className={twMerge('flex flex-row gap-0 m-0 p-0', className)} {...props}>
-    {children}
-  </PrimitiveNavMenu.List>
-);
-
-export type NavigationViewportProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Viewport>, 'asChild'>;
-
-// `<NavigationMenu>`のなかで使用する、吹き出しメニューの表示位置を制御するコンポーネント。この子孫として`<NavigationContent>`が配置される。
-export const NavigationViewport: FC<NavigationViewportProps> = ({ className, ...props }) => (
-  <PrimitiveNavMenu.Viewport className={twMerge('absolute top-full origin-top mt-2 w-full', className)} {...props} />
-);
-
-export type PrimitiveNavMenuProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Root>, 'asChild' | 'children'> & {
-  children: Array<ReactElement<NavigationListProps> | ReactElement<NavigationViewportProps>> | ReactElement<NavigationListProps>;
-};
-
-export const NavigationMenu: FC<PrimitiveNavMenuProps> = ({ children, ...props }) => (
+export const NavigationMenu: FC<PrimitiveNavMenuProps> = ({ className, viewportClassName, children, ...props }) => (
   <PrimitiveNavMenu.Root className="relative z-10 w-fit" {...props}>
-    {children}
+    <PrimitiveNavMenu.List className={twMerge('flex flex-row gap-0 m-0 p-0', className)}>{children}</PrimitiveNavMenu.List>
+    <PrimitiveNavMenu.Viewport
+      className={twMerge('bg-transparent absolute top-full flex justify-center origin-top mt-2 min-w-fit w-full max-w-sm', viewportClassName)}
+    />
   </PrimitiveNavMenu.Root>
 );
+
+NavigationMenu.defaultProps = {
+  viewportClassName: '',
+};
