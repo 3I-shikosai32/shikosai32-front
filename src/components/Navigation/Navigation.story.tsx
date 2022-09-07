@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { NavigationMenu, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '.';
