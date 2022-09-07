@@ -39,7 +39,11 @@ export const Default: Story = {
     <NavigationMenu {...args}>
       <NavigationItem>
         <NavigationTrigger>
-          <div className="flex px-4 py-2 font-bold">Games</div>
+          <div className="flex px-4 py-2 font-bold">
+            <NavigationLink>
+              <a href="https://example.com/">Games</a>
+            </NavigationLink>
+          </div>
         </NavigationTrigger>
         <NavigationContent className="bg-gradient-to-br font-bold text-white gradient-game">
           Xeno, Ice Raze, 大富豪などの6種のゲームで遊びましょう！
@@ -47,13 +51,19 @@ export const Default: Story = {
       </NavigationItem>
       <NavigationItem>
         <NavigationTrigger>
-          <div className="flex px-4 py-2 font-bold">Ranking</div>
+          <div className="flex px-4 py-2 font-bold">
+            <NavigationLink>
+              <a href="https://example.com/">Ranking</a>
+            </NavigationLink>
+          </div>
         </NavigationTrigger>
         <NavigationContent className="bg-gradient-to-br font-bold text-white gradient-ranking">あなたの順位がわかります！</NavigationContent>
       </NavigationItem>
       <NavigationItem>
         <NavigationLink>
-          <div className="flex px-4 py-2 font-bold">Staff</div>
+          <div className="flex px-4 py-2 font-bold">
+            <a href="https://example.com/">Staff</a>
+          </div>
         </NavigationLink>
       </NavigationItem>
     </NavigationMenu>
@@ -72,7 +82,12 @@ export const IconMenu: Story = {
             <Icon src="/icons/fox.png" />
           </Button>
         </NavigationTrigger>
-        <NavigationContent>ユーザーの情報を確認しましょう。</NavigationContent>
+        <NavigationContent>
+          ユーザーの情報を確認しましょう。
+          <NavigationLink>
+            <a href="https://example.com/">リンク</a>
+          </NavigationLink>
+        </NavigationContent>
       </NavigationItem>
     </NavigationMenu>
   ),
