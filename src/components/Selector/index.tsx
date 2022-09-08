@@ -1,9 +1,7 @@
 import * as Select from '@radix-ui/react-select';
-import { AnimatePresence } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { MdCheck } from 'react-icons/md';
-import { Button } from '@/components/Button';
 import { MotionCard } from '@/components/Card';
 import twMerge from '@/libs/twmerge';
 

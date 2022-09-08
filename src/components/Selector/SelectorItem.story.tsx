@@ -2,9 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Selector, SelectorTrigger, SelectorGroup, SelectorItem, SelectorSeparator } from '.';
-
-import { Icon } from '@/components/Icon';
+import { Selector, SelectorGroup, SelectorItem } from '.';
 
 type Story = ComponentStoryObj<typeof SelectorItem>;
 
