@@ -37,7 +37,7 @@ export type SelectorItemProps = Omit<ComponentPropsWithoutRef<typeof Select.Item
 
 export const SelectorItem: FC<SelectorItemProps> = ({ children, ...props }) => (
   <Select.Item
-    className="relative flex flex-row items-center gap-2 overflow-visible rounded-base p-1 pl-8 pr-2 font-branding ring-transparent [&[data-disabled]]:text-neutral-300 [&[data-state='checked']]:bg-primary-100 [&[data-state='checked']]:text-primary-900"
+    className="relative flex flex-row items-center gap-2 overflow-visible rounded-base p-1 pl-8 pr-2 font-branding outline-none ring-transparent [&[data-disabled]]:text-neutral-300 [&[data-state='checked']]:bg-primary-100 [&[data-state='checked']]:text-primary-900 [&[data-highlighted]]:bg-primary-100"
     {...props}
   >
     <Select.ItemText asChild>
