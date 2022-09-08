@@ -1,21 +1,31 @@
 import * as Select from '@radix-ui/react-select';
+import { AnimatePresence } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { MdCheck } from 'react-icons/md';
 import { Button } from '@/components/Button';
 import { MotionCard } from '@/components/Card';
 import twMerge from '@/libs/twmerge';
 
 export type SelectorTriggerProps = Omit<ComponentPropsWithoutRef<typeof Select.Trigger>, 'asChild'> &
-  Pick<ComponentPropsWithoutRef<typeof Select.Value>, 'placeholder'> & {
+  Required<Pick<ComponentPropsWithoutRef<typeof Select.Value>, 'placeholder'>> & {
     children?: ReactNode;
   };
 
 export const SelectorTrigger: FC<SelectorTriggerProps> = ({ placeholder, className, children, ...props }) => (
   <Select.Trigger asChild {...props}>
-    <Button className={twMerge('[&[data-placeholder]]:text-neutral-500', className)} outlined>
+    <div
+      className={twMerge(
+        'flex w-fit min-w-[8rem] flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding shadow-z8 bg-white text-neutral-900 text-base font-bold  disabled:contrast-50 [&[data-placeholder]]:text-neutral-400',
+        className,
+      )}
+    >
       {children}
       <Select.Value {...{ placeholder }} />
-      <Select.Icon />
-    </Button>
+      <Select.Icon asChild>
+        <FaChevronDown className="text-neutral-400" />
+      </Select.Icon>
+    </div>
   </Select.Trigger>
 );
 
@@ -24,63 +34,82 @@ SelectorTrigger.defaultProps = {
 };
 
 export type SelectorItemProps = Omit<ComponentPropsWithoutRef<typeof Select.Item>, 'asChild'> & {
-  displayName: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
-export const SelectorItem: FC<SelectorItemProps> = ({ children, displayName, ...props }) => (
-  <Select.Item className="relative flex flex-row items-center justify-center gap-2 [&[data-disabled]]:text-neutral-500" {...props}>
-    {children}
-    <Select.ItemText>{displayName}</Select.ItemText>
-    <Select.ItemIndicator className="absolute left-0 flex aspect-square h-4 items-center justify-center text-success-700">x</Select.ItemIndicator>
+export const SelectorItem: FC<SelectorItemProps> = ({ children, ...props }) => (
+  <Select.Item
+    className="relative flex flex-row items-center gap-2 overflow-visible rounded-base p-1 pl-8 pr-2 font-branding ring-transparent [&[data-disabled]]:text-neutral-300 [&[data-state='checked']]:bg-primary-100 [&[data-state='checked']]:text-primary-900"
+    {...props}
+  >
+    <Select.ItemText asChild>
+      <span className="flex flex-row items-center justify-start gap-2">{children}</span>
+    </Select.ItemText>
+    <Select.ItemIndicator className="absolute left-2 flex aspect-square h-4 items-center justify-center text-primary">
+      <MdCheck />
+    </Select.ItemIndicator>
   </Select.Item>
 );
 
+SelectorItem.defaultProps = {
+  children: null,
+};
+
 export type SelectorGroupProps = Omit<ComponentPropsWithoutRef<typeof Select.Group>, 'asChild'> & {
   label: string;
-  children: Array<ReactElement<SelectorItemProps>>;
+  children: Array<ReactElement<SelectorItemProps>> | ReactElement<SelectorItemProps>;
 };
 
 export const SelectorGroup: FC<SelectorGroupProps> = ({ children, label, ...props }) => (
-  <Select.Group className="flex flex-col gap-2" {...props}>
-    <Select.Label>{label}</Select.Label>
+  <Select.Group className="flex flex-col gap-0" {...props}>
+    <Select.Label className="text-xs text-neutral-400">{label}</Select.Label>
     {children}
   </Select.Group>
 );
 
-export type SelectorSeparatorProps = Record<string, never>;
+export type SelectorSeparatorProps = Omit<ComponentPropsWithoutRef<typeof Select.Separator>, 'asChild'>;
 
-export const SelectorSeparator: FC = () => <Select.Separator className="my-2 h-px bg-neutral-300" />;
+// export const SelectorSeparator: FC = (props) => <Select.Separator className="my-1 h-[1px] bg-neutral-200" {...props} />;
+export const SelectorSeparator: FC = (props) => (
+  <Select.Separator asChild {...props}>
+    <hr className="my-1 h-[1px] bg-neutral-200" />
+  </Select.Separator>
+);
 
-export type SelectorContentProps = Omit<ComponentPropsWithoutRef<typeof Select.Content>, 'asChild'> & {
+export type SelectorProps = Omit<ComponentPropsWithoutRef<typeof Select.Root>, 'asChild' | 'children'> & {
+  trigger?: ReactElement<SelectorTriggerProps>;
   children:
     | Array<ReactElement<SelectorGroupProps> | ReactElement<SelectorItemProps> | ReactElement<SelectorSeparatorProps>>
     | ReactElement<SelectorGroupProps>
     | ReactElement<SelectorItemProps>;
 };
 
-export const SelectorContent: FC<SelectorContentProps> = ({ children, ...props }) => (
-  <Select.Content asChild {...props}>
-    <MotionCard initial={{ opacity: 0, scale: 1.2 }} animate={{ opacity: 1, scale: 1.0 }} exit={{ opacity: 0, scale: 0.8 }}>
-      <Select.ScrollUpButton className="flex h-4 cursor-default items-center justify-center text-neutral-500" />
-      <Select.Viewport>{children}</Select.Viewport>
-      <Select.ScrollDownButton className="flex h-4 cursor-default items-center justify-center text-neutral-500" />
-    </MotionCard>
-  </Select.Content>
-);
-
-export type SelectorProps = Omit<ComponentPropsWithoutRef<typeof Select.Root>, 'asChild' | 'children' | 'open' | 'onOpenChange'> & {
-  trigger?: ReactElement<SelectorTriggerProps>;
-  children: ReactElement<SelectorContentProps>;
-};
-
 export const Selector: FC<SelectorProps> = ({ trigger, children, ...props }) => (
   <Select.Root {...props}>
     {trigger}
-    <Select.Portal />
+
+    <Select.Portal>
+      <Select.Content asChild>
+        <MotionCard
+          layout
+          className={twMerge('min-w-fit g-0 mt-2 shadow-z16')}
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 1, scale: 1.0 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+        >
+          <Select.ScrollUpButton className="flex h-2 cursor-default items-center justify-center text-neutral-500">
+            <FaChevronUp />
+          </Select.ScrollUpButton>
+          <Select.Viewport className="flex flex-col gap-2">{children}</Select.Viewport>
+          <Select.ScrollDownButton className="flex h-2 cursor-default items-center justify-center text-neutral-500">
+            <FaChevronUp />
+          </Select.ScrollDownButton>
+        </MotionCard>
+      </Select.Content>
+    </Select.Portal>
   </Select.Root>
 );
 
 Selector.defaultProps = {
-  trigger: <SelectorTrigger />,
+  trigger: <SelectorTrigger placeholder="選択してください" />,
 };
