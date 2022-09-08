@@ -7,10 +7,11 @@ export type ButtonProps = ComponentPropsWithoutRef<'button'> &
   MotionProps & {
     type?: 'button' | 'submit';
     outlined?: boolean;
+    ghost?: boolean;
     circle?: boolean;
   };
 
-const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, ...props }) => {
+const Button: FC<ButtonProps> = ({ type, outlined, ghost, circle, className, children, ...props }) => {
   //
   // https://github.com/jsx-eslint/eslint-plugin-react/issues/1555
   // react/button-has-type は<button>のtype属性の動的割当を禁止しているが、<button>を拡張する際でもアクセシビリティを考慮しtype属性を割り当てるべき。
@@ -27,9 +28,10 @@ const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, 
           whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
           type="button"
           className={twMerge(
-            'flex flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-z16 hover:shadow-z24 active:shadow-none disabled:shadow-none disabled:contrast-50',
+            'flex flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold  disabled:contrast-50',
             outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
             circle && 'rounded-full aspect-square p-2',
+            ghost ? 'border-none bg-transparent text-neutral-900 shadow-none' : 'shadow-z16 hover:shadow-z24 active:shadow-none disabled:shadow-none',
             className,
           )}
           {...props}
@@ -51,6 +53,7 @@ const Button: FC<ButtonProps> = ({ type, outlined, circle, className, children, 
             'flex flex-row items-center justify-center gap-2 rounded-base px-4 py-2 font-branding bg-neutral-900 text-white text-base font-bold shadow-z16 hover:shadow-z24 active:shadow-none disabled:shadow-none disabled:contrast-50',
             outlined && 'border-2 border-neutral-200 bg-white text-neutral-900',
             circle && 'rounded-full aspect-square',
+            ghost && 'border-none bg-transparent text-neutral-900 shadow-none hover:shadow-none',
             className,
           )}
           {...props}
@@ -77,6 +80,7 @@ const ButtonIcon: FC<{ children: ReactNode }> = ({ children }) => {
 Button.defaultProps = {
   type: 'button',
   outlined: false,
+  ghost: false,
   circle: false,
 };
 

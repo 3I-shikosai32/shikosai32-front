@@ -32,6 +32,10 @@ const meta: ComponentMeta<typeof Button> = {
       description: 'ボタンの見た目を枠線と白抜きの背景にする',
       control: { type: 'boolean' },
     },
+    ghost: {
+      description: 'ボタンの背景等を透明にする',
+      control: { type: 'boolean' },
+    },
     circle: {
       description: 'ボタンを円形化する',
       control: { type: 'boolean' },
