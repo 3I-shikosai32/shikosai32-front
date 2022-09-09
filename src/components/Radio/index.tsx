@@ -1,43 +1,52 @@
 import * as PrimitiveRadioGroup from '@radix-ui/react-radio-group';
+import { motion } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import twMerge from '@/libs/twmerge';
 
-export type RadioIndicatorProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadioGroup.Indicator>, 'asChild' | 'children'> & {
-  children: ReactNode;
-};
+export type RadioIndicatorProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadioGroup.Indicator>, 'asChild'>;
 
-export const RadioIndicator: FC<RadioIndicatorProps> = ({ children, ...props }) => (
-  <PrimitiveRadioGroup.Indicator asChild {...props}>
+export const RadioIndicator: FC<RadioIndicatorProps> = ({ className, children, ...props }) => (
+  <PrimitiveRadioGroup.Indicator
+    className={twMerge('aspect-square h-full rounded-full bg-gradient-to-br shadow-z4 gradient-primary', className)}
+    {...props}
+  >
     {children}
   </PrimitiveRadioGroup.Indicator>
 );
 
-export type DefaultRadioButtonAppearanceProps = ComponentPropsWithoutRef<'div'>;
+const MotionPrimitiveRadioGroupItem = motion(PrimitiveRadioGroup.Item);
 
-export const DefaultRadioButtonAppearance: FC<DefaultRadioButtonAppearanceProps> = (props) => (
-  <div className="m-0 flex aspect-square h-6 items-center justify-center rounded-full bg-neutral-100 p-2 shadow-z16" {...props}>
-    <RadioIndicator>
-      <div className="aspect-square h-full rounded-full bg-success-700" />
-    </RadioIndicator>
-  </div>
-);
-
-export type RadioItemProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadioGroup.Item>, 'asChild' | 'children'> & {
+export type RadioItemProps = Omit<ComponentPropsWithoutRef<typeof MotionPrimitiveRadioGroupItem>, 'asChild'> & {
   children?: ReactNode;
 };
 
 export const RadioItem: FC<RadioItemProps> = ({ className, children, ...props }) => (
-  <PrimitiveRadioGroup.Item asChild {...props}>
+  <MotionPrimitiveRadioGroupItem
+    whileHover={{
+      scale: 1.05,
+      transition: { duration: 0.25 },
+    }}
+    whileTap={{ scale: 0.95 }}
+    className={twMerge(
+      "m-0 flex aspect-square h-6 items-center justify-center rounded-full bg-white p-1.5 shadow-z16 ring-primary [&[data-state='checked']]:ring-2",
+      className,
+    )}
+    {...props}
+  >
     {children}
-  </PrimitiveRadioGroup.Item>
+  </MotionPrimitiveRadioGroupItem>
 );
 
 RadioItem.defaultProps = {
-  children: <DefaultRadioButtonAppearance />,
+  children: <RadioIndicator />,
 };
 
 export type RadioGroupProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadioGroup.Root>, 'asChild' | 'children'> & {
   children: Array<ReactElement<RadioItemProps>> | ReactElement<RadioItemProps>;
 };
 
-export const RadioGroup: FC<RadioGroupProps> = ({ children, ...props }) => <PrimitiveRadioGroup.Root {...props}>{children}</PrimitiveRadioGroup.Root>;
+export const RadioGroup: FC<RadioGroupProps> = ({ className, children, ...props }) => (
+  <PrimitiveRadioGroup.Root className={twMerge('flex flex-col items-center gap-4 w-fit', className)} {...props}>
+    {children}
+  </PrimitiveRadioGroup.Root>
+);
