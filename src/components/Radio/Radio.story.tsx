@@ -40,17 +40,17 @@ export const Default: Story = {
   render: (args) => (
     <form>
       <RadioGroup {...args}>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row justify-start gap-2">
           <RadioItem value="apple" id="radio-option-1" />
           <Label htmlFor="radio-option-1">林檎</Label>
         </div>
 
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row justify-start gap-2">
           <RadioItem value="grape" id="radio-option-2" />
           <Label htmlFor="radio-option-2">葡萄</Label>
         </div>
 
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row justify-start gap-2">
           <RadioItem value="iyokan" id="radio-option-3" />
           <Label htmlFor="radio-option-3">伊予柑</Label>
         </div>
@@ -63,9 +63,17 @@ export const LargeButton: Story = {
   render: (args) => (
     <form>
       <RadioGroup {...args}>
-        <RadioItem className="flex aspect-auto h-fit flex-col rounded-base p-4" value="fox" id="radio-option-1">
-          <Icon className="h-36" src="/icons/fox.png" alt="アイコン画像の例" />
-          <Label htmlFor="radio-option-1">きゅうびさん</Label>
+        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3" value="fox" id="radio-option-1">
+          <Icon className="h-8" src="/icons/fox.png" alt="アイコン画像の例" />
+          <Label className="" htmlFor="radio-option-1">
+            きゅうびさん
+          </Label>
+        </RadioItem>
+        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="cat" id="radio-option-2">
+          <Icon className="h-8" src="/icons/cat.png" alt="アイコン画像の例" />
+          <Label className="" htmlFor="radio-option-2">
+            ねこさん
+          </Label>
         </RadioItem>
       </RadioGroup>
     </form>

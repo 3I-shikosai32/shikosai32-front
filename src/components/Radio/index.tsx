@@ -46,7 +46,7 @@ export type RadioGroupProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadi
 };
 
 export const RadioGroup: FC<RadioGroupProps> = ({ className, children, ...props }) => (
-  <PrimitiveRadioGroup.Root className={twMerge('flex flex-col items-center gap-4 w-fit', className)} {...props}>
+  <PrimitiveRadioGroup.Root className={twMerge('flex flex-col items-start gap-4 w-fit', className)} {...props}>
     {children}
   </PrimitiveRadioGroup.Root>
 );
