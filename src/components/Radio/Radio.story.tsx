@@ -2,8 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { RadioGroup, RadioItem, RadioIndicator } from '.';
-import { Button } from '@/components/Button';
+import { RadioGroup, RadioItem } from '.';
 import { Icon } from '@/components/Icon';
 import { Label } from '@/components/Label';
 
