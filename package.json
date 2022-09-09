@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.0",
+    "@radix-ui/react-label": "^1.0.0",
     "@radix-ui/react-navigation-menu": "^1.0.0",
     "@radix-ui/react-radio-group": "^1.0.0",
     "@urql/devtools": "^2.0.3",
