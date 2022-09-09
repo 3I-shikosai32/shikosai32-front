@@ -23,12 +23,12 @@ export type RadioItemProps = Omit<ComponentPropsWithoutRef<typeof MotionPrimitiv
 export const RadioItem: FC<RadioItemProps> = ({ className, children, ...props }) => (
   <MotionPrimitiveRadioGroupItem
     whileHover={{
-      scale: 1.05,
+      scale: props.disabled ? 1.0 : 1.05,
       transition: { duration: 0.25 },
     }}
-    whileTap={{ scale: 0.95 }}
+    whileTap={{ scale: props.disabled ? 1.0 : 0.95 }}
     className={twMerge(
-      "m-0 flex aspect-square h-6 items-center justify-center rounded-full bg-white p-1.5 shadow-z16 ring-primary [&[data-state='checked']]:ring-2",
+      "m-0 flex aspect-square h-6 items-center justify-center rounded-full bg-white p-1.5 disabled:contrast-50 shadow-z16 ring-2 ring-transparent [&[data-state='checked']]:ring-primary",
       className,
     )}
     {...props}
