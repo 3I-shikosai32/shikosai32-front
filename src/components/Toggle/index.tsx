@@ -1,11 +1,13 @@
 import type { FC } from 'react';
+import twMerge from '@/libs/twmerge';
 
 export type ToggleProps = {
   size?: 'small' | 'mid' | 'large'; // min:text-base,mid:text-3xl,large:text-5xl
+  color?: string;
 };
 
-const Toggle: FC<{ onClick?: () => void; options: ToggleProps }> = ({ onClick, options }) => {
-  const { size } = { ...options };
+const Toggle: FC<{ onClick?: () => void; options?: ToggleProps }> = ({ onClick, options }) => {
+  const { size, color } = { ...options };
   switch (size) {
     case 'large':
       return (
@@ -13,11 +15,10 @@ const Toggle: FC<{ onClick?: () => void; options: ToggleProps }> = ({ onClick, o
           <label htmlFor="toggle">
             <input id="toggle" type="checkbox" onClick={onClick} className="peer sr-only" />
             <span
-              className={`block w-[6em] cursor-pointer rounded-full 
-             bg-gray-400 p-[3px]
-             shadow-inner after:block after:h-[2.8em] after:w-[2.8em] after:rounded-full 
-             after:bg-white after:transition
-             peer-checked:after:translate-x-[calc(100%-0px)]`}
+              className={twMerge(
+                'block w-[6em] cursor-pointer rounded-full p-[3px] shadow-inner after:block after:h-[2.8em] after:w-[2.8em] after:rounded-full after:bg-white after:transition peer-checked:after:translate-x-[calc(100%-0px)]',
+                color,
+              )}
             />
           </label>
         </div>
@@ -28,10 +29,10 @@ const Toggle: FC<{ onClick?: () => void; options: ToggleProps }> = ({ onClick, o
           <label htmlFor="toggle">
             <input id="toggle" type="checkbox" onClick={onClick} className="peer sr-only" />
             <span
-              className={`block w-[4.5em] cursor-pointer rounded-full bg-gray-400 p-[4px]
-              shadow-lg after:block after:h-[1.9em] after:w-[1.9em] after:rounded-full 
-              after:bg-white after:transition 
-              peer-checked:after:translate-x-[calc(100%-(-5px))]`}
+              className={twMerge(
+                'block w-[4.5em] cursor-pointer rounded-full p-[4px] shadow-lg after:block after:h-[1.9em] after:w-[1.9em] after:rounded-full after:bg-white after:transition peer-checked:after:translate-x-[calc(100%-(-5px))]',
+                color,
+              )}
             />
           </label>
         </div>
@@ -42,10 +43,10 @@ const Toggle: FC<{ onClick?: () => void; options: ToggleProps }> = ({ onClick, o
           <label htmlFor="toggle">
             <input id="toggle" type="checkbox" onClick={onClick} className="peer sr-only" />
             <span
-              className={`block w-[2.7em] cursor-pointer rounded-full bg-gray-400 p-[3px]
-             shadow-lg after:block after:h-[1.1em] after:w-[1.1em] after:rounded-full 
-             after:bg-white after:transition 
-             peer-checked:after:translate-x-[calc(100%-(-1.3px))]`}
+              className={twMerge(
+                `block w-[2.7em] cursor-pointer rounded-full p-[3px] shadow-lg after:block after:h-[1.1em] after:w-[1.1em] after:rounded-full after:bg-white after:transition peer-checked:after:translate-x-[calc(100%-(-1.3px))]`,
+                color,
+              )}
             />
           </label>
         </div>
@@ -55,5 +56,9 @@ const Toggle: FC<{ onClick?: () => void; options: ToggleProps }> = ({ onClick, o
 
 Toggle.defaultProps = {
   onClick: undefined,
+  options: {
+    size: 'large',
+    color:'bg-gray-500'
+  },
 };
 export default Toggle;
