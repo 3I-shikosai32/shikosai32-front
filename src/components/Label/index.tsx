@@ -7,7 +7,7 @@ export type LabelProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveLabel.Roo
 };
 
 export const Label: FC<LabelProps> = ({ className, children, ...props }) => (
-  <PrimitiveLabel.Root className={twMerge('text-neutral-700 font-branding font-bold focus:text-neutral-900', className)} {...props}>
+  <PrimitiveLabel.Root className={twMerge("text-neutral-900 font-branding [&[data-state='checked']]:font-bold", className)} {...props}>
     {children}
   </PrimitiveLabel.Root>
 );
