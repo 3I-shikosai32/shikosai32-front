@@ -2,7 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent } from './index';
+import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from './index';
 import { Button } from '@/components/Button';
 
 type Story = ComponentStoryObj<typeof Modal>;
@@ -57,6 +57,35 @@ export const Default: Story = {
   ),
 };
 
+export const WithButtonGroup: Story = {
+  render: (args) => (
+    <Modal
+      trigger={
+        <Button onClick={action('onClick [モーダルを開くボタンが押されました。]')} {...args}>
+          モーダルを開く
+        </Button>
+      }
+    >
+      <ModalOverlay>
+        <ModalContent>
+          <ModalTitle>本当に良いのですか？</ModalTitle>
+          <ModalDescription>この動作をすると何かが起こります。画面外をクリックすると閉じることができます。</ModalDescription>
+          <ModalButtonGroup>
+            <Button outlined className="border-error-500 text-error-500" onClick={action('onClick [モーダルの中のキャンセルボタンが押されました。]')}>
+              キャンセル
+            </Button>
+            <Button outlined className="border-info-500 text-info-500" onClick={action('onClick [モーダルの中の変更ボタンが押されました。]')}>
+              変更
+            </Button>
+            <Button className="col-span-2" onClick={action('onClick [モーダルの中の確定ボタンが押されました。]')}>
+              確定<span className="text-neutral-700">押しても閉じないよ</span>
+            </Button>
+          </ModalButtonGroup>
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>
+  ),
+};
 export const WithPassedOpenProps: Story = {
   args: {
     trigger: <Button>モーダルを開く</Button>,

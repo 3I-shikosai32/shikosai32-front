@@ -26,6 +26,22 @@ export const ModalDescription: FC<ModalDescriptionProps> = ({ className, childre
   </Dialog.Description>
 );
 
+export type ModalButtonGroupProps = ComponentPropsWithoutRef<'div'> & {
+  children: Array<ComponentPropsWithoutRef<'button'> | ReactElement<ButtonProps>> | ComponentPropsWithoutRef<'button'> | ReactElement<ButtonProps>;
+};
+
+export const ModalButtonGroup: FC<ModalButtonGroupProps> = ({ className, children, ...props }) => (
+  <div
+    className={twMerge(
+      'overflow-visible rounded-base bg-neutral-100 w-full m-0 p-2 grid grid-cols-2 auto-row-fr grid-flow-row-dense gap-2',
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </div>
+);
+
 export type ModalContentProps = MotionCardProps;
 
 export const ModalContent: FC<ModalContentProps> = ({ className, children, ...props }) => (
