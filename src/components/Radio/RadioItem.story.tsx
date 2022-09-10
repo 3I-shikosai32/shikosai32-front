@@ -70,13 +70,13 @@ export const WithCustomStyle: Story = {
   render: (args) => (
     <form>
       <RadioGroup onValueChange={action('onValueChange')}>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3" id="radio-option-1" {...args}>
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3" id="radio-option-1" {...args}>
           <Icon className="h-8" src="/icons/fox.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-1">
             きゅうびさん
           </Label>
         </RadioItem>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="cat" id="radio-option-2">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="cat" id="radio-option-2">
           <Icon className="h-8" src="/icons/cat.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-2">
             ねこさん
