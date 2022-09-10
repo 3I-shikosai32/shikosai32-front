@@ -37,11 +37,11 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink,
             )}
           </Button>
         </NavigationTrigger>
-        <NavigationContent className="w-auto gap-4 text-neutral-700">
+        <NavigationContent className="w-auto gap-4  text-neutral-700">
           {loggedIn ? (
             <>
               <NavigationLink>
-                <Link className="gap-2" href="https://example.com">
+                <Link className="gap-2 font-normal" href="https://example.com">
                   <LinkIcon>
                     <FaUserCircle />
                   </LinkIcon>
@@ -49,7 +49,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink,
                 </Link>
               </NavigationLink>
               <NavigationLink>
-                <Link className="gap-2" href="https://example.com">
+                <Link className="gap-2 font-normal" href="https://example.com">
                   <LinkIcon>
                     <ImExit />
                   </LinkIcon>
@@ -59,7 +59,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink,
             </>
           ) : (
             <NavigationLink>
-              <Link className="gap-2" href="https://example.com">
+              <Link className="gap-2 font-normal" href="https://example.com">
                 <LinkIcon>
                   <RiUser3Fill />
                 </LinkIcon>
@@ -71,7 +71,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink,
             <>
               <hr className="m-0 h-px w-full bg-neutral-200" />
               <NavigationLink>
-                <Link className="gap-2" href="https://example.com">
+                <Link className="gap-2 font-normal" href="https://example.com">
                   <LinkIcon>
                     <TbClipboardText />
                   </LinkIcon>
@@ -79,7 +79,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink,
                 </Link>
               </NavigationLink>
               <NavigationLink>
-                <Link className="gap-2" href="https://example.com">
+                <Link className="gap-2 font-normal" href="https://example.com">
                   <LinkIcon>
                     <BiTimeFive />
                   </LinkIcon>
