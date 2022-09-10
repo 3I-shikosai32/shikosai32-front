@@ -6,8 +6,7 @@ export type ToggleProps = {
   color?: string;
 };
 
-const Toggle: FC<{ onClick?: () => void; options?: ToggleProps }> = ({ onClick, options }) => {
-  const { size, color } = { ...options };
+const Toggle: FC<{ onClick?: () => void; color?: string; size?: 'small' | 'mid' | 'large' }> = ({ onClick, color, size }) => {
   switch (size) {
     case 'large':
       return (
@@ -56,9 +55,7 @@ const Toggle: FC<{ onClick?: () => void; options?: ToggleProps }> = ({ onClick, 
 
 Toggle.defaultProps = {
   onClick: undefined,
-  options: {
-    size: 'large',
-    color:'bg-gray-500'
-  },
+  color: 'bg-gray-500',
+  size: 'large',
 };
 export default Toggle;
