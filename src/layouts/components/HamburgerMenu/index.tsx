@@ -1,4 +1,4 @@
-import type { FC, ComponentPropsWithoutRef } from 'react';
+import type { FC } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
 import { Button, ButtonIcon } from '@/components/Button';
