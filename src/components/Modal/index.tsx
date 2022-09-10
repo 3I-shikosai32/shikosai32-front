@@ -45,19 +45,21 @@ export const ModalButtonGroup: FC<ModalButtonGroupProps> = ({ className, childre
 export type ModalContentProps = MotionCardProps;
 
 export const ModalContent: FC<ModalContentProps> = ({ className, children, ...props }) => (
-  <MotionCard
-    initial={{ opacity: 0, scale: 1.2 }}
-    animate={{ opacity: 1, scale: 1.0 }}
-    exit={{ opacity: 0, scale: 0.8 }}
-    className={twMerge('relative p-6 gap-4 max-w-lg shadow-z32', className)}
-    {...props}
-  >
-    {children}
-  </MotionCard>
+  <Dialog.Content asChild>
+    <MotionCard
+      initial={{ opacity: 0, scale: 1.2 }}
+      animate={{ opacity: 1, scale: 1.0 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className={twMerge('relative p-6 gap-4 max-w-lg shadow-z32', className)}
+      {...props}
+    >
+      {children}
+    </MotionCard>
+  </Dialog.Content>
 );
 
 export type ModalOverlayProps = ComponentPropsWithoutRef<typeof Dialog.Overlay> & {
-  children: ReactElement<ModalContentProps>;
+  children: ReactNode;
 };
 
 export const ModalOverlay: FC<ModalOverlayProps> = ({ className, children, ...props }) => (
@@ -65,7 +67,7 @@ export const ModalOverlay: FC<ModalOverlayProps> = ({ className, children, ...pr
     className={twMerge('fixed inset-0 z-50 flex min-h-screen w-screen items-center justify-center bg-neutral-900/50', className)}
     {...props}
   >
-    <Dialog.Content asChild>{children}</Dialog.Content>
+    {children}
   </Dialog.Overlay>
 );
 
