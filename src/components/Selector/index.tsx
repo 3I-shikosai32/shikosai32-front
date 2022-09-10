@@ -67,14 +67,13 @@ export const SelectorGroup: FC<SelectorGroupProps> = ({ children, label, ...prop
 
 export type SelectorSeparatorProps = Omit<ComponentPropsWithoutRef<typeof Select.Separator>, 'asChild'>;
 
-// export const SelectorSeparator: FC = (props) => <Select.Separator className="my-1 h-[1px] bg-neutral-200" {...props} />;
 export const SelectorSeparator: FC = (props) => (
   <Select.Separator asChild {...props}>
     <hr className="my-1 h-[1px] bg-neutral-200" />
   </Select.Separator>
 );
 
-export type SelectorProps = Omit<ComponentPropsWithoutRef<typeof Select.Root>, 'asChild' | 'children'> & {
+export type SelectorProps = Omit<ComponentPropsWithoutRef<typeof Select.Root>, 'asChild' | 'children' | 'open' | 'defaultOpen' | 'onOpenChange'> & {
   trigger?: ReactElement<SelectorTriggerProps>;
   children:
     | Array<ReactElement<SelectorGroupProps> | ReactElement<SelectorItemProps> | ReactElement<SelectorSeparatorProps>>

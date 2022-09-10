@@ -21,18 +21,22 @@ const meta: ComponentMeta<typeof Selector> = {
       description: 'このセレクターで現在選択されている選択肢`<SelectorItem>`の`value`を指定できる。',
       control: { type: 'text' },
     },
-    // onValueChange: {
-    //   description: 'このセレクターで選択される選択肢が変更されるときに、その`value`とともに呼び出されるイベントハンドラを指定できる。',
-    //   control: { type: 'none' },
+    onValueChange: {
+      description: 'このセレクターで選択される選択肢が変更されるときに、その`value`とともに呼び出されるイベントハンドラを指定できる。',
+      control: { type: 'none' },
+    },
+    // defaultOpen: {
+    //   description: 'このセレクターの初期状態での開閉状態を指定できる。',
+    //   control: { type: 'boolean' },
     // },
     // open: {
     //   description: 'このセレクターの開閉状態を指定できる。',
     //   control: { type: 'boolean' },
     // },
-    onOpenChange: {
-      description: 'このセレクターで開閉状態が変更されるときに、その`boolean`とともに呼び出されるイベントハンドラを指定できる。',
-      control: { type: 'none' },
-    },
+    // onOpenChange: {
+    //   description: 'このセレクターで開閉状態が変更されるときに、その`boolean`とともに呼び出されるイベントハンドラを指定できる。',
+    //   control: { type: 'none' },
+    // },
     trigger: {
       description: 'このセレクタのメニューを開くトリガーとなるボタンを指定できる。`<SelectorTrigger>`のみ指定可能。省略可能。',
       control: { type: 'none' },
