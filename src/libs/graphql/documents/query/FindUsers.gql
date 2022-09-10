@@ -1,0 +1,27 @@
+query FindUser($id: String!) {
+  findUser(where: { id: $id }) {
+    id
+    name
+    email
+    role
+    character
+    avatarUrl
+    iconUrl
+    items {
+      id
+      layer
+      url
+    }
+    giftHistories {
+      id
+      giftId
+      isDelivered
+      createdAt
+    }
+    participateGame
+    pullableGachaTimes
+    totalPointDay1
+    totalPointDay2
+    consumablePoint
+  }
+}
