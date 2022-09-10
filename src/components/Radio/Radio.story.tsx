@@ -88,19 +88,19 @@ export const WithCustomStyle: Story = {
   render: (args) => (
     <form>
       <RadioGroup {...args}>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3" value="fox" id="radio-option-1">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3" value="fox" id="radio-option-1">
           <Icon className="h-8" src="/icons/fox.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-1">
             きゅうびさん
           </Label>
         </RadioItem>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="cat" id="radio-option-2">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="cat" id="radio-option-2">
           <Icon className="h-8" src="/icons/cat.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-2">
             ねこさん
           </Label>
         </RadioItem>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="tree" id="radio-option-3">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="tree" id="radio-option-3">
           <Icon className="h-8" src="/icons/tree.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-3">
             おおもりさん
@@ -108,7 +108,7 @@ export const WithCustomStyle: Story = {
         </RadioItem>
         <RadioItem
           disabled
-          className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 "
+          className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 "
           value="goku"
           id="radio-option-4"
         >
@@ -117,13 +117,13 @@ export const WithCustomStyle: Story = {
             そんごくう
           </Label>
         </RadioItem>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="reaper" id="radio-option-5">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="reaper" id="radio-option-5">
           <Icon className="h-8" src="/icons/reaper.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-5">
             りっぱーさん
           </Label>
         </RadioItem>
-        <RadioItem className="flex aspect-auto h-fit w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="pudding" id="radio-option-6">
+        <RadioItem className="flex aspect-auto h-auto w-full flex-row justify-start gap-2 rounded-base p-2 pr-3 " value="pudding" id="radio-option-6">
           <Icon className="h-8" src="/icons/pudding.png" alt="アイコン画像の例" />
           <Label className="" htmlFor="radio-option-6">
             ぷりん
