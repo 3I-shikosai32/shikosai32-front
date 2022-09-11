@@ -2,8 +2,7 @@ import type { FC } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
-import { Icon } from '@/components/Icon';
-import { Link, LinkIcon } from '@/components/Link';
+import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
 import twMerge from '@/libs/twmerge';
 
