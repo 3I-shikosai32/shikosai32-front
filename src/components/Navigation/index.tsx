@@ -53,7 +53,7 @@ export const NavigationItem: FC<NavigationItemProps> = ({ children, ...props }) 
   <PrimitiveNavMenu.Item {...props}>{children}</PrimitiveNavMenu.Item>
 );
 
-export type PrimitiveNavMenuProps = Omit<
+export type NavigationMenuProps = Omit<
   ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Root>,
   'asChild' | 'children' | 'orientation' | 'value' | 'defaultValue' | 'onValueChange'
 > & {
@@ -61,7 +61,7 @@ export type PrimitiveNavMenuProps = Omit<
   viewportClassName?: string;
 };
 
-export const NavigationMenu: FC<PrimitiveNavMenuProps> = ({ className, viewportClassName, children, ...props }) => (
+export const NavigationMenu: FC<NavigationMenuProps> = ({ className, viewportClassName, children, ...props }) => (
   <PrimitiveNavMenu.Root className="relative z-10 w-fit" {...props}>
     <PrimitiveNavMenu.List className={twMerge('flex flex-row gap-0 m-0 p-0', className)}>{children}</PrimitiveNavMenu.List>
     <PrimitiveNavMenu.Viewport
