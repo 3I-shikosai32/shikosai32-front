@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { IconContext } from 'react-icons';
 import twMerge from '@/libs/twmerge';
 
-export type LinkIconProps = { children: ReactNode; className: string };
+export type LinkIconProps = { children: ReactNode } & Pick<ComponentPropsWithoutRef<'div'>, 'className'>;
 
 export const LinkIcon: FC<LinkIconProps> = ({ children, className }) => {
   // 親の`<Link>`内のテキストの行の高さに合わせる。
