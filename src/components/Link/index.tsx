@@ -4,9 +4,9 @@ import { useMemo } from 'react';
 import { IconContext } from 'react-icons';
 import twMerge from '@/libs/twmerge';
 
-export type LinkIconProps = { children: ReactNode };
+export type LinkIconProps = { children: ReactNode; className: string };
 
-export const LinkIcon: FC<LinkIconProps> = ({ children }) => {
+export const LinkIcon: FC<LinkIconProps> = ({ children, className }) => {
   // 親の`<Link>`内のテキストの行の高さに合わせる。
   const iconContextValue = useMemo(() => ({ size: '1.5em' }), []);
   //
@@ -15,7 +15,7 @@ export const LinkIcon: FC<LinkIconProps> = ({ children }) => {
   // react-iconsのサイズを変更するために提供されているIconContext.Providerを使う
   //
   return (
-    <div className="inline aspect-square max-h-[1.5em] overflow-hidden fill-current">
+    <div className={twMerge('inline aspect-square max-h-[1.5em] overflow-hidden fill-current', className)}>
       <IconContext.Provider value={iconContextValue}>{children}</IconContext.Provider>
     </div>
   );
