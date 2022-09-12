@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Link } from '@/components/Link';
-import { NavigationMenu, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
+import { NavigationMenu, NavigationItem, NavigationLink } from '@/components/Navigation';
 import type { NavigationMenuProps } from '@/components/Navigation';
 import twMerge from '@/libs/twmerge';
 
