@@ -1,0 +1,10 @@
+query FindUserBio($id: String!) {
+  findUser(where: { id: $id }) {
+    id
+    name
+    email
+    role
+    character
+    iconUrl
+  }
+}

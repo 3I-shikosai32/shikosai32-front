@@ -385,81 +385,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumGiftNameFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "equals",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "GiftName",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "GiftName",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "not",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NestedEnumGiftNameFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "notIn",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "GiftName",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "EnumRoleFilter",
         "description": null,
         "fields": null,
@@ -597,6 +522,260 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "Gift",
+        "description": null,
+        "fields": [
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "giftHistories",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NestedGiftHistory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iconUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "price",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "remaining",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GiftHistory",
+        "description": null,
+        "fields": [
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "exchangedGift",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "NestedGift",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "giftId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isDelivered",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "user",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "NestedUser",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "GiftHistoryCreateInput",
         "description": null,
@@ -699,6 +878,29 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "GiftHistoryWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "GiftHistoryOrderInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
               "ofType": null
             },
             "defaultValue": null,
@@ -886,50 +1088,89 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "GiftName",
+        "kind": "INPUT_OBJECT",
+        "name": "GiftHistoryWhereUniqueInput",
         "description": null,
         "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+        "inputFields": [
           {
-            "name": "BABY_STAR",
+            "name": "id",
             "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CABAGGE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "MOROKOSHI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UMAIBO_CHEESE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UMAIBO_CORN_POTAGE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UMAIBO_MENTAIKO",
-            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "GiftOrderInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "price",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "remaining",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -1086,7 +1327,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumGiftNameFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1112,6 +1353,33 @@
               "kind": "INPUT_OBJECT",
               "name": "IntFilter",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "GiftWhereUniqueInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -1586,6 +1854,96 @@
                   "ofType": {
                     "kind": "INPUT_OBJECT",
                     "name": "UserCreateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "exchangeGift",
+            "description": null,
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GiftHistoryCreateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "exchangeQuantity",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Float",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "GiftHistory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "exitGame",
+            "description": null,
+            "args": [
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UserWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -2102,81 +2460,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumGiftNameFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "equals",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "GiftName",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "GiftName",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "not",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NestedEnumGiftNameFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "notIn",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "GiftName",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "NestedEnumRoleFilter",
         "description": null,
         "fields": null,
@@ -2247,6 +2530,113 @@
           }
         ],
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NestedGift",
+        "description": null,
+        "fields": [
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iconUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "price",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "remaining",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2971,6 +3361,246 @@
         "description": null,
         "fields": [
           {
+            "name": "findGift",
+            "description": null,
+            "args": [
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GiftWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Gift",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "findGiftHistories",
+            "description": null,
+            "args": [
+              {
+                "name": "cursor",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GiftHistoryWhereUniqueInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "GiftHistoryOrderInput",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "skip",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "take",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GiftHistoryWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "GiftHistory",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "findGiftHistory",
+            "description": null,
+            "args": [
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GiftHistoryWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "GiftHistory",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "findGifts",
+            "description": null,
+            "args": [
+              {
+                "name": "cursor",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GiftWhereUniqueInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "GiftOrderInput",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "skip",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "take",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GiftWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Gift",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "findUser",
             "description": null,
             "args": [
@@ -3087,22 +3717,6 @@
                     "ofType": null
                   }
                 }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tmp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
               }
             },
             "isDeprecated": false,

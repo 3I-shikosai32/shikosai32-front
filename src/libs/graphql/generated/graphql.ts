@@ -55,13 +55,6 @@ export type EnumGameFilter = {
   notIn?: InputMaybe<Array<Game>>;
 };
 
-export type EnumGiftNameFilter = {
-  equals?: InputMaybe<GiftName>;
-  in?: InputMaybe<Array<GiftName>>;
-  not?: InputMaybe<NestedEnumGiftNameFilter>;
-  notIn?: InputMaybe<Array<GiftName>>;
-};
-
 export type EnumRoleFilter = {
   equals?: InputMaybe<Role>;
   in?: InputMaybe<Array<Role>>;
@@ -79,6 +72,28 @@ export enum Game {
   Xeno = 'XENO'
 }
 
+export type Gift = {
+  __typename?: 'Gift';
+  createdAt: Scalars['DateTime'];
+  giftHistories: Array<NestedGiftHistory>;
+  iconUrl: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Int'];
+  remaining: Scalars['Int'];
+};
+
+export type GiftHistory = {
+  __typename?: 'GiftHistory';
+  createdAt: Scalars['DateTime'];
+  exchangedGift: NestedGift;
+  giftId: Scalars['String'];
+  id: Scalars['String'];
+  isDelivered: Scalars['Boolean'];
+  user: NestedUser;
+  userId: Scalars['String'];
+};
+
 export type GiftHistoryCreateInput = {
   giftId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
@@ -90,6 +105,10 @@ export type GiftHistoryListRelationFilter = {
   every?: InputMaybe<GiftHistoryWhereInput>;
   none?: InputMaybe<GiftHistoryWhereInput>;
   some?: InputMaybe<GiftHistoryWhereInput>;
+};
+
+export type GiftHistoryOrderInput = {
+  createdAt?: InputMaybe<SortOrder>;
 };
 
 export type GiftHistoryWhereInput = {
@@ -105,14 +124,16 @@ export type GiftHistoryWhereInput = {
   userId: StringFilter;
 };
 
-export enum GiftName {
-  BabyStar = 'BABY_STAR',
-  Cabagge = 'CABAGGE',
-  Morokoshi = 'MOROKOSHI',
-  UmaiboCheese = 'UMAIBO_CHEESE',
-  UmaiboCornPotage = 'UMAIBO_CORN_POTAGE',
-  UmaiboMentaiko = 'UMAIBO_MENTAIKO'
-}
+export type GiftHistoryWhereUniqueInput = {
+  id: Scalars['String'];
+};
+
+export type GiftOrderInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  price?: InputMaybe<SortOrder>;
+  remaining?: InputMaybe<SortOrder>;
+};
 
 export type GiftRelationFilter = {
   is?: InputMaybe<GiftWhereInput>;
@@ -127,9 +148,13 @@ export type GiftWhereInput = {
   giftHistories?: InputMaybe<GiftHistoryListRelationFilter>;
   iconUrl?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<EnumGiftNameFilter>;
+  name?: InputMaybe<StringFilter>;
   price?: InputMaybe<IntFilter>;
   remaining?: InputMaybe<IntFilter>;
+};
+
+export type GiftWhereUniqueInput = {
+  id: Scalars['String'];
 };
 
 export type IntFilter = {
@@ -174,6 +199,8 @@ export type ItemWhereInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
+  exchangeGift: Array<GiftHistory>;
+  exitGame: User;
   incrementTotalPoint: User;
   joinGame: User;
   pullGacha: Item;
@@ -183,6 +210,17 @@ export type Mutation = {
 
 export type MutationCreateUserArgs = {
   data: UserCreateInput;
+};
+
+
+export type MutationExchangeGiftArgs = {
+  data: GiftHistoryCreateInput;
+  exchangeQuantity: Scalars['Float'];
+};
+
+
+export type MutationExitGameArgs = {
+  where: UserWhereUniqueInput;
 };
 
 
@@ -238,18 +276,21 @@ export type NestedEnumGameFilter = {
   notIn?: InputMaybe<Array<Game>>;
 };
 
-export type NestedEnumGiftNameFilter = {
-  equals?: InputMaybe<GiftName>;
-  in?: InputMaybe<Array<GiftName>>;
-  not?: InputMaybe<NestedEnumGiftNameFilter>;
-  notIn?: InputMaybe<Array<GiftName>>;
-};
-
 export type NestedEnumRoleFilter = {
   equals?: InputMaybe<Role>;
   in?: InputMaybe<Array<Role>>;
   not?: InputMaybe<NestedEnumRoleFilter>;
   notIn?: InputMaybe<Array<Role>>;
+};
+
+export type NestedGift = {
+  __typename?: 'NestedGift';
+  createdAt: Scalars['DateTime'];
+  iconUrl: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Int'];
+  remaining: Scalars['Int'];
 };
 
 export type NestedGiftHistory = {
@@ -315,9 +356,40 @@ export type NestedUser = {
 
 export type Query = {
   __typename?: 'Query';
+  findGift?: Maybe<Gift>;
+  findGiftHistories?: Maybe<Array<GiftHistory>>;
+  findGiftHistory?: Maybe<GiftHistory>;
+  findGifts: Array<Gift>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
-  tmp: Scalars['String'];
+};
+
+
+export type QueryFindGiftArgs = {
+  where: GiftWhereUniqueInput;
+};
+
+
+export type QueryFindGiftHistoriesArgs = {
+  cursor?: InputMaybe<GiftHistoryWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<GiftHistoryOrderInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<GiftHistoryWhereInput>;
+};
+
+
+export type QueryFindGiftHistoryArgs = {
+  where: GiftHistoryWhereUniqueInput;
+};
+
+
+export type QueryFindGiftsArgs = {
+  cursor?: InputMaybe<GiftWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<GiftOrderInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<GiftWhereInput>;
 };
 
 
@@ -462,6 +534,13 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export type FindUserBioQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
+
 export type FindUserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -470,6 +549,22 @@ export type FindUserQueryVariables = Exact<{
 export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'NestedItem', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'NestedGiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
 
 
+export const FindUserBioDocument = gql`
+    query FindUserBio($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+    name
+    email
+    role
+    character
+    iconUrl
+  }
+}
+    `;
+
+export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
+};
 export const FindUserDocument = gql`
     query FindUser($id: String!) {
   findUser(where: {id: $id}) {
