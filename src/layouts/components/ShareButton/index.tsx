@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-import { useState, useCallback } from 'react';
+import { FC, useEffect, useState, useCallback } from 'react';
 import { RiShareFill } from 'react-icons/ri';
 import { resolveShareMessage } from './resolveShareMessage';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
@@ -11,6 +10,11 @@ export type ShareButtonProps = Pick<ButtonProps, 'className'> & {
 
 export const ShareButton: FC<ShareButtonProps> = ({ alwaysAlternative, className, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentHref, setCurrentHref] = useState<string>('');
+
+  useEffect(() => {
+    setCurrentHref(window.location.href);
+  }, []);
 
   const onCloseButtonClick = useCallback(() => {
     setIsModalOpen(false);
@@ -43,7 +47,7 @@ export const ShareButton: FC<ShareButtonProps> = ({ alwaysAlternative, className
             <ModalDescription>
               このリンクをコピーしてあなたの友達と共有しよう！
               <span className="block overflow-hidden rounded-base bg-neutral-100 p-3 font-branding text-xs text-neutral-700">
-                {`${resolveShareMessage(new Date())}\n${window.location.href}`}
+                {`${resolveShareMessage(new Date())}\n${currentHref}`}
               </span>
             </ModalDescription>
             <Button onClick={onCloseButtonClick}>閉じる</Button>
