@@ -4,20 +4,29 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { RiUser3Fill } from 'react-icons/ri';
 import { TbClipboardText } from 'react-icons/tb';
+import useUserNavigation from './hooks/useUserNavigationMenu';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Link, LinkIcon } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
 import twMerge from '@/libs/twmerge';
 
-export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> &
-  Pick<NavigationMenuProps, 'viewportClassName'> & {
-    showAdminLink?: boolean;
-    userIconUrl?: string | undefined;
-    loggedIn?: boolean;
-  };
+export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
 
-export const UserNavigationMenu: FC<UserNavigationMenuProps> = ({ showAdminLink, userIconUrl, loggedIn, viewportClassName, className, ...props }) => {
+export type UserNavigationMenuStateProps = {
+  showAdminLink?: boolean;
+  userIconUrl?: string | undefined;
+  loggedIn?: boolean;
+};
+
+export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenuStateProps> = ({
+  showAdminLink,
+  userIconUrl,
+  loggedIn,
+  viewportClassName,
+  className,
+  ...props
+}) => {
   const shouldUseAnonymousIcon = !(userIconUrl && loggedIn);
   return (
     <NavigationMenu viewportClassName={twMerge('left-0 justify-start w-48', viewportClassName)}>
@@ -98,4 +107,9 @@ UserNavigationMenu.defaultProps = {
   showAdminLink: false,
   userIconUrl: undefined,
   loggedIn: false,
+};
+
+export const UserNavigationMenuContainer: FC<UserNavigationMenuProps> = (props) => {
+  const states = useUserNavigation();
+  return <UserNavigationMenu {...props} {...states} />;
 };
