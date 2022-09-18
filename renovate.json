@@ -20,8 +20,8 @@
       "automerge": true
     }
   ],
-  "schedule": ["every day"],
-  "automergeSchedule": ["every day"],
+  "schedule": ["every weekend"],
+  "automergeSchedule": ["every weekend"],
   "timezone": "Asia/Tokyo",
   "branchConcurrentLimit": 0
 }
