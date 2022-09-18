@@ -33,7 +33,7 @@
     "dayjs": "1.11.5",
     "firebase": "9.9.3",
     "firebase-admin": "11.0.1",
-    "framer-motion": "7.2.1",
+    "framer-motion": "7.3.5",
     "graphql-tag": "2.12.6",
     "graphql-ws": "5.10.1",
     "hamburger-react": "2.5.0",
