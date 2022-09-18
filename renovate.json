@@ -5,20 +5,8 @@
   "labels": ["📚ライブラリ", "🤖renovate"],
   "packageRules": [
     {
+      "groupName": "all non-major dependencies",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "groupName": "all non-major dependencies"
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "matchPackagePatterns": ["eslint"],
-      "groupName": "eslint",
-      "automerge": true
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "matchPackagePatterns": ["storybook"],
-      "groupName": "storybook",
       "automerge": true
     }
   ],
