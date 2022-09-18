@@ -37,7 +37,7 @@
     "graphql-tag": "2.12.6",
     "graphql-ws": "5.10.1",
     "hamburger-react": "2.5.0",
-    "next": "12.2.5",
+    "next": "12.3.0",
     "next-remove-imports": "1.0.7",
     "next-urql": "4.0.0",
     "nookies": "2.5.2",
