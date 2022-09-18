@@ -10,20 +10,20 @@
       "groupName": "all non-major dependencies"
     },
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["major"],
       "matchPackagePatterns": ["eslint"],
       "groupName": "eslint",
       "automerge": true
     },
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["major"],
       "matchPackagePatterns": ["storybook"],
       "groupName": "storybook",
       "automerge": true
     }
   ],
-  "schedule": ["every weekend"],
-  "automergeSchedule": ["every weekend"],
+  "schedule": ["before 2am"],
+  "automergeSchedule": ["before 2am"],
   "timezone": "Asia/Tokyo",
   "branchConcurrentLimit": 0
 }
