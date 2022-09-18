@@ -51,7 +51,7 @@
     "urql": "3.0.3"
   },
   "devDependencies": {
-    "@babel/core": "7.18.13",
+    "@babel/core": "7.19.1",
     "@graphql-codegen/cli": "2.11.8",
     "@graphql-codegen/introspection": "2.2.1",
     "@graphql-codegen/typescript": "2.7.3",
