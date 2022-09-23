@@ -12,7 +12,7 @@ const useUserNavigation = (): UserNavigationMenuStateProps => {
   return {
     showAdminLink: data.findUser?.role === Role.Admin,
     userIconUrl: data.findUser?.iconUrl,
-    loggedIn: !!data.findUser?.id,
+    isLoggedIn: !!data.findUser?.id,
   };
 };
 
