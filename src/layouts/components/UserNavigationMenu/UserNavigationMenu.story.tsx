@@ -11,7 +11,7 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
     className: '',
     userIconUrl: '/icons/fox.png',
     showAdminLink: false,
-    loggedIn: true,
+    isLoggedIn: true,
   },
   argTypes: {
     className: {
@@ -32,7 +32,7 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
       control: { type: 'boolean' },
       defaultValue: false,
     },
-    loggedIn: {
+    isLoggedIn: {
       description: '表示を切り替えるためにログインしているかどうかを指定できる。',
       control: { type: 'boolean' },
       defaultValue: false,
