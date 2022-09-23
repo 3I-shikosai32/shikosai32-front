@@ -9,6 +9,7 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
   component: UserNavigationMenu,
   args: {
     className: '',
+    viewportClassName: '',
     userIconUrl: '/icons/fox.png',
     showAdminLink: false,
     isLoggedIn: true,
