@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
+import useAudioControlMenu from './hooks/useAudioControlMenu';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
@@ -9,12 +10,19 @@ import twMerge from '@/libs/twmerge';
 import type { AudioControl } from '@/state/audio/audioControl';
 import type { AudioResource } from '@/state/audio/audioResource';
 
-export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
-  Pick<NavigationMenuProps, 'viewportClassName'> &
-  Pick<AudioControl, 'isPlaying' | 'setIsPlaying'> &
-  Pick<AudioResource, 'name' | 'composers'>;
+export type AudioControlMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
 
-export const AudioControlMenu: FC<AudioControlMenuProps> = ({ name, composers, isPlaying, setIsPlaying, viewportClassName, className, ...props }) => (
+export type AudioControlMenuStateProps = Pick<AudioControl, 'isPlaying' | 'setIsPlaying'> & Pick<AudioResource, 'name' | 'composers'>;
+
+export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateProps> = ({
+  name,
+  composers,
+  isPlaying,
+  setIsPlaying,
+  viewportClassName,
+  className,
+  ...props
+}) => (
   <NavigationMenu viewportClassName={twMerge('left-0 justify-start min-w-[24rem]', viewportClassName)}>
     <NavigationItem>
       <NavigationTrigger>
@@ -47,3 +55,8 @@ export const AudioControlMenu: FC<AudioControlMenuProps> = ({ name, composers, i
     </NavigationItem>
   </NavigationMenu>
 );
+
+export const AudioControlMenuContainer: FC<AudioControlMenuProps> = (props) => {
+  const states = useAudioControlMenu();
+  return <AudioControlMenu {...props} {...states} />;
+};

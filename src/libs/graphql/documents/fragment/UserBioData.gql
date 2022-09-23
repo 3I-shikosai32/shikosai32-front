@@ -1,0 +1,8 @@
+fragment UserBioData on User {
+  id
+  name
+  email
+  role
+  character
+  iconUrl
+}
