@@ -1,0 +1,119 @@
+import Image from 'next/image';
+import { FC, ComponentPropsWithoutRef, useState } from 'react';
+import { IoMdSwap } from 'react-icons/io';
+import { MdClose } from 'react-icons/md';
+import { useGiftItemAmount } from './hooks/useGiftItemAmount';
+import { Button, ButtonIcon } from '@/components/Button';
+import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/components/Modal';
+import { Selector, SelectorItem, SelectorTrigger } from '@/components/Selector';
+import type { GiftItemDataFragment, UserExchangeDataFragment } from '@/libs/graphql/generated/graphql';
+import twMerge from '@/libs/twmerge';
+
+export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
+  Pick<GiftItemDataFragment, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> &
+  Pick<UserExchangeDataFragment, 'consumablePoint'> & {
+    onExchange: ((amount: number) => Promise<void>) | ((amount: number) => void);
+  };
+
+const DEFAULT_AMOUNT = 1;
+
+export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, price, remaining, onExchange, className, ...props }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { selectedAmount, setSelectedAmount, selectableAmounts, isAffordable, isInStock, isAvailable } = useGiftItemAmount({
+    consumablePoint,
+    price,
+    remaining,
+  });
+
+  return (
+    <div className={twMerge('flex flex-row max-w-sm gap-5 p-4', className)} {...props}>
+      <figure className="flex aspect-square h-32 items-center justify-center rounded-full bg-[#CCD6E5] shadow-z16">
+        <div className="relative aspect-square h-3/4">
+          <Image src={iconUrl} objectFit="contain" width={256} height={256} alt={`景品:${name}の画像`} />
+        </div>
+      </figure>
+      <div className="flex flex-col items-start justify-center gap-2.5 font-branding">
+        <h6 className={twMerge('text-lg', !isAvailable && 'line-through')}>{name}</h6>
+        <div className="flex flex-row items-center justify-start gap-2.5">
+          <span className="font-bold">{`${price} Pt`}</span>
+          <span className="text-neutral-700">
+            <MdClose size="0.8rem" />
+          </span>
+          <Selector
+            defaultValue={String(DEFAULT_AMOUNT)}
+            value={String(selectedAmount)}
+            onValueChange={(value) => setSelectedAmount(Number(value))}
+            trigger={<SelectorTrigger className="min-w-fit p-0 shadow-none" placeholder="個数を選択" />}
+          >
+            {selectableAmounts.map((amount) => (
+              <SelectorItem key={amount} value={String(amount)}>
+                {amount}個
+              </SelectorItem>
+            ))}
+          </Selector>
+        </div>
+        <Modal
+          open={isModalOpen}
+          onOpenChange={(isOpen) => setIsModalOpen(isOpen)}
+          trigger={
+            <Button
+              disabled={!isAvailable}
+              className={twMerge('w-fit disabled:contrast-100', !isAvailable ? 'bg-[#CCD6E5]' : 'bg-gradient-to-br gradient-exchange')}
+            >
+              {!isInStock && (
+                <>
+                  売り切れました
+                  <br />
+                </>
+              )}
+              {!isAffordable && (
+                <>
+                  ポイントが足りません
+                  <br />
+                </>
+              )}
+              {isAvailable && (
+                <>
+                  <ButtonIcon>
+                    <IoMdSwap />
+                  </ButtonIcon>
+                  交換
+                </>
+              )}
+            </Button>
+          }
+        >
+          <ModalOverlay>
+            <ModalContent>
+              <ModalTitle>本当に交換しますか？</ModalTitle>
+              <ModalDescription className="text-center">
+                <span className="font-bold">{name}</span> を <span className="font-bold">{selectedAmount}個</span>
+                <br />
+                合計 {price * selectedAmount} Pt で交換しますか？
+              </ModalDescription>
+              <ModalButtonGroup>
+                <Button
+                  outlined
+                  onClick={() => {
+                    setIsModalOpen(false);
+                  }}
+                >
+                  キャンセル
+                </Button>
+                <Button
+                  className="bg-exchange"
+                  onClick={() => {
+                    onExchange(selectedAmount);
+                    setIsModalOpen(false);
+                  }}
+                >
+                  交換する
+                </Button>
+              </ModalButtonGroup>
+            </ModalContent>
+          </ModalOverlay>
+        </Modal>
+      </div>
+    </div>
+  );
+};
