@@ -1,20 +1,10 @@
 import type { FC } from 'react';
 import twMerge from '@/libs/twmerge';
 
-export type LoadingProps = {
-  type?: 'spinner-border' | 'spinner-grow';
-  size: number;
-  color?: string;
-};
-
-const Loading: FC<LoadingProps> = ({ type, size, color }) => (
+const Loading: FC<{ size: number; fat: boolean }> = ({ size, fat }) => (
   <div className="flex justify-center">
-    <div className={twMerge('m-5 animate-spin',type,color)} style={{ width: size, height: size, borderRadius: (3 / 8) * size }} />
+    <div className={twMerge('animate-spin rounded-full  border-pink-500 border-t-transparent',fat ? 'border-8':'border-4')} style={{ width: size, height: size }} />
   </div>
 );
 
-Loading.defaultProps = {
-  color: 'text-blue-500',
-  type: 'spinner-border',
-};
 export default Loading;
