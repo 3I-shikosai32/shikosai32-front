@@ -75,7 +75,7 @@ export enum Game {
 export type Gift = {
   __typename?: 'Gift';
   createdAt: Scalars['DateTime'];
-  giftHistories: Array<NestedGiftHistory>;
+  giftHistories: Array<GiftHistory>;
   iconUrl: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
@@ -86,11 +86,13 @@ export type Gift = {
 export type GiftHistory = {
   __typename?: 'GiftHistory';
   createdAt: Scalars['DateTime'];
-  exchangedGift: NestedGift;
+  deliveredAt?: Maybe<Scalars['DateTime']>;
+  exchangedGift: Gift;
+  gift: Gift;
   giftId: Scalars['String'];
   id: Scalars['String'];
   isDelivered: Scalars['Boolean'];
-  user: NestedUser;
+  user: User;
   userId: Scalars['String'];
 };
 
@@ -109,6 +111,11 @@ export type GiftHistoryListRelationFilter = {
 
 export type GiftHistoryOrderInput = {
   createdAt?: InputMaybe<SortOrder>;
+  deliveredAt?: InputMaybe<SortOrder>;
+};
+
+export type GiftHistoryUpdateInput = {
+  isDelivered: Scalars['Boolean'];
 };
 
 export type GiftHistoryWhereInput = {
@@ -175,7 +182,7 @@ export type Item = {
   layer: Scalars['Int'];
   url: Scalars['String'];
   userIds: Array<Scalars['String']>;
-  users: Array<NestedUser>;
+  users: Array<User>;
 };
 
 export type ItemListRelationFilter = {
@@ -201,9 +208,10 @@ export type Mutation = {
   createUser: User;
   exchangeGift: Array<GiftHistory>;
   exitGame: User;
-  incrementTotalPoint: User;
+  incrementPoint: Array<User>;
   joinGame: User;
   pullGacha: Item;
+  updateGiftHistory: GiftHistory;
   updateUser: User;
 };
 
@@ -224,9 +232,8 @@ export type MutationExitGameArgs = {
 };
 
 
-export type MutationIncrementTotalPointArgs = {
-  increment: Scalars['Float'];
-  where: UserWhereUniqueInput;
+export type MutationIncrementPointArgs = {
+  users: Array<UserIncrementPointInput>;
 };
 
 
@@ -238,6 +245,12 @@ export type MutationJoinGameArgs = {
 
 export type MutationPullGachaArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpdateGiftHistoryArgs = {
+  data: GiftHistoryUpdateInput;
+  where: GiftHistoryWhereUniqueInput;
 };
 
 
@@ -283,25 +296,6 @@ export type NestedEnumRoleFilter = {
   notIn?: InputMaybe<Array<Role>>;
 };
 
-export type NestedGift = {
-  __typename?: 'NestedGift';
-  createdAt: Scalars['DateTime'];
-  iconUrl: Scalars['String'];
-  id: Scalars['String'];
-  name: Scalars['String'];
-  price: Scalars['Int'];
-  remaining: Scalars['Int'];
-};
-
-export type NestedGiftHistory = {
-  __typename?: 'NestedGiftHistory';
-  createdAt: Scalars['DateTime'];
-  giftId: Scalars['String'];
-  id: Scalars['String'];
-  isDelivered: Scalars['Boolean'];
-  userId: Scalars['String'];
-};
-
 export type NestedIntFilter = {
   equals?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
@@ -311,15 +305,6 @@ export type NestedIntFilter = {
   lte?: InputMaybe<Scalars['Int']>;
   not?: InputMaybe<NestedIntFilter>;
   notIn?: InputMaybe<Array<Scalars['Int']>>;
-};
-
-export type NestedItem = {
-  __typename?: 'NestedItem';
-  character: Character;
-  id: Scalars['String'];
-  layer: Scalars['Int'];
-  url: Scalars['String'];
-  userIds: Array<Scalars['String']>;
 };
 
 export type NestedStringFilter = {
@@ -336,28 +321,10 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type NestedUser = {
-  __typename?: 'NestedUser';
-  avatarUrl: Scalars['String'];
-  character: Character;
-  consumablePoint: Scalars['Int'];
-  createdAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  iconUrl: Scalars['String'];
-  id: Scalars['String'];
-  itemIds: Array<Scalars['String']>;
-  name: Scalars['String'];
-  participateGame: Game;
-  pullableGachaTimes: Scalars['Int'];
-  role: Role;
-  totalPointDay1: Scalars['Int'];
-  totalPointDay2: Scalars['Int'];
-};
-
 export type Query = {
   __typename?: 'Query';
   findGift?: Maybe<Gift>;
-  findGiftHistories?: Maybe<Array<GiftHistory>>;
+  findGiftHistories: Array<GiftHistory>;
   findGiftHistory?: Maybe<GiftHistory>;
   findGifts: Array<Gift>;
   findUser?: Maybe<User>;
@@ -451,11 +418,11 @@ export type User = {
   consumablePoint: Scalars['Int'];
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
-  giftHistories: Array<NestedGiftHistory>;
+  giftHistories: Array<GiftHistory>;
   iconUrl: Scalars['String'];
   id: Scalars['String'];
   itemIds: Array<Scalars['String']>;
-  items: Array<NestedItem>;
+  items: Array<Item>;
   name: Scalars['String'];
   participateGame: Game;
   pullableGachaTimes: Scalars['Int'];
@@ -480,6 +447,11 @@ export type UserCreateInput = {
   totalPointDay2?: InputMaybe<Scalars['Int']>;
 };
 
+export type UserIncrementPointInput = {
+  id: Scalars['String'];
+  increment: Scalars['Float'];
+};
+
 export type UserListRelationFilter = {
   every?: InputMaybe<UserWhereInput>;
   none?: InputMaybe<UserWhereInput>;
@@ -499,13 +471,8 @@ export type UserRelationFilter = {
 };
 
 export type UserUpdateInput = {
-  consumablePoint?: InputMaybe<Scalars['Int']>;
-  itemIds?: InputMaybe<Array<Scalars['String']>>;
-  participateGame?: InputMaybe<Game>;
-  pullableGachaTimes?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Role>;
-  totalPointDay1?: InputMaybe<Scalars['Int']>;
-  totalPointDay2?: InputMaybe<Scalars['Int']>;
 };
 
 export type UserWhereInput = {
@@ -534,6 +501,15 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export type UserBioFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string };
+
+export type FindUserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
+
 export type FindUserBioQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -541,30 +517,16 @@ export type FindUserBioQueryVariables = Exact<{
 
 export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
 
-export type FindUserQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'NestedItem', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'NestedGiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
-
-
-export const FindUserBioDocument = gql`
-    query FindUserBio($id: String!) {
-  findUser(where: {id: $id}) {
-    id
-    name
-    email
-    role
-    character
-    iconUrl
-  }
+export const UserBioFragmentDoc = gql`
+    fragment UserBio on User {
+  id
+  name
+  email
+  role
+  character
+  iconUrl
 }
     `;
-
-export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
-};
 export const FindUserDocument = gql`
     query FindUser($id: String!) {
   findUser(where: {id: $id}) {
@@ -597,4 +559,15 @@ export const FindUserDocument = gql`
 
 export function useFindUserQuery(options: Omit<Urql.UseQueryArgs<FindUserQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserQuery, FindUserQueryVariables>({ query: FindUserDocument, ...options });
+};
+export const FindUserBioDocument = gql`
+    query FindUserBio($id: String!) {
+  findUser(where: {id: $id}) {
+    ...UserBio
+  }
+}
+    ${UserBioFragmentDoc}`;
+
+export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
 };
