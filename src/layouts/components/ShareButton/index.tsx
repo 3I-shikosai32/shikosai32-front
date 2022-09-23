@@ -8,7 +8,7 @@ export type ShareButtonProps = Pick<ButtonProps, 'className'> & {
   alwaysAlternative?: boolean;
 };
 
-export const ShareButton: FC<ShareButtonProps> = ({ alwaysAlternative, className, ...props }) => {
+export const ShareButton: FC<ShareButtonProps> = ({ alwaysAlternative, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentHref, setCurrentHref] = useState<string>('');
 
