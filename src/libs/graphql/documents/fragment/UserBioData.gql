@@ -1,4 +1,4 @@
-fragment UserBio on User {
+fragment UserBioData on User {
   id
   name
   email

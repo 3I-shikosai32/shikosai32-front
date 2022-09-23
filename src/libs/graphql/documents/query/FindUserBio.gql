@@ -1,5 +1,5 @@
 query FindUserBio($id: String!) {
   findUser(where: { id: $id }) {
-    ...UserBio
+    ...UserBioData
   }
 }
