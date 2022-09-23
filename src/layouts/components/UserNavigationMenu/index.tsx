@@ -16,18 +16,18 @@ export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> & Pick<Navi
 export type UserNavigationMenuStateProps = {
   showAdminLink?: boolean;
   userIconUrl?: string | undefined;
-  loggedIn?: boolean;
+  isLoggedIn?: boolean;
 };
 
 export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenuStateProps> = ({
   showAdminLink,
   userIconUrl,
-  loggedIn,
+  isLoggedIn,
   viewportClassName,
   className,
   ...props
 }) => {
-  const shouldUseAnonymousIcon = !(userIconUrl && loggedIn);
+  const shouldUseAnonymousIcon = !(userIconUrl && isLoggedIn);
   return (
     <NavigationMenu viewportClassName={twMerge('left-0 justify-start w-48', viewportClassName)}>
       <NavigationItem>
@@ -47,7 +47,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
           </Button>
         </NavigationTrigger>
         <NavigationContent className="w-auto gap-4  text-neutral-700">
-          {loggedIn ? (
+          {isLoggedIn ? (
             <>
               <NavigationLink>
                 <Link className="gap-2 font-normal" href="https://example.com">
@@ -106,7 +106,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
 UserNavigationMenu.defaultProps = {
   showAdminLink: false,
   userIconUrl: undefined,
-  loggedIn: false,
+  isLoggedIn: false,
 };
 
 export const UserNavigationMenuContainer: FC<UserNavigationMenuProps> = (props) => {
