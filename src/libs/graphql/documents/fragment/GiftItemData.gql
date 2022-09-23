@@ -1,0 +1,7 @@
+fragment GiftItemData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
+}

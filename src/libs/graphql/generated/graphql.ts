@@ -55,13 +55,6 @@ export type EnumGameFilter = {
   notIn?: InputMaybe<Array<Game>>;
 };
 
-export type EnumGiftNameFilter = {
-  equals?: InputMaybe<GiftName>;
-  in?: InputMaybe<Array<GiftName>>;
-  not?: InputMaybe<NestedEnumGiftNameFilter>;
-  notIn?: InputMaybe<Array<GiftName>>;
-};
-
 export type EnumRoleFilter = {
   equals?: InputMaybe<Role>;
   in?: InputMaybe<Array<Role>>;
@@ -79,6 +72,30 @@ export enum Game {
   Xeno = 'XENO'
 }
 
+export type Gift = {
+  __typename?: 'Gift';
+  createdAt: Scalars['DateTime'];
+  giftHistories: Array<GiftHistory>;
+  iconUrl: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Int'];
+  remaining: Scalars['Int'];
+};
+
+export type GiftHistory = {
+  __typename?: 'GiftHistory';
+  createdAt: Scalars['DateTime'];
+  deliveredAt?: Maybe<Scalars['DateTime']>;
+  exchangedGift: Gift;
+  gift: Gift;
+  giftId: Scalars['String'];
+  id: Scalars['String'];
+  isDelivered: Scalars['Boolean'];
+  user: User;
+  userId: Scalars['String'];
+};
+
 export type GiftHistoryCreateInput = {
   giftId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
@@ -90,6 +107,15 @@ export type GiftHistoryListRelationFilter = {
   every?: InputMaybe<GiftHistoryWhereInput>;
   none?: InputMaybe<GiftHistoryWhereInput>;
   some?: InputMaybe<GiftHistoryWhereInput>;
+};
+
+export type GiftHistoryOrderInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  deliveredAt?: InputMaybe<SortOrder>;
+};
+
+export type GiftHistoryUpdateInput = {
+  isDelivered: Scalars['Boolean'];
 };
 
 export type GiftHistoryWhereInput = {
@@ -105,14 +131,16 @@ export type GiftHistoryWhereInput = {
   userId: StringFilter;
 };
 
-export enum GiftName {
-  BabyStar = 'BABY_STAR',
-  Cabagge = 'CABAGGE',
-  Morokoshi = 'MOROKOSHI',
-  UmaiboCheese = 'UMAIBO_CHEESE',
-  UmaiboCornPotage = 'UMAIBO_CORN_POTAGE',
-  UmaiboMentaiko = 'UMAIBO_MENTAIKO'
-}
+export type GiftHistoryWhereUniqueInput = {
+  id: Scalars['String'];
+};
+
+export type GiftOrderInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  price?: InputMaybe<SortOrder>;
+  remaining?: InputMaybe<SortOrder>;
+};
 
 export type GiftRelationFilter = {
   is?: InputMaybe<GiftWhereInput>;
@@ -127,9 +155,13 @@ export type GiftWhereInput = {
   giftHistories?: InputMaybe<GiftHistoryListRelationFilter>;
   iconUrl?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<EnumGiftNameFilter>;
+  name?: InputMaybe<StringFilter>;
   price?: InputMaybe<IntFilter>;
   remaining?: InputMaybe<IntFilter>;
+};
+
+export type GiftWhereUniqueInput = {
+  id: Scalars['String'];
 };
 
 export type IntFilter = {
@@ -150,7 +182,7 @@ export type Item = {
   layer: Scalars['Int'];
   url: Scalars['String'];
   userIds: Array<Scalars['String']>;
-  users: Array<NestedUser>;
+  users: Array<User>;
 };
 
 export type ItemListRelationFilter = {
@@ -174,9 +206,12 @@ export type ItemWhereInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
-  incrementTotalPoint: User;
+  exchangeGift: Array<GiftHistory>;
+  exitGame: User;
+  incrementPoint: Array<User>;
   joinGame: User;
   pullGacha: Item;
+  updateGiftHistory: GiftHistory;
   updateUser: User;
 };
 
@@ -186,9 +221,19 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationIncrementTotalPointArgs = {
-  increment: Scalars['Float'];
+export type MutationExchangeGiftArgs = {
+  data: GiftHistoryCreateInput;
+  exchangeQuantity: Scalars['Float'];
+};
+
+
+export type MutationExitGameArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationIncrementPointArgs = {
+  users: Array<UserIncrementPointInput>;
 };
 
 
@@ -200,6 +245,12 @@ export type MutationJoinGameArgs = {
 
 export type MutationPullGachaArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpdateGiftHistoryArgs = {
+  data: GiftHistoryUpdateInput;
+  where: GiftHistoryWhereUniqueInput;
 };
 
 
@@ -238,27 +289,11 @@ export type NestedEnumGameFilter = {
   notIn?: InputMaybe<Array<Game>>;
 };
 
-export type NestedEnumGiftNameFilter = {
-  equals?: InputMaybe<GiftName>;
-  in?: InputMaybe<Array<GiftName>>;
-  not?: InputMaybe<NestedEnumGiftNameFilter>;
-  notIn?: InputMaybe<Array<GiftName>>;
-};
-
 export type NestedEnumRoleFilter = {
   equals?: InputMaybe<Role>;
   in?: InputMaybe<Array<Role>>;
   not?: InputMaybe<NestedEnumRoleFilter>;
   notIn?: InputMaybe<Array<Role>>;
-};
-
-export type NestedGiftHistory = {
-  __typename?: 'NestedGiftHistory';
-  createdAt: Scalars['DateTime'];
-  giftId: Scalars['String'];
-  id: Scalars['String'];
-  isDelivered: Scalars['Boolean'];
-  userId: Scalars['String'];
 };
 
 export type NestedIntFilter = {
@@ -270,15 +305,6 @@ export type NestedIntFilter = {
   lte?: InputMaybe<Scalars['Int']>;
   not?: InputMaybe<NestedIntFilter>;
   notIn?: InputMaybe<Array<Scalars['Int']>>;
-};
-
-export type NestedItem = {
-  __typename?: 'NestedItem';
-  character: Character;
-  id: Scalars['String'];
-  layer: Scalars['Int'];
-  url: Scalars['String'];
-  userIds: Array<Scalars['String']>;
 };
 
 export type NestedStringFilter = {
@@ -295,29 +321,42 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type NestedUser = {
-  __typename?: 'NestedUser';
-  avatarUrl: Scalars['String'];
-  character: Character;
-  consumablePoint: Scalars['Int'];
-  createdAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  iconUrl: Scalars['String'];
-  id: Scalars['String'];
-  itemIds: Array<Scalars['String']>;
-  name: Scalars['String'];
-  participateGame: Game;
-  pullableGachaTimes: Scalars['Int'];
-  role: Role;
-  totalPointDay1: Scalars['Int'];
-  totalPointDay2: Scalars['Int'];
-};
-
 export type Query = {
   __typename?: 'Query';
+  findGift?: Maybe<Gift>;
+  findGiftHistories: Array<GiftHistory>;
+  findGiftHistory?: Maybe<GiftHistory>;
+  findGifts: Array<Gift>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
-  tmp: Scalars['String'];
+};
+
+
+export type QueryFindGiftArgs = {
+  where: GiftWhereUniqueInput;
+};
+
+
+export type QueryFindGiftHistoriesArgs = {
+  cursor?: InputMaybe<GiftHistoryWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<GiftHistoryOrderInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<GiftHistoryWhereInput>;
+};
+
+
+export type QueryFindGiftHistoryArgs = {
+  where: GiftHistoryWhereUniqueInput;
+};
+
+
+export type QueryFindGiftsArgs = {
+  cursor?: InputMaybe<GiftWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<GiftOrderInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<GiftWhereInput>;
 };
 
 
@@ -379,11 +418,11 @@ export type User = {
   consumablePoint: Scalars['Int'];
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
-  giftHistories: Array<NestedGiftHistory>;
+  giftHistories: Array<GiftHistory>;
   iconUrl: Scalars['String'];
   id: Scalars['String'];
   itemIds: Array<Scalars['String']>;
-  items: Array<NestedItem>;
+  items: Array<Item>;
   name: Scalars['String'];
   participateGame: Game;
   pullableGachaTimes: Scalars['Int'];
@@ -408,6 +447,11 @@ export type UserCreateInput = {
   totalPointDay2?: InputMaybe<Scalars['Int']>;
 };
 
+export type UserIncrementPointInput = {
+  id: Scalars['String'];
+  increment: Scalars['Float'];
+};
+
 export type UserListRelationFilter = {
   every?: InputMaybe<UserWhereInput>;
   none?: InputMaybe<UserWhereInput>;
@@ -427,13 +471,8 @@ export type UserRelationFilter = {
 };
 
 export type UserUpdateInput = {
-  consumablePoint?: InputMaybe<Scalars['Int']>;
-  itemIds?: InputMaybe<Array<Scalars['String']>>;
-  participateGame?: InputMaybe<Game>;
-  pullableGachaTimes?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Role>;
-  totalPointDay1?: InputMaybe<Scalars['Int']>;
-  totalPointDay2?: InputMaybe<Scalars['Int']>;
 };
 
 export type UserWhereInput = {
@@ -462,14 +501,53 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export type GiftItemDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
+
+export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
+
+export type FindGiftExchangeInfoQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+
 export type FindUserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'NestedItem', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'NestedGiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
+export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
 
+export const GiftItemDataFragmentDoc = gql`
+    fragment GiftItemData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
+}
+    `;
+export const UserExchangeDataFragmentDoc = gql`
+    fragment UserExchangeData on User {
+  consumablePoint
+}
+    `;
+export const FindGiftExchangeInfoDocument = gql`
+    query FindGiftExchangeInfo($userId: String!) {
+  user: findUser(where: {id: $userId}) {
+    ...UserExchangeData
+  }
+  gifts: findGifts {
+    ...GiftItemData
+  }
+}
+    ${UserExchangeDataFragmentDoc}
+${GiftItemDataFragmentDoc}`;
 
+export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
+};
 export const FindUserDocument = gql`
     query FindUser($id: String!) {
   findUser(where: {id: $id}) {
