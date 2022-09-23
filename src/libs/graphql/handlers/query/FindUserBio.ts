@@ -5,6 +5,6 @@ export type UseFindUserBioProps = {
 };
 
 export const useFindUserBio = ({ uid }: UseFindUserBioProps) => {
-  const [userBio] = useFindUserBioQuery({ variables: { id: uid || '' }, pause: !uid });
+  const [userBio] = useFindUserBioQuery({ variables: { id: uid || '' }, pause: !uid, requestPolicy: 'cache-and-network' });
   return userBio;
 };
