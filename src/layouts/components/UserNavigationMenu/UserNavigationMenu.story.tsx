@@ -9,8 +9,9 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
   component: UserNavigationMenu,
   args: {
     className: '',
+    viewportClassName: '',
     userIconUrl: '/icons/fox.png',
-    showAdminLink: false,
+    showAdminLink: true,
     isLoggedIn: true,
   },
   argTypes: {
@@ -42,11 +43,6 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
 
 export default meta;
 
-export const Default: Story = {};
-
-export const OnRight: Story = {
-  args: {
-    className: 'ml-64',
-    viewportClassName: 'left-auto right-0 justify-end',
-  },
+export const Default: Story = {
+  render: (args) => <UserNavigationMenu {...args} />,
 };
