@@ -3983,18 +3983,6 @@
             "deprecationReason": null
           },
           {
-            "name": "consumablePoint",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": "0",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "email",
             "description": null,
             "type": {
@@ -4004,26 +3992,6 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "giftHistories",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "GiftHistoryCreateInput",
-                  "ofType": null
-                }
               }
             },
             "defaultValue": null,
@@ -4079,30 +4047,6 @@
             "deprecationReason": null
           },
           {
-            "name": "participateGame",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "Game",
-              "ofType": null
-            },
-            "defaultValue": "NONE",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pullableGachaTimes",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": "0",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "role",
             "description": null,
             "type": {
@@ -4111,30 +4055,6 @@
               "ofType": null
             },
             "defaultValue": "USER",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "totalPointDay1",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": "0",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "totalPointDay2",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": "0",
             "isDeprecated": false,
             "deprecationReason": null
           }
