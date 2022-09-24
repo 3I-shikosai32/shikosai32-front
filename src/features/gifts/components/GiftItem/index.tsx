@@ -6,11 +6,11 @@ import { useGiftItemAmount, DEFAULT_AMOUNT } from './hooks/useGiftItemAmount';
 import { Button, ButtonIcon } from '@/components/Button';
 import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/components/Modal';
 import { Selector, SelectorItem, SelectorTrigger } from '@/components/Selector';
-import type { GiftItemDataFragment, UserExchangeDataFragment } from '@/libs/graphql/generated/graphql';
+import type { GiftListingDataFragment, UserExchangeDataFragment } from '@/libs/graphql/generated/graphql';
 import twMerge from '@/libs/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
-  Pick<GiftItemDataFragment, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> &
+  Pick<GiftListingDataFragment, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> &
   Pick<UserExchangeDataFragment, 'consumablePoint'> & {
     onExchange: ((amount: number) => Promise<void>) | ((amount: number) => void);
   };
