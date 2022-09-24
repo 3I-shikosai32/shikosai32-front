@@ -1,10 +1,12 @@
 import type { User } from 'firebase/auth';
+import Error from 'next/error';
 import Router from 'next/router';
 import type { FC } from 'react';
 import Loading from './components/Loading';
 import { useFindUserBio } from '@/libs/graphql/handlers/query/FindUserBio';
+import authActions from '@/state/authState';
 
-const FindUserByID: FC<{ user: User }> = ({ user }) => {
+const FindUserById: FC<{ user: User }> = ({ user }) => {
   const { data, fetching } = useFindUserBio({ uid: user.uid });
   if (!fetching) {
     if (data) {
@@ -19,3 +21,14 @@ const FindUserByID: FC<{ user: User }> = ({ user }) => {
     </div>
   );
 };
+
+const IsNewUser: FC = () => {
+  const user = authActions.useCurrentUser();
+  if (!user) {
+    return <Error statusCode={500} />;
+  }
+
+  return <FindUserById user={user} />;
+};
+
+export default IsNewUser;
