@@ -4,7 +4,7 @@ import { AudioControlMenuContainer } from '../AudioControlMenu';
 import { HamburgerMenu } from '../HamburgerMenu';
 import { PageNavigationMenu } from '../PageNavigationMenu';
 import { ShareButton } from '../ShareButton';
-import UserNavigationMenuContainer from '../UserNavigationMenu/container';
+import { UserNavigationMenuContainer } from '../UserNavigationMenu/container';
 import twMerge from '@/libs/twmerge';
 
 const audioControlProps = {
