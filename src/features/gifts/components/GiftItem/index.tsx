@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { FC, ComponentPropsWithoutRef, useState } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 import { MdClose } from 'react-icons/md';
-import { useGiftItemAmount } from './hooks/useGiftItemAmount';
+import { useGiftItemAmount, DEFAULT_AMOUNT } from './hooks/useGiftItemAmount';
 import { Button, ButtonIcon } from '@/components/Button';
 import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/components/Modal';
 import { Selector, SelectorItem, SelectorTrigger } from '@/components/Selector';
@@ -15,11 +15,9 @@ export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
     onExchange: ((amount: number) => Promise<void>) | ((amount: number) => void);
   };
 
-const DEFAULT_AMOUNT = 1;
-
 export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, price, remaining, onExchange, className, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { selectedAmount, setSelectedAmount, selectableAmounts, isAffordable, isInStock, isAvailable } = useGiftItemAmount({
+  const { selectedAmount, setSelectedAmount, selectableAmounts, isAffordable, isInStock, isAvailable, doesIndicateRemaining } = useGiftItemAmount({
     consumablePoint,
     price,
     remaining,
@@ -52,67 +50,70 @@ export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, pr
             ))}
           </Selector>
         </div>
-        <Modal
-          open={isModalOpen}
-          onOpenChange={(isOpen) => setIsModalOpen(isOpen)}
-          trigger={
-            <Button
-              disabled={!isAvailable}
-              className={twMerge('w-fit disabled:contrast-100 bg-gradient-to-br gradient-exchange', !isAvailable && 'gradient-exchange-itemframe')}
-            >
-              {!isInStock && (
-                <>
-                  売り切れました
+        <div className="flex flex-row items-center justify-start gap-6">
+          <Modal
+            open={isModalOpen}
+            onOpenChange={(isOpen) => setIsModalOpen(isOpen)}
+            trigger={
+              <Button
+                disabled={!isAvailable}
+                className={twMerge('w-fit disabled:contrast-100 bg-gradient-to-br gradient-exchange', !isAvailable && 'gradient-exchange-itemframe')}
+              >
+                {!isInStock && (
+                  <>
+                    売り切れました
+                    <br />
+                  </>
+                )}
+                {!isAffordable && (
+                  <>
+                    ポイントが足りません
+                    <br />
+                  </>
+                )}
+                {isAvailable && (
+                  <>
+                    <ButtonIcon>
+                      <IoMdSwap />
+                    </ButtonIcon>
+                    交換
+                  </>
+                )}
+              </Button>
+            }
+          >
+            <ModalOverlay>
+              <ModalContent>
+                <ModalTitle>本当に交換しますか？</ModalTitle>
+                <ModalDescription className="text-center">
+                  <span className="font-bold">{name}</span> を <span className="font-bold">{selectedAmount}個</span>
                   <br />
-                </>
-              )}
-              {!isAffordable && (
-                <>
-                  ポイントが足りません
-                  <br />
-                </>
-              )}
-              {isAvailable && (
-                <>
-                  <ButtonIcon>
-                    <IoMdSwap />
-                  </ButtonIcon>
-                  交換
-                </>
-              )}
-            </Button>
-          }
-        >
-          <ModalOverlay>
-            <ModalContent>
-              <ModalTitle>本当に交換しますか？</ModalTitle>
-              <ModalDescription className="text-center">
-                <span className="font-bold">{name}</span> を <span className="font-bold">{selectedAmount}個</span>
-                <br />
-                合計 {price * selectedAmount} Pt で交換しますか？
-              </ModalDescription>
-              <ModalButtonGroup>
-                <Button
-                  outlined
-                  onClick={() => {
-                    setIsModalOpen(false);
-                  }}
-                >
-                  キャンセル
-                </Button>
-                <Button
-                  className="bg-exchange"
-                  onClick={() => {
-                    onExchange(selectedAmount);
-                    setIsModalOpen(false);
-                  }}
-                >
-                  交換する
-                </Button>
-              </ModalButtonGroup>
-            </ModalContent>
-          </ModalOverlay>
-        </Modal>
+                  合計 {price * selectedAmount} Pt で交換しますか？
+                </ModalDescription>
+                <ModalButtonGroup>
+                  <Button
+                    outlined
+                    onClick={() => {
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    キャンセル
+                  </Button>
+                  <Button
+                    className="bg-exchange"
+                    onClick={() => {
+                      onExchange(selectedAmount);
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    交換する
+                  </Button>
+                </ModalButtonGroup>
+              </ModalContent>
+            </ModalOverlay>
+          </Modal>
+          {doesIndicateRemaining && <span className="font-bold text-neutral-300">残り{remaining}個</span>}
+        </div>
       </div>
     </div>
   );
