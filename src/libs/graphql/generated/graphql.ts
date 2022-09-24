@@ -27,7 +27,7 @@ export enum Character {
   Goku = 'GOKU',
   Pudding = 'PUDDING',
   Reaper = 'REAPER',
-  Tree = 'TREE',
+  Tree = 'TREE'
 }
 
 export type DateTimeFilter = {
@@ -69,7 +69,7 @@ export enum Game {
   Poker = 'POKER',
   President = 'PRESIDENT',
   WeDidntPlaytest = 'WE_DIDNT_PLAYTEST',
-  Xeno = 'XENO',
+  Xeno = 'XENO'
 }
 
 export type Gift = {
@@ -215,36 +215,44 @@ export type Mutation = {
   updateUser: User;
 };
 
+
 export type MutationCreateUserArgs = {
   data: UserCreateInput;
 };
+
 
 export type MutationExchangeGiftArgs = {
   data: GiftHistoryCreateInput;
   exchangeQuantity: Scalars['Float'];
 };
 
+
 export type MutationExitGameArgs = {
   where: UserWhereUniqueInput;
 };
 
+
 export type MutationIncrementPointArgs = {
   users: Array<UserIncrementPointInput>;
 };
+
 
 export type MutationJoinGameArgs = {
   game: Game;
   where: UserWhereUniqueInput;
 };
 
+
 export type MutationPullGachaArgs = {
   where: UserWhereUniqueInput;
 };
+
 
 export type MutationUpdateGiftHistoryArgs = {
   data: GiftHistoryUpdateInput;
   where: GiftHistoryWhereUniqueInput;
 };
+
 
 export type MutationUpdateUserArgs = {
   data: UserUpdateInput;
@@ -323,9 +331,11 @@ export type Query = {
   findUsers: Array<User>;
 };
 
+
 export type QueryFindGiftArgs = {
   where: GiftWhereUniqueInput;
 };
+
 
 export type QueryFindGiftHistoriesArgs = {
   cursor?: InputMaybe<GiftHistoryWhereUniqueInput>;
@@ -335,9 +345,11 @@ export type QueryFindGiftHistoriesArgs = {
   where?: InputMaybe<GiftHistoryWhereInput>;
 };
 
+
 export type QueryFindGiftHistoryArgs = {
   where: GiftHistoryWhereUniqueInput;
 };
+
 
 export type QueryFindGiftsArgs = {
   cursor?: InputMaybe<GiftWhereUniqueInput>;
@@ -347,9 +359,11 @@ export type QueryFindGiftsArgs = {
   where?: InputMaybe<GiftWhereInput>;
 };
 
+
 export type QueryFindUserArgs = {
   where: UserWhereUniqueInput;
 };
+
 
 export type QueryFindUsersArgs = {
   cursor?: InputMaybe<UserWhereUniqueInput>;
@@ -361,17 +375,17 @@ export type QueryFindUsersArgs = {
 
 export enum QueryMode {
   Default = 'default',
-  Insensitive = 'insensitive',
+  Insensitive = 'insensitive'
 }
 
 export enum Role {
   Admin = 'ADMIN',
-  User = 'USER',
+  User = 'USER'
 }
 
 export enum SortOrder {
   Asc = 'asc',
-  Desc = 'desc',
+  Desc = 'desc'
 }
 
 export type StringFilter = {
@@ -420,17 +434,11 @@ export type User = {
 export type UserCreateInput = {
   avatarUrl: Scalars['String'];
   character: Character;
-  consumablePoint?: InputMaybe<Scalars['Int']>;
   email: Scalars['String'];
-  giftHistories?: InputMaybe<Array<GiftHistoryCreateInput>>;
   iconUrl: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
-  participateGame?: InputMaybe<Game>;
-  pullableGachaTimes?: InputMaybe<Scalars['Int']>;
   role?: InputMaybe<Role>;
-  totalPointDay1?: InputMaybe<Scalars['Int']>;
-  totalPointDay2?: InputMaybe<Scalars['Int']>;
 };
 
 export type UserIncrementPointInput = {
@@ -487,137 +495,113 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export type GiftItemDataFragment = { __typename?: 'Gift'; id: string; name: string; iconUrl: string; price: number; remaining: number };
+export type GiftItemDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type UserExchangeDataFragment = { __typename?: 'User'; consumablePoint: number };
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string };
+
+export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
 
-export type FindGiftExchangeInfoQuery = {
-  __typename?: 'Query';
-  user?: { __typename?: 'User'; consumablePoint: number } | null;
-  gifts: Array<{ __typename?: 'Gift'; id: string; name: string; iconUrl: string; price: number; remaining: number }>;
-};
-export type UserBioFragment = { __typename?: 'User'; id: string; name: string; email: string; role: Role; character: Character; iconUrl: string };
+
+export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
 export type FindUserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-export type FindUserQuery = {
-  __typename?: 'Query';
-  findUser?: {
-    __typename?: 'User';
-    id: string;
-    name: string;
-    email: string;
-    role: Role;
-    character: Character;
-    avatarUrl: string;
-    iconUrl: string;
-    participateGame: Game;
-    pullableGachaTimes: number;
-    totalPointDay1: number;
-    totalPointDay2: number;
-    consumablePoint: number;
-    items: Array<{ __typename?: 'Item'; id: string; layer: number; url: string }>;
-    giftHistories: Array<{ __typename?: 'GiftHistory'; id: string; giftId: string; isDelivered: boolean; createdAt: any }>;
-  } | null;
-};
 
-export const GiftItemDataFragmentDoc = gql`
-  fragment GiftItemData on Gift {
-    id
-    name
-    iconUrl
-    price
-    remaining
-  }
-`;
-export const UserExchangeDataFragmentDoc = gql`
-  fragment UserExchangeData on User {
-    consumablePoint
-  }
-`;
-export const FindGiftExchangeInfoDocument = gql`
-  query FindGiftExchangeInfo($userId: String!) {
-    user: findUser(where: { id: $userId }) {
-      ...UserExchangeData
-    }
-    gifts: findGifts {
-      ...GiftItemData
-    }
-  }
-  ${UserExchangeDataFragmentDoc}
-  ${GiftItemDataFragmentDoc}
-`;
+export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
 
-export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
-}
 export type FindUserBioQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-export type FindUserBioQuery = {
-  __typename?: 'Query';
-  findUser?: { __typename?: 'User'; id: string; name: string; email: string; role: Role; character: Character; iconUrl: string } | null;
-};
 
-export const UserBioFragmentDoc = gql`
-  fragment UserBio on User {
+export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
+
+export const GiftItemDataFragmentDoc = gql`
+    fragment GiftItemData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
+}
+    `;
+export const UserBioDataFragmentDoc = gql`
+    fragment UserBioData on User {
+  id
+  name
+  email
+  role
+  character
+  iconUrl
+}
+    `;
+export const UserExchangeDataFragmentDoc = gql`
+    fragment UserExchangeData on User {
+  consumablePoint
+}
+    `;
+export const FindGiftExchangeInfoDocument = gql`
+    query FindGiftExchangeInfo($userId: String!) {
+  user: findUser(where: {id: $userId}) {
+    ...UserExchangeData
+  }
+  gifts: findGifts {
+    ...GiftItemData
+  }
+}
+    ${UserExchangeDataFragmentDoc}
+${GiftItemDataFragmentDoc}`;
+
+export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
+};
+export const FindUserDocument = gql`
+    query FindUser($id: String!) {
+  findUser(where: {id: $id}) {
     id
     name
     email
     role
     character
+    avatarUrl
     iconUrl
-  }
-`;
-export const FindUserDocument = gql`
-  query FindUser($id: String!) {
-    findUser(where: { id: $id }) {
+    items {
       id
-      name
-      email
-      role
-      character
-      avatarUrl
-      iconUrl
-      items {
-        id
-        layer
-        url
-      }
-      giftHistories {
-        id
-        giftId
-        isDelivered
-        createdAt
-      }
-      participateGame
-      pullableGachaTimes
-      totalPointDay1
-      totalPointDay2
-      consumablePoint
+      layer
+      url
     }
+    giftHistories {
+      id
+      giftId
+      isDelivered
+      createdAt
+    }
+    participateGame
+    pullableGachaTimes
+    totalPointDay1
+    totalPointDay2
+    consumablePoint
   }
-`;
+}
+    `;
 
 export function useFindUserQuery(options: Omit<Urql.UseQueryArgs<FindUserQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserQuery, FindUserQueryVariables>({ query: FindUserDocument, ...options });
-}
+};
 export const FindUserBioDocument = gql`
-  query FindUserBio($id: String!) {
-    findUser(where: { id: $id }) {
-      ...UserBio
-    }
+    query FindUserBio($id: String!) {
+  findUser(where: {id: $id}) {
+    ...UserBioData
   }
-  ${UserBioFragmentDoc}
-`;
+}
+    ${UserBioDataFragmentDoc}`;
 
 export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
-}
+};
