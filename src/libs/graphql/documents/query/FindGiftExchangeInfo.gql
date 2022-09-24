@@ -3,6 +3,6 @@ query FindGiftExchangeInfo($userId: String!) {
     ...UserExchangeData
   }
   gifts: findGifts {
-    ...GiftListingData
+    ...GiftData
   }
 }

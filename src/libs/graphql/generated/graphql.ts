@@ -495,7 +495,7 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export type GiftListingDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
+export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
 export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string };
 
@@ -522,8 +522,8 @@ export type FindUserBioQueryVariables = Exact<{
 
 export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
 
-export const GiftListingDataFragmentDoc = gql`
-    fragment GiftListingData on Gift {
+export const GiftDataFragmentDoc = gql`
+    fragment GiftData on Gift {
   id
   name
   iconUrl
@@ -552,11 +552,11 @@ export const FindGiftExchangeInfoDocument = gql`
     ...UserExchangeData
   }
   gifts: findGifts {
-    ...GiftListingData
+    ...GiftData
   }
 }
     ${UserExchangeDataFragmentDoc}
-${GiftListingDataFragmentDoc}`;
+${GiftDataFragmentDoc}`;
 
 export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });

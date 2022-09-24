@@ -1,4 +1,4 @@
-fragment GiftListingData on Gift {
+fragment GiftData on Gift {
   id
   name
   iconUrl
