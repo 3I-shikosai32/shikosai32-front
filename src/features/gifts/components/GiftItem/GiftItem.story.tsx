@@ -2,6 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
+import { STOCK_INDICATE_AMOUNT } from './hooks/useGiftItemAmount';
 import { GiftItem } from './index';
 
 type Story = ComponentStoryObj<typeof GiftItem>;
@@ -15,6 +16,7 @@ const meta: ComponentMeta<typeof GiftItem> = {
     price: 30,
     remaining: 10,
     onExchange: action('onExchange'),
+    className: 'bg-white',
   },
   argTypes: {
     consumablePoint: {
@@ -50,8 +52,22 @@ const meta: ComponentMeta<typeof GiftItem> = {
 
 export default meta;
 
-export const Default: Story = {
+export const Default: Story = {};
+
+export const WithFewStock: Story = {
   args: {
-    className: 'bg-white',
+    remaining: STOCK_INDICATE_AMOUNT,
+  },
+};
+
+export const OutOfStock: Story = {
+  args: {
+    remaining: 0,
+  },
+};
+
+export const OutOfPoints: Story = {
+  args: {
+    consumablePoint: 0,
   },
 };
