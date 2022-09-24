@@ -3,8 +3,7 @@ import { Role } from '@/libs/graphql/generated/graphql';
 import { useFindUserBio } from '@/libs/graphql/handlers/query/FindUserBio';
 import authActions from '@/state/authState';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useUserNavigation = (): UserNavigationMenuStateProps => {
+const useUserNavigation = (): UserNavigationMenuStateProps => {
   const firebaseUser = authActions.useCurrentUser();
   const { data, fetching, error } = useFindUserBio({ uid: firebaseUser?.uid });
   if (!data || fetching || error) {
@@ -16,3 +15,5 @@ export const useUserNavigation = (): UserNavigationMenuStateProps => {
     isLoggedIn: !!data.findUser?.id,
   };
 };
+
+export default useUserNavigation;

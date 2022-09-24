@@ -4,7 +4,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { RiUser3Fill } from 'react-icons/ri';
 import { TbClipboardText } from 'react-icons/tb';
-import { useUserNavigation } from './hooks/useUserNavigationMenu';
+import useUserNavigation from './hooks/useUserNavigationMenu';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Link, LinkIcon } from '@/components/Link';
