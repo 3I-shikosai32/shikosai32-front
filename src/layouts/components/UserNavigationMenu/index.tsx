@@ -25,7 +25,6 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
   isLoggedIn,
   viewportClassName,
   className,
-  ...props
 }) => {
   const shouldUseAnonymousIcon = !(userIconUrl && isLoggedIn);
   return (
@@ -35,7 +34,6 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
           <Button
             className={twMerge('p-0 min-h-12 bg-white', shouldUseAnonymousIcon && 'bg-gradient-to-br gradient-primary text-white', className)}
             circle
-            {...props}
           >
             {shouldUseAnonymousIcon ? (
               <ButtonIcon>

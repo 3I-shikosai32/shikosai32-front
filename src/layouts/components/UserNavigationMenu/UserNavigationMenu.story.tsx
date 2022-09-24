@@ -7,6 +7,13 @@ type Story = ComponentStoryObj<typeof UserNavigationMenu>;
 
 const meta: ComponentMeta<typeof UserNavigationMenu> = {
   component: UserNavigationMenu,
+  args: {
+    className: '',
+    viewportClassName: '',
+    userIconUrl: '/icons/fox.png',
+    showAdminLink: true,
+    isLoggedIn: true,
+  },
   argTypes: {
     className: {
       description: 'メニューを開くボタンのサイズ等のスタイルを変更するために用意されている。`aspect-square`で縦横比が1:1に固定されています。',
@@ -36,4 +43,6 @@ const meta: ComponentMeta<typeof UserNavigationMenu> = {
 
 export default meta;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <UserNavigationMenu {...args} />,
+};
