@@ -1,0 +1,5 @@
+query FindUserNew($id: String!) {
+  findUser(where: { id: $id }) {
+    id
+  }
+}
