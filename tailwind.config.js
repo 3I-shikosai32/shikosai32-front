@@ -137,6 +137,10 @@ const config = {
           g1: '#1D80F2',
           DEFAULT: '#8E7898',
           g2: '#EB623C',
+          itemframe: {
+            g1: '#CCD6E5',
+            g2: '#B8C3D3',
+          },
         },
         game: {
           g1: '#845DF3',
@@ -207,6 +211,7 @@ const config = {
         'window',
         'ranking',
         'exchange',
+        'exchange-itemframe',
         'game',
         'character-fox',
         'character-tree',
