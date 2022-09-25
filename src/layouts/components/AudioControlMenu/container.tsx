@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import useAudioControlMenu from './hooks/useAudioControlMenu';
+import { useAudioControlMenu } from './hooks/useAudioControlMenu';
 import { AudioControlMenu, AudioControlMenuProps } from './index';
 
 // eslint-disable-next-line import/prefer-default-export
