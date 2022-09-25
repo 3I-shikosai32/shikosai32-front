@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { FC, ComponentPropsWithoutRef } from 'react';
-import { AudioControlMenuContainer } from '../AudioControlMenu';
+import { AudioControlMenuContainer } from '../AudioControlMenu/container';
 import { HamburgerMenu } from '../HamburgerMenu';
 import { PageNavigationMenu } from '../PageNavigationMenu';
 import { ShareButton } from '../ShareButton';
