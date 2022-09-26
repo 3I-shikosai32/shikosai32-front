@@ -522,6 +522,13 @@ export type FindUserBioQueryVariables = Exact<{
 
 export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
 
+export type FindUserNewQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type FindUserNewQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
+
 export const GiftDataFragmentDoc = gql`
     fragment GiftData on Gift {
   id
@@ -604,4 +611,15 @@ export const FindUserBioDocument = gql`
 
 export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
+};
+export const FindUserNewDocument = gql`
+    query FindUserNew($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+  }
+}
+    `;
+
+export function useFindUserNewQuery(options: Omit<Urql.UseQueryArgs<FindUserNewQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserNewQuery, FindUserNewQueryVariables>({ query: FindUserNewDocument, ...options });
 };
