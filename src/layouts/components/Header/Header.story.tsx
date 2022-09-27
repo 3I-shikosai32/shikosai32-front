@@ -3,6 +3,7 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { DiProvider, injectable } from 'react-magnetic-di';
 import { RecoilRoot } from 'recoil';
 import { Header } from './index';
+import { useAudioControlMenu } from '@/layouts/components/AudioControlMenu/hooks/useAudioControlMenu';
 import { useUserNavigationMenu } from '@/layouts/components/UserNavigationMenu/hooks/useUserNavigationMenu';
 
 type Story = ComponentStoryObj<typeof Header>;
@@ -12,6 +13,16 @@ const injectedHooks = [
     showAdminLink: true,
     userIconUrl: '/icons/fox.png',
     isLoggedIn: true,
+  })),
+  injectable(useAudioControlMenu, () => ({
+    isPlaying: false,
+    setIsPlaying: () => {},
+    name: '曲の名前',
+    composers: [
+      {
+        name: '作曲者名',
+      },
+    ],
   })),
 ];
 
