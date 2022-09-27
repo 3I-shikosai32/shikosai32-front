@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
-import useAudioControlMenu from './hooks/useAudioControlMenu';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
@@ -55,8 +54,3 @@ export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateP
     </NavigationItem>
   </NavigationMenu>
 );
-
-export const AudioControlMenuContainer: FC<AudioControlMenuProps> = (props) => {
-  const states = useAudioControlMenu();
-  return <AudioControlMenu {...props} {...states} />;
-};
