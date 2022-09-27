@@ -14,8 +14,11 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Build Storybook with `yarn run sb:build`
+        run: yarn run sb:build
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
+          storybookBuildDir: ./.storybook/static
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
