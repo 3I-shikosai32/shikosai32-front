@@ -321,6 +321,12 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type ObtainmentStatus = {
+  __typename?: 'ObtainmentStatus';
+  item: Item;
+  obtained: Scalars['Boolean'];
+};
+
 export type Query = {
   __typename?: 'Query';
   findGift?: Maybe<Gift>;
@@ -329,6 +335,7 @@ export type Query = {
   findGifts: Array<Gift>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
+  getObtainmentStatuses: Array<ObtainmentStatus>;
 };
 
 
@@ -371,6 +378,11 @@ export type QueryFindUsersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
+};
+
+
+export type QueryGetObtainmentStatusesArgs = {
+  where: UserWhereUniqueInput;
 };
 
 export enum QueryMode {
@@ -501,6 +513,13 @@ export type UserBioDataFragment = { __typename?: 'User', id: string, name: strin
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
+export type CreateUserMutationVariables = Exact<{
+  data: UserCreateInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: any, id: string, name: string } };
+
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
@@ -546,6 +565,19 @@ export const UserExchangeDataFragmentDoc = gql`
   consumablePoint
 }
     `;
+export const CreateUserDocument = gql`
+    mutation CreateUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    createdAt
+    id
+    name
+  }
+}
+    `;
+
+export function useCreateUserMutation() {
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
+};
 export const FindGiftExchangeInfoDocument = gql`
     query FindGiftExchangeInfo($userId: String!) {
   user: findUser(where: {id: $userId}) {
