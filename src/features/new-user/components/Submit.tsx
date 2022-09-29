@@ -5,12 +5,23 @@ import { Button, ButtonIcon } from '@/components/Button';
 import type { UserCreateInput } from '@/libs/graphql/generated/graphql';
 import useCreateUserMutationHandler from '@/libs/graphql/handlers/mutation/createUser';
 
-// const Submit: FC<UserCreateInput> = ({ avatarUrl, character, email, iconUrl, id, name })
-const Submit: FC = () => {
+const Submit: FC<UserCreateInput> = ({ character, email, id, name }) => {
   const { fetching, executeMutation } = useCreateUserMutationHandler();
   return (
     <div className="my-16 flex justify-center">
-      <Button type="submit" className='bg-primary'><ButtonIcon><AiOutlineSend /></ButtonIcon>Sign Up</Button>
+      <Button
+        type="submit"
+        className="bg-primary"
+        onClick={async () => {
+          await executeMutation({ data: { id, character, name, email } });
+          Router.push('/');
+        }}
+      >
+        <ButtonIcon>
+          <AiOutlineSend />
+        </ButtonIcon>
+        Sign Up
+      </Button>
     </div>
   );
 };
