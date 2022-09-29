@@ -72,6 +72,16 @@ export enum Game {
   Xeno = 'XENO'
 }
 
+export type GameAttenders = {
+  __typename?: 'GameAttenders';
+  coin_dropping: Array<User>;
+  ice_raze: Array<User>;
+  poker: Array<User>;
+  president: Array<User>;
+  we_didnt_playtest: Array<User>;
+  xeno: Array<User>;
+};
+
 export type Gift = {
   __typename?: 'Gift';
   createdAt: Scalars['DateTime'];
@@ -423,6 +433,11 @@ export type StringNullableListFilter = {
   isEmpty?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  updatedGameAttenders: GameAttenders;
+};
+
 export type User = {
   __typename?: 'User';
   avatarUrl: Scalars['String'];
@@ -444,10 +459,8 @@ export type User = {
 };
 
 export type UserCreateInput = {
-  avatarUrl: Scalars['String'];
   character: Character;
   email: Scalars['String'];
-  iconUrl: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
   role?: InputMaybe<Role>;
