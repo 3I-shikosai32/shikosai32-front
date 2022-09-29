@@ -2,7 +2,7 @@ import type { AudioControlMenuStateProps } from '../index';
 import { useAudioControlValue } from '@/state/audio/audioControl';
 import { useAudioResourceValue } from '@/state/audio/audioResource';
 
-const useAudioControlMenu = (): AudioControlMenuStateProps => {
+export const useAudioControlMenu = (): AudioControlMenuStateProps => {
   const audioResource = useAudioResourceValue();
   const name = audioResource?.name || '曲が選ばれていません';
   const composers = audioResource?.composers || [];
@@ -14,5 +14,3 @@ const useAudioControlMenu = (): AudioControlMenuStateProps => {
     setIsPlaying,
   };
 };
-
-export default useAudioControlMenu;

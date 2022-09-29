@@ -1,0 +1,4 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [["react-magnetic-di/babel-plugin", { "forceEnable": true }]]
+}
