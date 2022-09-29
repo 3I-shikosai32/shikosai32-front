@@ -2,7 +2,7 @@ import * as NextImage from 'next/image';
 // next v12以上の場合の`import`元。参照: https://www.npmjs.com/package/storybook-addon-next-router
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import 'tailwindcss/tailwind.css';
-import '../src/styles/global.scss';
+import '../src/styles/storybook.scss';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const OriginalNextImage = NextImage.default;
