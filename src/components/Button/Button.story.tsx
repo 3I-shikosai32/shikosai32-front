@@ -88,6 +88,7 @@ export const WithReactIcon: Story = {
 
 export const CircleWithIcon: Story = {
   args: {
+    'aria-label': 'プラスボタン',
     circle: true,
   },
   render: (args) => (

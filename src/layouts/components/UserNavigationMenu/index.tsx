@@ -32,6 +32,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
         <NavigationTrigger>
           <Button
             className={twMerge('p-0 min-h-12 bg-white', shouldUseAnonymousIcon && 'bg-gradient-to-br gradient-primary text-white', className)}
+            aria-label="ユーザーメニューを開く"
             circle
           >
             {shouldUseAnonymousIcon ? (

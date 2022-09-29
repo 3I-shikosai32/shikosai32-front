@@ -35,7 +35,7 @@ export const ShareButton: FC<ShareButtonProps> = ({ alwaysAlternative, ...props 
 
   return (
     <>
-      <Button onClick={onShareButtonClick} circle ghost {...props}>
+      <Button onClick={onShareButtonClick} aria-label="共有メニューを開く" circle ghost {...props}>
         <ButtonIcon>
           <RiShareFill />
         </ButtonIcon>
