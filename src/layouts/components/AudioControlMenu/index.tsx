@@ -25,7 +25,7 @@ export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateP
   <NavigationMenu viewportClassName={twMerge('left-0 justify-start min-w-[24rem]', viewportClassName)}>
     <NavigationItem>
       <NavigationTrigger>
-        <Button className={twMerge('p-0 min-h-12 ', className)} ghost circle {...props}>
+        <Button className={twMerge('p-0 min-h-12 ', className)} ghost circle aria-label="音楽プレイヤーを開く" {...props}>
           {/* TODO: ここに音楽の波形に合わせたスペクトラムを挿入する */}
           <ButtonIcon>
             <HiMusicNote />

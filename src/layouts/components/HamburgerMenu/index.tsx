@@ -12,7 +12,7 @@ export type HamburgerMenuProps = Omit<ButtonProps, 'children'>;
 export const HamburgerMenu: FC<HamburgerMenuProps> = ({ className, ...props }) => (
   <Modal
     trigger={
-      <Button className={twMerge('', className)} {...props} ghost circle>
+      <Button className={twMerge('', className)} {...props} ghost circle aria-label="ハンバーガーメニューを開く">
         <ButtonIcon>
           <GiHamburgerMenu />
         </ButtonIcon>
