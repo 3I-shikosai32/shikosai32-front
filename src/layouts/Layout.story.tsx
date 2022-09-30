@@ -1,14 +1,35 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
+import { DiProvider, injectable } from 'react-magnetic-di';
 import { RecoilRoot } from 'recoil';
 
 import { Layout } from './index';
+import { useAudioControlMenu } from '@/layouts/components/AudioControlMenu/hooks/useAudioControlMenu';
+import { useUserNavigationMenu } from '@/layouts/components/UserNavigationMenu/hooks/useUserNavigationMenu';
 
 type Story = ComponentStoryObj<typeof Layout>;
 
+const injectedHooks = [
+  injectable(useUserNavigationMenu, () => ({
+    showAdminLink: true,
+    userIconUrl: '/icons/fox.png',
+    isLoggedIn: true,
+  })),
+  injectable(useAudioControlMenu, () => ({
+    isPlaying: false,
+    setIsPlaying: () => {},
+    name: '曲の名前',
+    composers: [
+      {
+        name: '作曲者名',
+      },
+    ],
+  })),
+];
+
 const meta: ComponentMeta<typeof Layout> = {
   component: Layout,
-  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>],
+  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>, (story) => <DiProvider use={injectedHooks}>{story()}</DiProvider>],
   parameters: {
     layout: 'fullscreen',
   },
