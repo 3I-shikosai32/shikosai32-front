@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
-import useAudioControlMenu from './hooks/useAudioControlMenu';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
@@ -26,7 +25,7 @@ export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateP
   <NavigationMenu viewportClassName={twMerge('left-0 justify-start min-w-[24rem]', viewportClassName)}>
     <NavigationItem>
       <NavigationTrigger>
-        <Button className={twMerge('p-0 min-h-12 ', className)} ghost circle {...props}>
+        <Button className={twMerge('p-0 min-h-12 ', className)} ghost circle aria-label="音楽プレイヤーを開く" {...props}>
           {/* TODO: ここに音楽の波形に合わせたスペクトラムを挿入する */}
           <ButtonIcon>
             <HiMusicNote />
@@ -55,8 +54,3 @@ export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateP
     </NavigationItem>
   </NavigationMenu>
 );
-
-export const AudioControlMenuContainer: FC<AudioControlMenuProps> = (props) => {
-  const states = useAudioControlMenu();
-  return <AudioControlMenu {...props} {...states} />;
-};

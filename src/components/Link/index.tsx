@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import NextLink from 'next/link';
-import type { FC, ReactNode, ReactElement, ComponentPropsWithoutRef } from 'react';
-import { useMemo } from 'react';
+import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { IconContext } from 'react-icons';
 import twMerge from '@/libs/twmerge';
 
@@ -22,11 +23,19 @@ export const LinkIcon: FC<LinkIconProps> = ({ children, className }) => {
 };
 
 export type LinkProps = Omit<ComponentPropsWithoutRef<typeof NextLink>, 'children'> & {
-  children: Array<ReactElement<LinkIconProps> | string> | string;
+  children: ReactNode;
 };
 
-export const Link: FC<LinkProps> = ({ className, children, ...props }) => (
+// `framer-motion`でアニメーションを付加できるようにするため`forwardRef`でrefを受け取れるようにする
+// 型推論はできているのに`<HTMLAnchorElement, LinkProps>`で明示的に型ジェネリクスを指定しないとeslint`react/prop-types`エラーになるため指定
+export const Link: FC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(({ className, children, ...props }, ref) => (
   <NextLink {...props}>
-    <a className={twMerge('inline-flex items-center gap-1 font-branding font-bold drop-shadow hover:underline', className)}>{children}</a>
+    <a ref={ref} className={twMerge('inline-flex items-center gap-1 font-branding font-bold drop-shadow hover:underline', className)}>
+      {children}
+    </a>
   </NextLink>
-);
+));
+
+Link.displayName = 'Link';
+
+export const MotionLink = motion(Link);

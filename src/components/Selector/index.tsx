@@ -3,6 +3,7 @@ import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'reac
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { MdCheck } from 'react-icons/md';
 import { MotionCard } from '@/components/Card';
+import { Separator } from '@/components/Separator';
 import twMerge from '@/libs/twmerge';
 
 export type SelectorTriggerProps = Omit<ComponentPropsWithoutRef<typeof Select.Trigger>, 'asChild'> &
@@ -69,7 +70,7 @@ export type SelectorSeparatorProps = Omit<ComponentPropsWithoutRef<typeof Select
 
 export const SelectorSeparator: FC = (props) => (
   <Select.Separator asChild {...props}>
-    <hr className="my-1 h-[1px] bg-neutral-200" />
+    <Separator orientation="horizontal" />
   </Select.Separator>
 );
 
