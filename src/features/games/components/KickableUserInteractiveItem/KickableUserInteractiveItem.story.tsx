@@ -26,6 +26,10 @@ const meta: ComponentMeta<typeof KickableUserInteractiveItem> = {
       description: 'ユーザーのアイコンのURLを指定する。',
       control: { type: 'text' },
     },
+    onKick: {
+      description: 'ユーザーをキックするときにその`id`とともに呼び出されるイベントハンドラを指定する。',
+      control: { type: 'none' },
+    },
     className: {
       description: 'サイズを変更するために用意されている。',
       control: { type: 'text' },
