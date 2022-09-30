@@ -1,12 +1,12 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
 import { Icon } from '@/components/Icon';
 import { Separator } from '@/components/Separator';
-import type { User, UserBioDataFragment } from '@/libs/graphql/generated/graphql';
+import type { UserBioDataFragment } from '@/libs/graphql/generated/graphql';
 import twMerge from '@/libs/twmerge';
 
 export type UserItemData = Pick<UserBioDataFragment, 'id' | 'name' | 'iconUrl'>;
 
-export type UserItemIconProps = Pick<User, 'name' | 'iconUrl'>;
+export type UserItemIconProps = Pick<UserItemData, 'name' | 'iconUrl'>;
 export const UserItemIcon: FC<UserItemIconProps> = ({ name, iconUrl }) => <Icon src={iconUrl} alt={`ユーザー"${name}"のアイコン画像`} />;
 
 export type UserItemNameProps = ComponentPropsWithoutRef<'span'>;
