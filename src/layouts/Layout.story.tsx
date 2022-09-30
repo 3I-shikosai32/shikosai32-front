@@ -35,6 +35,7 @@ const meta: ComponentMeta<typeof Layout> = {
   },
   args: {
     title: 'Hello Title',
+    children: '',
   },
   argTypes: {
     title: {
