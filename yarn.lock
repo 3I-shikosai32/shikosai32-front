@@ -15167,6 +15167,11 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+urql-custom-scalars-exchange@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/urql-custom-scalars-exchange/-/urql-custom-scalars-exchange-1.0.1.tgz#b89db93f5943932e0f8d67a500e35da4449e98c8"
+  integrity sha512-NSxUaw1ZWu72iJ/t4qy6hbm33HKthIglLl8JzHEtEQgE1ICxl5kXmzmZWL5ycxlNRgCOvU2nqzrplIhBo7q3UQ==
+
 urql@3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/urql/-/urql-3.0.3.tgz#275631f487558354e090d9ffc4ea2030bd56c34a"
