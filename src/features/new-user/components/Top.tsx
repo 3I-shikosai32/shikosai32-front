@@ -8,7 +8,7 @@ const Top = () => (
       </div>
     </div>
     <div className="flex justify-center">
-      <div className='font-branding text-4xl'>Welcom!</div>
+      <div className="font-branding text-4xl font-bold">Welcom!</div>
     </div>
   </div>
 );

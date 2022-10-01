@@ -6,7 +6,7 @@ import type { UserCreateInput } from '@/libs/graphql/generated/graphql';
 import useCreateUserMutationHandler from '@/libs/graphql/handlers/mutation/createUser';
 
 const Submit: FC<UserCreateInput> = ({ character, email, id, name }) => {
-  const { fetching, executeMutation } = useCreateUserMutationHandler();
+  const { executeMutation } = useCreateUserMutationHandler();
   return (
     <div className="my-16 flex justify-center">
       <Button
