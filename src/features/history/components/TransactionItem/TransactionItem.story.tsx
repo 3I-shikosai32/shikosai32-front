@@ -10,8 +10,8 @@ const meta: ComponentMeta<typeof TransactionItem> = {
   args: {
     id: 'this-is-transaction-id-12345',
     isDelivered: false,
-    createdAt: new Date().toTimeString(),
-    deliveredAt: new Date().toTimeString(),
+    createdAt: new Date(),
+    deliveredAt: new Date(),
     exchangedGift: {
       name: 'ベビースターラーメン',
     },
