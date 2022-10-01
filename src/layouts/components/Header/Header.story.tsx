@@ -28,6 +28,9 @@ const injectedHooks = [
 
 const meta: ComponentMeta<typeof Header> = {
   component: Header,
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>, (story) => <DiProvider use={injectedHooks}>{story()}</DiProvider>],
   argTypes: {
     className: {
@@ -39,4 +42,6 @@ const meta: ComponentMeta<typeof Header> = {
 
 export default meta;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <Header {...args} />,
+};
