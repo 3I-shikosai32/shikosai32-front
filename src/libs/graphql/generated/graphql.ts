@@ -13,7 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: any;
+  DateTime: Date;
 };
 
 export type BoolFilter = {
@@ -71,6 +71,16 @@ export enum Game {
   WeDidntPlaytest = 'WE_DIDNT_PLAYTEST',
   Xeno = 'XENO'
 }
+
+export type GameAttenders = {
+  __typename?: 'GameAttenders';
+  coin_dropping: Array<User>;
+  ice_raze: Array<User>;
+  poker: Array<User>;
+  president: Array<User>;
+  we_didnt_playtest: Array<User>;
+  xeno: Array<User>;
+};
 
 export type Gift = {
   __typename?: 'Gift';
@@ -321,6 +331,12 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type ObtainmentStatus = {
+  __typename?: 'ObtainmentStatus';
+  item: Item;
+  obtained: Scalars['Boolean'];
+};
+
 export type Query = {
   __typename?: 'Query';
   findGift?: Maybe<Gift>;
@@ -329,6 +345,7 @@ export type Query = {
   findGifts: Array<Gift>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
+  getObtainmentStatuses: Array<ObtainmentStatus>;
 };
 
 
@@ -373,6 +390,11 @@ export type QueryFindUsersArgs = {
   where?: InputMaybe<UserWhereInput>;
 };
 
+
+export type QueryGetObtainmentStatusesArgs = {
+  where: UserWhereUniqueInput;
+};
+
 export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
@@ -411,6 +433,11 @@ export type StringNullableListFilter = {
   isEmpty?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  updatedGameAttenders: GameAttenders;
+};
+
 export type User = {
   __typename?: 'User';
   avatarUrl: Scalars['String'];
@@ -432,10 +459,8 @@ export type User = {
 };
 
 export type UserCreateInput = {
-  avatarUrl: Scalars['String'];
   character: Character;
   email: Scalars['String'];
-  iconUrl: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
   role?: InputMaybe<Role>;
@@ -513,7 +538,7 @@ export type FindUserQueryVariables = Exact<{
 }>;
 
 
-export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: any }> } | null };
+export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: Date }> } | null };
 
 export type FindUserBioQueryVariables = Exact<{
   id: Scalars['String'];

@@ -49,7 +49,8 @@
     "sharp": "0.31.0",
     "tailwind-merge": "1.6.0",
     "tailwindcss": "3.1.8",
-    "urql": "3.0.3"
+    "urql": "3.0.3",
+    "urql-custom-scalars-exchange": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.19.1",
