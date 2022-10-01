@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import NewUser from '@/features/new-user';
 
-const NewUserpage: NextPage = () => <NewUser />;
+const NewUserPage: NextPage = () => <NewUser />;
 
-export default NewUserpage;
+export default NewUserPage;
