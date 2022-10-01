@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import Character from './components/character';
 import Form from './components/form';
-import Submit from './components/submit';
-import Top from './components/top';
+import Submit from './components/send';
+import Top from './components/upper';
 import useCharacter from './hooks/useCharacter';
 import useForm from './hooks/useForm';
 import authActions from '@/state/authState';

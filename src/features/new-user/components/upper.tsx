@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import type { FC } from 'react';
 
-const Top = () => (
+const Upper: FC = () => (
   <div>
     <div className="flex justify-center">
       <div>
@@ -13,4 +14,4 @@ const Top = () => (
   </div>
 );
 
-export default Top;
+export default Upper;
