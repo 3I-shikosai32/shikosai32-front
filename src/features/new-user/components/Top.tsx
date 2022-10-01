@@ -4,7 +4,7 @@ const Top = () => (
   <div>
     <div className="flex justify-center">
       <div>
-        <Image src="/logos/header.png" alt="Logo" width={150} height={150} />
+        <Image src="/logos/new-user.png" alt="Logo" width={100} height={150} />
       </div>
     </div>
     <div className="flex justify-center">
