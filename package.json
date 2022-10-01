@@ -25,6 +25,7 @@
     "@radix-ui/react-navigation-menu": "1.0.0",
     "@radix-ui/react-radio-group": "1.0.0",
     "@radix-ui/react-select": "1.0.0",
+    "@radix-ui/react-separator": "^1.0.0",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-auth": "1.0.0",
     "daisyui": "2.31.0",
@@ -43,11 +44,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.4.0",
+    "react-magnetic-di": "^2.2.8",
     "recoil": "0.7.5",
     "sharp": "0.31.0",
     "tailwind-merge": "1.6.0",
     "tailwindcss": "3.1.8",
-    "urql": "3.0.3"
+    "urql": "3.0.3",
+    "urql-custom-scalars-exchange": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.19.1",
