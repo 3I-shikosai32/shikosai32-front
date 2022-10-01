@@ -5,7 +5,7 @@ generates:
   src/libs/graphql/generated/graphql.ts:
     config:
       scalars:
-        DateTime: unknown
+        DateTime: Date
     plugins:
       - 'typescript'
       - 'typescript-operations'
