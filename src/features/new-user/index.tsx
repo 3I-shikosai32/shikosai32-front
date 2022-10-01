@@ -5,6 +5,7 @@ import Submit from './components/send';
 import Top from './components/upper';
 import useCharacter from './hooks/useCharacter';
 import useForm from './hooks/useForm';
+import { Layout } from '@/layouts';
 import authActions from '@/state/authState';
 
 const NewUser: FC = () => {
@@ -15,12 +16,12 @@ const NewUser: FC = () => {
   const { checkedItems, checkedCharcter, handleChange } = useCharacter();
 
   return (
-    <div>
+    <Layout>
       <Top />
       <Form email={email} updateEmail={updateEmail} name={name} updateName={updateName} />
       <Character checkedItems={checkedItems} handleChange={handleChange} />
       <Submit email={email} name={name} character={checkedCharcter} id={id} />
-    </div>
+    </Layout>
   );
 };
 
