@@ -8,7 +8,7 @@ type FormProps = {
   updateEmail: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 const Form: FC<FormProps> = ({ name, updateName, email, updateEmail }) => (
-  <div className="mx-16">
+  <div className="mx-16 my-10">
     <form>
       <div className="group relative z-0 mb-6 w-full">
         <input
