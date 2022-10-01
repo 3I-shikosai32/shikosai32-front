@@ -531,7 +531,7 @@ export type CreateUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: any, id: string, name: string } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
 
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
