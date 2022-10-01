@@ -12,12 +12,12 @@ const Character: FC<CharacterProps> = ({ checkedItems, handleChange }) => {
   return (
     <div className=" grid grid-cols-3 px-5">
       {characters.map((character) => (
-        <div key={character} className="my-5 mx-1 h-[150px]  rounded-2xl bg-white shadow-2xl">
-          <div className="top-5 m-[0.5px]">
+        <div key={character} className="my-5 mx-3  h-[150px] w-[140px] rounded-2xl bg-white shadow-2xl md:mx-10 md:h-[200px] md:w-[200px]">
+          <div className="top-5 m-1 md:m-3">
             <input id={character} type="checkbox" className="h-5 w-5" checked={checkedItems === character} onChange={handleChange} />
           </div>
           <div className="flex justify-center">
-            <Image src={`/characters/${character}.svg`} width={120} height={120} alt="My icon" />
+            <Image src={`/characters/${character}.svg`} width={110} height={110} alt="My icon" />
           </div>
         </div>
       ))}
