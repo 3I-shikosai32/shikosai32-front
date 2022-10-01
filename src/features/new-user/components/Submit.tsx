@@ -13,8 +13,13 @@ const Submit: FC<UserCreateInput> = ({ character, email, id, name }) => {
         type="submit"
         className="bg-primary"
         onClick={async () => {
-          await executeMutation({ data: { id, character, name, email } });
-          Router.push('/');
+          if (email === '' || name === '') {
+            // eslint-disable-next-line no-alert
+            alert('input your name or email');
+          } else {
+            await executeMutation({ data: { id, character, name, email } });
+            Router.push('/');
+          }
         }}
       >
         <ButtonIcon>
