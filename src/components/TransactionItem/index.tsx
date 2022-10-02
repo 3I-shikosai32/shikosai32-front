@@ -1,19 +1,20 @@
 import type { FC } from 'react';
-import { IoMdSwap } from 'react-icons/io';
 import { useTransactionItem } from './hooks/useTransactionItem';
 import { Button } from '@/components/Button';
 import { MotionCard, MotionCardProps } from '@/components/Card';
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/components/UserItem';
-import type { GiftHistoryDataFragment } from '@/libs/graphql/generated/graphql';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips, UserItemData } from '@/components/UserItem';
 import twMerge from '@/libs/twmerge';
 
-export type TransactionItemData = Pick<GiftHistoryDataFragment, 'id' | 'isDelivered' | 'createdAt' | 'deliveredAt'> & {
-  user: Pick<GiftHistoryDataFragment['user'], 'name' | 'iconUrl'>;
-  exchangedGift: Pick<GiftHistoryDataFragment['exchangedGift'], 'name'>;
+export type TransactionItemData = {
+  id: string;
+  isDelivered: boolean;
+  createdAt: Date;
+  deliveredAt: Date;
+  user: Omit<UserItemData, 'id'>;
 };
 
-export type TransactionItemProps = Omit<MotionCardProps, 'children'> &
+export type TransactionItemProps = MotionCardProps &
   TransactionItemData & {
     onSubmit:
       | (({ id, isDelivered }: Pick<TransactionItemData, 'id' | 'isDelivered'>) => void)
@@ -26,9 +27,9 @@ export const TransactionItem: FC<TransactionItemProps> = ({
   createdAt,
   deliveredAt,
   user,
-  exchangedGift,
   onSubmit,
   className,
+  children,
   ...props
 }) => {
   const { submitButtonClickHandler, submitButtonDisplay, createdAtDisplay, deliveredAtDisplay } = useTransactionItem({
@@ -46,14 +47,13 @@ export const TransactionItem: FC<TransactionItemProps> = ({
           <UserItemBio>
             <UserItemName>{user.name}</UserItemName>
             <UserItemDescription
-              aria-label="交換された景品の名前"
+              aria-label="交換された景品の情報"
               className={twMerge(
                 'ml-1 flex flex-row justify-start items-center gap-2 font-bold text-normal',
                 isDelivered ? 'text-success-700' : 'text-warning-700',
               )}
             >
-              <IoMdSwap className="text-lg text-neutral-500" />
-              {exchangedGift.name}
+              {children}
             </UserItemDescription>
           </UserItemBio>
           <UserItemTips className="flex flex-col items-end justify-center gap-0 font-bold">

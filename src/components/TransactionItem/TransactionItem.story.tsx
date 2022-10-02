@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
+import { IoMdSwap } from 'react-icons/io';
 import { TransactionItem } from './index';
 
 type Story = ComponentStoryObj<typeof TransactionItem>;
@@ -12,9 +13,6 @@ const meta: ComponentMeta<typeof TransactionItem> = {
     isDelivered: false,
     createdAt: new Date(),
     deliveredAt: new Date(),
-    exchangedGift: {
-      name: 'ベビースターラーメン',
-    },
     user: {
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
@@ -23,32 +21,32 @@ const meta: ComponentMeta<typeof TransactionItem> = {
   },
   argTypes: {
     id: {
-      description: '景品交換の取引(`GiftHistory`)のIDを指定する。表示はされないが、内部でコンポーネントの`key`として使用される。',
+      description: '対象との交換の取引(`GiftHistory`)のIDを指定する。表示はされないが、内部でコンポーネントの`key`として使用される。',
       control: { type: 'string' },
     },
     isDelivered: {
-      description: '景品が受け渡し済みかどうかを指定する。',
+      description: '対象が受け渡し済みかどうかを指定する。',
       control: { type: 'boolean' },
     },
     createdAt: {
-      description: '景品交換の取引(`GiftHistory`)が作成された日時を指定する。',
+      description: '対象との交換の取引が作成された日時を指定する。',
       control: { type: 'date' },
     },
     deliveredAt: {
-      description: '景品交換の取引(`GiftHistory`)が受け渡し済みになった日時を指定する。',
+      description: '対象が受け渡し済みになった日時を指定する。',
       control: { type: 'date' },
     },
     user: {
-      description: '景品交換の取引(`GiftHistory`)を行ったユーザーを指定する。',
+      description: '交換の取引を行ったユーザーの情報を指定できる。',
       control: { type: 'object' },
     },
-    exchangedGift: {
-      description: '景品交換の取引(`GiftHistory`)で交換された景品を指定する。',
-      control: { type: 'object' },
+    children: {
+      description: '交換される対象の説明をする子要素を指定できる。',
+      control: { type: 'none' },
     },
     onSubmit: {
       description:
-        '景品交換の取引(`GiftHistory`)を受け渡し済みにする、もしくは取り消すボタンを押したときに、その`id`と新しい状態`isDelivered`とともに呼び出されるイベントハンドラを指定する。',
+        '対象との交換の取引を受け渡し済みにする、もしくは取り消すボタンを押したときに、その`id`と新しい状態`isDelivered`とともに呼び出されるイベントハンドラを指定する。',
       control: { type: 'function' },
     },
     className: {
@@ -61,6 +59,18 @@ const meta: ComponentMeta<typeof TransactionItem> = {
 export default meta;
 
 export const Default: Story = {};
+
+export const WithDescription: Story = {
+  args: {
+    children: (
+      <>
+        <IoMdSwap className="text-lg text-neutral-500" />
+        交換した対象の名前
+      </>
+    ),
+  },
+};
+
 export const OnDelivered: Story = {
   args: {
     isDelivered: true,
