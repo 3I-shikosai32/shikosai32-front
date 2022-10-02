@@ -526,6 +526,13 @@ export type UserBioDataFragment = { __typename?: 'User', id: string, name: strin
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
+export type DetectNewUserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DetectNewUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
+
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
@@ -546,13 +553,6 @@ export type FindUserBioQueryVariables = Exact<{
 
 
 export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
-
-export type FindUserNewQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type FindUserNewQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
 
 export const GiftDataFragmentDoc = gql`
     fragment GiftData on Gift {
@@ -578,6 +578,17 @@ export const UserExchangeDataFragmentDoc = gql`
   consumablePoint
 }
     `;
+export const DetectNewUserDocument = gql`
+    query DetectNewUser($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+  }
+}
+    `;
+
+export function useDetectNewUserQuery(options: Omit<Urql.UseQueryArgs<DetectNewUserQueryVariables>, 'query'>) {
+  return Urql.useQuery<DetectNewUserQuery, DetectNewUserQueryVariables>({ query: DetectNewUserDocument, ...options });
+};
 export const FindGiftExchangeInfoDocument = gql`
     query FindGiftExchangeInfo($userId: String!) {
   user: findUser(where: {id: $userId}) {
@@ -636,15 +647,4 @@ export const FindUserBioDocument = gql`
 
 export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
-};
-export const FindUserNewDocument = gql`
-    query FindUserNew($id: String!) {
-  findUser(where: {id: $id}) {
-    id
-  }
-}
-    `;
-
-export function useFindUserNewQuery(options: Omit<Urql.UseQueryArgs<FindUserNewQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindUserNewQuery, FindUserNewQueryVariables>({ query: FindUserNewDocument, ...options });
 };

@@ -1,4 +1,4 @@
-query FindUserNew($id: String!) {
+query DetectNewUser($id: String!) {
   findUser(where: { id: $id }) {
     id
   }

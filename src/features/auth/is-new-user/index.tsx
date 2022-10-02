@@ -3,11 +3,11 @@ import Error from 'next/error';
 import Router from 'next/router';
 import type { FC } from 'react';
 import Loading from '@/components/Loading';
-import { useFindUserNew } from '@/libs/graphql/handlers/query/FindUserNew';
+import { useDetectNewUser } from '@/libs/graphql/handlers/query/DetectNewUser';
 import authActions from '@/state/authState';
 
 const FindUserById: FC<{ user: User }> = ({ user }) => {
-  const { data, fetching } = useFindUserNew({ uid: user.uid });
+  const { data, fetching } = useDetectNewUser({ uid: user.uid });
   if (!fetching) {
     if (data) {
       Router.push('/');
