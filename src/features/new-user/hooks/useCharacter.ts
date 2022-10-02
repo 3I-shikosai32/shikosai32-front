@@ -3,24 +3,24 @@ import type { ChangeEvent } from 'react';
 import { Character } from '@/libs/graphql/generated/graphql';
 
 const useCharacter = () => {
-  const [checkedItems, setCheckedItems] = useState<string>('cat');
+  const [checkedItems, setCheckedItems] = useState<string>('CAT');
   const [checkedCharcter, setCheckedCharacter] = useState<Character>(Character.Cat);
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       switch (checkedItems) {
-        case 'cat':
+        case 'CAT':
           setCheckedCharacter(Character.Cat);
           break;
-        case 'fox':
+        case 'FOX':
           setCheckedCharacter(Character.Fox);
           break;
-        case 'pudding':
+        case 'PUDDING':
           setCheckedCharacter(Character.Pudding);
           break;
-        case 'reaper':
+        case 'REAPER':
           setCheckedCharacter(Character.Reaper);
           break;
-        case 'tree':
+        case 'TREE':
           setCheckedCharacter(Character.Tree);
           break;
         default:
