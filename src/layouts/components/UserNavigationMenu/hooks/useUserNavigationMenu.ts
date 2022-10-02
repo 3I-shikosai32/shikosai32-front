@@ -3,7 +3,7 @@ import { Role } from '@/libs/graphql/generated/graphql';
 import { useFindUserBio } from '@/libs/graphql/handlers/query/FindUserBio';
 import authActions from '@/state/authState';
 
-const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
+export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
   const firebaseUser = authActions.useCurrentUser();
   const { data, fetching, error } = useFindUserBio({ uid: firebaseUser?.uid });
   if (!data || fetching || error) {
@@ -15,5 +15,3 @@ const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
     isLoggedIn: !!data.findUser?.id,
   };
 };
-
-export default useUserNavigationMenu;
