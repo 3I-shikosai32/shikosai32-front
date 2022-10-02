@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { FC, ComponentPropsWithoutRef } from 'react';
 import { AudioControlMenuContainer } from '../AudioControlMenu/container';
 import { HamburgerMenu } from '../HamburgerMenu';
