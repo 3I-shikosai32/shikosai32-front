@@ -20,27 +20,35 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({
     }
   }
   return (
-    <div className="grid grid-cols-1 grid-rows-1">
-      <input
-        ref={ref}
-        {...props}
-        required={required}
-        placeholder={text}
-        className={twMerge(
-          'col-span-full row-span-full peer px-6 py-3 rounded-base placeholder:text-neutral-400 shadow-z8 focus:shadow-z16 outline-none duration-75 border-2 border-neutral-200 bg-white focus:valid:border-success-700 focus:valid:text-success-700 invalid:border-error-700 invalid:text-error-700',
-          className,
-        )}
-      />
-      <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-success-700 peer-valid:flex">
-        <RiCheckboxCircleFill />
-      </div>
-      <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-error-700 peer-invalid:flex">
-        <RiErrorWarningFill />
-      </div>
-    </div>
+    <input
+      ref={ref}
+      {...props}
+      required={required}
+      placeholder={text}
+      className={twMerge(
+        'col-span-full row-span-full peer px-6 py-3 rounded-base placeholder:text-neutral-400 shadow-z8 focus:shadow-z16 outline-none duration-75 border-2 border-neutral-200 bg-white focus:valid:border-success-700 focus:valid:text-success-700 invalid:border-error-700 invalid:text-error-700',
+        className,
+      )}
+    />
   );
 });
 Input.displayName = 'Input';
+
+// `<Input>`の入力値の状態に依ってバッジを付加するコンテナコンポーネント
+export type InputOverlayProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
+  children: ReactElement<InputProps>;
+};
+export const InputOverlay: FC<InputOverlayProps> = ({ children, className, ...props }) => (
+  <div className={twMerge('grid grid-cols-1 grid-rows-1', className)} {...props}>
+    {children}
+    <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-success-700 peer-valid:flex">
+      <RiCheckboxCircleFill />
+    </div>
+    <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-error-700 peer-invalid:flex">
+      <RiErrorWarningFill />
+    </div>
+  </div>
+);
 
 export type InputLabelNameProps = ComponentPropsWithoutRef<'span'>;
 export const InputLabelName: FC<InputLabelNameProps> = ({ children, className, ...props }) => (
@@ -95,8 +103,8 @@ InputMessage.defaultProps = {
   type: 'info',
 };
 
-export type InputItemProps = LabelProps & {
-  children: Array<ReactElement<InputLabelProps> | ReactElement<InputProps> | ReactElement<InputMessageProps>>;
+export type InputItemProps = Omit<LabelProps, 'children'> & {
+  children: Array<ReactElement<InputLabelProps> | ReactElement<InputOverlayProps> | ReactElement<InputMessageProps>>;
 };
 export const InputItem: FC<InputItemProps> = ({ children, className, ...props }) => (
   <Label className={twMerge('group flex w-fit flex-col justify-start items-stretch gap-1', className)} {...props}>
