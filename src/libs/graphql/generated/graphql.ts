@@ -522,6 +522,8 @@ export type UserWhereUniqueInput = {
 
 export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
+export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, iconUrl: string } };
+
 export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string };
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
@@ -554,6 +556,22 @@ export const GiftDataFragmentDoc = gql`
   iconUrl
   price
   remaining
+}
+    `;
+export const GiftHistoryDataFragmentDoc = gql`
+    fragment GiftHistoryData on GiftHistory {
+  id
+  exchangedGift {
+    name
+  }
+  user {
+    id
+    name
+    iconUrl
+  }
+  isDelivered
+  createdAt
+  deliveredAt
 }
     `;
 export const UserBioDataFragmentDoc = gql`
