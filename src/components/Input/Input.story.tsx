@@ -1,6 +1,6 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Input, InputItem, InputMessage, InputLabel, InputLabelName, InputLabelDescription, useInputValidityState } from './index';
+import { Input, InputOverlay, InputItem, InputMessage, InputLabel, InputLabelName, InputLabelDescription, useInputValidityState } from './index';
 
 type Story = ComponentStoryObj<typeof Input>;
 
@@ -62,7 +62,9 @@ export const WithAdditionalInfo: Story = {
           <InputLabelDescription>他のユーザーから見えるあなたの表示名になります</InputLabelDescription>
         </InputLabel>
         <InputMessage>公共の場にふさわしくない名前をつけた場合、利用停止になる可能性があります</InputMessage>
-        <Input ref={inputRef} onChange={forceUpdate} {...args} />
+        <InputOverlay>
+          <Input ref={inputRef} onChange={forceUpdate} {...args} />
+        </InputOverlay>
         <InputMessage type="error" on={valueMissing}>
           名前を入力してください
         </InputMessage>
