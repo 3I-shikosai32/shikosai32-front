@@ -61,11 +61,17 @@ export const WithAdditionalInfo: Story = {
           <InputLabelName>名前</InputLabelName>
           <InputLabelDescription>他のユーザーから見えるあなたの表示名になります</InputLabelDescription>
         </InputLabel>
+        <InputMessage>公共の場にふさわしくない名前をつけた場合、利用停止になる可能性があります</InputMessage>
         <Input ref={inputRef} onChange={forceUpdate} {...args} />
-        <InputMessage isVisible={valueMissing}>名前を入力してください</InputMessage>
-        <InputMessage isVisible={valid}>この名前は使用可能です</InputMessage>
-        <InputMessage isVisible={!valid && !valueMissing}>この名前はすでに使われています</InputMessage>
-        <InputMessage informative>公共の場にふさわしくない名前をつけた場合、利用停止になる可能性があります</InputMessage>
+        <InputMessage type="error" on={valueMissing}>
+          名前を入力してください
+        </InputMessage>
+        <InputMessage type="success" on={valid}>
+          この名前は使用可能です
+        </InputMessage>
+        <InputMessage type="error" on={!valid && !valueMissing}>
+          この名前はすでに使われています
+        </InputMessage>
       </InputItem>
     );
   },

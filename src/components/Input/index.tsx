@@ -1,8 +1,8 @@
 import { FC, ComponentPropsWithoutRef, ComponentPropsWithRef, ReactElement, forwardRef } from 'react';
+import { RiInformationFill, RiCheckboxCircleFill, RiErrorWarningFill } from 'react-icons/ri';
 import { useInputValidityState } from './hooks/useInputValidityState';
 import { Label, LabelProps } from '@/components/Label';
 import twMerge from '@/libs/twmerge';
-
 // 外部からの`import`のしやすさのために、このファイル`index.tsx`から`export`しなおす
 export { useInputValidityState };
 
@@ -20,16 +20,24 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({
     }
   }
   return (
-    <input
-      ref={ref}
-      {...props}
-      required={required}
-      placeholder={text}
-      className={twMerge(
-        'peer px-6 py-3 rounded-base placeholder:text-neutral-400 shadow-z8 focus:shadow-z16 outline-none duration-75 border-2 border-neutral-200 bg-white focus:valid:border-success-700 focus:valid:text-success-700 invalid:border-error-700 invalid:text-error-700',
-        className,
-      )}
-    />
+    <div className="grid grid-cols-1 grid-rows-1">
+      <input
+        ref={ref}
+        {...props}
+        required={required}
+        placeholder={text}
+        className={twMerge(
+          'col-span-full row-span-full peer px-6 py-3 rounded-base placeholder:text-neutral-400 shadow-z8 focus:shadow-z16 outline-none duration-75 border-2 border-neutral-200 bg-white focus:valid:border-success-700 focus:valid:text-success-700 invalid:border-error-700 invalid:text-error-700',
+          className,
+        )}
+      />
+      <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-success-700 peer-valid:flex">
+        <RiCheckboxCircleFill />
+      </div>
+      <div className="pointer-events-none col-span-full row-span-full m-0 hidden items-center justify-end p-0 px-4 text-2xl text-error-700 peer-invalid:flex">
+        <RiErrorWarningFill />
+      </div>
+    </div>
   );
 });
 Input.displayName = 'Input';
@@ -58,33 +66,40 @@ export const InputLabel: FC<InputLabelProps> = ({ className, children, ...props 
 );
 
 export type InputMessageProps = ComponentPropsWithoutRef<'div'> & {
-  isVisible?: boolean;
-  informative?: boolean; // 見た目を情報的なものを示す青色に固定する
+  on?: boolean;
+  type?: 'info' | 'success' | 'error'; // メッセージの種類と見た目を規定する
 };
-export const InputMessage: FC<InputMessageProps> = ({ isVisible, informative, children, className, ...props }) =>
-  isVisible ? (
+export const InputMessage: FC<InputMessageProps> = ({ on, type, children, className, ...props }) =>
+  on ? (
     <div
       className={twMerge(
-        'px-4 py-2 flex flex-row justify-start border-2 text-info-700 border-info-200 items-center rounded-base bg-gradient-to-br from-white to-info-100',
-        !informative && 'peer-valid:visible peer-valid:to-success-100 peer-valid:border-success-200 peer-valid:text-success-700',
-        !informative && 'peer-invalid:visible peer-invalid:to-error-100 peer-invalid:border-error-200 peer-invalid:text-error-700',
+        'flex flex-row justify-start items-center rounded-base',
+        type !== 'info' && 'flex text-right justify-end peer-valid:text-success-700 peer-invalid:text-error-700',
+        type === 'success' && 'text-success-700',
+        type === 'error' && 'text-error-700',
+        type === 'info' && 'px-4 py-2 gap-2 text-info-700 bg-info-100',
         className,
       )}
       {...props}
     >
+      {type === 'info' && (
+        <span className="text-2xl">
+          <RiInformationFill />
+        </span>
+      )}
       {children}
     </div>
   ) : null;
 InputMessage.defaultProps = {
-  isVisible: true,
-  informative: false,
+  on: true,
+  type: 'info',
 };
 
 export type InputItemProps = LabelProps & {
   children: Array<ReactElement<InputLabelProps> | ReactElement<InputProps> | ReactElement<InputMessageProps>>;
 };
 export const InputItem: FC<InputItemProps> = ({ children, className, ...props }) => (
-  <Label className={twMerge('flex w-fit flex-col gap-1', className)} {...props}>
+  <Label className={twMerge('group flex w-fit flex-col justify-start items-stretch gap-1', className)} {...props}>
     {children}
   </Label>
 );
