@@ -72,7 +72,7 @@ const config = {
           DEFAULT: '#01a037',
           400: '#02bc42',
           300: '#01d94d',
-          200: '#40fb68',
+          200: '#7BEB93',
           100: '#d0fccf',
         },
         warning: {
