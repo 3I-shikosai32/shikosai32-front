@@ -13,7 +13,7 @@ export const Header: FC<HeaderProps> = ({ className, ...props }) => (
     <div className="col-span-full row-span-full m-0 flex flex-row items-center justify-center p-0">
       <PageNavigationMenu />
     </div>
-    <div className="relative z-10 col-span-full row-span-full m-0 flex flex-row items-center justify-between p-0 md:flex-row-reverse md:justify-start">
+    <div className="col-span-full row-span-full m-0 flex flex-row items-center justify-between p-0 md:flex-row-reverse md:justify-start">
       <div className="flex flex-row items-center justify-start gap-1 p-0 md:flex-row-reverse">
         <UserNavigationMenuContainer className="min-h-12 h-12" viewportClassName="md:left-auto md:right-0 md:justify-end" />
         <ShareButton className="min-h-12 h-12 grow-0" />
