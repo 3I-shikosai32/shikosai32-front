@@ -3,6 +3,7 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { PointInput } from '../PointInput';
 import { PointInputUserInteractiveItem } from './index';
+import { Card } from '@/components/Card';
 
 type Story = ComponentStoryObj<typeof PointInputUserInteractiveItem>;
 
@@ -44,5 +45,15 @@ export const Default: Story = {
     <PointInputUserInteractiveItem {...args}>
       <PointInput min={0} max={20} step={1} defaultValue={10} />
     </PointInputUserInteractiveItem>
+  ),
+};
+
+export const InsideCard: Story = {
+  render: (args) => (
+    <Card className="w-fit p-2">
+      <PointInputUserInteractiveItem {...args}>
+        <PointInput min={0} max={20} step={1} defaultValue={10} />
+      </PointInputUserInteractiveItem>
+    </Card>
   ),
 };
