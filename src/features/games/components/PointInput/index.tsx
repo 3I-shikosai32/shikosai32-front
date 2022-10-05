@@ -26,14 +26,14 @@ export const PointInput: FC<PointInputProps> = forwardRef<HTMLInputElement, Poin
         <Input type="number" ref={mergeRefs([localRef, ref])} className={twMerge('w-24', className)} {...props} />
       </InputOverlay>
       <Separator orientation="vertical" />
-      <Button outlined circle aria-label="増やす" onClick={incrementHandler}>
-        <ButtonIcon>
-          <AiOutlinePlus />
-        </ButtonIcon>
-      </Button>
       <Button outlined circle aria-label="減らす" onClick={decrementHandler}>
         <ButtonIcon>
           <AiOutlineMinus />
+        </ButtonIcon>
+      </Button>
+      <Button outlined circle aria-label="増やす" onClick={incrementHandler}>
+        <ButtonIcon>
+          <AiOutlinePlus />
         </ButtonIcon>
       </Button>
     </div>
