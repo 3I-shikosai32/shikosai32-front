@@ -25,7 +25,7 @@ export const TemporalIndex: FC<TemporalIndexProps> = ({ className, ...props }) =
     </div>
     <div className="flex flex-col items-center justify-start gap-6 p-0">
       <div className="text-center font-pixel shadow-neutral-900 drop-shadow-lg ">
-        <div className="bg-gradient-to-br bg-clip-text p-0 py-2 text-5xl text-transparent gradient-primary">
+        <div className="bg-gradient-to-br bg-clip-text p-0 py-2 text-4xl text-transparent gradient-primary md:text-5xl">
           <h1>✨鋭意制作中✨</h1>
         </div>
         <div className="px-4">
