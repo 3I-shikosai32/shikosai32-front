@@ -9,13 +9,14 @@ export type LayoutProps = ComponentPropsWithoutRef<'main'> &
     children: ReactNode;
   };
 
+// スタッキングコンテキストを利用して`<Header>`をz軸の最上部に配置するために、最後の子要素として指定する
 export const Layout: FC<LayoutProps> = ({ children, title, className, ...props }) => (
   <div className="m-0 flex min-h-screen w-full flex-col items-center justify-start">
     <CommonMeta title={title} />
-    <Header className="sticky top-0 left-0 m-0 w-full grow-0" />
     <main className={twMerge('m-0 flex w-full grow flex-col items-center justify-start', className)} {...props}>
       {children}
     </main>
     <Footer className="m-0 mt-16 w-full grow-0" />
+    <Header className="sticky top-0 left-0 z-40 m-0 w-full grow-0" />
   </div>
 );
