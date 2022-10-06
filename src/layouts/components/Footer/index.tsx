@@ -42,7 +42,15 @@ export const Footer: FC<FooterProps> = ({ className, ...props }) => (
       </ul>
     </div>
     <p className="mt-4  text-center text-xs text-neutral-300">
-      <small>Copyright © 2022 - NITIC 3I Shikosai32 Devs All Rights Reserved.</small>
+      <small>
+        Ideas inspired by OZ in{' '}
+        <Link className="drop-shadow-none" href="https://s-wars.jp/">
+          Summer Wars
+        </Link>
+        ,
+        <br />
+        Copyright © 2022 - NITIC 3I Devs Partial* Rights Reserved except the OZ* derivatives.
+      </small>
     </p>
   </footer>
 );
