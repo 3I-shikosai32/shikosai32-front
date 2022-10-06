@@ -26,10 +26,10 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({ className, ...props }) =
         </ButtonIcon>
       </Button>
       <ModalContent className="mt-32 w-auto items-center gap-8 bg-transparent text-2xl text-neutral-900 shadow-none">
-        <Link href="https://example.com">ランキング</Link>
-        <Link href="https://example.com">ゲーム一覧</Link>
-        <Link href="https://example.com">景品交換</Link>
-        <Link href="https://example.com">スタッフ</Link>
+        <Link href="/ranking">ランキング</Link>
+        <Link href="/games">ゲーム一覧</Link>
+        <Link href="/gifts">景品交換</Link>
+        <Link href="/staff">スタッフ</Link>
       </ModalContent>
       <span className="text-sm font-bold">画面外をタップして閉じる</span>
     </ModalOverlay>
