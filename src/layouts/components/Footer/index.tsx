@@ -16,7 +16,7 @@ export const Footer: FC<FooterProps> = ({ className, ...props }) => (
       </figure>
       <ul className="flex flex-col items-start justify-end gap-1">
         <li>
-          <Link href="https://example.com" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
+          <Link href="https://twitter.com/3i_shikosai32" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
             <LinkIcon className="text-neutral-200">
               <FaTwitter />
             </LinkIcon>
@@ -24,7 +24,7 @@ export const Footer: FC<FooterProps> = ({ className, ...props }) => (
           </Link>
         </li>
         <li>
-          <Link href="https://example.com" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
+          <Link href="https://www.shikosai.net/" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
             <LinkIcon className="text-neutral-200">
               <MdFestival />
             </LinkIcon>
@@ -32,7 +32,7 @@ export const Footer: FC<FooterProps> = ({ className, ...props }) => (
           </Link>
         </li>
         <li>
-          <Link href="https://example.com" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
+          <Link href="https://www.ibaraki-ct.ac.jp/" className="gap-2 font-normal text-neutral-400 drop-shadow-none">
             <LinkIcon className="text-neutral-200">
               <RiGlobalFill />
             </LinkIcon>
