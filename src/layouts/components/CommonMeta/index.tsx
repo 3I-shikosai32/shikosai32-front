@@ -2,6 +2,7 @@ import Head from 'next/head';
 import type { FC } from 'react';
 import { resolveShareMessage } from '../ShareButton/resolveShareMessage';
 
+// 他の箇所で`<meta>`を上書きしたいときに使う
 export enum MetaKeys {
   VIEWPORT = 'viewport',
   TYPE = 'type',
@@ -9,6 +10,8 @@ export enum MetaKeys {
   DESCRIPTION = 'description',
   OGDESCRIPTION = 'ogDescription',
   IMAGE = 'image',
+  TWITTER_CARD = 'twitterCard',
+  TWITTER_CREATOR = 'twitterCreator',
 }
 
 export type CommonMetaProps = {
@@ -23,7 +26,9 @@ export const CommonMeta: FC<CommonMetaProps> = ({ title }) => (
     <meta property="og:title" content={title} key={MetaKeys.TITLE} />
     <meta property="description" content={resolveShareMessage(new Date())} key={MetaKeys.DESCRIPTION} />
     <meta property="og:description" content={resolveShareMessage(new Date())} key={MetaKeys.OGDESCRIPTION} />
-    <meta property="og:image" content="/ogp/concept.png" key={MetaKeys.IMAGE} />
+    <meta property="og:image" content="/ogp/ogp.png" key={MetaKeys.IMAGE} />
+    <meta name="twitter:card" content="summary_large_image" key={MetaKeys.TWITTER_CARD} />
+    <meta name="twitter:creator" content="3i_shikosai32" key={MetaKeys.TWITTER_CREATOR} />
   </Head>
 );
 
