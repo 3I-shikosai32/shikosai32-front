@@ -7,7 +7,8 @@ const config = {
   theme: {
     fontFamily: {
       body: ['Inter', '"Noto Sans JP"', 'sans-serif'],
-      pixel: ['"Press Start 2P"', 'DotGothic16', 'cursive'],
+      pixel: ['DotGothic16', 'cursive'],
+      'pixel-latin': ['"Press Start 2P"', 'cursive'],
       branding: ['Oxygen', '"Noto Sans JP"', 'sans-serif'],
     },
     extend: {
