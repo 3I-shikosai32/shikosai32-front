@@ -5,6 +5,7 @@ import { resolveShareMessage } from '../ShareButton/resolveShareMessage';
 // 他の箇所で`<meta>`を上書きしたいときに使う
 export enum MetaKeys {
   VIEWPORT = 'viewport',
+  FAVICON = 'favicon',
   TYPE = 'type',
   TITLE = 'title',
   DESCRIPTION = 'description',
@@ -21,6 +22,7 @@ export type CommonMetaProps = {
 export const CommonMeta: FC<CommonMetaProps> = ({ title }) => (
   <Head>
     <title>{title}</title>
+    <link rel="icon" href="/icons/fox.png" key={MetaKeys.FAVICON} />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" key={MetaKeys.VIEWPORT} />
     <meta property="og:type" content="website" key={MetaKeys.TYPE} />
     <meta property="og:title" content={title} key={MetaKeys.TITLE} />
