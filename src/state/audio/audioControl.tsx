@@ -6,7 +6,6 @@ export type AudioControl = {
   currentTime: number;
   duration: number;
   volume: number;
-  hasAutoPlaySuceeded: boolean;
 };
 
 const AudioControlState = atom<AudioControl>({
@@ -16,7 +15,6 @@ const AudioControlState = atom<AudioControl>({
     currentTime: 0,
     duration: 0,
     volume: 0,
-    hasAutoPlaySuceeded: false,
   },
 });
 
