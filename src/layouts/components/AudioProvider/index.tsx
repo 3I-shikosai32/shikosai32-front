@@ -99,12 +99,14 @@ export const AudioProvider: FC<AudioProviderProps> = ({ audioResource, children 
   const onDocumentInteractEventListener = useCallback(() => {
     pseudoAutoPlayAudio();
     window.document.removeEventListener('click', onDocumentInteractEventListener);
+    window.document.removeEventListener('scroll', onDocumentInteractEventListener);
   }, [pseudoAutoPlayAudio]);
 
   useEffect(() => {
     if (hasAutoPlaySuceeded) return;
     if (!(window && window.document)) return;
     window.document.addEventListener('click', onDocumentInteractEventListener);
+    window.document.addEventListener('scroll', onDocumentInteractEventListener);
   }, [onDocumentInteractEventListener, pseudoAutoPlayAudio, hasAutoPlaySuceeded]);
 
   return (
