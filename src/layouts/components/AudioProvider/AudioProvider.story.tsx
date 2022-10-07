@@ -1,4 +1,5 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
+import { RecoilRoot } from 'recoil';
 
 import { AudioProvider } from './index';
 import { audioResources } from '@/state/audio/audioResource';
@@ -7,6 +8,7 @@ type Story = ComponentStoryObj<typeof AudioProvider>;
 
 const meta: ComponentMeta<typeof AudioProvider> = {
   component: AudioProvider,
+  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>],
   argTypes: {
     children: {
       description: '子要素を指定します。',
