@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { AudioControlMenu } from './index';
@@ -17,7 +16,6 @@ const meta: ComponentMeta<typeof AudioControlMenu> = {
       },
     ],
     isPlaying: true,
-    setIsPlaying: action('setIsPlaying'),
   },
   argTypes: {
     className: {
@@ -41,8 +39,12 @@ const meta: ComponentMeta<typeof AudioControlMenu> = {
       description: '現在再生中かどうか',
       control: { type: 'boolean' },
     },
-    setIsPlaying: {
-      description: '再生中かどうかを変更する関数。`isPlaying`とセットで使用する。',
+    onPlay: {
+      description: '停止中に再生ボタンが押されたときに呼び出されるイベントハンドラを指定できる。',
+      control: { type: 'none' },
+    },
+    onPause: {
+      description: '再生中に再生ボタンが押されたときに呼び出されるイベントハンドラを指定できる。',
       control: { type: 'none' },
     },
   },

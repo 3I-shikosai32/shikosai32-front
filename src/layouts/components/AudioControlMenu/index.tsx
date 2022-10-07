@@ -9,15 +9,20 @@ import twMerge from '@/libs/twmerge';
 import type { AudioControl } from '@/state/audio/audioControl';
 import type { AudioResource } from '@/state/audio/audioResource';
 
-export type AudioControlMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
+export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
+  Pick<NavigationMenuProps, 'viewportClassName'> &
+  Pick<AudioResource, 'name' | 'composers'> &
+  Pick<AudioControl, 'isPlaying'> & {
+    onPlay: () => void;
+    onPause: () => void;
+  };
 
-export type AudioControlMenuStateProps = Pick<AudioControl, 'isPlaying' | 'setIsPlaying'> & Pick<AudioResource, 'name' | 'composers'>;
-
-export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateProps> = ({
+export const AudioControlMenu: FC<AudioControlMenuProps> = ({
   name,
   composers,
   isPlaying,
-  setIsPlaying,
+  onPlay,
+  onPause,
   viewportClassName,
   className,
   ...props
@@ -46,7 +51,18 @@ export const AudioControlMenu: FC<AudioControlMenuProps & AudioControlMenuStateP
           </div>
         </div>
         <div>
-          <Button className="text-neutral-500" onClick={() => setIsPlaying(!isPlaying)} circle outlined>
+          <Button
+            className="text-neutral-500"
+            onClick={() => {
+              if (isPlaying) {
+                onPause();
+              } else {
+                onPlay();
+              }
+            }}
+            circle
+            outlined
+          >
             <ButtonIcon>{isPlaying ? <BsPauseFill /> : <BsPlayFill />}</ButtonIcon>
           </Button>
         </div>
