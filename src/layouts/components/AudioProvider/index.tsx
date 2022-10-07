@@ -55,10 +55,10 @@ export const AudioProvider: FC<AudioProviderProps> = ({ audioResource, children 
     (event) => {
       if (event.target === null) return;
       if (!(event.target instanceof HTMLAudioElement)) return;
-      const { duration } = event.target;
+      const { currentTime } = event.target;
       setAudioControlValue((prev) => ({
         ...prev,
-        duration,
+        currentTime,
       }));
     },
     [setAudioControlValue],
