@@ -1,5 +1,6 @@
 import type { FC, ReactEventHandler, ReactNode } from 'react';
 import { useRef, useState, useCallback, useEffect } from 'react';
+import { useAudioAutoPlayStateValue, useSetAudioAutoPlayState } from '@/state/audio/audioAutoPlay';
 import { useSetAudioControl } from '@/state/audio/audioControl';
 import type { AudioRef } from '@/state/audio/audioRefReadOnly';
 import { AudioRefReadOnlyContext } from '@/state/audio/audioRefReadOnly';
@@ -75,12 +76,43 @@ export const AudioProvider: FC<AudioProviderProps> = ({ audioResource, children 
     [setAudioControlValue],
   );
 
+  const { shouldAutoPlay, hasAutoPlaySuceeded } = useAudioAutoPlayStateValue();
+  const setAudioAutoPlayState = useSetAudioAutoPlayState();
+
+  // マウントされて100ms後に再生されていなかったら、自動再生失敗フラグを立てる
+  useEffect(() => {
+    setTimeout(() => {
+      setAudioAutoPlayState((prev) => ({
+        ...prev,
+        hasAutoPlaySuceeded: audioRef.current?.paused === false,
+      }));
+    }, 100);
+  }, [audioResource, audioRef, setAudioAutoPlayState]);
+
+  // 自動再生に失敗していたら、ページにユーザーがクリックしたときに自動再生の条件と同じ条件で再生を試みるイベントハンドラを設定する
+  const pseudoAutoPlayAudio = useCallback(() => {
+    if (!shouldAutoPlay) return;
+    if (audioRef.current === null) return;
+    audioRef.current.play();
+  }, [shouldAutoPlay, audioRef]);
+
+  const onDocumentInteractEventListener = useCallback(() => {
+    pseudoAutoPlayAudio();
+    window.document.removeEventListener('click', onDocumentInteractEventListener);
+  }, [pseudoAutoPlayAudio]);
+
+  useEffect(() => {
+    if (hasAutoPlaySuceeded) return;
+    if (!(window && window.document)) return;
+    window.document.addEventListener('click', onDocumentInteractEventListener);
+  }, [onDocumentInteractEventListener, pseudoAutoPlayAudio, hasAutoPlaySuceeded]);
+
   return (
     <AudioRefReadOnlyContext.Provider value={audioRefState}>
       {/* TODO: 曲に対応する適切なWebVTTキャプションファイルを、余裕がある時に作成して追加する */}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio
-        autoPlay={!!audioResource}
+        autoPlay={!!audioResource && shouldAutoPlay}
         preload="auto"
         loop
         ref={audioRef}
