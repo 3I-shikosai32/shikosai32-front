@@ -16,6 +16,8 @@ const meta: ComponentMeta<typeof AudioControlMenu> = {
       },
     ],
     isPlaying: true,
+    duration: 622,
+    currentTime: 23,
   },
   argTypes: {
     className: {
@@ -46,6 +48,14 @@ const meta: ComponentMeta<typeof AudioControlMenu> = {
     onPause: {
       description: '再生中に再生ボタンが押されたときに呼び出されるイベントハンドラを指定できる。',
       control: { type: 'none' },
+    },
+    duration: {
+      description: '現在読み込まれている曲の長さを秒単位で指定する。',
+      control: { type: 'number' },
+    },
+    currentTime: {
+      description: '現在読み込まれている曲の再生位置を秒単位で指定する。',
+      control: { type: 'number' },
     },
   },
 };

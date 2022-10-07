@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
+import { formatDuration } from './formatDuration';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
@@ -12,7 +13,7 @@ import type { AudioResource } from '@/state/audio/audioResource';
 export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
   Pick<NavigationMenuProps, 'viewportClassName'> &
   Pick<AudioResource, 'name' | 'composers'> &
-  Pick<AudioControl, 'isPlaying'> & {
+  Pick<AudioControl, 'isPlaying' | 'duration' | 'currentTime'> & {
     onPlay: () => void;
     onPause: () => void;
   };
@@ -21,6 +22,8 @@ export const AudioControlMenu: FC<AudioControlMenuProps> = ({
   name,
   composers,
   isPlaying,
+  duration,
+  currentTime,
   onPlay,
   onPause,
   viewportClassName,
@@ -50,6 +53,7 @@ export const AudioControlMenu: FC<AudioControlMenuProps> = ({
             ))}
           </div>
         </div>
+        <p className="text-xs text-neutral-500">{`${formatDuration(currentTime)} / ${formatDuration(duration)}`}</p>
         <div>
           <Button
             className="text-neutral-500"

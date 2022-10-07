@@ -5,7 +5,10 @@ import { useAudioControlMenu } from './hooks/useAudioControlMenu';
 import type { AudioControlMenuProps } from './index';
 import { AudioControlMenu } from './index';
 
-export type AudioControlMenuContainerStateProps = Pick<AudioControlMenuProps, 'name' | 'composers' | 'isPlaying' | 'onPlay' | 'onPause'>;
+export type AudioControlMenuContainerStateProps = Pick<
+  AudioControlMenuProps,
+  'name' | 'composers' | 'isPlaying' | 'onPlay' | 'onPause' | 'duration' | 'currentTime'
+>;
 export type AudioControlMenuContainerProps = Omit<AudioControlMenuProps, keyof AudioControlMenuContainerStateProps>;
 
 export const AudioControlMenuContainer: FC<AudioControlMenuContainerProps> = (props) => {

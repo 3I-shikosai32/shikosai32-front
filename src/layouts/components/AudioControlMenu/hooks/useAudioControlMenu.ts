@@ -7,7 +7,7 @@ export const useAudioControlMenu = (): AudioControlMenuContainerStateProps => {
   const audioResource = useAudioResourceValue();
   const name = audioResource?.name || '曲が選ばれていません';
   const composers = audioResource?.composers || [];
-  const { isPlaying } = useAudioControlValue();
+  const { isPlaying, duration, currentTime } = useAudioControlValue();
 
   const audio = useAudioRefReadOnly();
   //
@@ -22,6 +22,8 @@ export const useAudioControlMenu = (): AudioControlMenuContainerStateProps => {
     name,
     composers,
     isPlaying,
+    duration,
+    currentTime,
     onPlay,
     onPause,
   };
