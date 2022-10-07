@@ -16,7 +16,8 @@ const injectedHooks = [
   })),
   injectable(useAudioControlMenu, () => ({
     isPlaying: false,
-    setIsPlaying: () => {},
+    onPlay: () => {},
+    onPause: () => {},
     name: '曲の名前',
     composers: [
       {
