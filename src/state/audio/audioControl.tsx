@@ -3,22 +3,20 @@ import { atomKeys } from '../recoilKeys';
 
 export type AudioControl = {
   isPlaying: boolean;
+  currentTime: number;
+  duration: number;
   volume: number;
-  isMuted: boolean;
-  setIsPlaying: (isPlaying: boolean) => void;
-  setVolume: (volume: number) => void;
-  setIsMuted: (isMuted: boolean) => void;
+  hasAutoPlaySuceeded: boolean;
 };
 
 const AudioControlState = atom<AudioControl>({
   key: atomKeys.AUDIO_CONTROL,
   default: {
     isPlaying: false,
+    currentTime: 0,
+    duration: 0,
     volume: 0,
-    isMuted: false,
-    setIsPlaying: () => {},
-    setVolume: () => {},
-    setIsMuted: () => {},
+    hasAutoPlaySuceeded: false,
   },
 });
 
