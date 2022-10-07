@@ -24,6 +24,8 @@ const injectedHooks = [
         name: '作曲者名',
       },
     ],
+    duration: 100,
+    currentTime: 0,
   })),
 ];
 
