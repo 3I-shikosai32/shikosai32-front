@@ -1,7 +1,7 @@
 import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Icon } from '@/components/Icon';
 import { MotionLink } from '@/components/Link';
-import type { User } from '@/infra/graphql/generated/graphql';
+import type { UserBio } from '@/entity/User';
 import twMerge from '@/utils/twmerge';
 
 // 3i-shikosai32/shikosai32-server
@@ -10,7 +10,7 @@ import twMerge from '@/utils/twmerge';
 export type GameLinkCardProps = Omit<ComponentPropsWithoutRef<typeof MotionLink>, 'children'> & {
   children: ReactNode; // リンクカードの名前として表示される子要素を指定
   maxAttenders: number;
-  attenders: Array<Pick<User, 'iconUrl' | 'id'>>;
+  attenders: Array<Pick<UserBio, 'iconUrl' | 'id'>>;
 };
 
 export const GameLinkCard: FC<GameLinkCardProps> = ({ children, maxAttenders, attenders, className, ...props }) => (
