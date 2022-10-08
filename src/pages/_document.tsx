@@ -4,7 +4,6 @@ import type { FC } from 'react';
 const CustomDocument: FC = () => (
   <Html lang="ja" data-theme="shikosai32">
     <Head>
-      <link rel="icon" href="/favicon.png" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
