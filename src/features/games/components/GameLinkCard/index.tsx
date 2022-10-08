@@ -1,7 +1,7 @@
 import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Icon } from '@/components/Icon';
 import { MotionLink } from '@/components/Link';
-import type { User } from '@/libs/graphql/generated/graphql';
+import type { User } from '@/infra/graphql/generated/graphql';
 import twMerge from '@/utils/twmerge';
 
 // 3i-shikosai32/shikosai32-server

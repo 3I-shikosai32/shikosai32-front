@@ -2,7 +2,7 @@ import type { User } from 'firebase/auth';
 import { useEffect } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { atomKeys } from './recoilKeys';
-import auth from '@/libs/firebase/auth';
+import auth from '@/infra/firebase/auth';
 
 const authState = atom<User | null | undefined>({
   key: atomKeys.AUTH,

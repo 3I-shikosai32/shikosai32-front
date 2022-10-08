@@ -1,6 +1,6 @@
 import type { UserNavigationMenuStateProps } from '../index';
-import { Role } from '@/libs/graphql/generated/graphql';
-import { useFindUserBio } from '@/libs/graphql/handlers/query/FindUserBio';
+import { Role } from '@/infra/graphql/generated/graphql';
+import { useFindUserBio } from '@/infra/graphql/handlers/query/FindUserBio';
 import authActions from '@/state/authState';
 
 export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {

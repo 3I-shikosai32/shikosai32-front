@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { BadgeTransactionItem } from './index';
-import { Character } from '@/libs/graphql/generated/graphql';
+import { Character } from '@/infra/graphql/generated/graphql';
 
 type Story = ComponentStoryObj<typeof BadgeTransactionItem>;
 

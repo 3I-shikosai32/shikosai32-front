@@ -5,7 +5,7 @@ import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalB
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/components/UserItem';
 import type { UserItemProps } from '@/components/UserItem';
-import type { UserBioDataFragment } from '@/libs/graphql/generated/graphql';
+import type { UserBioDataFragment } from '@/infra/graphql/generated/graphql';
 import twMerge from '@/utils/twmerge';
 
 // TODO: 他のPRで作成された`UserItemData`を使用するように変更する

@@ -3,7 +3,7 @@ import { IoMdSwap } from 'react-icons/io';
 import { Icon } from '@/components/Icon';
 import { TransactionItem, TransactionItemProps } from '@/components/TransactionItem';
 import type { UserItemData } from '@/components/UserItem';
-import type { Character } from '@/libs/graphql/generated/graphql';
+import type { Character } from '@/infra/graphql/generated/graphql';
 
 import { CharacterIconUrlDictionary, CharacterNameDictionary } from '@/utils/characterDictionary';
 

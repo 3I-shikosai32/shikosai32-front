@@ -1,7 +1,7 @@
 import { parseISO } from 'date-fns';
 import type { IntrospectionQuery } from 'graphql';
 import customScalarsExchange from 'urql-custom-scalars-exchange';
-import schema from '@/libs/graphql/schema.json';
+import schema from '@/infra/graphql/schema.json';
 
 //
 // 参照: https://github.com/clentfort/urql-custom-scalars-exchange

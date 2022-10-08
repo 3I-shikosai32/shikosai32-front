@@ -1,7 +1,7 @@
 import type { IdTokenResult } from '@firebase/auth';
 import type { AuthConfig } from '@urql/exchange-auth';
 import { makeOperation } from 'urql';
-import auth from '@/libs/firebase/auth';
+import auth from '@/infra/firebase/auth';
 
 type AuthState = {
   token: string;

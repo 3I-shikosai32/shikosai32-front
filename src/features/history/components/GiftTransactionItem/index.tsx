@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 import { TransactionItem, TransactionItemProps } from '@/components/TransactionItem';
-import type { GiftHistoryDataFragment } from '@/libs/graphql/generated/graphql';
+import type { GiftHistoryDataFragment } from '@/infra/graphql/generated/graphql';
 
 export type GiftTransactionItemData = Pick<GiftHistoryDataFragment, 'id' | 'isDelivered' | 'createdAt' | 'deliveredAt'> & {
   user: Pick<GiftHistoryDataFragment['user'], 'name' | 'iconUrl'>;
