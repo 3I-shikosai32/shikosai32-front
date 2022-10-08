@@ -1,8 +1,8 @@
 overwrite: true
 schema: ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-documents: 'src/libs/graphql/documents/**/*.gql'
+documents: 'src/infra/graphql/documents/**/*.gql'
 generates:
-  src/libs/graphql/generated/graphql.ts:
+  src/infra/graphql/generated/graphql.ts:
     config:
       scalars:
         DateTime: Date
@@ -10,6 +10,6 @@ generates:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-urql'
-  src/libs/graphql/schema.json:
+  src/infra/graphql/schema.json:
     plugins:
       - 'introspection'
