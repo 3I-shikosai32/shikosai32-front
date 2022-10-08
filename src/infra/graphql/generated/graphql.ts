@@ -488,11 +488,20 @@ export type UserWhereUniqueInput = {
 
 export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } };
+export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } };
 
-export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
+
+export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
+
+export type CheckUserExistanceQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
 
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
@@ -501,12 +510,12 @@ export type FindGiftExchangeInfoQueryVariables = Exact<{
 
 export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
-export type FindUserBioQueryVariables = Exact<{
+export type FindUserMetaDataQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
+export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
 export const GiftDataFragmentDoc = gql`
     fragment GiftData on Gift {
@@ -521,11 +530,7 @@ export const UserBioDataFragmentDoc = gql`
     fragment UserBioData on User {
   id
   name
-  email
-  role
   characterStatus {
-    id
-    character
     iconUrl
   }
 }
@@ -549,6 +554,30 @@ export const UserExchangeDataFragmentDoc = gql`
   consumablePoint
 }
     `;
+export const UserMetaDataFragmentDoc = gql`
+    fragment UserMetaData on User {
+  id
+  name
+  email
+  role
+  characterStatus {
+    id
+    character
+    iconUrl
+  }
+}
+    `;
+export const CheckUserExistanceDocument = gql`
+    query CheckUserExistance($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+  }
+}
+    `;
+
+export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
+  return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
+};
 export const FindGiftExchangeInfoDocument = gql`
     query FindGiftExchangeInfo($userId: String!) {
   user: findUser(where: {id: $userId}) {
@@ -564,14 +593,14 @@ ${GiftDataFragmentDoc}`;
 export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
 };
-export const FindUserBioDocument = gql`
-    query FindUserBio($id: String!) {
+export const FindUserMetaDataDocument = gql`
+    query FindUserMetaData($id: String!) {
   findUser(where: {id: $id}) {
-    ...UserBioData
+    ...UserMetaData
   }
 }
-    ${UserBioDataFragmentDoc}`;
+    ${UserMetaDataFragmentDoc}`;
 
-export function useFindUserBioQuery(options: Omit<Urql.UseQueryArgs<FindUserBioQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindUserBioQuery, FindUserBioQueryVariables>({ query: FindUserBioDocument, ...options });
+export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
 };
