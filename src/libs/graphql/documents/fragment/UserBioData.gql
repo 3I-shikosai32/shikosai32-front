@@ -3,6 +3,9 @@ fragment UserBioData on User {
   name
   email
   role
-  character
-  iconUrl
+  characterStatus {
+    id
+    character
+    iconUrl
+  }
 }

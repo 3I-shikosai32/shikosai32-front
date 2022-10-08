@@ -4,9 +4,7 @@ fragment GiftHistoryData on GiftHistory {
     name
   }
   user {
-    id
-    name
-    iconUrl
+    ...UserBioData
   }
   isDelivered
   createdAt

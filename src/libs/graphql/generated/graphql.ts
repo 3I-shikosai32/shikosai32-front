@@ -30,6 +30,21 @@ export enum Character {
   Tree = 'TREE'
 }
 
+export type CharacterStatus = {
+  __typename?: 'CharacterStatus';
+  avatarUrl: Scalars['String'];
+  character: Character;
+  characterPointDay1: Scalars['Int'];
+  characterPointDay2: Scalars['Int'];
+  iconUrl: Scalars['String'];
+  id: Scalars['String'];
+  itemCompletedHistory?: Maybe<ItemCompletedHistory>;
+  itemIds: Array<Scalars['String']>;
+  items: Array<Item>;
+  user: User;
+  userId: Scalars['String'];
+};
+
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -39,13 +54,6 @@ export type DateTimeFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   not?: InputMaybe<NestedDateTimeFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type EnumCharacterFilter = {
-  equals?: InputMaybe<Character>;
-  in?: InputMaybe<Array<Character>>;
-  not?: InputMaybe<NestedEnumCharacterFilter>;
-  notIn?: InputMaybe<Array<Character>>;
 };
 
 export type EnumGameFilter = {
@@ -98,7 +106,6 @@ export type GiftHistory = {
   createdAt: Scalars['DateTime'];
   deliveredAt?: Maybe<Scalars['DateTime']>;
   exchangedGift: Gift;
-  gift: Gift;
   giftId: Scalars['String'];
   id: Scalars['String'];
   isDelivered: Scalars['Boolean'];
@@ -195,22 +202,11 @@ export type Item = {
   users: Array<User>;
 };
 
-export type ItemListRelationFilter = {
-  every?: InputMaybe<ItemWhereInput>;
-  none?: InputMaybe<ItemWhereInput>;
-  some?: InputMaybe<ItemWhereInput>;
-};
-
-export type ItemWhereInput = {
-  AND?: InputMaybe<Array<ItemWhereInput>>;
-  NOT?: InputMaybe<Array<ItemWhereInput>>;
-  OR?: InputMaybe<Array<ItemWhereInput>>;
-  character?: InputMaybe<EnumCharacterFilter>;
-  id?: InputMaybe<StringFilter>;
-  layer?: InputMaybe<IntFilter>;
-  url?: InputMaybe<StringFilter>;
-  userIds?: InputMaybe<StringNullableListFilter>;
-  users?: InputMaybe<UserListRelationFilter>;
+export type ItemCompletedHistory = {
+  __typename?: 'ItemCompletedHistory';
+  createdAt: Scalars['DateTime'];
+  deliveredAt?: Maybe<Scalars['DateTime']>;
+  isDelivered: Scalars['Boolean'];
 };
 
 export type Mutation = {
@@ -283,13 +279,6 @@ export type NestedDateTimeFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   not?: InputMaybe<NestedDateTimeFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type NestedEnumCharacterFilter = {
-  equals?: InputMaybe<Character>;
-  in?: InputMaybe<Array<Character>>;
-  not?: InputMaybe<NestedEnumCharacterFilter>;
-  notIn?: InputMaybe<Array<Character>>;
 };
 
 export type NestedEnumGameFilter = {
@@ -425,14 +414,6 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type StringNullableListFilter = {
-  equals?: InputMaybe<Array<Scalars['String']>>;
-  has?: InputMaybe<Scalars['String']>;
-  hasEvery?: InputMaybe<Array<Scalars['String']>>;
-  hasSome?: InputMaybe<Array<Scalars['String']>>;
-  isEmpty?: InputMaybe<Scalars['Boolean']>;
-};
-
 export type Subscription = {
   __typename?: 'Subscription';
   updatedGameAttenders: GameAttenders;
@@ -440,16 +421,12 @@ export type Subscription = {
 
 export type User = {
   __typename?: 'User';
-  avatarUrl: Scalars['String'];
-  character: Character;
+  characterStatus: CharacterStatus;
   consumablePoint: Scalars['Int'];
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   giftHistories: Array<GiftHistory>;
-  iconUrl: Scalars['String'];
   id: Scalars['String'];
-  itemIds: Array<Scalars['String']>;
-  items: Array<Item>;
   name: Scalars['String'];
   participateGame: Game;
   pullableGachaTimes: Scalars['Int'];
@@ -469,12 +446,6 @@ export type UserCreateInput = {
 export type UserIncrementPointInput = {
   id: Scalars['String'];
   increment: Scalars['Float'];
-};
-
-export type UserListRelationFilter = {
-  every?: InputMaybe<UserWhereInput>;
-  none?: InputMaybe<UserWhereInput>;
-  some?: InputMaybe<UserWhereInput>;
 };
 
 export type UserOrderInput = {
@@ -498,16 +469,11 @@ export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
   OR?: InputMaybe<Array<UserWhereInput>>;
-  avatarUrl?: InputMaybe<StringFilter>;
-  character?: InputMaybe<EnumCharacterFilter>;
   consumablePoint?: InputMaybe<IntFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
   giftHistories?: InputMaybe<GiftHistoryListRelationFilter>;
-  iconUrl?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  itemIds?: InputMaybe<StringNullableListFilter>;
-  items?: InputMaybe<ItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   participateGame?: InputMaybe<EnumGameFilter>;
   pullableGachaTimes?: InputMaybe<IntFilter>;
@@ -522,9 +488,9 @@ export type UserWhereUniqueInput = {
 
 export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, iconUrl: string } };
+export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } };
 
-export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string };
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
@@ -535,19 +501,12 @@ export type FindGiftExchangeInfoQueryVariables = Exact<{
 
 export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
-export type FindUserQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type FindUserQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, avatarUrl: string, iconUrl: string, participateGame: Game, pullableGachaTimes: number, totalPointDay1: number, totalPointDay2: number, consumablePoint: number, items: Array<{ __typename?: 'Item', id: string, layer: number, url: string }>, giftHistories: Array<{ __typename?: 'GiftHistory', id: string, giftId: string, isDelivered: boolean, createdAt: Date }> } | null };
-
 export type FindUserBioQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, character: Character, iconUrl: string } | null };
+export type FindUserBioQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
 export const GiftDataFragmentDoc = gql`
     fragment GiftData on Gift {
@@ -558,6 +517,19 @@ export const GiftDataFragmentDoc = gql`
   remaining
 }
     `;
+export const UserBioDataFragmentDoc = gql`
+    fragment UserBioData on User {
+  id
+  name
+  email
+  role
+  characterStatus {
+    id
+    character
+    iconUrl
+  }
+}
+    `;
 export const GiftHistoryDataFragmentDoc = gql`
     fragment GiftHistoryData on GiftHistory {
   id
@@ -565,25 +537,13 @@ export const GiftHistoryDataFragmentDoc = gql`
     name
   }
   user {
-    id
-    name
-    iconUrl
+    ...UserBioData
   }
   isDelivered
   createdAt
   deliveredAt
 }
-    `;
-export const UserBioDataFragmentDoc = gql`
-    fragment UserBioData on User {
-  id
-  name
-  email
-  role
-  character
-  iconUrl
-}
-    `;
+    ${UserBioDataFragmentDoc}`;
 export const UserExchangeDataFragmentDoc = gql`
     fragment UserExchangeData on User {
   consumablePoint
@@ -603,39 +563,6 @@ ${GiftDataFragmentDoc}`;
 
 export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
-};
-export const FindUserDocument = gql`
-    query FindUser($id: String!) {
-  findUser(where: {id: $id}) {
-    id
-    name
-    email
-    role
-    character
-    avatarUrl
-    iconUrl
-    items {
-      id
-      layer
-      url
-    }
-    giftHistories {
-      id
-      giftId
-      isDelivered
-      createdAt
-    }
-    participateGame
-    pullableGachaTimes
-    totalPointDay1
-    totalPointDay2
-    consumablePoint
-  }
-}
-    `;
-
-export function useFindUserQuery(options: Omit<Urql.UseQueryArgs<FindUserQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindUserQuery, FindUserQueryVariables>({ query: FindUserDocument, ...options });
 };
 export const FindUserBioDocument = gql`
     query FindUserBio($id: String!) {
