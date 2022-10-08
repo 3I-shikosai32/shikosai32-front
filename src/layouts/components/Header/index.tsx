@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { FC, ComponentPropsWithoutRef } from 'react';
 import { AudioControlMenuContainer } from '../AudioControlMenu/container';
 import { HamburgerMenu } from '../HamburgerMenu';
@@ -10,22 +9,19 @@ import twMerge from '@/libs/twmerge';
 export type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'children'>;
 
 export const Header: FC<HeaderProps> = ({ className, ...props }) => (
-  <header className={twMerge('bg-white w-full flex flex-col justify-center items-center p-0', className)} {...props}>
-    <div className="flex w-full flex-row items-center justify-center p-2">
-      <div className="flex flex-1 flex-row items-center justify-start p-0">
-        <UserNavigationMenuContainer className="min-h-12 h-12" />
-        <ShareButton className="min-h-12 ml-1 h-12" />
+  <header className={twMerge('bg-white w-full grid grid-cols-1 grid-rows-1 p-2', className)} {...props}>
+    <div className="col-span-full row-span-full m-0 flex flex-row items-center justify-center p-0">
+      <PageNavigationMenu />
+    </div>
+    <div className="relative z-10 col-span-full row-span-full m-0 flex flex-row items-center justify-between p-0 md:flex-row-reverse md:justify-start">
+      <div className="flex flex-row items-center justify-start gap-1 p-0 md:flex-row-reverse">
+        <UserNavigationMenuContainer className="min-h-12 h-12" viewportClassName="md:left-auto md:right-0 md:justify-end" />
+        <ShareButton className="min-h-12 h-12 grow-0" />
       </div>
-      <figure className="relative flex h-full w-14 flex-none items-center justify-center">
-        <Image src="/logos/header.png" width={324} height={284} alt="OZ at 3Iのロゴ画像" />
-      </figure>
-      <div className="flex flex-1 flex-row items-center justify-end p-0">
+      <div className="flex flex-row items-center justify-end p-0">
         <AudioControlMenuContainer className="min-h-12 h-12" viewportClassName="left-auto right-[-3.5rem] md:right-0 justify-end" />
         <HamburgerMenu className="min-h-12 h-12 md:hidden" />
       </div>
-    </div>
-    <div className="hidden md:block">
-      <PageNavigationMenu className="py-1" />
     </div>
   </header>
 );
