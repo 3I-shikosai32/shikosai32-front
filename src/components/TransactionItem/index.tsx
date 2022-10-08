@@ -4,7 +4,7 @@ import { Button } from '@/components/Button';
 import { MotionCard, MotionCardProps } from '@/components/Card';
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips, UserItemData } from '@/components/UserItem';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type TransactionItemData = {
   id: string;

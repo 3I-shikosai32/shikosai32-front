@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Card, CardProps } from '@/components/Card';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type BadgeNotificationProps = CardProps & {
   isBrief?: boolean;

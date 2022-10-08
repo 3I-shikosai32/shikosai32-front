@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react';
 import { forwardRef, useMemo } from 'react';
 import { IconContext } from 'react-icons';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type LinkIconProps = { children: ReactNode } & Pick<ComponentPropsWithoutRef<'div'>, 'className'>;
 

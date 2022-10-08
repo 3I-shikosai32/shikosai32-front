@@ -2,7 +2,7 @@ import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
 import { Icon } from '@/components/Icon';
 import { Separator } from '@/components/Separator';
 import type { UserBioDataFragment } from '@/libs/graphql/generated/graphql';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type UserItemData = Pick<UserBioDataFragment, 'id' | 'name' | 'iconUrl'>;
 

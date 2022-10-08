@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { FC, ComponentPropsWithoutRef } from 'react';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 // 子要素は持てない
 export type IconProps = Pick<ComponentPropsWithoutRef<typeof Image>, 'src' | 'className' | 'alt'> & {

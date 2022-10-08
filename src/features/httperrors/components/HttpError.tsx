@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef, FC } from 'react';
 import { Button } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { Separator } from '@/components/Separator';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type HttpErrorProps = ComponentPropsWithoutRef<'div'> & {
   code: string;

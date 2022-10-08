@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import type { FC, ComponentPropsWithRef, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type CardProps = ComponentPropsWithRef<'div'> & {
   className?: string;

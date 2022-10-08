@@ -6,10 +6,10 @@ import { formatDuration } from './formatDuration';
 import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
-import twMerge from '@/libs/twmerge';
 
 import type { AudioControl } from '@/state/audio/audioControl';
 import type { AudioResource } from '@/state/audio/audioResource';
+import twMerge from '@/utils/twmerge';
 
 export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
   Pick<NavigationMenuProps, 'viewportClassName'> &

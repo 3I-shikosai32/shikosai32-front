@@ -1,7 +1,7 @@
 import * as PrimitiveRadioGroup from '@radix-ui/react-radio-group';
 import { motion } from 'framer-motion';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type RadioIndicatorProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveRadioGroup.Indicator>, 'asChild'>;
 

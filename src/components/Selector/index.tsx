@@ -4,7 +4,7 @@ import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { MdCheck } from 'react-icons/md';
 import { MotionCard } from '@/components/Card';
 import { Separator } from '@/components/Separator';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type SelectorTriggerProps = Omit<ComponentPropsWithoutRef<typeof Select.Trigger>, 'asChild'> &
   Required<Pick<ComponentPropsWithoutRef<typeof Select.Value>, 'placeholder'>> & {

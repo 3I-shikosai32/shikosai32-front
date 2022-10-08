@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { Button, ButtonIcon } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { Separator } from '@/components/Separator';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 //
 // `@/features/httperrors/components/HttpError`からのコピペだけど、仮のLP用だから許して🥲

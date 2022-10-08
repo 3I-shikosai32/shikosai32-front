@@ -8,7 +8,7 @@ import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Link, LinkIcon } from '@/components/Link';
 import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
 

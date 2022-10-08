@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Link } from '@/components/Link';
 import { NavigationMenu, NavigationItem, NavigationLink } from '@/components/Navigation';
 import type { NavigationMenuProps } from '@/components/Navigation';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type PageNavigationMenuProps = Pick<NavigationMenuProps, 'className'>;
 

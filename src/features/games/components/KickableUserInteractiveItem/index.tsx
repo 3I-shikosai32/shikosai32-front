@@ -6,7 +6,7 @@ import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/component
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/components/UserItem';
 import type { UserItemProps } from '@/components/UserItem';
 import type { UserBioDataFragment } from '@/libs/graphql/generated/graphql';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 // TODO: 他のPRで作成された`UserItemData`を使用するように変更する
 type UserItemData = Pick<UserBioDataFragment, 'id' | 'name' | 'iconUrl'>;

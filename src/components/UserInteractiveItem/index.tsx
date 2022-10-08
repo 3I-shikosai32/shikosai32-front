@@ -1,6 +1,6 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
 import type { UserItemProps } from '@/components/UserItem';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type UserInteractiveItemActionGroupProps = ComponentPropsWithoutRef<'div'>;
 export const UserInteractiveItemActionGroup: FC<UserInteractiveItemActionGroupProps> = ({ children, className, ...props }) => (

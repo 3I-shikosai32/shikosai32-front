@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { MdFestival } from 'react-icons/md';
 import { RiGlobalFill } from 'react-icons/ri';
 import { Link, LinkIcon } from '@/components/Link';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type FooterProps = Omit<ComponentPropsWithoutRef<'footer'>, 'children'>;
 

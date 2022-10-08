@@ -5,7 +5,7 @@ import { Button, ButtonIcon } from '@/components/Button';
 import type { ButtonProps } from '@/components/Button';
 import { Link } from '@/components/Link';
 import { Modal, ModalOverlay, ModalContent } from '@/components/Modal';
-import twMerge from '@/libs/twmerge';
+import twMerge from '@/utils/twmerge';
 
 export type HamburgerMenuProps = Omit<ButtonProps, 'children'>;
 
