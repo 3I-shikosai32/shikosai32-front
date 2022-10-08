@@ -1,17 +1,15 @@
 import type { UserNavigationMenuStateProps } from '../index';
-import { Role } from '@/infra/graphql/generated/graphql';
-import { useFindUserBio } from '@/infra/graphql/handlers/query/FindUserBio';
-import authActions from '@/state/authState';
+import { UserRole } from '@/entity/User';
+import { useCurrentUserId } from '@/usecases/User/useCurrentUserId';
+import { useFindUserMetaData } from '@/usecases/User/useFindUserMetaData';
 
 export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
-  const firebaseUser = authActions.useCurrentUser();
-  const { data, fetching, error } = useFindUserBio({ uid: firebaseUser?.uid });
-  if (!data || fetching || error) {
-    return {};
-  }
+  const { id } = useCurrentUserId();
+  const user = useFindUserMetaData({ id });
+
   return {
-    showAdminLink: data.findUser?.role === Role.Admin,
-    userIconUrl: data.findUser?.iconUrl,
-    isLoggedIn: !!data.findUser?.id,
+    userIconUrl: user?.characterStatus.iconUrl,
+    isLoggedIn: !!user,
+    showAdminLink: user?.role === UserRole.Admin,
   };
 };
