@@ -2,27 +2,21 @@ import type { FC } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 import { Icon } from '@/components/Icon';
 import { TransactionItem, TransactionItemProps } from '@/components/TransactionItem';
-import type { UserItemData } from '@/components/UserItem';
-import type { Character } from '@/infra/graphql/generated/graphql';
+import type { BadgeTransaction } from '@/entity/Transaction';
 
 import { CharacterIconUrlDictionary, CharacterNameDictionary } from '@/utils/characterDictionary';
 
-export type BadgeTransactionItemData = UserItemData & {
-  exchangedBadge?: Character;
-};
+export type BadgeTransactionItemData = BadgeTransaction;
 
 export type BadgeTransactionItemProps = Omit<TransactionItemProps, 'children'> & BadgeTransactionItemData;
-export const BadgeTransactionItem: FC<BadgeTransactionItemProps> = ({ exchangedBadge, ...props }) => (
-  <TransactionItem {...props}>
-    {!!exchangedBadge && (
+export const BadgeTransactionItem: FC<BadgeTransactionItemProps> = ({ exchangedItem, ...props }) => (
+  <TransactionItem {...{ exchangedItem, ...props }}>
+    {!!exchangedItem && (
       <>
         <IoMdSwap className="text-lg text-neutral-500" />
-        <Icon className="inline h-6" src={CharacterIconUrlDictionary[exchangedBadge]} />
-        {`${CharacterNameDictionary[exchangedBadge]} の缶バッジ`}
+        <Icon className="inline h-6" src={CharacterIconUrlDictionary[exchangedItem]} />
+        {`${CharacterNameDictionary[exchangedItem]} の缶バッジ`}
       </>
     )}
   </TransactionItem>
 );
-BadgeTransactionItem.defaultProps = {
-  exchangedBadge: undefined,
-};

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { BadgeTransactionItem } from './index';
-import { Character } from '@/infra/graphql/generated/graphql';
+import { Character } from '@/entity';
 
 type Story = ComponentStoryObj<typeof BadgeTransactionItem>;
 
@@ -12,11 +12,12 @@ const meta: ComponentMeta<typeof BadgeTransactionItem> = {
     isDelivered: false,
     createdAt: new Date(),
     deliveredAt: new Date(),
-    user: {
+    receiver: {
+      id: 'this-is-user-id-12345',
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
     },
-    exchangedBadge: Character.Fox,
+    exchangedItem: Character.Fox,
     className: 'max-w-3xl',
   },
   argTypes: {
@@ -36,11 +37,11 @@ const meta: ComponentMeta<typeof BadgeTransactionItem> = {
       description: '缶バッジが受け渡し済みになった日時を指定する。',
       control: { type: 'date' },
     },
-    user: {
+    receiver: {
       description: '交換の取引を行ったユーザーの情報を指定できる。',
       control: { type: 'object' },
     },
-    exchangedBadge: {
+    exchangedItem: {
       description: '交換される缶バッジのキャラクターの種類を指定できる。省略された場合、缶バッジの詳細は表示されない。',
       control: { type: 'select', options: [undefined, ...Object.values(Character)] },
     },
@@ -59,9 +60,3 @@ const meta: ComponentMeta<typeof BadgeTransactionItem> = {
 export default meta;
 
 export const Default: Story = {};
-
-export const WithoutDetail: Story = {
-  args: {
-    exchangedBadge: undefined,
-  },
-};
