@@ -1,4 +1,4 @@
-import { Character } from '@/infra/graphql/generated/graphql';
+import { Character } from '@/entity';
 
 export const CharacterNameDictionary: Record<Character, string> = {
   [Character.Fox]: 'きゅうびさん',
