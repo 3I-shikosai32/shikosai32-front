@@ -26,6 +26,7 @@ export type User = {
 };
 
 export type UserCharacterStatus = {
+  id: Id;
   character: Character;
   iconUrl: ResourceURL;
   avaterUrl: ResourceURL;
