@@ -12,10 +12,11 @@ const meta: ComponentMeta<typeof GiftTransactionItem> = {
     isDelivered: false,
     createdAt: new Date(),
     deliveredAt: new Date(),
-    exchangedGift: {
+    exchangedItem: {
       name: 'ベビースターラーメン',
     },
-    user: {
+    receiver: {
+      id: 'this-is-user-id-12345',
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
     },
@@ -38,11 +39,11 @@ const meta: ComponentMeta<typeof GiftTransactionItem> = {
       description: '景品交換の取引(`GiftHistory`)が受け渡し済みになった日時を指定する。',
       control: { type: 'date' },
     },
-    user: {
+    receiver: {
       description: '景品交換の取引(`GiftHistory`)を行ったユーザーを指定する。',
       control: { type: 'object' },
     },
-    exchangedGift: {
+    exchangedItem: {
       description: '景品交換の取引(`GiftHistory`)で交換された景品を指定する。',
       control: { type: 'object' },
     },
