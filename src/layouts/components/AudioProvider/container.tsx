@@ -1,0 +1,14 @@
+import type { FC } from 'react';
+import type { AudioProviderProps } from '.';
+import { AudioProvider } from '.';
+import { useAudioResourceValue, useAutoSetAudioResource } from '@/state/audio/audioResource';
+
+export type AudioProviderContainerProps = Omit<AudioProviderProps, 'audioResource'>;
+
+export const AudioProviderContainer: FC<AudioProviderContainerProps> = (props) => {
+  const audioResource = useAudioResourceValue();
+
+  // ルーターのパスに合わせてAudioResourceの値を自動設定する
+  useAutoSetAudioResource();
+  return <AudioProvider audioResource={audioResource} {...props} />;
+};

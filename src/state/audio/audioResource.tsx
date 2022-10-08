@@ -21,23 +21,23 @@ export type AudioResource = {
 // NOTE: 配列の番号が小さいほうがより優先される実装にする
 export const audioResources: Array<AudioResource> = [
   {
-    name: '*素晴らしい曲名ゲーム*',
+    name: '栄の活躍:Games',
     composers: [
       {
-        name: '*作曲者様の名前*',
+        name: '酒井晴渚',
       },
     ],
-    src: 'https://example.com/audio.mp3',
-    target: /^\/games[\w-/]*$/,
+    src: '/audio/sakae-remix.mp3',
+    target: /^\/games\/[\w-/]*$/,
   },
   {
-    name: '*素晴らしい曲名デフォルト*',
+    name: '栄の活躍:Remix',
     composers: [
       {
-        name: '*作曲者様の名前*',
+        name: '酒井晴渚',
       },
     ],
-    src: 'https://example.com/audio.mp3',
+    src: '/audio/sakae-remix.mp3',
     target: /^\/[\w-/]*$/,
   },
 ];
