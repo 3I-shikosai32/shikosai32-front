@@ -13,7 +13,8 @@ const meta: ComponentMeta<typeof TransactionItem> = {
     isDelivered: false,
     createdAt: new Date(),
     deliveredAt: new Date(),
-    user: {
+    receiver: {
+      id: 'this-is-user-id-12345',
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
     },
@@ -36,7 +37,7 @@ const meta: ComponentMeta<typeof TransactionItem> = {
       description: '対象が受け渡し済みになった日時を指定する。',
       control: { type: 'date' },
     },
-    user: {
+    receiver: {
       description: '交換の取引を行ったユーザーの情報を指定できる。',
       control: { type: 'object' },
     },

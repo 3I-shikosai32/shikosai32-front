@@ -3,16 +3,11 @@ import { useTransactionItem } from './hooks/useTransactionItem';
 import { Button } from '@/components/Button';
 import { MotionCard, MotionCardProps } from '@/components/Card';
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips, UserItemData } from '@/components/UserItem';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/components/UserItem';
+import type { Transaction } from '@/entity/Transaction';
 import twMerge from '@/utils/twmerge';
 
-export type TransactionItemData = {
-  id: string;
-  isDelivered: boolean;
-  createdAt: Date;
-  deliveredAt: Date;
-  user: Omit<UserItemData, 'id'>;
-};
+export type TransactionItemData = Transaction<unknown>;
 
 export type TransactionItemProps = MotionCardProps &
   TransactionItemData & {
@@ -26,7 +21,7 @@ export const TransactionItem: FC<TransactionItemProps> = ({
   isDelivered,
   createdAt,
   deliveredAt,
-  user,
+  receiver,
   onSubmit,
   className,
   children,
@@ -43,9 +38,9 @@ export const TransactionItem: FC<TransactionItemProps> = ({
     <MotionCard key={id} {...props} className={twMerge(className)}>
       <UserInteractiveItem>
         <UserItem>
-          <UserItemIcon name={user.name} iconUrl={user.iconUrl} />
+          <UserItemIcon name={receiver.name} iconUrl={receiver.iconUrl} />
           <UserItemBio>
-            <UserItemName>{user.name}</UserItemName>
+            <UserItemName>{receiver.name}</UserItemName>
             <UserItemDescription
               aria-label="交換された景品の情報"
               className={twMerge(
