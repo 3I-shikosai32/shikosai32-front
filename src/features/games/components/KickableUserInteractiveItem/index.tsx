@@ -4,12 +4,8 @@ import { Button } from '@/components/Button';
 import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/components/Modal';
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/components/UserItem';
-import type { UserItemProps } from '@/components/UserItem';
-import type { UserBioDataFragment } from '@/infra/graphql/generated/graphql';
+import type { UserItemProps, UserItemData } from '@/components/UserItem';
 import twMerge from '@/utils/twmerge';
-
-// TODO: 他のPRで作成された`UserItemData`を使用するように変更する
-type UserItemData = Pick<UserBioDataFragment, 'id' | 'name' | 'iconUrl'>;
 
 const UserItemWithId: FC<UserItemData> = ({ id, name, iconUrl }) => (
   <UserItem>
