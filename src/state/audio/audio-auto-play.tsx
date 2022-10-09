@@ -1,5 +1,5 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { atomKeys } from '../recoilKeys';
+import { atomKeys } from '../recoil-key';
 
 export type AudioAutoPlay = {
   shouldAutoPlay: boolean;

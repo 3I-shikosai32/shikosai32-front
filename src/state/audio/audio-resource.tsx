@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { atomKeys } from '../recoilKeys';
-import { useAudioResourceAutoSetPermissionValue } from './audioResourceAutoSetPermission';
+import { atomKeys } from '../recoil-key';
+import { useAudioResourceAutoSetPermissionValue } from './audio-resource-auto-set-permission';
 
 // 曲の作曲者を表す型
 export type Composer = {

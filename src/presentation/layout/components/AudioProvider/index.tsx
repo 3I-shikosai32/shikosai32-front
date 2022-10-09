@@ -1,11 +1,11 @@
 import type { FC, ReactEventHandler, ReactNode } from 'react';
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { useAudioAutoPlayStateValue, useSetAudioAutoPlayState } from '@/state/audio/audioAutoPlay';
-import { useSetAudioControl } from '@/state/audio/audioControl';
-import type { AudioRef } from '@/state/audio/audioRefReadOnly';
-import { AudioRefReadOnlyContext } from '@/state/audio/audioRefReadOnly';
+import { useSetAudioControl } from '@/state/audio/audio-control';
+import type { AudioRef } from '@/state/audio/audio-ref-read-only';
+import { AudioRefReadOnlyContext } from '@/state/audio/audio-ref-read-only';
 
-import type { AudioResource } from '@/state/audio/audioResource';
+import type { AudioResource } from '@/state/audio/audio-resource';
 
 export type AudioProviderProps = {
   audioResource?: AudioResource;

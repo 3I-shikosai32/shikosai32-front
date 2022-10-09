@@ -15,8 +15,8 @@ import {
 } from '@/presentation/common/components/Navigation';
 
 import twMerge from '@/presentation/common/twmerge';
-import type { AudioControl } from '@/state/audio/audioControl';
-import type { AudioResource } from '@/state/audio/audioResource';
+import type { AudioControl } from '@/state/audio/audio-control';
+import type { AudioResource } from '@/state/audio/audio-resource';
 
 export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
   Pick<NavigationMenuProps, 'viewportClassName'> &

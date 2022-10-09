@@ -1,7 +1,7 @@
 import type { AudioControlMenuContainerStateProps } from '../container';
-import { useAudioControlValue } from '@/state/audio/audioControl';
-import { useAudioRefReadOnly } from '@/state/audio/audioRefReadOnly';
-import { useAudioResourceValue } from '@/state/audio/audioResource';
+import { useAudioControlValue } from '@/state/audio/audio-control';
+import { useAudioRefReadOnly } from '@/state/audio/audio-ref-read-only';
+import { useAudioResourceValue } from '@/state/audio/audio-resource';
 
 export const useAudioControlMenu = (): AudioControlMenuContainerStateProps => {
   const audioResource = useAudioResourceValue();

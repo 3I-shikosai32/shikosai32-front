@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import type { AudioProviderProps } from '.';
 import { AudioProvider } from '.';
-import { useAudioResourceValue, useAutoSetAudioResource } from '@/state/audio/audioResource';
+import { useAudioResourceValue, useAutoSetAudioResource } from '@/state/audio/audio-resource';
 
 export type AudioProviderContainerProps = Omit<AudioProviderProps, 'audioResource'>;
 
