@@ -7,14 +7,14 @@ const RoleConversionTable: Record<Role, UserRole> = {
   [Role.User]: UserRole.User,
 };
 
-export type UseFindUserMetaDataProps = Partial<Pick<User, 'id'>>;
-export type UseFindUserMetaDataResult =
+export type UseFindUserMetaDataUseCaseProps = Partial<Pick<User, 'id'>>;
+export type UseFindUserMetaDataUseCaseResult =
   | (Pick<User, 'id' | 'name' | 'email' | 'role'> & {
       characterStatus: Pick<User['characterStatus'], 'id' | 'iconUrl' | 'character'>;
     })
   | null;
 
-export const useFindUserMetaData = ({ id }: UseFindUserMetaDataProps): UseFindUserMetaDataResult => {
+export const useFindUserMetaDataUseCase = ({ id }: UseFindUserMetaDataUseCaseProps): UseFindUserMetaDataUseCaseResult => {
   const [result] = useFindUserMetaDataQuery({
     variables: { id: id || '**idが未指定のときはQueryは送られません**' },
     pause: !id,

@@ -1,11 +1,11 @@
 import type { UserNavigationMenuStateProps } from '../index';
 import { UserRole } from '@/model/user/user-role.model';
-import { useCurrentUserId } from '@/usecases/User/useCurrentUserId';
-import { useFindUserMetaData } from '@/usecases/User/useFindUserMetaData';
+import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
+import { useFindUserMetaDataUseCase } from '@/use-case/user/use-find-user-meta-data.use-case';
 
 export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
-  const { id } = useCurrentUserId();
-  const user = useFindUserMetaData({ id });
+  const { id } = useCurrentUserIdUseCase();
+  const user = useFindUserMetaDataUseCase({ id });
 
   return {
     userIconUrl: user?.characterStatus.iconUrl,
