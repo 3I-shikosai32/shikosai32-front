@@ -2,8 +2,8 @@ import { devtoolsExchange } from '@urql/devtools';
 import { authExchange } from '@urql/exchange-auth';
 import { createClient as createWsClient } from 'graphql-ws';
 import { createClient, ClientOptions, cacheExchange, dedupExchange, fetchExchange, subscriptionExchange, Exchange } from 'urql';
-import authConfig from './authConfig';
-import { scalarsExchange } from './scalarsExchange';
+import authConfig from './auth-config';
+import { scalarsExchange } from './scalars-exchange';
 
 const url = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT_DEVELOP || process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 if (!url) {
