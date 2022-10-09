@@ -3,8 +3,8 @@ import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { RadioGroup, RadioItem } from '.';
-import { Icon } from '@/components/Icon';
-import { Label } from '@/components/Label';
+import { Icon } from '@/presentation/common/components/Icon';
+import { Label } from '@/presentation/common/components/Label';
 
 type Story = ComponentStoryObj<typeof RadioItem>;
 

@@ -2,8 +2,8 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from './index';
-import { Button } from '@/components/Button';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/components/UserItem';
+import { Button } from '@/presentation/common/components/Button';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/presentation/common/components/UserItem';
 
 type Story = ComponentStoryObj<typeof UserInteractiveItem>;
 

@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
-import { Button, ButtonIcon } from '@/components/Button';
-import type { ButtonProps } from '@/components/Button';
-import { Link } from '@/components/Link';
-import { Modal, ModalOverlay, ModalContent } from '@/components/Modal';
+import { Button, ButtonIcon } from '@/presentation/common/components/Button';
+import type { ButtonProps } from '@/presentation/common/components/Button';
+import { Link } from '@/presentation/common/components/Link';
+import { Modal, ModalOverlay, ModalContent } from '@/presentation/common/components/Modal';
 import twMerge from '@/utils/twmerge';
 
 export type HamburgerMenuProps = Omit<ButtonProps, 'children'>;

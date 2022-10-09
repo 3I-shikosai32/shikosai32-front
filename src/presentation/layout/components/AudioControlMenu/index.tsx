@@ -3,9 +3,16 @@ import { useMemo } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
 import { formatDuration } from './formatDuration';
-import { Button, ButtonProps, ButtonIcon } from '@/components/Button';
-import { Link } from '@/components/Link';
-import { NavigationMenu, NavigationMenuProps, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from '@/components/Navigation';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/components/Button';
+import { Link } from '@/presentation/common/components/Link';
+import {
+  NavigationMenu,
+  NavigationMenuProps,
+  NavigationItem,
+  NavigationTrigger,
+  NavigationContent,
+  NavigationLink,
+} from '@/presentation/common/components/Navigation';
 
 import type { AudioControl } from '@/state/audio/audioControl';
 import type { AudioResource } from '@/state/audio/audioResource';

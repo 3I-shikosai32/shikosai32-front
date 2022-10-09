@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { useTransactionItem } from './hooks/useTransactionItem';
-import { Button } from '@/components/Button';
-import { MotionCard, MotionCardProps } from '@/components/Card';
-import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/components/UserInteractiveItem';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/components/UserItem';
 import type { Transaction } from '@/model/transaction';
+import { Button } from '@/presentation/common/components/Button';
+import { MotionCard, MotionCardProps } from '@/presentation/common/components/Card';
+import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/presentation/common/components/UserInteractiveItem';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription, UserItemTips } from '@/presentation/common/components/UserItem';
 import twMerge from '@/utils/twmerge';
 
 export type TransactionItemData = Transaction<unknown>;

@@ -2,9 +2,9 @@ import type { FC } from 'react';
 import { useCallback, useRef, forwardRef } from 'react';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { mergeRefs } from 'react-merge-refs';
-import { Button, ButtonIcon } from '@/components/Button';
-import { Input, InputOverlay, InputProps } from '@/components/Input';
-import { Separator } from '@/components/Separator';
+import { Button, ButtonIcon } from '@/presentation/common/components/Button';
+import { Input, InputOverlay, InputProps } from '@/presentation/common/components/Input';
+import { Separator } from '@/presentation/common/components/Separator';
 import twMerge from '@/utils/twmerge';
 
 export type PointInputProps = Omit<InputProps, 'type'>;

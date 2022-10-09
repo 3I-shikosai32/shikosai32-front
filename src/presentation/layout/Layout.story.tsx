@@ -4,8 +4,8 @@ import { DiProvider, injectable } from 'react-magnetic-di';
 import { RecoilRoot } from 'recoil';
 
 import { Layout } from './index';
-import { useAudioControlMenu } from '@/layouts/components/AudioControlMenu/hooks/useAudioControlMenu';
-import { useUserNavigationMenu } from '@/layouts/components/UserNavigationMenu/hooks/useUserNavigationMenu';
+import { useAudioControlMenu } from '@/presentation/layout/components/AudioControlMenu/hooks/useAudioControlMenu';
+import { useUserNavigationMenu } from '@/presentation/layout/components/UserNavigationMenu/hooks/useUserNavigationMenu';
 
 type Story = ComponentStoryObj<typeof Layout>;
 

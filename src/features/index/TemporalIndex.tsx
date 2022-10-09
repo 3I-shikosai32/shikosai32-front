@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import type { ComponentPropsWithoutRef, FC } from 'react';
 import { FaTwitter } from 'react-icons/fa';
-import { Button, ButtonIcon } from '@/components/Button';
-import { Link } from '@/components/Link';
-import { Separator } from '@/components/Separator';
+import { Button, ButtonIcon } from '@/presentation/common/components/Button';
+import { Link } from '@/presentation/common/components/Link';
+import { Separator } from '@/presentation/common/components/Separator';
 import twMerge from '@/utils/twmerge';
 
 //

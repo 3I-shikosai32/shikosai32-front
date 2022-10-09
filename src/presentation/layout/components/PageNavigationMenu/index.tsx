@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import type { FC } from 'react';
-import { Link } from '@/components/Link';
-import { NavigationMenu, NavigationItem, NavigationLink } from '@/components/Navigation';
-import type { NavigationMenuProps } from '@/components/Navigation';
+import { Link } from '@/presentation/common/components/Link';
+import { NavigationMenu, NavigationItem, NavigationLink } from '@/presentation/common/components/Navigation';
+import type { NavigationMenuProps } from '@/presentation/common/components/Navigation';
 import twMerge from '@/utils/twmerge';
 
 export type PageNavigationMenuProps = Pick<NavigationMenuProps, 'className'>;

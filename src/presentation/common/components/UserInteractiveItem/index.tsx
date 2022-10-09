@@ -1,5 +1,5 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
-import type { UserItemProps } from '@/components/UserItem';
+import type { UserItemProps } from '@/presentation/common/components/UserItem';
 import twMerge from '@/utils/twmerge';
 
 export type UserInteractiveItemActionGroupProps = ComponentPropsWithoutRef<'div'>;

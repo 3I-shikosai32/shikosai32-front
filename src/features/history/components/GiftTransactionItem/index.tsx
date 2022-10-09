@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { IoMdSwap } from 'react-icons/io';
-import { TransactionItem, TransactionItemProps } from '@/components/TransactionItem';
-import type { GiftTransaction } from '@/model/Transaction';
+import type { GiftTransaction } from '@/model/transaction';
+import { TransactionItem, TransactionItemProps } from '@/presentation/common/components/TransactionItem';
 
 export type GiftTransactionItemData = GiftTransaction;
 

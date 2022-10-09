@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { Selector, SelectorGroup, SelectorItem, SelectorSeparator } from '.';
-import { Icon } from '@/components/Icon';
+import { Icon } from '@/presentation/common/components/Icon';
 
 type Story = ComponentStoryObj<typeof Selector>;
 

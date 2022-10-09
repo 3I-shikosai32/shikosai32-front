@@ -3,11 +3,11 @@ import { FC, ComponentPropsWithoutRef, useState } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 import { MdClose } from 'react-icons/md';
 import { useGiftItemAmount, DEFAULT_AMOUNT } from './hooks/useGiftItemAmount';
-import { Button, ButtonIcon } from '@/components/Button';
-import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/components/Modal';
-import { Selector, SelectorItem, SelectorTrigger } from '@/components/Selector';
-import type { Gift } from '@/model/Gift';
 import type { User } from '@/model/User';
+import type { Gift } from '@/model/gift';
+import { Button, ButtonIcon } from '@/presentation/common/components/Button';
+import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/presentation/common/components/Modal';
+import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/components/Selector';
 import twMerge from '@/utils/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { RecoilRoot } from 'recoil';
 import { Provider } from 'urql';
 import urqlClient from '@/infra/urql';
-import { AudioProviderContainer } from '@/layouts/components/AudioProvider/container';
+import { AudioProviderContainer } from '@/presentation/layout/components/AudioProvider/container';
 import authActions from '@/state/authState';
 import 'tailwindcss/tailwind.css';
 import '@/styles/global.scss';
