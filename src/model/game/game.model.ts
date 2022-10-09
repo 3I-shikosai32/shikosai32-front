@@ -1,5 +1,3 @@
-import type { UserBio } from '../User';
-
 export enum Game {
   CoinDropping = 'COIN_DROPPING',
   IceRaze = 'ICE_RAZE',
@@ -9,5 +7,3 @@ export enum Game {
   WeDidntPlaytest = 'WE_DIDNT_PLAYTEST',
   Xeno = 'XENO',
 }
-
-export type GameAttenders = Record<Game, Array<UserBio>>;

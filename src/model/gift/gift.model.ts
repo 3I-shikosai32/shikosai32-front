@@ -1,4 +1,5 @@
-import type { Id, ResourceURL } from '..';
+import type { Id } from '../id.model';
+import type { ResourceURL } from '../resource-url.model';
 
 export type Gift = {
   createdAt: Date;
