@@ -45,6 +45,32 @@ export type CharacterStatus = {
   userId: Scalars['String'];
 };
 
+export type CharacterStatusOrderInput = {
+  itemCompletedHistory?: InputMaybe<ItemCompletedHistoryOrderInput>;
+};
+
+export type CharacterStatusWhereInput = {
+  AND?: InputMaybe<Array<CharacterStatusWhereInput>>;
+  NOT?: InputMaybe<Array<CharacterStatusWhereInput>>;
+  OR?: InputMaybe<Array<CharacterStatusWhereInput>>;
+  avatarUrl?: InputMaybe<StringFilter>;
+  character?: InputMaybe<EnumCharacterFilter>;
+  characterPointDay1?: InputMaybe<IntFilter>;
+  characterPointDay2?: InputMaybe<IntFilter>;
+  iconUrl?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  isActive?: InputMaybe<BoolFilter>;
+  itemCompletedHistory?: InputMaybe<ItemCompletedHistoryNullableCompositeFilter>;
+  itemIds?: InputMaybe<StringNullableListFilter>;
+  items?: InputMaybe<ItemListRelationFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<StringFilter>;
+};
+
+export type CharacterStatusWhereUniqueInput = {
+  id: Scalars['String'];
+};
+
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -54,6 +80,25 @@ export type DateTimeFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   not?: InputMaybe<NestedDateTimeFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type DateTimeNullableFilter = {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  gt?: InputMaybe<Scalars['DateTime']>;
+  gte?: InputMaybe<Scalars['DateTime']>;
+  in?: InputMaybe<Array<Scalars['DateTime']>>;
+  isSet?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['DateTime']>;
+  lte?: InputMaybe<Scalars['DateTime']>;
+  not?: InputMaybe<NestedDateTimeNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type EnumCharacterFilter = {
+  equals?: InputMaybe<Character>;
+  in?: InputMaybe<Array<Character>>;
+  not?: InputMaybe<NestedEnumCharacterFilter>;
+  notIn?: InputMaybe<Array<Character>>;
 };
 
 export type EnumGameFilter = {
@@ -209,6 +254,51 @@ export type ItemCompletedHistory = {
   isDelivered: Scalars['Boolean'];
 };
 
+export type ItemCompletedHistoryNullableCompositeFilter = {
+  equals?: InputMaybe<ItemCompletedHistoryObjectEqualityInput>;
+  is?: InputMaybe<ItemCompletedHistoryWhereInput>;
+  isNot?: InputMaybe<ItemCompletedHistoryWhereInput>;
+  isSet?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ItemCompletedHistoryObjectEqualityInput = {
+  createdAt: Scalars['DateTime'];
+  deliveredAt?: InputMaybe<Scalars['DateTime']>;
+  isDelivered: Scalars['Boolean'];
+};
+
+export type ItemCompletedHistoryOrderInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  deliveredAt?: InputMaybe<SortOrder>;
+};
+
+export type ItemCompletedHistoryWhereInput = {
+  AND?: InputMaybe<Array<ItemCompletedHistoryWhereInput>>;
+  NOT?: InputMaybe<Array<ItemCompletedHistoryWhereInput>>;
+  OR?: InputMaybe<Array<ItemCompletedHistoryWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  deliveredAt?: InputMaybe<DateTimeNullableFilter>;
+  isDelivered?: InputMaybe<BoolFilter>;
+};
+
+export type ItemListRelationFilter = {
+  every?: InputMaybe<ItemWhereInput>;
+  none?: InputMaybe<ItemWhereInput>;
+  some?: InputMaybe<ItemWhereInput>;
+};
+
+export type ItemWhereInput = {
+  AND?: InputMaybe<Array<ItemWhereInput>>;
+  NOT?: InputMaybe<Array<ItemWhereInput>>;
+  OR?: InputMaybe<Array<ItemWhereInput>>;
+  character?: InputMaybe<EnumCharacterFilter>;
+  id?: InputMaybe<StringFilter>;
+  layer?: InputMaybe<IntFilter>;
+  url?: InputMaybe<StringFilter>;
+  userIds?: InputMaybe<StringNullableListFilter>;
+  users?: InputMaybe<UserListRelationFilter>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
@@ -281,6 +371,25 @@ export type NestedDateTimeFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
+export type NestedDateTimeNullableFilter = {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  gt?: InputMaybe<Scalars['DateTime']>;
+  gte?: InputMaybe<Scalars['DateTime']>;
+  in?: InputMaybe<Array<Scalars['DateTime']>>;
+  isSet?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['DateTime']>;
+  lte?: InputMaybe<Scalars['DateTime']>;
+  not?: InputMaybe<NestedDateTimeNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type NestedEnumCharacterFilter = {
+  equals?: InputMaybe<Character>;
+  in?: InputMaybe<Array<Character>>;
+  not?: InputMaybe<NestedEnumCharacterFilter>;
+  notIn?: InputMaybe<Array<Character>>;
+};
+
 export type NestedEnumGameFilter = {
   equals?: InputMaybe<Game>;
   in?: InputMaybe<Array<Game>>;
@@ -332,6 +441,7 @@ export type Query = {
   findGiftHistories: Array<GiftHistory>;
   findGiftHistory?: Maybe<GiftHistory>;
   findGifts: Array<Gift>;
+  findItemCompletedCharacterStatuses: Array<CharacterStatus>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
   getObtainmentStatuses: Array<ObtainmentStatus>;
@@ -363,6 +473,15 @@ export type QueryFindGiftsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<GiftWhereInput>;
+};
+
+
+export type QueryFindItemCompletedCharacterStatusesArgs = {
+  cursor?: InputMaybe<CharacterStatusWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<CharacterStatusOrderInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CharacterStatusWhereInput>;
 };
 
 
@@ -414,6 +533,14 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type StringNullableListFilter = {
+  equals?: InputMaybe<Array<Scalars['String']>>;
+  has?: InputMaybe<Scalars['String']>;
+  hasEvery?: InputMaybe<Array<Scalars['String']>>;
+  hasSome?: InputMaybe<Array<Scalars['String']>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type Subscription = {
   __typename?: 'Subscription';
   updatedGameAttenders: GameAttenders;
@@ -446,6 +573,12 @@ export type UserCreateInput = {
 export type UserIncrementPointInput = {
   id: Scalars['String'];
   increment: Scalars['Float'];
+};
+
+export type UserListRelationFilter = {
+  every?: InputMaybe<UserWhereInput>;
+  none?: InputMaybe<UserWhereInput>;
+  some?: InputMaybe<UserWhereInput>;
 };
 
 export type UserOrderInput = {

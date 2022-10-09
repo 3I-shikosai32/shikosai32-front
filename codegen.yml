@@ -1,6 +1,6 @@
 overwrite: true
 schema: ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-documents: 'src/infra/graphql/documents/**/*.gql'
+documents: 'src/infra/graphql/document/**/*.gql'
 generates:
   src/infra/graphql/generated/graphql.ts:
     config:
