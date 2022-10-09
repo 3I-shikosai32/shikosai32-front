@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { TemporalIndex } from '@/features/index/TemporalIndex';
+import { TemporalIndex } from '@/presentation/index/TemporalIndex';
 import { Layout } from '@/presentation/layout';
 
 const IndexPage: NextPage = () => (
