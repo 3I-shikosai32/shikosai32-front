@@ -16,7 +16,7 @@ const Character: FC<CharacterProps> = ({ checkedItems, handleChange }) => (
           <input id={character} type="checkbox" className="h-5 w-5" checked={checkedItems === character} onChange={handleChange} />
         </div>
         <div className="flex justify-center">
-          <Image src={`/characters/${character.toLowerCase}.svg`} width={110} height={110} alt="My icon" />
+          <Image src={`/characters/${character.toLowerCase()}.svg`} width={110} height={110} alt="My icon" />
         </div>
       </div>
     ))}
