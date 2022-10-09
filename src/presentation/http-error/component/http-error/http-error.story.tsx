@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { HttpError } from './HttpError';
+import { HttpError } from './http-error.component';
 
 type Story = ComponentStoryObj<typeof HttpError>;
 

@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { HttpError500 } from '@/presentation/http-error/HttpError500';
+import { HttpError500 } from '@/presentation/http-error/http-error-500.page';
 import { Layout } from '@/presentation/layout';
 
 const Error500: FC = () => (
