@@ -5,7 +5,7 @@ import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalB
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/presentation/common/components/UserInteractiveItem';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/presentation/common/components/UserItem';
 import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 const UserItemWithId: FC<UserItemData> = ({ id, name, iconUrl }) => (
   <UserItem>

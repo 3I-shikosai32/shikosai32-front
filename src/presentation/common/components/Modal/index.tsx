@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import type { ButtonProps } from '@/presentation/common/components/Button';
 import { MotionCard, MotionCardProps } from '@/presentation/common/components/Card';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type ModalTitleProps = ComponentPropsWithoutRef<typeof Dialog.Title> & {
   children: ReactNode;

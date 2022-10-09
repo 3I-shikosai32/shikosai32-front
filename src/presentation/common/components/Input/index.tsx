@@ -2,7 +2,7 @@ import { FC, ComponentPropsWithoutRef, ComponentPropsWithRef, ReactElement, forw
 import { RiInformationFill, RiCheckboxCircleFill, RiErrorWarningFill } from 'react-icons/ri';
 import { useInputValidityState } from './hooks/useInputValidityState';
 import { Label, LabelProps } from '@/presentation/common/components/Label';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 // 外部からの`import`のしやすさのために、このファイル`index.tsx`から`export`しなおす
 export { useInputValidityState };
 

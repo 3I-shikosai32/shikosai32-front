@@ -2,7 +2,7 @@ import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { UserBio } from '@/model/User';
 import { Icon } from '@/presentation/common/components/Icon';
 import { MotionLink } from '@/presentation/common/components/Link';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 // 3i-shikosai32/shikosai32-server
 // src/module/user/domain/model/game-attenders.model.ts を参照

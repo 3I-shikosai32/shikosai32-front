@@ -3,7 +3,7 @@ import { FaCrown } from 'react-icons/fa';
 import { resolveDescription } from './resolveDescription';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/presentation/common/components/UserItem';
 import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type RankedUserItemData = UserItemData & {
   place: number; // 順位

@@ -1,6 +1,6 @@
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import type { ComponentPropsWithoutRef, FC } from 'react';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type SeparatorProps = Omit<ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>, 'asChild' | 'children'>;
 

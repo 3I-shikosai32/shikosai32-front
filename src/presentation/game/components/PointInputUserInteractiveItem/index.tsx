@@ -3,7 +3,7 @@ import type { PointInputProps } from '../PointInput';
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/presentation/common/components/UserInteractiveItem';
 import { UserItem, UserItemIcon, UserItemBio, UserItemName } from '@/presentation/common/components/UserItem';
 import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type PointInputUserInteractiveItemProps = Omit<UserItemProps, 'children'> &
   UserItemData & {

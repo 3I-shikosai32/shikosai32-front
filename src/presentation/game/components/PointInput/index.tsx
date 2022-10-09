@@ -5,7 +5,7 @@ import { mergeRefs } from 'react-merge-refs';
 import { Button, ButtonIcon } from '@/presentation/common/components/Button';
 import { Input, InputOverlay, InputProps } from '@/presentation/common/components/Input';
 import { Separator } from '@/presentation/common/components/Separator';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type PointInputProps = Omit<InputProps, 'type'>;
 export const PointInput: FC<PointInputProps> = forwardRef<HTMLInputElement, PointInputProps>(({ className, ...props }, ref) => {

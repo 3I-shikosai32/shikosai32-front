@@ -8,7 +8,7 @@ import type { Gift } from '@/model/gift';
 import { Button, ButtonIcon } from '@/presentation/common/components/Button';
 import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/presentation/common/components/Modal';
 import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/components/Selector';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
   Pick<Gift, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> & {

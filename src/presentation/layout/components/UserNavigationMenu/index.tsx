@@ -15,7 +15,7 @@ import {
   NavigationContent,
   NavigationLink,
 } from '@/presentation/common/components/Navigation';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
 

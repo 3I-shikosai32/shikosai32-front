@@ -1,5 +1,5 @@
 import type { FC, ComponentPropsWithoutRef } from 'react';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type ToggleProps = Pick<ComponentPropsWithoutRef<'input'>, 'checked' | 'onChange'> & { size: 'small' | 'mid' | 'large'; color: string };
 

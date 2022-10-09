@@ -16,7 +16,7 @@ import {
 
 import type { AudioControl } from '@/state/audio/audioControl';
 import type { AudioResource } from '@/state/audio/audioResource';
-import twMerge from '@/utils/twmerge';
+import twMerge from '@/presentation/common/twmerge';
 
 export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
   Pick<NavigationMenuProps, 'viewportClassName'> &
