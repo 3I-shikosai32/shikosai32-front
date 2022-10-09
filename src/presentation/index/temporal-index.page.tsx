@@ -7,7 +7,7 @@ import { Separator } from '@/presentation/common/component/sepatator/separator.c
 import twMerge from '@/presentation/common/twmerge';
 
 //
-// `@/features/httperrors/components/HttpError`からのコピペだけど、仮のLP用だから許して🥲
+// `@/presentation/http-error/component/http-error`からのコピペだけど、仮のLP用だから許して🥲
 //
 
 export type TemporalIndexProps = ComponentPropsWithoutRef<'div'>;
