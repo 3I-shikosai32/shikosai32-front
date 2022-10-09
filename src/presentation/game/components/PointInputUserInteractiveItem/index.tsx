@@ -1,8 +1,11 @@
 import type { FC, ReactElement } from 'react';
 import type { PointInputProps } from '../PointInput';
-import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/presentation/common/components/UserInteractiveItem';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName } from '@/presentation/common/components/UserItem';
-import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
+import {
+  UserInteractiveItem,
+  UserInteractiveItemActionGroup,
+} from '@/presentation/common/component/user-interactive-item/user-interactive-item.component';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName } from '@/presentation/common/component/user-item/user-item.component';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
 import twMerge from '@/presentation/common/twmerge';
 
 export type PointInputUserInteractiveItemProps = Omit<UserItemProps, 'children'> &

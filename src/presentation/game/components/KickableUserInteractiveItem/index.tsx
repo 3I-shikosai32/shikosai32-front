@@ -1,10 +1,26 @@
 import type { FC } from 'react';
 import { useState } from 'react';
-import { Button } from '@/presentation/common/components/Button';
-import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/presentation/common/components/Modal';
-import { UserInteractiveItem, UserInteractiveItemActionGroup } from '@/presentation/common/components/UserInteractiveItem';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/presentation/common/components/UserItem';
-import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
+import { Button } from '@/presentation/common/component/button/button.component';
+import {
+  Modal,
+  ModalTitle,
+  ModalDescription,
+  ModalOverlay,
+  ModalContent,
+  ModalButtonGroup,
+} from '@/presentation/common/component/modal/modal.component';
+import {
+  UserInteractiveItem,
+  UserInteractiveItemActionGroup,
+} from '@/presentation/common/component/user-interactive-item/user-interactive-item.component';
+import {
+  UserItem,
+  UserItemIcon,
+  UserItemBio,
+  UserItemName,
+  UserItemDescription,
+} from '@/presentation/common/component/user-item/user-item.component';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
 import twMerge from '@/presentation/common/twmerge';
 
 const UserItemWithId: FC<UserItemData> = ({ id, name, iconUrl }) => (

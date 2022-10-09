@@ -1,8 +1,8 @@
 import { FC, useEffect, useState, useCallback } from 'react';
 import { RiShareFill } from 'react-icons/ri';
 import { resolveShareMessage } from './resolveShareMessage';
-import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/components/Button';
-import { Modal, ModalOverlay, ModalContent, ModalTitle, ModalDescription } from '@/presentation/common/components/Modal';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.component';
+import { Modal, ModalOverlay, ModalContent, ModalTitle, ModalDescription } from '@/presentation/common/component/modal/modal.component';
 
 export type ShareButtonProps = Pick<ButtonProps, 'className'> & {
   alwaysAlternative?: boolean;

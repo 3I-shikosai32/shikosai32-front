@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import type { ComponentPropsWithoutRef, FC } from 'react';
-import { Button } from '@/presentation/common/components/Button';
-import { Link } from '@/presentation/common/components/Link';
-import { Separator } from '@/presentation/common/components/Separator';
+import { Button } from '@/presentation/common/component/button/button.component';
+import { Link } from '@/presentation/common/component/link/link.component';
+import { Separator } from '@/presentation/common/component/sepatator/separator.component';
 import twMerge from '@/presentation/common/twmerge';
 
 export type HttpErrorProps = ComponentPropsWithoutRef<'div'> & {

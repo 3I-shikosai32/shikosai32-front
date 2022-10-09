@@ -5,9 +5,16 @@ import { MdClose } from 'react-icons/md';
 import { useGiftItemAmount, DEFAULT_AMOUNT } from './hooks/useGiftItemAmount';
 import type { Gift } from '@/model/gift/gift.model';
 import type { User } from '@/model/user/user.model';
-import { Button, ButtonIcon } from '@/presentation/common/components/Button';
-import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from '@/presentation/common/components/Modal';
-import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/components/Selector';
+import { Button, ButtonIcon } from '@/presentation/common/component/button/button.component';
+import {
+  Modal,
+  ModalTitle,
+  ModalDescription,
+  ModalOverlay,
+  ModalContent,
+  ModalButtonGroup,
+} from '@/presentation/common/component/modal/modal.component';
+import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/component/selector/selector.component';
 import twMerge from '@/presentation/common/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &

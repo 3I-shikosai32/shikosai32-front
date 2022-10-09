@@ -1,8 +1,14 @@
 import type { FC } from 'react';
 import { FaCrown } from 'react-icons/fa';
 import { resolveDescription } from './resolveDescription';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName, UserItemDescription } from '@/presentation/common/components/UserItem';
-import type { UserItemProps, UserItemData } from '@/presentation/common/components/UserItem';
+import {
+  UserItem,
+  UserItemIcon,
+  UserItemBio,
+  UserItemName,
+  UserItemDescription,
+} from '@/presentation/common/component/user-item/user-item.component';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
 import twMerge from '@/presentation/common/twmerge';
 
 export type RankedUserItemData = UserItemData & {
