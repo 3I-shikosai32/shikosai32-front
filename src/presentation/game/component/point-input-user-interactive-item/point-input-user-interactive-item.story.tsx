@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { PointInput } from '../PointInput';
-import { PointInputUserInteractiveItem } from './index';
+import { PointInput } from '../point-input/point-input.component';
+import { PointInputUserInteractiveItem } from './point-input-user-interactive-item.component';
 import { Card } from '@/presentation/common/component/card/card.component';
 
 type Story = ComponentStoryObj<typeof PointInputUserInteractiveItem>;

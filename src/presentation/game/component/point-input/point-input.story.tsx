@@ -1,6 +1,6 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { PointInput } from './index';
+import { PointInput } from './point-input.component';
 
 type Story = ComponentStoryObj<typeof PointInput>;
 

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { GameLinkCard } from './index';
+import { GameLinkCard } from './game-link-card.component';
 
 type Story = ComponentStoryObj<typeof GameLinkCard>;
 

@@ -1,5 +1,5 @@
 import type { FC, ReactElement } from 'react';
-import type { PointInputProps } from '../PointInput';
+import type { PointInputProps } from '../point-input/point-input.component';
 import {
   UserInteractiveItem,
   UserInteractiveItemActionGroup,
