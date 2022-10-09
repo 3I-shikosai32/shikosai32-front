@@ -1,4 +1,4 @@
-import { resolveDescription } from './resolveDescription';
+import { resolveDescription } from './resolve-description';
 
 describe('resolveDescription', () => {
   it('順位をもとに正しく説明の振り分けができる', () => {

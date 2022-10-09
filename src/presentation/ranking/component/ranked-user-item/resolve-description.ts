@@ -1,4 +1,4 @@
-import type { RankedUserItemData } from '.';
+import type { RankedUserItemData } from './ranked-user-item.component';
 
 type ResolveDescriptionProps = Pick<RankedUserItemData, 'place' | 'point'>;
 

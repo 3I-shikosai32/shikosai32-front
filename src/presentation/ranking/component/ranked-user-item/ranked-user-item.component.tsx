@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { FaCrown } from 'react-icons/fa';
-import { resolveDescription } from './resolveDescription';
+import { resolveDescription } from './resolve-description';
 import {
   UserItem,
   UserItemIcon,
