@@ -4,19 +4,7 @@ import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { atomKeys } from '../recoil-key';
 import { useAudioResourceAutoSetPermissionValue } from './audio-resource-auto-set-permission';
 
-// 曲の作曲者を表す型
-export type Composer = {
-  name: string;
-  social?: string; // SNS等のリンク
-};
-
-// 曲の情報を表す型
-export type AudioResource = {
-  name: string; // 曲の名前
-  composers: Array<Composer>; // 作曲者名
-  src: string; // 曲の音声ファイルのURL
-  target: RegExp; // 曲が流れるページのパスの正規表現
-};
+import type { AudioResource } from '@/model/audio/audio-resource.model';
 
 // NOTE: 配列の番号が小さいほうがより優先される実装にする
 export const audioResources: Array<AudioResource> = [
@@ -65,14 +53,14 @@ export const useSetAudioResource = () => {
 export const useAutoSetAudioResource = () => {
   const router = useRouter();
   const setAudioResource = useSetRecoilState(audioResourceState);
-  const audioResourceAutoSetPermission = useAudioResourceAutoSetPermissionValue();
+  const { isAutoSetPermitted } = useAudioResourceAutoSetPermissionValue();
 
   useEffect(() => {
-    if (audioResourceAutoSetPermission) {
+    if (isAutoSetPermitted) {
       const audioResource = resolveAudioResource(router.pathname);
       if (audioResource) {
         setAudioResource(audioResource);
       }
     }
-  }, [router.pathname, setAudioResource, audioResourceAutoSetPermission]);
+  }, [router.pathname, setAudioResource, isAutoSetPermitted]);
 };

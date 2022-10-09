@@ -1,12 +1,7 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { atomKeys } from '../recoil-key';
 
-export type AudioControl = {
-  isPlaying: boolean;
-  currentTime: number;
-  duration: number;
-  volume: number;
-};
+import type { AudioControl } from '@/model/audio/audio-control.model';
 
 const AudioControlState = atom<AudioControl>({
   key: atomKeys.AUDIO_CONTROL,
