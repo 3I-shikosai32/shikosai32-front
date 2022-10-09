@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
 import { formatDuration } from './format-duration';
+import type { AudioControl } from '@/model/audio/audio-control.model';
+import type { AudioResource } from '@/model/audio/audio-resource.model';
 import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.component';
 import { Link } from '@/presentation/common/component/link/link.component';
 import {
@@ -15,8 +17,6 @@ import {
 } from '@/presentation/common/component/navigation/navigation.component';
 
 import twMerge from '@/presentation/common/twmerge';
-import type { AudioControl } from '@/state/audio/audio-control';
-import type { AudioResource } from '@/state/audio/audio-resource';
 
 export type AudioControlMenuProps = Pick<ButtonProps, 'className'> &
   Pick<NavigationMenuProps, 'viewportClassName'> &
