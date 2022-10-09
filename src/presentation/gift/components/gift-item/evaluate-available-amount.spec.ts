@@ -1,4 +1,4 @@
-import { evaluateAvailableAmount } from './evaluateAvailableAmount';
+import { evaluateAvailableAmount } from './evaluate-available-amount';
 
 describe('evaluateAvailableAmount', () => {
   test('`consumablePoint`に合わせて値を返せる', () => {

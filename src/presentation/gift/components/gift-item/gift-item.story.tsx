@@ -2,8 +2,8 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { STOCK_INDICATE_AMOUNT } from './hooks/useGiftItemAmount';
-import { GiftItem } from './index';
+import { STOCK_INDICATE_AMOUNT } from './hook/use-gift-item-amount.hook';
+import { GiftItem } from './gift-item.component';
 
 type Story = ComponentStoryObj<typeof GiftItem>;
 
