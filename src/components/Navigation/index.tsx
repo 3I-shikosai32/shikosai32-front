@@ -62,7 +62,7 @@ export type NavigationMenuProps = Omit<
 };
 
 export const NavigationMenu: FC<NavigationMenuProps> = ({ className, viewportClassName, children, ...props }) => (
-  <PrimitiveNavMenu.Root className="relative z-10" {...props}>
+  <PrimitiveNavMenu.Root className="relative z-30" {...props}>
     <PrimitiveNavMenu.List className={twMerge('flex flex-row gap-0 m-0 p-0', className)}>{children}</PrimitiveNavMenu.List>
     <PrimitiveNavMenu.Viewport
       className={twMerge('bg-transparent absolute top-full flex justify-center origin-top mt-2 min-w-fit w-full max-w-sm', viewportClassName)}

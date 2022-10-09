@@ -8,38 +8,38 @@ import twMerge from '@/libs/twmerge';
 export type PageNavigationMenuProps = Pick<NavigationMenuProps, 'className'>;
 
 export const PageNavigationMenu: FC<PageNavigationMenuProps> = ({ className, ...props }) => (
-  <NavigationMenu className={twMerge('p-0 grid grid-cols-5 grid-rows-1 justify-center gap-4 items-center', className)} {...props}>
-    <NavigationItem>
+  <NavigationMenu className={twMerge('p-0 flex flex-row justify-center gap-4 items-center', className)} {...props}>
+    <NavigationItem className="hidden shrink-0 grow basis-24 items-center justify-center whitespace-nowrap md:flex">
       <NavigationLink>
-        <Link className="hidden text-center text-neutral-700 drop-shadow-none md:block" href="https://example.com">
+        <Link className="text-center text-neutral-700 drop-shadow-none" href="/ranking">
           ランキング
         </Link>
       </NavigationLink>
     </NavigationItem>
-    <NavigationItem>
+    <NavigationItem className="hidden shrink-0 grow basis-24 items-center justify-center whitespace-nowrap md:flex">
       <NavigationLink>
-        <Link className="hidden text-center text-neutral-700 drop-shadow-none md:block" href="https://example.com">
+        <Link className="text-center text-neutral-700 drop-shadow-none" href="/games">
           ゲーム一覧
         </Link>
       </NavigationLink>
     </NavigationItem>
-    <NavigationItem className="md:px-4">
+    <NavigationItem className="flex flex-1 items-center justify-center md:px-4">
       <NavigationLink>
-        <figure className="relative flex h-full w-14 flex-none items-center justify-center">
+        <Link className="relative flex h-full w-14 flex-none items-center justify-center drop-shadow-none" href="/">
           <Image src="/logos/header.png" width={324} height={284} alt="OZ at 3Iのロゴ画像" />
-        </figure>
+        </Link>
       </NavigationLink>
     </NavigationItem>
-    <NavigationItem>
+    <NavigationItem className="hidden shrink-0 grow basis-24 items-center justify-center whitespace-nowrap md:flex">
       <NavigationLink>
-        <Link className="hidden text-center text-neutral-700 drop-shadow-none md:block" href="https://example.com">
+        <Link className="text-center text-neutral-700 drop-shadow-none" href="/gifts">
           景品交換
         </Link>
       </NavigationLink>
     </NavigationItem>
-    <NavigationItem>
+    <NavigationItem className="hidden shrink-0 grow basis-24 items-center justify-center whitespace-nowrap md:flex">
       <NavigationLink>
-        <Link className="hidden text-center text-neutral-700 drop-shadow-none md:block" href="https://example.com">
+        <Link className="text-center text-neutral-700 drop-shadow-none" href="/staff">
           スタッフ
         </Link>
       </NavigationLink>
