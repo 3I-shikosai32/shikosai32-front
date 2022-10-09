@@ -1,5 +1,5 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
-import type { UserBio } from '@/model/User';
+import type { UserBio } from '@/model/user/user-bio.model';
 import { Icon } from '@/presentation/common/components/Icon';
 import { Separator } from '@/presentation/common/components/Separator';
 import twMerge from '@/presentation/common/twmerge';

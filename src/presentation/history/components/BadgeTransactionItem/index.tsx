@@ -1,10 +1,9 @@
 import type { FC } from 'react';
 import { IoMdSwap } from 'react-icons/io';
+import { CharacterIconUrlDictionary, CharacterNameDictionary } from '@/model/character.model';
+import type { BadgeTransaction } from '@/model/transaction/badge-transaction.model';
 import { Icon } from '@/presentation/common/components/Icon';
 import { TransactionItem, TransactionItemProps } from '@/presentation/common/components/TransactionItem';
-import type { BadgeTransaction } from '@/model/transaction';
-
-import { CharacterIconUrlDictionary, CharacterNameDictionary } from '@/utils/characterDictionary';
 
 export type BadgeTransactionItemData = BadgeTransaction;
 

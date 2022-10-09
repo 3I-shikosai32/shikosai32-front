@@ -1,4 +1,4 @@
-import type { User } from '@/model/User';
+import type { User } from '@/model/user/user.model';
 import authActions from '@/state/authState';
 
 export type UseCurrentUserIdResult = Partial<Pick<User, 'id'>>;

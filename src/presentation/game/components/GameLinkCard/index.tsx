@@ -1,5 +1,5 @@
 import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { UserBio } from '@/model/User';
+import type { UserBio } from '@/model/user/user-bio.model';
 import { Icon } from '@/presentation/common/components/Icon';
 import { MotionLink } from '@/presentation/common/components/Link';
 import twMerge from '@/presentation/common/twmerge';
