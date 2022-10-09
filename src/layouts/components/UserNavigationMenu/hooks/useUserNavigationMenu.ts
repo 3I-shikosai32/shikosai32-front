@@ -1,5 +1,5 @@
 import type { UserNavigationMenuStateProps } from '../index';
-import { UserRole } from '@/entity/User';
+import { UserRole } from '@/model/User';
 import { useCurrentUserId } from '@/usecases/User/useCurrentUserId';
 import { useFindUserMetaData } from '@/usecases/User/useFindUserMetaData';
 

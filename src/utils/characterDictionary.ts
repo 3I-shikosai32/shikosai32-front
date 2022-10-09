@@ -1,4 +1,4 @@
-import { Character } from '@/entity';
+import { Character } from '@/model';
 
 export const CharacterNameDictionary: Record<Character, string> = {
   [Character.Fox]: 'きゅうびさん',

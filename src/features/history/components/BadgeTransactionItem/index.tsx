@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 import { Icon } from '@/components/Icon';
 import { TransactionItem, TransactionItemProps } from '@/components/TransactionItem';
-import type { BadgeTransaction } from '@/entity/Transaction';
+import type { BadgeTransaction } from '@/model/Transaction';
 
 import { CharacterIconUrlDictionary, CharacterNameDictionary } from '@/utils/characterDictionary';
 

@@ -1,7 +1,7 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
 import { Icon } from '@/components/Icon';
 import { Separator } from '@/components/Separator';
-import type { UserBio } from '@/entity/User';
+import type { UserBio } from '@/model/User';
 import twMerge from '@/utils/twmerge';
 
 export type UserItemData = UserBio;

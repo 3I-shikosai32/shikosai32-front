@@ -1,6 +1,6 @@
-import type { User } from '@/entity/User';
-import { UserRole } from '@/entity/User';
 import { useFindUserMetaDataQuery, Role } from '@/infra/graphql/generated/graphql';
+import type { User } from '@/model/User';
+import { UserRole } from '@/model/User';
 
 const RoleConversionTable: Record<Role, UserRole> = {
   [Role.Admin]: UserRole.Admin,

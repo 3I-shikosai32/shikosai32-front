@@ -1,6 +1,5 @@
-import type { User } from '@/entity/User';
-
 import { useCheckUserExistanceQuery } from '@/infra/graphql/generated/graphql';
+import type { User } from '@/model/User';
 
 export type UseCheckUserExistanceProps = Partial<Pick<User, 'id'>>;
 
