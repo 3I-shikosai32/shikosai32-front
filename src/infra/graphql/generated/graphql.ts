@@ -641,6 +641,8 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export type GameAttenderBioDataFragment = { __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
+
 export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
 export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } };
@@ -679,6 +681,19 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
+export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coin_dropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, ice_raze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, we_didnt_playtest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
+
+export const GameAttenderBioDataFragmentDoc = gql`
+    fragment GameAttenderBioData on User {
+  id
+  characterStatus {
+    iconUrl
+  }
+}
+    `;
 export const GiftDataFragmentDoc = gql`
     fragment GiftData on Gift {
   id
@@ -778,4 +793,32 @@ export const FindUserMetaDataDocument = gql`
 
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
+};
+export const UpdatedGameAttendersDocument = gql`
+    subscription UpdatedGameAttenders {
+  updatedGameAttenders {
+    coin_dropping {
+      ...GameAttenderBioData
+    }
+    xeno {
+      ...GameAttenderBioData
+    }
+    ice_raze {
+      ...GameAttenderBioData
+    }
+    poker {
+      ...GameAttenderBioData
+    }
+    president {
+      ...GameAttenderBioData
+    }
+    we_didnt_playtest {
+      ...GameAttenderBioData
+    }
+  }
+}
+    ${GameAttenderBioDataFragmentDoc}`;
+
+export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttendersSubscription>(options: Omit<Urql.UseSubscriptionArgs<UpdatedGameAttendersSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<UpdatedGameAttendersSubscription, TData>) {
+  return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>({ query: UpdatedGameAttendersDocument, ...options }, handler);
 };
