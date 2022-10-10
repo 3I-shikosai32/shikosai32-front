@@ -1,7 +1,7 @@
 import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { UserBio } from '@/model/user/user-bio.model';
-import { Icon } from '@/presentation/common/component/icon/icon.component';
-import { MotionLink } from '@/presentation/common/component/link/link.component';
+import { Icon } from '@/presentation/common/component/icon/icon.presenter';
+import { MotionLink } from '@/presentation/common/component/link/link.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 // 3i-shikosai32/shikosai32-server

@@ -2,8 +2,8 @@ import * as Select from '@radix-ui/react-select';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { MdCheck } from 'react-icons/md';
-import { MotionCard } from '@/presentation/common/component/card/card.component';
-import { Separator } from '@/presentation/common/component/sepatator/separator.component';
+import { MotionCard } from '@/presentation/common/component/card/card.presenter';
+import { Separator } from '@/presentation/common/component/sepatator/separator.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type SelectorTriggerProps = Omit<ComponentPropsWithoutRef<typeof Select.Trigger>, 'asChild'> &

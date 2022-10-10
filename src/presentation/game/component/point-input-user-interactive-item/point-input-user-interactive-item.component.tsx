@@ -3,9 +3,9 @@ import type { PointInputProps } from '../point-input/point-input.component';
 import {
   UserInteractiveItem,
   UserInteractiveItemActionGroup,
-} from '@/presentation/common/component/user-interactive-item/user-interactive-item.component';
-import { UserItem, UserItemIcon, UserItemBio, UserItemName } from '@/presentation/common/component/user-item/user-item.component';
-import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
+} from '@/presentation/common/component/user-interactive-item/user-interactive-item.presenter';
+import { UserItem, UserItemIcon, UserItemBio, UserItemName } from '@/presentation/common/component/user-item/user-item.presenter';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type PointInputUserInteractiveItemProps = Omit<UserItemProps, 'children'> &

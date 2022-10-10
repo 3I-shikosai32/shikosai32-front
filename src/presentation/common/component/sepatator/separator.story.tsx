@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Separator } from './separator.component';
+import { Separator } from './separator.presenter';
 
 type Story = ComponentStoryObj<typeof Separator>;
 

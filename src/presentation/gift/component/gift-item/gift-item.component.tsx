@@ -13,8 +13,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalButtonGroup,
-} from '@/presentation/common/component/modal/modal.component';
-import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/component/selector/selector.component';
+} from '@/presentation/common/component/modal/modal.presenter';
+import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/component/selector/selector.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &

@@ -7,8 +7,8 @@ import {
   UserItemBio,
   UserItemName,
   UserItemDescription,
-} from '@/presentation/common/component/user-item/user-item.component';
-import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
+} from '@/presentation/common/component/user-item/user-item.presenter';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type RankedUserItemData = UserItemData & {

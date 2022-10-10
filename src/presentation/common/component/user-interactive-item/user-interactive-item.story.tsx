@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { UserInteractiveItem, UserInteractiveItemActionGroup } from './user-interactive-item.component';
+import { UserInteractiveItem, UserInteractiveItemActionGroup } from './user-interactive-item.presenter';
 import { Button } from '@/presentation/common/component/button/button.component';
 import {
   UserItem,
@@ -10,7 +10,7 @@ import {
   UserItemName,
   UserItemDescription,
   UserItemTips,
-} from '@/presentation/common/component/user-item/user-item.component';
+} from '@/presentation/common/component/user-item/user-item.presenter';
 
 type Story = ComponentStoryObj<typeof UserInteractiveItem>;
 

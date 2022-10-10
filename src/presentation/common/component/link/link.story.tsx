@@ -2,7 +2,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { HiUserCircle } from 'react-icons/hi';
-import { Link, LinkIcon } from './link.component';
+import { Link, LinkIcon } from './link.presenter';
 
 type Story = ComponentStoryObj<typeof Link>;
 

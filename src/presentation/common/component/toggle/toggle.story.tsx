@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
-import Toggle from './toggle.component';
+import Toggle from './toggle.presenter';
 
 type Story = ComponentStoryObj<typeof Toggle>;
 

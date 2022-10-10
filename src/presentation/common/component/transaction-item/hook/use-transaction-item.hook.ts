@@ -1,7 +1,7 @@
 import { formatDistance } from 'date-fns';
 import ja from 'date-fns/locale/ja';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import type { TransactionItemProps } from '../transaction-item.component';
+import type { TransactionItemProps } from '../transaction-item.presenter';
 
 const useFormatDate = (date: Date) => {
   const [now, setNow] = useState(new Date());

@@ -1,12 +1,12 @@
 import type { FC } from 'react';
 import { useTransactionItem } from './hook/use-transaction-item.hook';
 import type { Transaction } from '@/model/transaction/transaction.model';
-import { Button } from '@/presentation/common/component/button/button.component';
-import { MotionCard, MotionCardProps } from '@/presentation/common/component/card/card.component';
+import { Button } from '@/presentation/common/component/button/button.presenter';
+import { MotionCard, MotionCardProps } from '@/presentation/common/component/card/card.presenter';
 import {
   UserInteractiveItem,
   UserInteractiveItemActionGroup,
-} from '@/presentation/common/component/user-interactive-item/user-interactive-item.component';
+} from '@/presentation/common/component/user-interactive-item/user-interactive-item.presenter';
 import {
   UserItem,
   UserItemIcon,
@@ -14,7 +14,7 @@ import {
   UserItemName,
   UserItemDescription,
   UserItemTips,
-} from '@/presentation/common/component/user-item/user-item.component';
+} from '@/presentation/common/component/user-item/user-item.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type TransactionItemData = Transaction<unknown>;

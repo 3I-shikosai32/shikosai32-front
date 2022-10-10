@@ -9,7 +9,7 @@ import {
   InputLabelName,
   InputLabelDescription,
   useInputValidityState,
-} from './input.component';
+} from './input.presenter';
 
 type Story = ComponentStoryObj<typeof Input>;
 

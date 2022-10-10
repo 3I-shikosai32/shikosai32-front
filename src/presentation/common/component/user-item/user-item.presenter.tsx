@@ -1,7 +1,7 @@
 import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
 import type { UserBio } from '@/model/user/user-bio.model';
-import { Icon } from '@/presentation/common/component/icon/icon.component';
-import { Separator } from '@/presentation/common/component/sepatator/separator.component';
+import { Icon } from '@/presentation/common/component/icon/icon.presenter';
+import { Separator } from '@/presentation/common/component/sepatator/separator.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type UserItemData = UserBio;

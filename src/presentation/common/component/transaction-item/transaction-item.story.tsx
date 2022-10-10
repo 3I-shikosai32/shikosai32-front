@@ -2,7 +2,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { IoMdSwap } from 'react-icons/io';
-import { TransactionItem } from './transaction-item.component';
+import { TransactionItem } from './transaction-item.presenter';
 
 type Story = ComponentStoryObj<typeof TransactionItem>;
 

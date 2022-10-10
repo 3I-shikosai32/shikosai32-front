@@ -3,7 +3,7 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { PointInput } from '../point-input/point-input.component';
 import { PointInputUserInteractiveItem } from './point-input-user-interactive-item.component';
-import { Card } from '@/presentation/common/component/card/card.component';
+import { Card } from '@/presentation/common/component/card/card.presenter';
 
 type Story = ComponentStoryObj<typeof PointInputUserInteractiveItem>;
 

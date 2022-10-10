@@ -1,6 +1,6 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Icon } from './icon.component';
+import { Icon } from './icon.presenter';
 
 type Story = ComponentStoryObj<typeof Icon>;
 

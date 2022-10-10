@@ -2,7 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from './modal.component';
+import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent, ModalButtonGroup } from './modal.presenter';
 import { Button } from '@/presentation/common/component/button/button.component';
 
 type Story = ComponentStoryObj<typeof Modal>;

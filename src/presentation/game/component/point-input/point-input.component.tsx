@@ -3,8 +3,8 @@ import { useCallback, useRef, forwardRef } from 'react';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { mergeRefs } from 'react-merge-refs';
 import { Button, ButtonIcon } from '@/presentation/common/component/button/button.component';
-import { Input, InputOverlay, InputProps } from '@/presentation/common/component/input/input.component';
-import { Separator } from '@/presentation/common/component/sepatator/separator.component';
+import { Input, InputOverlay, InputProps } from '@/presentation/common/component/input/input.presenter';
+import { Separator } from '@/presentation/common/component/sepatator/separator.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type PointInputProps = Omit<InputProps, 'type'>;

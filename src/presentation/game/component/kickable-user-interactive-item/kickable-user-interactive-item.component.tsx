@@ -8,19 +8,19 @@ import {
   ModalOverlay,
   ModalContent,
   ModalButtonGroup,
-} from '@/presentation/common/component/modal/modal.component';
+} from '@/presentation/common/component/modal/modal.presenter';
 import {
   UserInteractiveItem,
   UserInteractiveItemActionGroup,
-} from '@/presentation/common/component/user-interactive-item/user-interactive-item.component';
+} from '@/presentation/common/component/user-interactive-item/user-interactive-item.presenter';
 import {
   UserItem,
   UserItemIcon,
   UserItemBio,
   UserItemName,
   UserItemDescription,
-} from '@/presentation/common/component/user-item/user-item.component';
-import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
+} from '@/presentation/common/component/user-item/user-item.presenter';
+import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 const UserItemWithId: FC<UserItemData> = ({ id, name, iconUrl }) => (

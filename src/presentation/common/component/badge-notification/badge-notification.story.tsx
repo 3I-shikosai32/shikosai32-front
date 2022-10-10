@@ -1,6 +1,6 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { BadgeNotification } from './badge-notification.component';
+import { BadgeNotification } from './badge-notification.presenter';
 
 type Story = ComponentStoryObj<typeof BadgeNotification>;
 

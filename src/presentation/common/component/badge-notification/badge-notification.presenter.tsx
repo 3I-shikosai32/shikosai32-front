@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Card, CardProps } from '@/presentation/common/component/card/card.component';
+import { Card, CardProps } from '@/presentation/common/component/card/card.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type BadgeNotificationProps = CardProps & {

@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { NavigationMenu, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from './navigation.component';
+import { NavigationMenu, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from './navigation.presenter';
 import { Button } from '@/presentation/common/component/button/button.component';
-import { Icon } from '@/presentation/common/component/icon/icon.component';
+import { Icon } from '@/presentation/common/component/icon/icon.presenter';
 
 type Story = ComponentStoryObj<typeof NavigationMenu>;
 

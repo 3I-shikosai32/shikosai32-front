@@ -3,7 +3,7 @@ import type { FC, ComponentPropsWithoutRef } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { MdFestival } from 'react-icons/md';
 import { RiGlobalFill } from 'react-icons/ri';
-import { Link, LinkIcon } from '@/presentation/common/component/link/link.component';
+import { Link, LinkIcon } from '@/presentation/common/component/link/link.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type FooterProps = Omit<ComponentPropsWithoutRef<'footer'>, 'children'>;

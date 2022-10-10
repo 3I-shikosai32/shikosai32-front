@@ -5,7 +5,7 @@ import React from 'react';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdAccessibilityNew } from 'react-icons/md';
-import { Button, ButtonIcon } from './button.component';
+import { Button, ButtonIcon } from './button.presenter';
 
 type Story = ComponentStoryObj<typeof Button>;
 
