@@ -16,7 +16,7 @@ export const GameIndex: FC<GameIndexProps> = ({ attendersDictionary }) => (
     <div className="flex w-full max-w-7xl flex-row flex-wrap items-start justify-center gap-4 p-6">
       {Object.values(Game).map((game) => {
         const BindedGameLinkCard = BindedGameLinkCardDictionary[game];
-        return <BindedGameLinkCard key={game} attenders={attendersDictionary[game]} />;
+        return <BindedGameLinkCard className="w-80" key={game} attenders={attendersDictionary[game]} />;
       })}
     </div>
   </div>
