@@ -21,7 +21,7 @@ import {
   UserItemDescription,
 } from '@/presentation/common/component/user-item/user-item.component';
 import type { UserItemProps, UserItemData } from '@/presentation/common/component/user-item/user-item.component';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 const UserItemWithId: FC<UserItemData> = ({ id, name, iconUrl }) => (
   <UserItem>

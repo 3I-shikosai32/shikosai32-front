@@ -4,7 +4,7 @@ import { HamburgerMenu } from '../hamburger-menu/hamburger-menu.component';
 import { PageNavigationMenu } from '../page-navigation-menu/page-navigation-menu.component';
 import { ShareButton } from '../share-button/share-button.component';
 import { UserNavigationMenuContainer } from '../user-navigation-menu/user-navigation-menu.container';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'children'>;
 

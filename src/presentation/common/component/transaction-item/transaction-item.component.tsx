@@ -15,7 +15,7 @@ import {
   UserItemDescription,
   UserItemTips,
 } from '@/presentation/common/component/user-item/user-item.component';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type TransactionItemData = Transaction<unknown>;
 

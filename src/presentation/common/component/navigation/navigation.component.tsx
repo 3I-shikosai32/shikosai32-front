@@ -1,7 +1,7 @@
 import * as PrimitiveNavMenu from '@radix-ui/react-navigation-menu';
 import type { FC, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 import { MotionCard, MotionCardProps } from '@/presentation/common/component/card/card.component';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type NavigationLinkProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveNavMenu.Link>, 'asChild'> & {
   children: ReactNode;

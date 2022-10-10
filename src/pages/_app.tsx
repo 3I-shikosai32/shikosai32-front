@@ -6,7 +6,7 @@ import urqlClient from '@/infra/urql';
 import { AudioProviderContainer } from '@/presentation/layout/components/audio-provider/audio-provider.container';
 import authActions from '@/state/auth/auth-state';
 import 'tailwindcss/tailwind.css';
-import '@/presentation/style/global.scss';
+import '@/presentation/style/stylesheet/global.scss';
 
 const AppInit: FC = () => {
   authActions.useAuth();

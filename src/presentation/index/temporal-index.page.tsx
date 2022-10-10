@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { Button, ButtonIcon } from '@/presentation/common/component/button/button.component';
 import { Link } from '@/presentation/common/component/link/link.component';
 import { Separator } from '@/presentation/common/component/sepatator/separator.component';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 //
 // `@/presentation/http-error/component/http-error`からのコピペだけど、仮のLP用だから許して🥲

@@ -15,7 +15,7 @@ import {
   ModalButtonGroup,
 } from '@/presentation/common/component/modal/modal.component';
 import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/common/component/selector/selector.component';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
   Pick<Gift, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> & {

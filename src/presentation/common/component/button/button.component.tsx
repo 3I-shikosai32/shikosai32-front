@@ -1,7 +1,7 @@
 import { motion, MotionProps } from 'framer-motion';
 import { FC, ReactNode, ComponentPropsWithoutRef, useMemo } from 'react';
 import { IconContext } from 'react-icons';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type ButtonProps = ComponentPropsWithoutRef<'button'> &
   MotionProps & {

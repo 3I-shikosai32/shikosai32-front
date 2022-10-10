@@ -14,7 +14,7 @@ import {
   NavigationLink,
 } from '@/presentation/common/component/navigation/navigation.component';
 
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 import type { AudioControl } from '@/state/audio/audio-control';
 import type { AudioResource } from '@/state/audio/audio-resource';
 

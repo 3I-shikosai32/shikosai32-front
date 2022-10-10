@@ -1,6 +1,6 @@
 import * as PrimitiveLabel from '@radix-ui/react-label';
 import type { FC, ComponentPropsWithoutRef, ReactNode } from 'react';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 
 export type LabelProps = Omit<ComponentPropsWithoutRef<typeof PrimitiveLabel.Root>, 'asChild'> & {
   children: ReactNode;
