@@ -5,7 +5,7 @@ import { MdClose } from 'react-icons/md';
 import { useGiftItemAmount, DEFAULT_AMOUNT } from './hook/use-gift-item-amount.hook';
 import type { Gift } from '@/model/gift/gift.model';
 import type { User } from '@/model/user/user.model';
-import { Button, ButtonIcon } from '@/presentation/common/component/button/button.component';
+import { Button, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
 import {
   Modal,
   ModalTitle,

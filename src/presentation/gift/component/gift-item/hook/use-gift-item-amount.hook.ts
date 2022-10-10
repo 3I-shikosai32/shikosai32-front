@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from 'react';
 import { evaluateAvailableAmount } from '../evaluate-available-amount';
-import type { GiftItemProps } from '../gift-item.component';
+import type { GiftItemProps } from '../gift-item.presenter';
 
 export type UseGiftItemAmountProps = Pick<GiftItemProps, 'consumablePoint' | 'price' | 'remaining'>;
 

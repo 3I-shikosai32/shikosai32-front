@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { HttpError } from './component/http-error/http-error.component';
-import type { HttpErrorProps } from './component/http-error/http-error.component';
+import { HttpError } from './component/http-error/http-error.presenter';
+import type { HttpErrorProps } from './component/http-error/http-error.presenter';
 
 export type HttpError500Props = Omit<HttpErrorProps, 'code' | 'description'>;
 

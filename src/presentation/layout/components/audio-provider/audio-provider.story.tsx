@@ -1,7 +1,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { RecoilRoot } from 'recoil';
 
-import { AudioProvider } from './audio-provider.component';
+import { AudioProvider } from './audio-provider.presenter';
 import { audioResources } from '@/state/audio/audio-resource';
 
 type Story = ComponentStoryObj<typeof AudioProvider>;

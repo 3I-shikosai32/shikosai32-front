@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { AudioControlMenu } from './audio-control-menu.component';
+import { AudioControlMenu } from './audio-control-menu.presenter';
 
 type Story = ComponentStoryObj<typeof AudioControlMenu>;
 

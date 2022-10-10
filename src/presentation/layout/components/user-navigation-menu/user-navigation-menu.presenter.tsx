@@ -4,7 +4,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { RiUser3Fill } from 'react-icons/ri';
 import { TbClipboardText } from 'react-icons/tb';
-import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.component';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
 import { Icon } from '@/presentation/common/component/icon/icon.presenter';
 import { Link, LinkIcon } from '@/presentation/common/component/link/link.presenter';
 import {

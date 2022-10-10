@@ -1,4 +1,4 @@
-import type { UserNavigationMenuStateProps } from '../user-navigation-menu.component';
+import type { UserNavigationMenuStateProps } from '../user-navigation-menu.presenter';
 import { UserRole } from '@/model/user/user-role.model';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 import { useFindUserMetaDataUseCase } from '@/use-case/user/use-find-user-meta-data.use-case';

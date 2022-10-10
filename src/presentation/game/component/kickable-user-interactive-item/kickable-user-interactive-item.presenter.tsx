@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useState } from 'react';
-import { Button } from '@/presentation/common/component/button/button.component';
+import { Button } from '@/presentation/common/component/button/button.presenter';
 import {
   Modal,
   ModalTitle,

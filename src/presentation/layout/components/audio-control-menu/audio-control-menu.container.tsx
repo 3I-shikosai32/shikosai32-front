@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { di } from 'react-magnetic-di';
 
-import type { AudioControlMenuProps } from './audio-control-menu.component';
-import { AudioControlMenu } from './audio-control-menu.component';
+import type { AudioControlMenuProps } from './audio-control-menu.presenter';
+import { AudioControlMenu } from './audio-control-menu.presenter';
 import { useAudioControlMenu } from './hook/use-audio-control-menu.hook';
 
 export type AudioControlMenuContainerStateProps = Pick<

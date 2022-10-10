@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { HamburgerMenu } from './hamburger-menu.component';
+import { HamburgerMenu } from './hamburger-menu.presenter';
 
 type Story = ComponentStoryObj<typeof HamburgerMenu>;
 

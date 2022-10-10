@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { ShareButton } from './share-button.component';
+import { ShareButton } from './share-button.presenter';
 
 type Story = ComponentStoryObj<typeof ShareButton>;
 

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { Footer } from './footer.component';
+import { Footer } from './footer.presenter';
 
 type Story = ComponentStoryObj<typeof Footer>;
 

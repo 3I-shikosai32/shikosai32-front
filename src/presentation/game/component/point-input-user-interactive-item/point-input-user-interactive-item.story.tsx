@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { PointInput } from '../point-input/point-input.component';
+import { PointInput } from '../point-input/point-input.presenter';
 import { PointInputUserInteractiveItem } from './point-input-user-interactive-item.component';
 import { Card } from '@/presentation/common/component/card/card.presenter';
 

@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { di } from 'react-magnetic-di';
 import { useUserNavigationMenu } from './hook/use-user-navigation-menu.hook';
-import { UserNavigationMenu } from './user-navigation-menu.component';
-import type { UserNavigationMenuProps } from './user-navigation-menu.component';
+import { UserNavigationMenu } from './user-navigation-menu.presenter';
+import type { UserNavigationMenuProps } from './user-navigation-menu.presenter';
 
 export const UserNavigationMenuContainer: FC<UserNavigationMenuProps> = (props) => {
   //

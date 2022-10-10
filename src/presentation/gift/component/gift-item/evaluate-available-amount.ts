@@ -1,4 +1,4 @@
-import type { GiftItemProps } from './gift-item.component';
+import type { GiftItemProps } from './gift-item.presenter';
 
 export type EvaluateAvailableAmountProps = Pick<GiftItemProps, 'consumablePoint' | 'price' | 'remaining'>;
 

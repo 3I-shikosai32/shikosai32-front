@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
 import { formatDuration } from './format-duration';
-import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.component';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
 import { Link } from '@/presentation/common/component/link/link.presenter';
 import {
   NavigationMenu,

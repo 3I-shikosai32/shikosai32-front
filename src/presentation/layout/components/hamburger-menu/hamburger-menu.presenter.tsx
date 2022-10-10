@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
-import { Button, ButtonIcon } from '@/presentation/common/component/button/button.component';
-import type { ButtonProps } from '@/presentation/common/component/button/button.component';
+import { Button, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
+import type { ButtonProps } from '@/presentation/common/component/button/button.presenter';
 import { Link } from '@/presentation/common/component/link/link.presenter';
 import { Modal, ModalOverlay, ModalContent } from '@/presentation/common/component/modal/modal.presenter';
 import twMerge from '@/presentation/style/twmerge';

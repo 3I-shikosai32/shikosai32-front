@@ -1,8 +1,8 @@
 import type { FC, ComponentPropsWithoutRef } from 'react';
 import { AudioControlMenuContainer } from '../audio-control-menu/audio-control-menu.container';
-import { HamburgerMenu } from '../hamburger-menu/hamburger-menu.component';
-import { PageNavigationMenu } from '../page-navigation-menu/page-navigation-menu.component';
-import { ShareButton } from '../share-button/share-button.component';
+import { HamburgerMenu } from '../hamburger-menu/hamburger-menu.presenter';
+import { PageNavigationMenu } from '../page-navigation-menu/page-navigation-menu.presenter';
+import { ShareButton } from '../share-button/share-button.presenter';
 import { UserNavigationMenuContainer } from '../user-navigation-menu/user-navigation-menu.container';
 import twMerge from '@/presentation/style/twmerge';
 
