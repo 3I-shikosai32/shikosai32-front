@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import IsNewUser from '@/features/auth/is-new-user';
 
-const IndexPage: NextPage = () => <IsNewUser />;
+const IsNewUserPage: NextPage = () => <IsNewUser />;
 
-export default IndexPage;
+export default IsNewUserPage;
