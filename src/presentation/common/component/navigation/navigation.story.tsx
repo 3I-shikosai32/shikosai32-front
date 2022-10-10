@@ -2,7 +2,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { NavigationMenu, NavigationItem, NavigationTrigger, NavigationContent, NavigationLink } from './navigation.presenter';
-import { Button } from '@/presentation/common/component/button/button.component';
+import { Button } from '@/presentation/common/component/button/button.presenter';
 import { Icon } from '@/presentation/common/component/icon/icon.presenter';
 
 type Story = ComponentStoryObj<typeof NavigationMenu>;

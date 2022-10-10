@@ -2,7 +2,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { UserInteractiveItem, UserInteractiveItemActionGroup } from './user-interactive-item.presenter';
-import { Button } from '@/presentation/common/component/button/button.component';
+import { Button } from '@/presentation/common/component/button/button.presenter';
 import {
   UserItem,
   UserItemIcon,
