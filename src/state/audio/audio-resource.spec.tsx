@@ -1,5 +1,5 @@
 import { resolveAudioResource } from './audio-resource';
-import type { AudioResource } from '@/model/audio/audio-resource.model';
+import type { AudioResource } from './audio-resource';
 
 const audioResources: Array<AudioResource> = [
   {
