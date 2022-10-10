@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { KickableUserInteractiveItem } from './kickable-user-interactive-item.component';
+import { KickableUserInteractiveItem } from './kickable-user-interactive-item.presenter';
 
 type Story = ComponentStoryObj<typeof KickableUserInteractiveItem>;
 
