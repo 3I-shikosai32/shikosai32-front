@@ -2,7 +2,7 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { RecoilRoot } from 'recoil';
 
 import { AudioProviderContainer } from './audio-provider.container';
-import { AudioControlMenuContainer } from '@/presentation/layout/components/audio-control-menu/audio-control-menu.container';
+import { AudioControlMenuContainer } from '@/presentation/layout/component/audio-control-menu/audio-control-menu.container';
 
 type Story = ComponentStoryObj<typeof AudioProviderContainer>;
 

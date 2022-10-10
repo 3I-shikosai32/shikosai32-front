@@ -1,7 +1,7 @@
 import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react';
-import { CommonMeta, CommonMetaProps } from './components/common-meta/common-meta.presenter';
-import { Footer } from './components/footer/footer.presenter';
-import { Header } from './components/header/header.presenter';
+import { CommonMeta, CommonMetaProps } from './component/common-meta/common-meta.presenter';
+import { Footer } from './component/footer/footer.presenter';
+import { Header } from './component/header/header.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type LayoutProps = ComponentPropsWithoutRef<'main'> &

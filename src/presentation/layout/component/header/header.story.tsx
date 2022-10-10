@@ -3,8 +3,8 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { DiProvider, injectable } from 'react-magnetic-di';
 import { RecoilRoot } from 'recoil';
 import { Header } from './header.presenter';
-import { useAudioControlMenu } from '@/presentation/layout/components/audio-control-menu/hook/use-audio-control-menu.hook';
-import { useUserNavigationMenu } from '@/presentation/layout/components/user-navigation-menu/hook/use-user-navigation-menu.hook';
+import { useAudioControlMenu } from '@/presentation/layout/component/audio-control-menu/hook/use-audio-control-menu.hook';
+import { useUserNavigationMenu } from '@/presentation/layout/component/user-navigation-menu/hook/use-user-navigation-menu.hook';
 
 type Story = ComponentStoryObj<typeof Header>;
 
