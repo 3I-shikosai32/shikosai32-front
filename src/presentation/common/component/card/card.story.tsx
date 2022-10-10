@@ -1,7 +1,7 @@
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { Card, MotionCard } from './card.presenter';
-import { Button } from '@/presentation/common/component/button/button.component';
+import { Button } from '@/presentation/common/component/button/button.presenter';
 
 type Story = ComponentStoryObj<typeof Card>;
 
