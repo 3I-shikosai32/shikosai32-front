@@ -26,11 +26,13 @@ export const GameLinkCard: FC<GameLinkCardProps> = ({ children, maxAttenders, at
     )}
     {...props}
   >
-    <p className="fixed top-4 right-4 text-right font-normal">{`(${attenders.length}/${maxAttenders})`}</p>
+    <p className="absolute top-4 right-4 text-right font-normal">{`(${attenders.length}/${maxAttenders})`}</p>
     <h2 className="text-4xl">{children}</h2>
-    <div className="fixed bottom-4 right-4 flex flex-1 flex-row-reverse items-end justify-start gap-0">
+    <div className="absolute bottom-4 right-4 flex flex-1 flex-row-reverse items-end justify-start gap-0">
       {attenders.map(({ iconUrl, id }) => (
-        <Icon key={id} src={iconUrl} className="ml-[-0.5rem] h-6" />
+        // なぜかz-0指定するとiOS環境でも正しく丸くマスク`overflow:hidden`される
+        // TODO: 原因を調べる
+        <Icon key={id} src={iconUrl} className="z-0 ml-[-0.5rem] h-6" />
       ))}
     </div>
   </MotionLink>
