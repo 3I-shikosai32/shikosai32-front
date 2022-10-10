@@ -1,9 +1,12 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { atomKeys } from '../recoil-key';
 
-import type { AudioAutoPlayStatus } from '@/model/audio/audio-auto-play-status.model';
+export type AudioAutoPlay = {
+  shouldAutoPlay: boolean;
+  hasAutoPlaySuceeded: boolean;
+};
 
-const AudioAutoPlayState = atom<AudioAutoPlayStatus>({
+const AudioAutoPlayState = atom<AudioAutoPlay>({
   key: atomKeys.AUDIO_AUTOPLAY,
   default: {
     shouldAutoPlay: true,

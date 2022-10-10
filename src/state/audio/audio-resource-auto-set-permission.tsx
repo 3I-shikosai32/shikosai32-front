@@ -1,13 +1,11 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { atomKeys } from '../recoil-key';
 
-import type { AudioResourceAutoSetPermissionStatus } from '@/model/audio/audio-resource-auto-set-permission-status.model';
+export type AudioResourceAutoSetPermission = boolean;
 
-const audioResourceAutoSetPermissionState = atom<AudioResourceAutoSetPermissionStatus>({
+const audioResourceAutoSetPermissionState = atom<AudioResourceAutoSetPermission>({
   key: atomKeys.AUDIO_RESOURCE_AUTO_SET_PERMISSION,
-  default: {
-    isAutoSetPermitted: true,
-  },
+  default: true,
 });
 
 export const useAudioResourceAutoSetPermissionValue = () => {
