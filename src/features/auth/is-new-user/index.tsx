@@ -6,8 +6,8 @@ import Loading from '@/components/Loading';
 import { useDetectNewUser } from '@/libs/graphql/handlers/query/DetectNewUser';
 import authActions from '@/state/authState';
 
-const FindUserById: FC<{ user: User }> = ({ user }) => {
-  const { data, fetching } = useDetectNewUser({ uid: user.uid });
+const NewUserDetector: FC<{ user?: User }> = ({ user }) => {
+  const { data, fetching } = useDetectNewUser(user?.uid);
   if (!fetching) {
     if (data) {
       Router.push('/');
@@ -21,14 +21,16 @@ const FindUserById: FC<{ user: User }> = ({ user }) => {
     </div>
   );
 };
-
+NewUserDetector.defaultProps = {
+  user: undefined
+}
 const IsNewUser: FC = () => {
   const user = authActions.useCurrentUser();
-  if (!user) {
+  if (user === null) {
     return <Error statusCode={500} />;
   }
 
-  return <FindUserById user={user} />;
+  return <NewUserDetector user={user} />;
 };
 
 export default IsNewUser;
