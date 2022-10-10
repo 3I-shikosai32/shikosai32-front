@@ -1,6 +1,12 @@
-import { useMemo } from 'react';
-import { useUpdatedGameAttendersSubscription, GameAttenderBioDataFragment } from '@/infra/graphql/generated/graphql';
+import { useMemo, useCallback } from 'react';
+import type { SubscriptionHandler } from 'urql';
+import {
+  useUpdatedGameAttendersSubscription,
+  GameAttenderBioDataFragment,
+  UpdatedGameAttendersSubscription,
+} from '@/infra/graphql/generated/graphql';
 import type { GameAttendersDictionary } from '@/model/game/game-attenders-dictionary.model';
+import type { GameAttenders } from '@/model/game/game-attenders.model';
 import { Game } from '@/model/game/game.model';
 
 const userTranspiler = (user: GameAttenderBioDataFragment): GameAttendersDictionary[Game][number] => ({
@@ -8,29 +14,43 @@ const userTranspiler = (user: GameAttenderBioDataFragment): GameAttendersDiction
   iconUrl: user.characterStatus.iconUrl,
 });
 
-export type UseRealtimeGameAttendersUseCaseResult = {
-  attendersDictionary: GameAttendersDictionary | null;
+export type UseRealtimeGameAttendersUseCaseProps = {
+  game: Game;
 };
 
-export const useRealtimeGameAttendersUseCase = (): UseRealtimeGameAttendersUseCaseResult => {
-  const [res] = useUpdatedGameAttendersSubscription({
-    context: {
-      maskTypename: true,
+export type UseRealtimeGameAttendersUseCaseResult = {
+  attenders: GameAttenders;
+};
+
+const GameKeyDictionary: Record<Game, keyof Omit<UpdatedGameAttendersSubscription['updatedGameAttenders'], '__typename'>> = {
+  [Game.CoinDropping]: 'coin_dropping',
+  [Game.Xeno]: 'xeno',
+  [Game.IceRaze]: 'ice_raze',
+  [Game.Poker]: 'poker',
+  [Game.President]: 'president',
+  [Game.WeDidntPlaytest]: 'we_didnt_playtest',
+};
+
+export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttendersUseCaseProps): UseRealtimeGameAttendersUseCaseResult => {
+  const reducer = useCallback<SubscriptionHandler<UpdatedGameAttendersSubscription, GameAttenders>>(
+    (prev, data) => {
+      const gameKey = GameKeyDictionary[game];
+      if (!(data && data.updatedGameAttenders && data.updatedGameAttenders[gameKey])) return [];
+      const attenders: GameAttenders = data.updatedGameAttenders[gameKey].map(userTranspiler);
+      return attenders;
     },
-  });
-  const data = res.data?.updatedGameAttenders;
-  const attendersDictionary: GameAttendersDictionary | null = useMemo(() => {
-    if (data) {
-      return {
-        [Game.Xeno]: data.xeno.map(userTranspiler),
-        [Game.IceRaze]: data.ice_raze.map(userTranspiler),
-        [Game.Poker]: data.poker.map(userTranspiler),
-        [Game.President]: data.president.map(userTranspiler),
-        [Game.WeDidntPlaytest]: data.we_didnt_playtest.map(userTranspiler),
-        [Game.CoinDropping]: data.coin_dropping.map(userTranspiler),
-      };
-    }
-    return null;
-  }, [data]);
-  return { attendersDictionary };
+    [game],
+  );
+
+  const [res] = useUpdatedGameAttendersSubscription(
+    {
+      context: {
+        maskTypename: true,
+      },
+    },
+    reducer,
+  );
+  return {
+    attenders: useMemo(() => res.data || [], [res.data]),
+  };
 };
