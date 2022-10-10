@@ -1,11 +1,9 @@
-import type { Character } from '../character.model';
-import type { Id } from '../id.model';
-import type { ResourceURL } from '../resource-url.model';
+import type { Character } from '../character/character.model';
 
 export type ItemLayer = 0 | 1 | 2 | 3 | 4;
 export type Item = {
   character: Character;
-  id: Id;
+  id: string;
   layer: ItemLayer;
-  url: ResourceURL;
+  url: string;
 };

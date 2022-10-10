@@ -1,4 +1,3 @@
-import type { Id } from '../id.model';
 import type { UserBio } from '../user/user-bio.model';
 
 export type Transaction<T> = {
@@ -6,6 +5,6 @@ export type Transaction<T> = {
   deliveredAt?: Date;
   receiver: UserBio;
   exchangedItem: T;
-  id: Id;
+  id: string;
   isDelivered: boolean;
 };

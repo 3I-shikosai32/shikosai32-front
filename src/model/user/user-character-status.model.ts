@@ -1,14 +1,12 @@
-import type { Character } from '../character.model';
-import type { Id } from '../id.model';
+import type { Character } from '../character/character.model';
 import type { Item } from '../item/item.model';
-import type { ResourceURL } from '../resource-url.model';
 import type { Points } from './points.model';
 
 export type UserCharacterStatus = {
-  id: Id;
+  id: string;
   character: Character;
-  iconUrl: ResourceURL;
-  avaterUrl: ResourceURL;
+  iconUrl: string;
+  avaterUrl: string;
   points: Omit<Points, 'consumable'>;
   items: Array<Item>;
 };
