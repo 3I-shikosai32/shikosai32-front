@@ -1,5 +1,5 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { atomKeys } from '../recoil-key';
+import { atomKeys } from '../../constant/recoil-key';
 
 export type AudioResourceAutoSetPermission = boolean;
 

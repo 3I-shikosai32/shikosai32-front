@@ -1,5 +1,5 @@
 import type { User } from '@/model/user/user.model';
-import authActions from '@/state/auth-state';
+import authActions from '@/state/auth/auth-state';
 
 export type UseCurrentUserIdUseCaseResult = Partial<Pick<User, 'id'>>;
 
