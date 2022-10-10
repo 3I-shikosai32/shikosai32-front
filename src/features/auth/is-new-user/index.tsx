@@ -3,6 +3,7 @@ import Error from 'next/error';
 import Router from 'next/router';
 import type { FC } from 'react';
 import Loading from '@/components/Loading';
+import { Layout } from '@/layouts';
 import { useDetectNewUser } from '@/libs/graphql/handlers/query/DetectNewUser';
 import authActions from '@/state/authState';
 
@@ -27,10 +28,18 @@ NewUserDetector.defaultProps = {
 const IsNewUser: FC = () => {
   const user = authActions.useCurrentUser();
   if (user === null) {
-    return <Error statusCode={500} />;
+    return (
+      <Layout>
+        <Error statusCode={500} />
+      </Layout>
+    )
   }
 
-  return <NewUserDetector user={user} />;
+  return (
+    <Layout>
+      <NewUserDetector user={user} />;
+    </Layout>
+  )
 };
 
 export default IsNewUser;
