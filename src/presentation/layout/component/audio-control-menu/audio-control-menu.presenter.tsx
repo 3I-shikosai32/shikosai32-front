@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiMusicNote } from 'react-icons/hi';
 import { formatDuration } from './format-duration';
-import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
-import { Link } from '@/presentation/common/component/link/link.presenter';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/primitive/component/button/button.presenter';
+import { Link } from '@/presentation/primitive/component/link/link.presenter';
 import {
   NavigationMenu,
   NavigationMenuProps,
@@ -12,7 +12,7 @@ import {
   NavigationTrigger,
   NavigationContent,
   NavigationLink,
-} from '@/presentation/common/component/navigation/navigation.presenter';
+} from '@/presentation/primitive/component/navigation/navigation.presenter';
 
 import twMerge from '@/presentation/style/twmerge';
 import type { AudioControl } from '@/state/audio/audio-control';

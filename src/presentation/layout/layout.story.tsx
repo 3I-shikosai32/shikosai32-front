@@ -3,7 +3,7 @@ import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { DiProvider, injectable } from 'react-magnetic-di';
 import { RecoilRoot } from 'recoil';
 
-import { Layout } from './layout.component';
+import { Layout } from './layout.container';
 import { useAudioControlMenu } from '@/presentation/layout/component/audio-control-menu/hook/use-audio-control-menu.hook';
 import { useUserNavigationMenu } from '@/presentation/layout/component/user-navigation-menu/hook/use-user-navigation-menu.hook';
 

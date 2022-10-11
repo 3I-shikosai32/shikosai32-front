@@ -4,9 +4,9 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { RiUser3Fill } from 'react-icons/ri';
 import { TbClipboardText } from 'react-icons/tb';
-import { Button, ButtonProps, ButtonIcon } from '@/presentation/common/component/button/button.presenter';
-import { Icon } from '@/presentation/common/component/icon/icon.presenter';
-import { Link, LinkIcon } from '@/presentation/common/component/link/link.presenter';
+import { Button, ButtonProps, ButtonIcon } from '@/presentation/primitive/component/button/button.presenter';
+import { Icon } from '@/presentation/primitive/component/icon/icon.presenter';
+import { Link, LinkIcon } from '@/presentation/primitive/component/link/link.presenter';
 import {
   NavigationMenu,
   NavigationMenuProps,
@@ -14,7 +14,7 @@ import {
   NavigationTrigger,
   NavigationContent,
   NavigationLink,
-} from '@/presentation/common/component/navigation/navigation.presenter';
+} from '@/presentation/primitive/component/navigation/navigation.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
 export type UserNavigationMenuProps = Pick<ButtonProps, 'className'> & Pick<NavigationMenuProps, 'viewportClassName'>;
