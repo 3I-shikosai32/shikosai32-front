@@ -528,6 +528,13 @@ export type UserBioDataFragment = { __typename?: 'User', id: string, name: strin
 
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
+export type CreateUserMutationVariables = Exact<{
+  data: UserCreateInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
+
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
@@ -589,6 +596,19 @@ export const UserExchangeDataFragmentDoc = gql`
   consumablePoint
 }
     `;
+export const CreateUserDocument = gql`
+    mutation CreateUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    createdAt
+    id
+    name
+  }
+}
+    `;
+
+export function useCreateUserMutation() {
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
+};
 export const FindGiftExchangeInfoDocument = gql`
     query FindGiftExchangeInfo($userId: String!) {
   user: findUser(where: {id: $userId}) {
