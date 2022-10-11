@@ -28,8 +28,7 @@ const meta: ComponentMeta<typeof LiveCharacter> = {
       control: { type: 'object' },
     },
     className: {
-      description:
-        'サイズを変更するために用意されている。`aspect-square`で縦横比が1:1に固定されているので、`h-24`など高さのみの指定で可。**`position: relative`の設定は上書きしないでください。内部の`<Image>`のサイズが合わなくなります。**',
+      description: 'サイズを変更するために用意されている。',
       control: { type: 'text' },
     },
   },
