@@ -1,0 +1,5 @@
+query FindUserMetaData($id: String!) {
+  findUser(where: { id: $id }) {
+    ...UserMetaData
+  }
+}

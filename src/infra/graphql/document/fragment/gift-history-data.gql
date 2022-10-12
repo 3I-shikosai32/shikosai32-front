@@ -1,0 +1,12 @@
+fragment GiftHistoryData on GiftHistory {
+  id
+  exchangedGift {
+    name
+  }
+  user {
+    ...UserBioData
+  }
+  isDelivered
+  createdAt
+  deliveredAt
+}

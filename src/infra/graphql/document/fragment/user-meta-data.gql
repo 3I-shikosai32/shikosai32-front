@@ -1,0 +1,11 @@
+fragment UserMetaData on User {
+  id
+  name
+  email
+  role
+  characterStatus {
+    id
+    character
+    iconUrl
+  }
+}
