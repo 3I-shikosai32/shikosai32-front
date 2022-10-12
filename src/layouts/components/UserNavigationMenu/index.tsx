@@ -48,7 +48,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
           {isLoggedIn ? (
             <>
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="https://example.com">
+                <Link className="gap-2 font-normal" href="/profile">
                   <LinkIcon>
                     <FaUserCircle />
                   </LinkIcon>
@@ -56,7 +56,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
                 </Link>
               </NavigationLink>
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="https://example.com">
+                <Link className="gap-2 font-normal" href="/auth/sign-out">
                   <LinkIcon>
                     <ImExit />
                   </LinkIcon>
@@ -66,7 +66,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
             </>
           ) : (
             <NavigationLink>
-              <Link className="gap-2 font-normal" href="https://example.com">
+              <Link className="gap-2 font-normal" href="/auth/sign-up">
                 <LinkIcon>
                   <RiUser3Fill />
                 </LinkIcon>
@@ -78,7 +78,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
             <>
               <hr className="m-0 h-px w-full bg-neutral-200" />
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="https://example.com">
+                <Link className="gap-2 font-normal" href="/admin/game">
                   <LinkIcon>
                     <TbClipboardText />
                   </LinkIcon>
@@ -86,7 +86,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
                 </Link>
               </NavigationLink>
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="https://example.com">
+                <Link className="gap-2 font-normal" href="/admin/history">
                   <LinkIcon>
                     <BiTimeFive />
                   </LinkIcon>
