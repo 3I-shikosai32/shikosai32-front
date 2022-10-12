@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import NewUser from '@/features/new-user';
+import NewUser from '@/features/auth/new-user';
 
 const NewUserPage: NextPage = () => <NewUser />;
 
