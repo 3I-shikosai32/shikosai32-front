@@ -137,7 +137,6 @@ export type GameAttenders = {
 
 export type Gift = {
   __typename?: 'Gift';
-  createdAt: Scalars['DateTime'];
   giftHistories: Array<GiftHistory>;
   iconUrl: Scalars['String'];
   id: Scalars['String'];
@@ -158,6 +157,10 @@ export type GiftHistory = {
   userId: Scalars['String'];
 };
 
+export type GiftHistoryChangeDeliveryStateInput = {
+  isDelivered: Scalars['Boolean'];
+};
+
 export type GiftHistoryCreateInput = {
   giftId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
@@ -174,10 +177,6 @@ export type GiftHistoryListRelationFilter = {
 export type GiftHistoryOrderInput = {
   createdAt?: InputMaybe<SortOrder>;
   deliveredAt?: InputMaybe<SortOrder>;
-};
-
-export type GiftHistoryUpdateInput = {
-  isDelivered: Scalars['Boolean'];
 };
 
 export type GiftHistoryWhereInput = {
@@ -301,14 +300,27 @@ export type ItemWhereInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  changeDeliveryStateCharacterStatus: CharacterStatus;
+  changeDeliveryStateGiftHistory: GiftHistory;
   createUser: User;
   exchangeGift: Array<GiftHistory>;
   exitGame: User;
   incrementPoint: Array<User>;
   joinGame: User;
   pullGacha: Item;
-  updateGiftHistory: GiftHistory;
-  updateUser: User;
+  updateUserBio: User;
+};
+
+
+export type MutationChangeDeliveryStateCharacterStatusArgs = {
+  delivered: Scalars['Boolean'];
+  where: CharacterStatusWhereUniqueInput;
+};
+
+
+export type MutationChangeDeliveryStateGiftHistoryArgs = {
+  data: GiftHistoryChangeDeliveryStateInput;
+  where: GiftHistoryWhereUniqueInput;
 };
 
 
@@ -344,14 +356,8 @@ export type MutationPullGachaArgs = {
 };
 
 
-export type MutationUpdateGiftHistoryArgs = {
-  data: GiftHistoryUpdateInput;
-  where: GiftHistoryWhereUniqueInput;
-};
-
-
-export type MutationUpdateUserArgs = {
-  data: UserUpdateInput;
+export type MutationUpdateUserBioArgs = {
+  data: UserUpdateBioInput;
   where: UserWhereUniqueInput;
 };
 
@@ -508,6 +514,16 @@ export enum QueryMode {
   Insensitive = 'insensitive'
 }
 
+export enum RankingTarget {
+  Cat = 'CAT',
+  Fox = 'FOX',
+  Goku = 'GOKU',
+  Pudding = 'PUDDING',
+  Reaper = 'REAPER',
+  Total = 'TOTAL',
+  Tree = 'TREE'
+}
+
 export enum Role {
   Admin = 'ADMIN',
   User = 'USER'
@@ -544,6 +560,12 @@ export type StringNullableListFilter = {
 export type Subscription = {
   __typename?: 'Subscription';
   updatedGameAttenders: GameAttenders;
+  updatedRanking: Array<User>;
+};
+
+
+export type SubscriptionUpdatedRankingArgs = {
+  rankingTarget: RankingTarget;
 };
 
 export type User = {
@@ -593,7 +615,7 @@ export type UserRelationFilter = {
   isNot?: InputMaybe<UserWhereInput>;
 };
 
-export type UserUpdateInput = {
+export type UserUpdateBioInput = {
   name?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Role>;
 };
@@ -628,6 +650,13 @@ export type UserBioDataFragment = { __typename?: 'User', id: string, name: strin
 export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
 
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
+
+export type CreateUserMutationVariables = Exact<{
+  data: UserCreateInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
 
 export type CheckUserExistanceQueryVariables = Exact<{
   id: Scalars['String'];
@@ -700,6 +729,19 @@ export const UserMetaDataFragmentDoc = gql`
   }
 }
     `;
+export const CreateUserDocument = gql`
+    mutation CreateUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    createdAt
+    id
+    name
+  }
+}
+    `;
+
+export function useCreateUserMutation() {
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
+};
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($id: String!) {
   findUser(where: {id: $id}) {
