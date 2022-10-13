@@ -33,7 +33,7 @@ const GameKeyDictionary: Record<Game, keyof Omit<UpdatedGameAttendersSubscriptio
 
 export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttendersUseCaseProps): UseRealtimeGameAttendersUseCaseResult => {
   const reducer = useCallback<SubscriptionHandler<UpdatedGameAttendersSubscription, GameAttenders>>(
-    (prev, data) => {
+    (_, data) => {
       const gameKey = GameKeyDictionary[game];
       if (!(data && data.updatedGameAttenders && data.updatedGameAttenders[gameKey])) return [];
       const attenders: GameAttenders = data.updatedGameAttenders[gameKey].map(userTranspiler);
@@ -42,14 +42,7 @@ export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttende
     [game],
   );
 
-  const [res] = useUpdatedGameAttendersSubscription(
-    {
-      context: {
-        maskTypename: true,
-      },
-    },
-    reducer,
-  );
+  const [res] = useUpdatedGameAttendersSubscription({}, reducer);
   return {
     attenders: useMemo(() => res.data || [], [res.data]),
   };

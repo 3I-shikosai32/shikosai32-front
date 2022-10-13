@@ -1,14 +1,15 @@
 import type { FC } from 'react';
-import type { GameLinkCardProps } from './game-link-card.component';
-import { GameLinkCard } from './game-link-card.component';
-// import { Game } from '@/model/game/game.model';
+import { di } from 'react-magnetic-di';
+import type { GameLinkCardProps } from './game-link-card.presenter';
+import { GameLinkCard } from './game-link-card.presenter';
 import { Game } from '@/model/game/game.model';
-import twMerge from '@/presentation/common/twmerge';
+import twMerge from '@/presentation/style/twmerge';
 import { useRealtimeGameAttendersUseCase } from '@/use-case/game/use-realtime-game-attenders.use-case';
 
 export type BindedGameLinkCardProps = Omit<GameLinkCardProps, 'children' | 'href' | 'maxAttenders' | 'attenders'>;
 
 export const CoinDropGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.CoinDropping,
   });
@@ -26,6 +27,7 @@ export const CoinDropGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, .
 };
 
 export const XenoGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.Xeno,
   });
@@ -37,6 +39,7 @@ export const XenoGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...pr
 };
 
 export const IceRazeGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.IceRaze,
   });
@@ -48,6 +51,7 @@ export const IceRazeGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ..
 };
 
 export const PokerGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.Poker,
   });
@@ -59,17 +63,19 @@ export const PokerGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...p
 };
 
 export const PresidentGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.President,
   });
   return (
     <GameLinkCard className={twMerge('gradient-game-president', className)} maxAttenders={5} href="/games/president" attenders={attenders} {...props}>
-      ポーカー
+      大富豪
     </GameLinkCard>
   );
 };
 
 export const WeDidntPlaytestGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => {
+  di(useRealtimeGameAttendersUseCase);
   const { attenders } = useRealtimeGameAttendersUseCase({
     game: Game.WeDidntPlaytest,
   });
@@ -81,45 +87,11 @@ export const WeDidntPlaytestGameLinkCard: FC<BindedGameLinkCardProps> = ({ class
       attenders={attenders}
       {...props}
     >
-      ポーカー
+      <span className="text-2xl">
+        テストプレイなんて
+        <br />
+        してないよ
+      </span>
     </GameLinkCard>
   );
 };
-
-// export const XenoGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => (
-//   <GameLinkCard className={twMerge('gradient-game-xeno', className)} maxAttenders={4} href="/games/xeno" {...props}>
-//     XENO
-//   </GameLinkCard>
-// );
-// export const IceRazeGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => (
-//   <GameLinkCard className={twMerge('gradient-game-iceraze', className)} maxAttenders={4} href="/games/ice-raze" {...props}>
-//     ICE RAZE
-//   </GameLinkCard>
-// );
-// export const PokerGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => (
-//   <GameLinkCard className={twMerge('gradient-game-poker', className)} maxAttenders={4} href="/games/poker" {...props}>
-//     ポーカー
-//   </GameLinkCard>
-// );
-// export const PresidentGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => (
-//   <GameLinkCard className={twMerge('gradient-game-president', className)} maxAttenders={5} href="/games/president" {...props}>
-//     大富豪
-//   </GameLinkCard>
-// );
-// export const WeDidntPlaytestGameLinkCard: FC<BindedGameLinkCardProps> = ({ className, ...props }) => (
-//   <GameLinkCard className={twMerge('gradient-game-playtest', className)} maxAttenders={5} href="/games/we-didnt-playtest" {...props}>
-//     <span className="text-2xl">
-//       テストプレイなんて
-//       <br />
-//       してないよ
-//     </span>
-//   </GameLinkCard>
-// );
-// export const BindedGameLinkCardDictionary: Record<Game, FC<BindedGameLinkCardProps>> = {
-//   [Game.CoinDropping]: CoinDropGameLinkCard,
-//   [Game.Xeno]: XenoGameLinkCard,
-//   [Game.IceRaze]: IceRazeGameLinkCard,
-//   [Game.Poker]: PokerGameLinkCard,
-//   [Game.President]: PresidentGameLinkCard,
-//   [Game.WeDidntPlaytest]: WeDidntPlaytestGameLinkCard,
-// };

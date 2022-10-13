@@ -6,7 +6,7 @@ import {
   PresidentGameLinkCard,
   WeDidntPlaytestGameLinkCard,
   CoinDropGameLinkCard,
-} from '@/presentation/game/component/game-link-card/game-link-card.container';
+} from '@/presentation/relevant/game/component/game-link-card/game-link-card.container';
 
 export const GameIndex: FC = () => (
   <div className="flex flex-col items-center justify-start gap-4">
