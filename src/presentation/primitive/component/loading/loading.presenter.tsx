@@ -1,17 +1,14 @@
 import type { FC } from 'react';
 import twMerge from '@/presentation/style/twmerge';
 
-const Loading: FC<{ size: number; fat?: boolean }> = ({ size, fat }) => (
+const Loading: FC<{ className?: string }> = ({ className }) => (
   <div className="flex justify-center">
-    <div
-      className={twMerge('animate-spin rounded-full  border-pink-500 border-t-transparent', fat ? 'border-8' : 'border-4')}
-      style={{ width: size, height: size }}
-    />
+    <div className={twMerge('animate-spin rounded-full border-4 border-pink-500 border-t-transparent', className || 'h-36 w-36')} />
   </div>
 );
 
 Loading.defaultProps = {
-  fat: false,
+  className: undefined,
 };
 
 export default Loading;

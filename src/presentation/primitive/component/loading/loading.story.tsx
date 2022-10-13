@@ -6,8 +6,12 @@ type Story = ComponentStoryObj<typeof Loading>;
 
 const meta: ComponentMeta<typeof Loading> = {
   component: Loading,
-  parameters: {},
-  args: {},
+  argTypes: {
+    className: {
+      description: 'サイズを変更用のクラス(e.g. h-36 w-36)',
+      control: { type: 'text' },
+    },
+  },
 };
 
 export default meta;
