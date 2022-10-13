@@ -4,8 +4,8 @@ import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use
 import { useFindUserMetaDataUseCase } from '@/use-case/user/use-find-user-meta-data.use-case';
 
 export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
-  const { id } = useCurrentUserIdUseCase();
-  const user = useFindUserMetaDataUseCase({ id });
+  const currentUser = useCurrentUserIdUseCase();
+  const user = useFindUserMetaDataUseCase({ id: currentUser?.id });
 
   return {
     userIconUrl: user?.characterStatus.iconUrl,
