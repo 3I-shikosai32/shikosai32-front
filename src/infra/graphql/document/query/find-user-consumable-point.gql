@@ -1,0 +1,6 @@
+query FindUserConsumablePoint($id: String!) {
+  findUser(where: { id: $id }) {
+    id
+    consumablePoint
+  }
+}

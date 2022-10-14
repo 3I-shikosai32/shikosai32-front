@@ -1,8 +1,0 @@
-query FindGiftExchangeInfo($userId: String!) {
-  user: findUser(where: { id: $userId }) {
-    ...UserExchangeData
-  }
-  gifts: findGifts {
-    ...GiftData
-  }
-}

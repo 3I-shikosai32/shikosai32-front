@@ -641,13 +641,11 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
-
 export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } };
 
-export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
+export type GiftSalesDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
@@ -658,6 +656,15 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
 
+export type ExchangeGiftMutationVariables = Exact<{
+  userId: Scalars['String'];
+  giftId: Scalars['String'];
+  amount: Scalars['Float'];
+}>;
+
+
+export type ExchangeGiftMutation = { __typename?: 'Mutation', exchangeGift: Array<{ __typename?: 'GiftHistory', id: string }> };
+
 export type CheckUserExistanceQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -665,12 +672,17 @@ export type CheckUserExistanceQueryVariables = Exact<{
 
 export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
 
-export type FindGiftExchangeInfoQueryVariables = Exact<{
-  userId: Scalars['String'];
+export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+
+export type FindUserConsumablePointQueryVariables = Exact<{
+  id: Scalars['String'];
 }>;
 
 
-export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+export type FindUserConsumablePointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, consumablePoint: number } | null };
 
 export type FindUserMetaDataQueryVariables = Exact<{
   id: Scalars['String'];
@@ -679,15 +691,6 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
-export const GiftDataFragmentDoc = gql`
-    fragment GiftData on Gift {
-  id
-  name
-  iconUrl
-  price
-  remaining
-}
-    `;
 export const UserBioDataFragmentDoc = gql`
     fragment UserBioData on User {
   id
@@ -711,9 +714,13 @@ export const GiftHistoryDataFragmentDoc = gql`
   deliveredAt
 }
     ${UserBioDataFragmentDoc}`;
-export const UserExchangeDataFragmentDoc = gql`
-    fragment UserExchangeData on User {
-  consumablePoint
+export const GiftSalesDataFragmentDoc = gql`
+    fragment GiftSalesData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
 }
     `;
 export const UserMetaDataFragmentDoc = gql`
@@ -742,6 +749,20 @@ export const CreateUserDocument = gql`
 export function useCreateUserMutation() {
   return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
 };
+export const ExchangeGiftDocument = gql`
+    mutation ExchangeGift($userId: String!, $giftId: String!, $amount: Float!) {
+  exchangeGift(
+    data: {giftId: $giftId, userId: $userId, isDelivered: false}
+    exchangeQuantity: $amount
+  ) {
+    id
+  }
+}
+    `;
+
+export function useExchangeGiftMutation() {
+  return Urql.useMutation<ExchangeGiftMutation, ExchangeGiftMutationVariables>(ExchangeGiftDocument);
+};
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($id: String!) {
   findUser(where: {id: $id}) {
@@ -753,20 +774,28 @@ export const CheckUserExistanceDocument = gql`
 export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
   return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
 };
-export const FindGiftExchangeInfoDocument = gql`
-    query FindGiftExchangeInfo($userId: String!) {
-  user: findUser(where: {id: $userId}) {
-    ...UserExchangeData
-  }
-  gifts: findGifts {
-    ...GiftData
+export const FindGiftSalesDataDocument = gql`
+    query FindGiftSalesData {
+  findGifts {
+    ...GiftSalesData
   }
 }
-    ${UserExchangeDataFragmentDoc}
-${GiftDataFragmentDoc}`;
+    ${GiftSalesDataFragmentDoc}`;
 
-export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
+export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
+};
+export const FindUserConsumablePointDocument = gql`
+    query FindUserConsumablePoint($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+    consumablePoint
+  }
+}
+    `;
+
+export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<FindUserConsumablePointQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserConsumablePointQuery, FindUserConsumablePointQueryVariables>({ query: FindUserConsumablePointDocument, ...options });
 };
 export const FindUserMetaDataDocument = gql`
     query FindUserMetaData($id: String!) {
