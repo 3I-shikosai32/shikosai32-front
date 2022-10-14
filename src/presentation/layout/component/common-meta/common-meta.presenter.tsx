@@ -15,6 +15,7 @@ export enum MetaKeys {
   TWITTER_CARD = 'twitterCard',
   TWITTER_SITE = 'twitterSite',
   TWITTER_CREATOR = 'twitterCreator',
+  TWITTER_IMAGE = 'twitterImage'
 }
 
 export type CommonMetaProps = {
@@ -44,6 +45,7 @@ export const CommonMeta: FC<CommonMetaProps> = ({ title }) => {
       <meta property="og:description" content={resolveShareMessage(new Date())} key={MetaKeys.OGDESCRIPTION} />
       <meta property="og:image" content="/ogp/ogp.png" key={MetaKeys.IMAGE} />
       <meta property="og:image" content={`https://${hostname}/ogp/ogp.png`} key={MetaKeys.IMAGE} />
+      <meta property="twitter:image" content={`https://${hostname}/ogp/ogp.png`} key={MetaKeys.TWITTER_IMAGE} />
       <meta name="twitter:card" content="summary_large_image" key={MetaKeys.TWITTER_CARD} />
       <meta name="twitter:site" content="3i_shikosai32" key={MetaKeys.TWITTER_SITE} />
       <meta name="twitter:creator" content="3i_shikosai32" key={MetaKeys.TWITTER_CREATOR} />

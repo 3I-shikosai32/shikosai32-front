@@ -1,0 +1,22 @@
+subscription UpdatedGameAttenders {
+  updatedGameAttenders {
+    coin_dropping {
+      ...GameAttenderBioData
+    }
+    xeno {
+      ...GameAttenderBioData
+    }
+    ice_raze {
+      ...GameAttenderBioData
+    }
+    poker {
+      ...GameAttenderBioData
+    }
+    president {
+      ...GameAttenderBioData
+    }
+    we_didnt_playtest {
+      ...GameAttenderBioData
+    }
+  }
+}
