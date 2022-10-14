@@ -18,12 +18,15 @@ import { Selector, SelectorItem, SelectorTrigger } from '@/presentation/primitiv
 import twMerge from '@/presentation/style/twmerge';
 
 export type GiftItemProps = ComponentPropsWithoutRef<'div'> &
-  Pick<Gift, 'id' | 'name' | 'iconUrl' | 'price' | 'remaining'> & {
+  Partial<Pick<Gift, 'iconUrl'>> &
+  Pick<Gift, 'id' | 'name' | 'price' | 'remaining'> & {
     consumablePoint: User['points']['consumable'];
-    onExchange: ((amount: number) => Promise<void>) | ((amount: number) => void);
+    onExchange:
+      | (({ id, amount }: { id: GiftItemProps['id']; amount: number }) => Promise<void>)
+      | (({ id, amount }: { id: GiftItemProps['id']; amount: number }) => void);
   };
 
-export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, price, remaining, onExchange, className, ...props }) => {
+export const GiftItem: FC<GiftItemProps> = ({ id, consumablePoint, name, iconUrl, price, remaining, onExchange, className, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { selectedAmount, setSelectedAmount, selectableAmounts, isAffordable, isInStock, isAvailable, doesIndicateRemaining } = useGiftItemAmount({
     consumablePoint,
@@ -35,7 +38,7 @@ export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, pr
     <div className={twMerge('flex flex-row max-w-sm gap-5 p-4', className)} {...props}>
       <figure className="flex aspect-square h-32 items-center justify-center rounded-full bg-gradient-to-b shadow-z16 gradient-exchange-itemframe">
         <div className="relative aspect-square h-3/4">
-          <Image src={iconUrl} objectFit="contain" width={256} height={256} alt={`景品:${name}の画像`} />
+          {iconUrl && <Image src={iconUrl} objectFit="contain" width={256} height={256} alt={`景品:${name}の画像`} />}
         </div>
       </figure>
       <div className="flex flex-col items-start justify-center gap-2.5 font-branding">
@@ -110,7 +113,10 @@ export const GiftItem: FC<GiftItemProps> = ({ consumablePoint, name, iconUrl, pr
                   <Button
                     className="bg-exchange"
                     onClick={() => {
-                      onExchange(selectedAmount);
+                      onExchange({
+                        id,
+                        amount: selectedAmount,
+                      });
                       setIsModalOpen(false);
                     }}
                   >
