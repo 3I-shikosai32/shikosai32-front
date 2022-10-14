@@ -8,7 +8,7 @@ const meta: ComponentMeta<typeof Loading> = {
   component: Loading,
   argTypes: {
     className: {
-      description: 'サイズを変更用のクラス(e.g. h-36 w-36)',
+      description: 'サイズを変更用のクラス(e.g. h-36)',
       control: { type: 'text' },
     },
   },
