@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react';
 import type { GiftItemProps } from './component/gift-item/gift-item.presenter';
-import { GiftIndex } from './gift.presenter';
+import { GiftIndex } from './gift-index.presenter';
 import { useExchangeGiftUseCase } from '@/use-case/gift/use-exchange-gift.use-case';
 import { useGiftSalesDataUseCase } from '@/use-case/gift/use-gift-sales-data.use-case';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
