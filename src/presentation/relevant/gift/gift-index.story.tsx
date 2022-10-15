@@ -69,6 +69,7 @@ export const Default: Story = {};
 export const ForNotLoggedInUser: Story = {
   args: {
     consumablePoint: null,
+    isInteractive: false,
   },
 };
 
