@@ -27,7 +27,7 @@ export enum Character {
   Goku = 'GOKU',
   Pudding = 'PUDDING',
   Reaper = 'REAPER',
-  Tree = 'TREE',
+  Tree = 'TREE'
 }
 
 export type CharacterStatus = {
@@ -122,16 +122,16 @@ export enum Game {
   Poker = 'POKER',
   President = 'PRESIDENT',
   WeDidntPlaytest = 'WE_DIDNT_PLAYTEST',
-  Xeno = 'XENO',
+  Xeno = 'XENO'
 }
 
 export type GameAttenders = {
   __typename?: 'GameAttenders';
-  coin_dropping: Array<User>;
-  ice_raze: Array<User>;
+  coinDropping: Array<User>;
+  iceRaze: Array<User>;
   poker: Array<User>;
   president: Array<User>;
-  we_didnt_playtest: Array<User>;
+  weDidntPlaytest: Array<User>;
   xeno: Array<User>;
 };
 
@@ -239,9 +239,10 @@ export type IntFilter = {
 export type Item = {
   __typename?: 'Item';
   character: Character;
+  iconUrl: Scalars['String'];
   id: Scalars['String'];
   layer: Scalars['Int'];
-  url: Scalars['String'];
+  layerUrl: Scalars['String'];
   userIds: Array<Scalars['String']>;
   users: Array<User>;
 };
@@ -291,9 +292,10 @@ export type ItemWhereInput = {
   NOT?: InputMaybe<Array<ItemWhereInput>>;
   OR?: InputMaybe<Array<ItemWhereInput>>;
   character?: InputMaybe<EnumCharacterFilter>;
+  iconUrl?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   layer?: InputMaybe<IntFilter>;
-  url?: InputMaybe<StringFilter>;
+  layerUrl?: InputMaybe<StringFilter>;
   userIds?: InputMaybe<StringNullableListFilter>;
   users?: InputMaybe<UserListRelationFilter>;
 };
@@ -311,41 +313,50 @@ export type Mutation = {
   updateUserBio: User;
 };
 
+
 export type MutationChangeDeliveryStateCharacterStatusArgs = {
   delivered: Scalars['Boolean'];
   where: CharacterStatusWhereUniqueInput;
 };
+
 
 export type MutationChangeDeliveryStateGiftHistoryArgs = {
   data: GiftHistoryChangeDeliveryStateInput;
   where: GiftHistoryWhereUniqueInput;
 };
 
+
 export type MutationCreateUserArgs = {
   data: UserCreateInput;
 };
 
+
 export type MutationExchangeGiftArgs = {
   data: GiftHistoryCreateInput;
-  exchangeQuantity: Scalars['Float'];
+  exchangeQuantity: Scalars['Int'];
 };
+
 
 export type MutationExitGameArgs = {
   where: UserWhereUniqueInput;
 };
 
+
 export type MutationIncrementPointArgs = {
   users: Array<UserIncrementPointInput>;
 };
+
 
 export type MutationJoinGameArgs = {
   game: Game;
   where: UserWhereUniqueInput;
 };
 
+
 export type MutationPullGachaArgs = {
   where: UserWhereUniqueInput;
 };
+
 
 export type MutationUpdateUserBioArgs = {
   data: UserUpdateBioInput;
@@ -444,9 +455,11 @@ export type Query = {
   getObtainmentStatuses: Array<ObtainmentStatus>;
 };
 
+
 export type QueryFindGiftArgs = {
   where: GiftWhereUniqueInput;
 };
+
 
 export type QueryFindGiftHistoriesArgs = {
   cursor?: InputMaybe<GiftHistoryWhereUniqueInput>;
@@ -456,9 +469,11 @@ export type QueryFindGiftHistoriesArgs = {
   where?: InputMaybe<GiftHistoryWhereInput>;
 };
 
+
 export type QueryFindGiftHistoryArgs = {
   where: GiftHistoryWhereUniqueInput;
 };
+
 
 export type QueryFindGiftsArgs = {
   cursor?: InputMaybe<GiftWhereUniqueInput>;
@@ -468,6 +483,7 @@ export type QueryFindGiftsArgs = {
   where?: InputMaybe<GiftWhereInput>;
 };
 
+
 export type QueryFindItemCompletedCharacterStatusesArgs = {
   cursor?: InputMaybe<CharacterStatusWhereUniqueInput>;
   orderBy?: InputMaybe<Array<CharacterStatusOrderInput>>;
@@ -476,9 +492,11 @@ export type QueryFindItemCompletedCharacterStatusesArgs = {
   where?: InputMaybe<CharacterStatusWhereInput>;
 };
 
+
 export type QueryFindUserArgs = {
   where: UserWhereUniqueInput;
 };
+
 
 export type QueryFindUsersArgs = {
   cursor?: InputMaybe<UserWhereUniqueInput>;
@@ -488,13 +506,14 @@ export type QueryFindUsersArgs = {
   where?: InputMaybe<UserWhereInput>;
 };
 
+
 export type QueryGetObtainmentStatusesArgs = {
   where: UserWhereUniqueInput;
 };
 
 export enum QueryMode {
   Default = 'default',
-  Insensitive = 'insensitive',
+  Insensitive = 'insensitive'
 }
 
 export enum RankingTarget {
@@ -504,17 +523,17 @@ export enum RankingTarget {
   Pudding = 'PUDDING',
   Reaper = 'REAPER',
   Total = 'TOTAL',
-  Tree = 'TREE',
+  Tree = 'TREE'
 }
 
 export enum Role {
   Admin = 'ADMIN',
-  User = 'USER',
+  User = 'USER'
 }
 
 export enum SortOrder {
   Asc = 'asc',
-  Desc = 'desc',
+  Desc = 'desc'
 }
 
 export type StringFilter = {
@@ -546,6 +565,7 @@ export type Subscription = {
   updatedRanking: Array<User>;
 };
 
+
 export type SubscriptionUpdatedRankingArgs = {
   rankingTarget: RankingTarget;
 };
@@ -576,7 +596,7 @@ export type UserCreateInput = {
 
 export type UserIncrementPointInput = {
   id: Scalars['String'];
-  increment: Scalars['Float'];
+  increment: Scalars['Int'];
 };
 
 export type UserListRelationFilter = {
@@ -623,266 +643,213 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export type GameAttenderBioDataFragment = { __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } };
+export type GameAttenderBioDataFragment = { __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
-export type GiftHistoryDataFragment = {
-  __typename?: 'GiftHistory';
-  id: string;
-  isDelivered: boolean;
-  createdAt: Date;
-  deliveredAt?: Date | null;
-  exchangedGift: { __typename?: 'Gift'; name: string };
-  user: { __typename?: 'User'; id: string; name: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } };
-};
+export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } };
 
-export type GiftSalesDataFragment = { __typename?: 'Gift'; id: string; name: string; iconUrl: string; price: number; remaining: number };
+export type GiftSalesDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type UserBioDataFragment = {
-  __typename?: 'User';
-  id: string;
-  name: string;
-  characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string };
-};
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
-export type UserMetaDataFragment = {
-  __typename?: 'User';
-  id: string;
-  name: string;
-  email: string;
-  role: Role;
-  characterStatus: { __typename?: 'CharacterStatus'; id: string; character: Character; iconUrl: string };
-};
+export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
 export type CreateUserMutationVariables = Exact<{
   data: UserCreateInput;
 }>;
 
-export type CreateUserMutation = { __typename?: 'Mutation'; createUser: { __typename?: 'User'; createdAt: Date; id: string; name: string } };
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
 
 export type ExchangeGiftMutationVariables = Exact<{
   userId: Scalars['String'];
   giftId: Scalars['String'];
-  amount: Scalars['Float'];
+  amount: Scalars['Int'];
 }>;
 
-export type ExchangeGiftMutation = { __typename?: 'Mutation'; exchangeGift: Array<{ __typename?: 'GiftHistory'; id: string }> };
+
+export type ExchangeGiftMutation = { __typename?: 'Mutation', exchangeGift: Array<{ __typename?: 'GiftHistory', id: string }> };
 
 export type CheckUserExistanceQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-export type CheckUserExistanceQuery = { __typename?: 'Query'; findUser?: { __typename?: 'User'; id: string } | null };
 
-export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never }>;
+export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
 
-export type FindGiftSalesDataQuery = {
-  __typename?: 'Query';
-  findGifts: Array<{ __typename?: 'Gift'; id: string; name: string; iconUrl: string; price: number; remaining: number }>;
-};
+export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
 export type FindUserConsumablePointQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-export type FindUserConsumablePointQuery = { __typename?: 'Query'; findUser?: { __typename?: 'User'; id: string; consumablePoint: number } | null };
+
+export type FindUserConsumablePointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, consumablePoint: number } | null };
 
 export type FindUserMetaDataQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-export type FindUserMetaDataQuery = {
-  __typename?: 'Query';
-  findUser?: {
-    __typename?: 'User';
-    id: string;
-    name: string;
-    email: string;
-    role: Role;
-    characterStatus: { __typename?: 'CharacterStatus'; id: string; character: Character; iconUrl: string };
-  } | null;
-};
 
-export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never }>;
+export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
-export type UpdatedGameAttendersSubscription = {
-  __typename?: 'Subscription';
-  updatedGameAttenders: {
-    __typename?: 'GameAttenders';
-    coin_dropping: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-    xeno: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-    ice_raze: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-    poker: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-    president: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-    we_didnt_playtest: Array<{ __typename?: 'User'; id: string; characterStatus: { __typename?: 'CharacterStatus'; iconUrl: string } }>;
-  };
-};
+export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
 export const GameAttenderBioDataFragmentDoc = gql`
-  fragment GameAttenderBioData on User {
-    id
-    characterStatus {
-      iconUrl
-    }
-  }
-`;
-export const GiftDataFragmentDoc = gql`
-  fragment GiftData on Gift {
-    id
-    name
+    fragment GameAttenderBioData on User {
+  id
+  characterStatus {
     iconUrl
-    price
-    remaining
   }
-`;
+}
+    `;
 export const UserBioDataFragmentDoc = gql`
-  fragment UserBioData on User {
-    id
-    name
-    characterStatus {
-      iconUrl
-    }
-  }
-`;
-export const GiftHistoryDataFragmentDoc = gql`
-  fragment GiftHistoryData on GiftHistory {
-    id
-    exchangedGift {
-      name
-    }
-    user {
-      ...UserBioData
-    }
-    isDelivered
-    createdAt
-    deliveredAt
-  }
-  ${UserBioDataFragmentDoc}
-`;
-export const GiftSalesDataFragmentDoc = gql`
-  fragment GiftSalesData on Gift {
-    id
-    name
+    fragment UserBioData on User {
+  id
+  name
+  characterStatus {
     iconUrl
-    price
-    remaining
   }
-`;
+}
+    `;
+export const GiftHistoryDataFragmentDoc = gql`
+    fragment GiftHistoryData on GiftHistory {
+  id
+  exchangedGift {
+    name
+  }
+  user {
+    ...UserBioData
+  }
+  isDelivered
+  createdAt
+  deliveredAt
+}
+    ${UserBioDataFragmentDoc}`;
+export const GiftSalesDataFragmentDoc = gql`
+    fragment GiftSalesData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
+}
+    `;
 export const UserMetaDataFragmentDoc = gql`
-  fragment UserMetaData on User {
+    fragment UserMetaData on User {
+  id
+  name
+  email
+  role
+  characterStatus {
+    id
+    character
+    iconUrl
+  }
+}
+    `;
+export const CreateUserDocument = gql`
+    mutation CreateUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    createdAt
     id
     name
-    email
-    role
-    characterStatus {
-      id
-      character
-      iconUrl
-    }
   }
-`;
-export const CreateUserDocument = gql`
-  mutation CreateUser($data: UserCreateInput!) {
-    createUser(data: $data) {
-      createdAt
-      id
-      name
-    }
-  }
-`;
+}
+    `;
 
 export function useCreateUserMutation() {
   return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
-}
+};
 export const ExchangeGiftDocument = gql`
-  mutation ExchangeGift($userId: String!, $giftId: String!, $amount: Float!) {
-    exchangeGift(data: { giftId: $giftId, userId: $userId, isDelivered: false }, exchangeQuantity: $amount) {
-      id
-    }
+    mutation ExchangeGift($userId: String!, $giftId: String!, $amount: Int!) {
+  exchangeGift(
+    data: {giftId: $giftId, userId: $userId, isDelivered: false}
+    exchangeQuantity: $amount
+  ) {
+    id
   }
-`;
+}
+    `;
 
 export function useExchangeGiftMutation() {
   return Urql.useMutation<ExchangeGiftMutation, ExchangeGiftMutationVariables>(ExchangeGiftDocument);
-}
+};
 export const CheckUserExistanceDocument = gql`
-  query CheckUserExistance($id: String!) {
-    findUser(where: { id: $id }) {
-      id
-    }
+    query CheckUserExistance($id: String!) {
+  findUser(where: {id: $id}) {
+    id
   }
-`;
+}
+    `;
 
 export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
   return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
-}
+};
 export const FindGiftSalesDataDocument = gql`
-  query FindGiftSalesData {
-    findGifts {
-      ...GiftSalesData
-    }
+    query FindGiftSalesData {
+  findGifts {
+    ...GiftSalesData
   }
-  ${GiftSalesDataFragmentDoc}
-`;
+}
+    ${GiftSalesDataFragmentDoc}`;
 
 export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
-}
+};
 export const FindUserConsumablePointDocument = gql`
-  query FindUserConsumablePoint($id: String!) {
-    findUser(where: { id: $id }) {
-      id
-      consumablePoint
-    }
+    query FindUserConsumablePoint($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+    consumablePoint
   }
-`;
+}
+    `;
 
 export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<FindUserConsumablePointQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserConsumablePointQuery, FindUserConsumablePointQueryVariables>({ query: FindUserConsumablePointDocument, ...options });
-}
+};
 export const FindUserMetaDataDocument = gql`
-  query FindUserMetaData($id: String!) {
-    findUser(where: { id: $id }) {
-      ...UserMetaData
-    }
+    query FindUserMetaData($id: String!) {
+  findUser(where: {id: $id}) {
+    ...UserMetaData
   }
-  ${UserMetaDataFragmentDoc}
-`;
+}
+    ${UserMetaDataFragmentDoc}`;
 
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
-}
+};
 export const UpdatedGameAttendersDocument = gql`
-  subscription UpdatedGameAttenders {
-    updatedGameAttenders {
-      coin_dropping {
-        ...GameAttenderBioData
-      }
-      xeno {
-        ...GameAttenderBioData
-      }
-      ice_raze {
-        ...GameAttenderBioData
-      }
-      poker {
-        ...GameAttenderBioData
-      }
-      president {
-        ...GameAttenderBioData
-      }
-      we_didnt_playtest {
-        ...GameAttenderBioData
-      }
+    subscription UpdatedGameAttenders {
+  updatedGameAttenders {
+    coinDropping {
+      ...GameAttenderBioData
+    }
+    xeno {
+      ...GameAttenderBioData
+    }
+    iceRaze {
+      ...GameAttenderBioData
+    }
+    poker {
+      ...GameAttenderBioData
+    }
+    president {
+      ...GameAttenderBioData
+    }
+    weDidntPlaytest {
+      ...GameAttenderBioData
     }
   }
-  ${GameAttenderBioDataFragmentDoc}
-`;
-
-export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttendersSubscription>(
-  options: Omit<Urql.UseSubscriptionArgs<UpdatedGameAttendersSubscriptionVariables>, 'query'> = {},
-  handler?: Urql.SubscriptionHandler<UpdatedGameAttendersSubscription, TData>,
-) {
-  return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>(
-    { query: UpdatedGameAttendersDocument, ...options },
-    handler,
-  );
 }
+    ${GameAttenderBioDataFragmentDoc}`;
+
+export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttendersSubscription>(options: Omit<Urql.UseSubscriptionArgs<UpdatedGameAttendersSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<UpdatedGameAttendersSubscription, TData>) {
+  return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>({ query: UpdatedGameAttendersDocument, ...options }, handler);
+};
