@@ -29,5 +29,7 @@ export const GiftIndexPage: FC = () => {
     },
     [exchangeGift, refetchGiftsSalesData, refetchUserConsumablePoint, currentUser],
   );
-  return <GiftIndex gifts={gifts} consumablePoint={consumablePoint} onExchange={onExchangeHandler} />;
+  return (
+    <GiftIndex gifts={gifts} consumablePoint={consumablePoint} onExchange={onExchangeHandler} isInteractive={currentUser !== null && !!currentUser} />
+  );
 };

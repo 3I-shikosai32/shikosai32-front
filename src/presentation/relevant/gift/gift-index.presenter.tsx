@@ -9,6 +9,7 @@ export type GiftIndexProps = {
   gifts: Array<Pick<Gift, 'id' | 'iconUrl' | 'name' | 'price' | 'remaining'>> | undefined | null;
   consumablePoint?: number | undefined | null;
   onExchange: GiftItemProps['onExchange'];
+  isInteractive?: GiftItemProps['isInteractive'];
 };
 
 const resolvePlaceholderMessage = (gifts: GiftIndexProps['gifts']): string => {
@@ -24,7 +25,7 @@ const resolvePlaceholderMessage = (gifts: GiftIndexProps['gifts']): string => {
   return '';
 };
 
-export const GiftIndex: FC<GiftIndexProps> = ({ gifts, consumablePoint, onExchange }) => (
+export const GiftIndex: FC<GiftIndexProps> = ({ isInteractive, gifts, consumablePoint, onExchange }) => (
   <div className="flex flex-col items-center justify-start gap-4">
     <div className="m-0 -mb-20 flex w-screen flex-col items-center justify-start gap-2 bg-gradient-to-br p-4 py-12 pb-24 text-center text-white gradient-exchange">
       <h1 className="mb-4 font-branding text-5xl font-bold">Exchange</h1>
@@ -60,7 +61,17 @@ export const GiftIndex: FC<GiftIndexProps> = ({ gifts, consumablePoint, onExchan
       )}
     </div>
     <Card className="mx-4 grid grid-flow-row grid-cols-1 justify-center gap-4 gap-x-8 p-2 lg:grid-cols-2">
-      {gifts && gifts.map((gift) => <GiftItem key={gift.id} {...gift} consumablePoint={consumablePoint || 0} onExchange={onExchange} />)}
+      {gifts &&
+        gifts.map((gift) => (
+          <GiftItem
+            className="w-80"
+            key={gift.id}
+            {...gift}
+            consumablePoint={consumablePoint || 0}
+            onExchange={onExchange}
+            isInteractive={isInteractive}
+          />
+        ))}
       {(!gifts || gifts === null || gifts.length < 1) && (
         <GiftItem
           id="0"
@@ -69,6 +80,7 @@ export const GiftIndex: FC<GiftIndexProps> = ({ gifts, consumablePoint, onExchan
           price={1}
           name={resolvePlaceholderMessage(gifts)}
           consumablePoint={1}
+          isDummy
           onExchange={() => {}}
         />
       )}
@@ -78,4 +90,5 @@ export const GiftIndex: FC<GiftIndexProps> = ({ gifts, consumablePoint, onExchan
 
 GiftIndex.defaultProps = {
   consumablePoint: undefined,
+  isInteractive: true,
 };
