@@ -51,11 +51,12 @@ export const GiftIndex: FC<GiftIndexProps> = ({ isInteractive, gifts, consumable
             <br />
           </p>
           <div className="m-2 rounded-base border-2 border-white p-4 font-pixel">
-            画面上部のユーザーアイコンから
+            まだOZに参加してない？
             <br />
-            登録・ログインして、
+            今すぐ登録・ログインして、
             <br />
-            あなたも景品のために遊ぼう！
+            アソビの頂点を目指そう！
+            <br />
           </div>
         </>
       )}
