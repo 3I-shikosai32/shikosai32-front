@@ -61,7 +61,7 @@ export const GiftIndex: FC<GiftIndexProps> = ({ isInteractive, gifts, consumable
         </>
       )}
     </div>
-    <Card className="mx-4 grid grid-flow-row grid-cols-1 justify-center gap-4 gap-x-8 p-2 lg:grid-cols-2">
+    <Card className="mx-4 grid grid-flow-row grid-cols-1 items-stretch justify-center gap-4 gap-x-8 p-2 lg:grid-cols-2">
       {gifts &&
         gifts.map((gift) => (
           <GiftItem
