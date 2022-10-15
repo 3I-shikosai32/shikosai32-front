@@ -1,0 +1,6 @@
+mutation ExitGame($userId: String!) {
+  exitGame(where: { id: $userId }) {
+    id
+    participateGame
+  }
+}
