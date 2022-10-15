@@ -64,14 +64,7 @@ export const GiftIndex: FC<GiftIndexProps> = ({ isInteractive, gifts, consumable
     <Card className="mx-4 grid grid-flow-row grid-cols-1 justify-center gap-4 gap-x-8 p-2 lg:grid-cols-2">
       {gifts &&
         gifts.map((gift) => (
-          <GiftItem
-            className="w-80"
-            key={gift.id}
-            {...gift}
-            consumablePoint={consumablePoint || 0}
-            onExchange={onExchange}
-            isInteractive={isInteractive}
-          />
+          <GiftItem key={gift.id} {...gift} consumablePoint={consumablePoint || 0} onExchange={onExchange} isInteractive={isInteractive} />
         ))}
       {(!gifts || gifts === null || gifts.length === 0) && (
         <GiftItem

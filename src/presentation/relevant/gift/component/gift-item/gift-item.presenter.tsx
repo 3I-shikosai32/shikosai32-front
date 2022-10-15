@@ -49,7 +49,7 @@ export const GiftItem: FC<GiftItemProps> = ({
   });
 
   return (
-    <div className={twMerge('flex flex-row max-w-sm gap-5 p-4', className)} {...props}>
+    <div className={twMerge('flex flex-row max-w-sm gap-5 p-4 min-w-[20rem]', className)} {...props}>
       <figure className="flex aspect-square h-32 items-center justify-center rounded-full bg-gradient-to-b shadow-z16 gradient-exchange-itemframe">
         <div className="relative aspect-square h-3/4">
           {iconUrl && <Image src={iconUrl} objectFit="contain" width={256} height={256} alt={`景品:${name}の画像`} />}
