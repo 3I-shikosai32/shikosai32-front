@@ -8,7 +8,7 @@ const meta: ComponentMeta<typeof GameStatusIndicator> = {
   component: GameStatusIndicator,
   args: {
     isAttending: false,
-    className: 'w-96 max-w-sm',
+    className: 'w-96 max-w-sm text-primary',
     children: (
       <>
         <LiveCharacter
@@ -33,6 +33,10 @@ const meta: ComponentMeta<typeof GameStatusIndicator> = {
     onAttendanceChange: {
       description: '参加中かどうかが変更されたときに呼び出されるイベントハンドラを指定する。',
       control: { type: 'function' },
+    },
+    disabled: {
+      description: '参加退出ボタンを無効化することができる。',
+      control: { type: 'boolean' },
     },
     className: {
       description: 'サイズを変更するために用意されている。',
