@@ -23,12 +23,12 @@ export type UseRealtimeGameAttendersUseCaseResult = {
 };
 
 const GameKeyDictionary: Record<Game, keyof Omit<UpdatedGameAttendersSubscription['updatedGameAttenders'], '__typename'>> = {
-  [Game.CoinDropping]: 'coin_dropping',
+  [Game.CoinDropping]: 'coinDropping',
   [Game.Xeno]: 'xeno',
-  [Game.IceRaze]: 'ice_raze',
+  [Game.IceRaze]: 'iceRaze',
   [Game.Poker]: 'poker',
   [Game.President]: 'president',
-  [Game.WeDidntPlaytest]: 'we_didnt_playtest',
+  [Game.WeDidntPlaytest]: 'weDidntPlaytest',
 };
 
 export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttendersUseCaseProps): UseRealtimeGameAttendersUseCaseResult => {

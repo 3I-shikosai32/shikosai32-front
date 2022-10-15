@@ -1,12 +1,12 @@
 subscription UpdatedGameAttenders {
   updatedGameAttenders {
-    coin_dropping {
+    coinDropping {
       ...GameAttenderBioData
     }
     xeno {
       ...GameAttenderBioData
     }
-    ice_raze {
+    iceRaze {
       ...GameAttenderBioData
     }
     poker {
@@ -15,7 +15,7 @@ subscription UpdatedGameAttenders {
     president {
       ...GameAttenderBioData
     }
-    we_didnt_playtest {
+    weDidntPlaytest {
       ...GameAttenderBioData
     }
   }
