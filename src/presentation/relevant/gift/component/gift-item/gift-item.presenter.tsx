@@ -56,7 +56,7 @@ export const GiftItem: FC<GiftItemProps> = ({
         </div>
       </figure>
       <div className="flex flex-col items-start justify-center gap-2.5 font-branding">
-        <h6 className={twMerge('text-lg', !isAvailable && !isDummy && 'line-through')}>{name}</h6>
+        <h6 className={twMerge('text-lg', !isAvailable && !isDummy && isInteractive && 'line-through')}>{name}</h6>
         {!isDummy && (
           <div className="flex flex-row items-center justify-start gap-2.5">
             <span className="font-bold">{`${price} Pt`}</span>
