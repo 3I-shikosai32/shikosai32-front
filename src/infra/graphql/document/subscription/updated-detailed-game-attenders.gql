@@ -1,0 +1,22 @@
+subscription UpdatedDetailedGameAttenders {
+  updatedGameAttenders {
+    coinDropping {
+      ...DetailedGameAttenderData
+    }
+    xeno {
+      ...DetailedGameAttenderData
+    }
+    iceRaze {
+      ...DetailedGameAttenderData
+    }
+    poker {
+      ...DetailedGameAttenderData
+    }
+    president {
+      ...DetailedGameAttenderData
+    }
+    weDidntPlaytest {
+      ...DetailedGameAttenderData
+    }
+  }
+}
