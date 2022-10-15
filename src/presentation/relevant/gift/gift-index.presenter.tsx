@@ -19,7 +19,7 @@ const resolvePlaceholderMessage = (gifts: GiftIndexProps['gifts']): string => {
   if (gifts === null) {
     return '読み込み中にエラーが発生しました';
   }
-  if (gifts.length == 0) {
+  if (gifts.length === 0) {
     return '景品がみつかりませんでした';
   }
   return '';
@@ -72,7 +72,7 @@ export const GiftIndex: FC<GiftIndexProps> = ({ isInteractive, gifts, consumable
             isInteractive={isInteractive}
           />
         ))}
-      {(!gifts || gifts === null || gifts.length < 1) && (
+      {(!gifts || gifts === null || gifts.length === 0) && (
         <GiftItem
           id="0"
           className="col-span-full"
