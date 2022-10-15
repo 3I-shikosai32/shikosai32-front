@@ -19,7 +19,7 @@ const resolvePlaceholderMessage = (gifts: GiftIndexProps['gifts']): string => {
   if (gifts === null) {
     return '読み込み中にエラーが発生しました';
   }
-  if (gifts.length < 1) {
+  if (gifts.length == 0) {
     return '景品がみつかりませんでした';
   }
   return '';
