@@ -1,6 +1,9 @@
-import type { FC } from 'react';
+import { motion } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
+import { forwardRef } from 'react';
 import { FaCrown } from 'react-icons/fa';
 import { resolveDescription } from './resolve-description';
+import type { RankedUserBio } from '@/model/user/ranked-user-bio.model';
 import {
   UserItem,
   UserItemIcon,
@@ -8,21 +11,16 @@ import {
   UserItemName,
   UserItemDescription,
 } from '@/presentation/primitive/component/user-item/user-item.presenter';
-import type { UserItemProps, UserItemData } from '@/presentation/primitive/component/user-item/user-item.presenter';
+import type { UserItemProps } from '@/presentation/primitive/component/user-item/user-item.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
-export type RankedUserItemData = UserItemData & {
-  place: number; // 順位
-  point: number;
-};
+export type RankedUserItemProps = Omit<UserItemProps, 'children'> & RankedUserBio;
 
-export type RankedUserItemProps = Omit<UserItemProps, 'children'> & RankedUserItemData;
-
-export const RankedUserItem: FC<RankedUserItemProps> = ({ id, name, iconUrl, place, point, className, ...props }) => {
+export const RankedUserItem = forwardRef<HTMLDivElement, RankedUserItemProps>(({ id, name, iconUrl, place, point, className, ...props }, ref) => {
   const isTopThree = place === 1 || place === 2 || place === 3;
   const description = resolveDescription({ place, point });
   return (
-    <UserItem key={id} className={twMerge('px-3 py-2', isTopThree && 'py-4', className)} {...props}>
+    <UserItem ref={ref} key={id} className={twMerge('px-3 py-2', className)} {...props}>
       <div
         aria-label="順位"
         className={twMerge(
@@ -45,4 +43,8 @@ export const RankedUserItem: FC<RankedUserItemProps> = ({ id, name, iconUrl, pla
       </UserItemBio>
     </UserItem>
   );
-};
+});
+RankedUserItem.displayName = 'RankedUserItem';
+
+export type MotionRankedUserItemProps = MotionProps & RankedUserItemProps;
+export const MotionRankedUserItem = motion(RankedUserItem);
