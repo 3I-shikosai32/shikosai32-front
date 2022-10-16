@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import type { FC } from 'react';
+import { di } from 'react-magnetic-di';
 import { HttpError500 } from '../../http-error/http-error-500.page';
 import { CharacterSelector } from './component/character-selector/character-selector.container';
 import { EmailInput } from './component/email-input/email-input.container';
@@ -11,6 +12,8 @@ import useCreateUserUseCase from '@/use-case/user/use-create-user.use-case';
 import { useCurrentUserBioUseCase } from '@/use-case/user/use-current-user-bio.use-case';
 
 const NewUser: FC = () => {
+  di(useCurrentUserBioUseCase);
+
   const user = useCurrentUserBioUseCase();
   const [formValue, updateFromValue] = useFormState({
     name: user?.name || undefined,
@@ -30,7 +33,7 @@ const NewUser: FC = () => {
         <div className="flex justify-center">
           <Image src="/logos/new-user.png" alt="Logo" width={105} height={180} />
         </div>
-        <div className="my-3 font-pixel text-2xl font-semibold md:text-4xl">OZの世界へようこそ！</div>
+        <div className="my-3 text-center font-pixel text-2xl font-semibold md:text-4xl">OZの世界へようこそ！</div>
       </div>
       <form>
         <div className="my-10">
