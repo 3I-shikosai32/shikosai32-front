@@ -73,13 +73,85 @@ export const XenoGamePage: FC = () => {
       <GamePlaygroundDifficultyIndicator difficulty={5} />
       <GamePlaygroundDescription>ここにゲームの簡潔な説明を挿入</GamePlaygroundDescription>
       <GamePlaygroundSeparator />
-      <span className="text-xs">
+      <span>
         1人1枚ずつカードを持ち、自分のターン開始時に山札から 1枚引いてどちらかを捨てる。
         <br />
         自分以外を脱落させるか、山札が無くなった時に 他の人より大きい数字を持っていれば勝ち。
         <br />
-        ・①少年：革命...(略
       </span>
+
+      <table className="mt-4 border-separate border-spacing-y-2 border-spacing-x-1 border border-transparent text-center">
+        <thead>
+          <th>-</th>
+          <th className="w-1/4">名前</th>
+          <th>効果</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>
+              少年:
+              <wbr /> 革命
+            </td>
+            <td className="text-start">
+              1枚目は何も起こらない。2枚目は<b>皇帝</b>と同じ効果だが、<b>英雄</b>を処刑しても相手は脱落しない。
+            </td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>兵士: 捜査</td>
+            <td className="text-start">
+              相手のカードを当てれば勝利。ただし<b>英雄</b>だった場合、転生して続行。捜査というより暗殺。
+            </td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>占師: 透視</td>
+            <td className="text-start">相手の手札を見ることができる。</td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td>乙女: 守護</td>
+            <td className="text-start">次の相手の手番に、自分へのカード効果を全て無効化。</td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td>死神: 疫病</td>
+            <td className="text-start">
+              相手は山札から1枚引き、裏向きのまま指定された1枚を捨てる。<b>英雄</b>だった場合、もう1枚も捨て転生。
+            </td>
+          </tr>
+          <tr>
+            <th>6</th>
+            <td>貴族: 対決</td>
+            <td className="text-start">手札を見せ合い、数値の低い方が脱落。</td>
+          </tr>
+          <tr>
+            <th>7</th>
+            <td>賢者: 選択</td>
+            <td className="text-start">次の自分の手番、3枚引いて好きな1枚を手札へ。残りは山札へ戻す。山札は相手がシャッフル。</td>
+          </tr>
+          <tr>
+            <th>8</th>
+            <td>精霊: 交換</td>
+            <td className="text-start">相手と手札を交換。</td>
+          </tr>
+          <tr>
+            <th>9</th>
+            <td>皇帝: 公開処刑</td>
+            <td className="text-start">
+              相手は山札から1枚引き手札を公開。自分が指定した1枚を 捨てさせる。<b>英雄</b>だった場合、自分が勝利。
+            </td>
+          </tr>
+          <tr>
+            <th>10</th>
+            <td>英雄: 潜伏・転生</td>
+            <td className="text-start">
+              一番数値が強いが場に出せない。つ以外で捨てさせられると、転生 <i>(=転生札を引く</i>。
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </GamePlayground>
   );
 };
@@ -120,7 +192,7 @@ export const PresidentGamePage: FC = () => {
       <GamePlaygroundDifficultyIndicator difficulty={4} />
       <GamePlaygroundDescription>みんなおなじみの大富豪！</GamePlaygroundDescription>
       <GamePlaygroundSeparator />
-      <span className="text-xs">
+      <span>
         強さの順は3、4、5 ... K、A、2、Joker。
         <br />
         ジョーカーは足りないカードの代わりにもなるぞ！
