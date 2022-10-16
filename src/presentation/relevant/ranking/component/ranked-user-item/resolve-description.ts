@@ -1,6 +1,6 @@
-import type { RankedUserItemData } from './ranked-user-item.presenter';
+import type {RankedUserBio} from '@/model/user/ranked-user-bio.model';
 
-type ResolveDescriptionProps = Pick<RankedUserItemData, 'place' | 'point'>;
+type ResolveDescriptionProps = Pick<RankedUserBio, 'place' | 'point'>;
 
 type Resolver = (point: ResolveDescriptionProps['point']) => string;
 const firstPlaceResolver: Resolver = (point) => `${point} Pt を我が物とし栄冠を戴くのは...`;
