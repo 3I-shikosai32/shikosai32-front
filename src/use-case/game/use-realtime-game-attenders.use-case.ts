@@ -41,6 +41,7 @@ export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttende
     () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
     [updatedResult.data, initialResult.data],
   );
+  // eslint-disable-next-line no-console
   console.log({ initialResult, updatedResult, fetchResult, game });
   return {
     attenders: fetchResultTranspiler({ fetchResult, game }),
