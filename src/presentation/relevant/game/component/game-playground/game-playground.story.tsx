@@ -44,11 +44,11 @@ const meta: ComponentMeta<typeof GamePlayground> = {
       <>
         <GamePlaygroundTitle>ゲームの名前</GamePlaygroundTitle>
         <GamePlaygroundDifficultyIndicator difficulty={2} />
-        <GamePlaygroundDescription>ゲームの説明です。簡単なとても楽しい４人向けゲームです。</GamePlaygroundDescription>
+        <GamePlaygroundDescription>ゲームの説明です。簡単なとても楽しい４人向けゲームです。<br />簡単なとても楽しい４人向けゲームです。</GamePlaygroundDescription>
         <GamePlaygroundSeparator />
-        <span className="text-xs">
-          そのころわたくしは、モリーオ市の博物局に勤めて居りました。
-          十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというので、その景色のいいまわりにアカシヤを植え込んだ広い地面が、切符売場や信号所の建物のついたまま、わたくしどもの役所の方へま
+        <span>
+          そのころわたくしは、モリーオ市の博物局に勤めて居りました。<br />
+          十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、<br />受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというので、<br />その景色のいいまわりにアカシヤを植え込んだ広い地面が、切符売場や信号所の建物のついたまま、わたくしどもの役所の方へま
         </span>
       </>
     ),

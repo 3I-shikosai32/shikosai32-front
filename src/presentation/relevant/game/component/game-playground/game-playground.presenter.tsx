@@ -29,13 +29,13 @@ export const GamePlayground: FC<GamePlaygroundProps> = ({ disabled, attenders, i
           <LiveCharacter key={name} name={name} images={imageUrl} />
         ))}
     </GameStatusIndicator>
-    <div className="flex grow-0 flex-col items-stretch justify-start gap-1 px-4 text-center text-white lg:max-w-sm">{children}</div>
+    <div className="flex grow-0 flex-col items-stretch justify-start gap-1 px-4 text-start text-white lg:max-w-sm">{children}</div>
   </div>
 );
 
 export type GamePlaygroundTitleProps = ComponentPropsWithoutRef<'h1'>;
 export const GamePlaygroundTitle: FC<GamePlaygroundTitleProps> = ({ children, className, ...props }) => (
-  <h1 className={twMerge('text-5xl font-pixel my-5 drop-shadow-md shadow-neutral-900', className)} {...props}>
+  <h1 className={twMerge('text-center lg:text-start text-5xl font-pixel my-5 drop-shadow-md shadow-neutral-900', className)} {...props}>
     {children}
   </h1>
 );
@@ -45,14 +45,14 @@ export type GamePlaygroundDifficultyIndicatorProps = Omit<ComponentPropsWithoutR
   difficulty: number;
 };
 export const GamePlaygroundDifficultyIndicator: FC<GamePlaygroundDifficultyIndicatorProps> = ({ difficulty, className, ...props }) => (
-  <p className={twMerge('font-pixel', className)} {...props}>
+  <p className={twMerge('text-center lg:text-start font-pixel', className)} {...props}>
     難易度: {`${'★'.repeat(Math.max(difficulty, 0))}${'☆'.repeat(Math.max(MAX_DIFFICULTY - difficulty, 0))}`}
   </p>
 );
 
 export type GamePlaygroundDescriptionProps = ComponentPropsWithoutRef<'p'>;
 export const GamePlaygroundDescription: FC<GamePlaygroundDescriptionProps> = ({ children, className, ...props }) => (
-  <p className={twMerge('font-pixel', className)} {...props}>
+  <p className={twMerge('font-pixel self-center lg:self-stretch', className)} {...props}>
     {children}
   </p>
 );
