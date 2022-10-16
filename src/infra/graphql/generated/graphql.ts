@@ -71,6 +71,11 @@ export type CharacterStatusWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export enum Date {
+  Day1 = 'DAY1',
+  Day2 = 'DAY2'
+}
+
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -452,7 +457,9 @@ export type Query = {
   findItemCompletedCharacterStatuses: Array<CharacterStatus>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
+  getGameAttenders: GameAttenders;
   getObtainmentStatuses: Array<ObtainmentStatus>;
+  getRanking: Array<User>;
 };
 
 
@@ -511,6 +518,12 @@ export type QueryGetObtainmentStatusesArgs = {
   where: UserWhereUniqueInput;
 };
 
+
+export type QueryGetRankingArgs = {
+  date: Date;
+  rankingTarget: RankingTarget;
+};
+
 export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
@@ -567,6 +580,7 @@ export type Subscription = {
 
 
 export type SubscriptionUpdatedRankingArgs = {
+  date: Date;
   rankingTarget: RankingTarget;
 };
 
@@ -692,6 +706,16 @@ export type CheckUserExistanceQueryVariables = Exact<{
 
 
 export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
+
+export type FindDetailedGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindDetailedGameAttendersQuery = { __typename?: 'Query', getGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, xeno: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, iceRaze: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, poker: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, president: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }> } };
+
+export type FindGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindGameAttendersQuery = { __typename?: 'Query', getGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
 export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -850,6 +874,62 @@ export const CheckUserExistanceDocument = gql`
 
 export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
   return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
+};
+export const FindDetailedGameAttendersDocument = gql`
+    query FindDetailedGameAttenders {
+  getGameAttenders {
+    coinDropping {
+      ...DetailedGameAttenderData
+    }
+    xeno {
+      ...DetailedGameAttenderData
+    }
+    iceRaze {
+      ...DetailedGameAttenderData
+    }
+    poker {
+      ...DetailedGameAttenderData
+    }
+    president {
+      ...DetailedGameAttenderData
+    }
+    weDidntPlaytest {
+      ...DetailedGameAttenderData
+    }
+  }
+}
+    ${DetailedGameAttenderDataFragmentDoc}`;
+
+export function useFindDetailedGameAttendersQuery(options?: Omit<Urql.UseQueryArgs<FindDetailedGameAttendersQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindDetailedGameAttendersQuery, FindDetailedGameAttendersQueryVariables>({ query: FindDetailedGameAttendersDocument, ...options });
+};
+export const FindGameAttendersDocument = gql`
+    query FindGameAttenders {
+  getGameAttenders {
+    coinDropping {
+      ...GameAttenderBioData
+    }
+    xeno {
+      ...GameAttenderBioData
+    }
+    iceRaze {
+      ...GameAttenderBioData
+    }
+    poker {
+      ...GameAttenderBioData
+    }
+    president {
+      ...GameAttenderBioData
+    }
+    weDidntPlaytest {
+      ...GameAttenderBioData
+    }
+  }
+}
+    ${GameAttenderBioDataFragmentDoc}`;
+
+export function useFindGameAttendersQuery(options?: Omit<Urql.UseQueryArgs<FindGameAttendersQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGameAttendersQuery, FindGameAttendersQueryVariables>({ query: FindGameAttendersDocument, ...options });
 };
 export const FindGiftSalesDataDocument = gql`
     query FindGiftSalesData {

@@ -1,0 +1,22 @@
+query FindGameAttenders {
+  getGameAttenders {
+    coinDropping {
+      ...GameAttenderBioData
+    }
+    xeno {
+      ...GameAttenderBioData
+    }
+    iceRaze {
+      ...GameAttenderBioData
+    }
+    poker {
+      ...GameAttenderBioData
+    }
+    president {
+      ...GameAttenderBioData
+    }
+    weDidntPlaytest {
+      ...GameAttenderBioData
+    }
+  }
+}
