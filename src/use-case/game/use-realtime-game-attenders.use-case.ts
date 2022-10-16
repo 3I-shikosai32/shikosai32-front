@@ -41,7 +41,7 @@ export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttende
     () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
     [updatedResult.data, initialResult.data],
   );
-  // console.log({ initialResult, updatedResult, fetchResult, game });
+  console.log({ initialResult, updatedResult, fetchResult, game });
   return {
     attenders: fetchResultTranspiler({ fetchResult, game }),
   };
