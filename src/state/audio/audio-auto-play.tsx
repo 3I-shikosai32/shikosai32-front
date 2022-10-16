@@ -9,7 +9,7 @@ export type AudioAutoPlay = {
 const AudioAutoPlayState = atom<AudioAutoPlay>({
   key: atomKeys.AUDIO_AUTOPLAY,
   default: {
-    shouldAutoPlay: true,
+    shouldAutoPlay: false,
     hasAutoPlaySuceeded: false,
   },
 });
