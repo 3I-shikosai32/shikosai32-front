@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 import { DiProvider, injectable } from 'react-magnetic-di';
+import { RecoilRoot } from 'recoil';
 import NewUser from './new-user.page';
 import { useCurrentUserBioUseCase, UseCurrentUserBioUseCaseResult } from '@/use-case/user/use-current-user-bio.use-case';
 
@@ -12,7 +13,7 @@ const injectHooks = (currentUser: UseCurrentUserBioUseCaseResult = { id: 'abc-12
 
 const meta: ComponentMeta<typeof NewUser> = {
   component: NewUser,
-  decorators: [(story) => <DiProvider use={injectHooks()}>{story()}</DiProvider>],
+  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>, (story) => <DiProvider use={injectHooks()}>{story()}</DiProvider>],
   parameters: {},
   args: {},
 };
@@ -28,5 +29,5 @@ export const Default: Story = {
 };
 
 export const IsCurrentUserNull: Story = {
-  decorators: [(story) => <DiProvider use={injectHooks(null)}>{story()}</DiProvider>],
+  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>, (story) => <DiProvider use={injectHooks(null)}>{story()}</DiProvider>],
 };
