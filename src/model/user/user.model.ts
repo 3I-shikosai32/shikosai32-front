@@ -12,5 +12,5 @@ export type User = {
   createdAt: Date;
   points: Points;
   characterStatus: UserCharacterStatus;
-  participateGame: Game;
+  participateGame: Game | null;
 };

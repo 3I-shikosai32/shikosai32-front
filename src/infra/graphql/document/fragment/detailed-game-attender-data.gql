@@ -1,0 +1,12 @@
+fragment DetailedGameAttenderData on User {
+  id
+  name
+  characterStatus {
+    iconUrl
+    avatarUrl
+    items {
+      layer
+      layerUrl
+    }
+  }
+}

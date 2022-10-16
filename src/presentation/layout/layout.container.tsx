@@ -16,6 +16,6 @@ export const Layout: FC<LayoutProps> = ({ children, title, className, ...props }
     <main className={twMerge('m-0 flex w-full grow flex-col items-center justify-start', className)} {...props}>
       {children}
     </main>
-    <Footer className="m-0 mt-16 w-full grow-0" />
+    <Footer className="m-0 w-full grow-0" />
   </div>
 );

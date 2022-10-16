@@ -5,5 +5,6 @@ export type Item = {
   character: Character;
   id: string;
   layer: ItemLayer;
-  url: string;
+  layerUrl: string;
+  iconUrl: string;
 };
