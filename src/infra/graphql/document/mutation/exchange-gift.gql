@@ -1,0 +1,5 @@
+mutation ExchangeGift($userId: String!, $giftId: String!, $amount: Int!) {
+  exchangeGift(data: { giftId: $giftId, userId: $userId, isDelivered: false }, exchangeQuantity: $amount) {
+    id
+  }
+}

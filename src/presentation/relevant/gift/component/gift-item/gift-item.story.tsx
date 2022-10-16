@@ -15,6 +15,8 @@ const meta: ComponentMeta<typeof GiftItem> = {
     iconUrl: '/icons/ramen.png',
     price: 30,
     remaining: 10,
+    isDummy: false,
+    isInteractive: true,
     onExchange: action('onExchange'),
     className: 'bg-white',
   },
@@ -43,6 +45,14 @@ const meta: ComponentMeta<typeof GiftItem> = {
       description: '景品の交換が求められたときに呼び出されるイベントハンドラを指定する。唯一の引数として、希望された数`amount`を受け取る。`',
       control: { type: 'number' },
     },
+    isDummy: {
+      description: '景品の情報を持たず操作することのできない、ダミーの景品表示であるかどうかを指定する。',
+      control: { type: 'boolean' },
+    },
+    isInteractive: {
+      description: 'ユーザーが景品を交換する操作ができるかどうかを指定する。',
+      control: { type: 'boolean' },
+    },
     className: {
       description: 'スタイル上書き用。この要素の横幅拡大にのみ使用することが望ましい。',
       control: { type: 'text' },
@@ -69,5 +79,17 @@ export const OutOfStock: Story = {
 export const OutOfPoints: Story = {
   args: {
     consumablePoint: 0,
+  },
+};
+
+export const ForAnonymousUser: Story = {
+  args: {
+    isInteractive: false,
+  },
+};
+
+export const Dummy: Story = {
+  args: {
+    isDummy: true,
   },
 };
