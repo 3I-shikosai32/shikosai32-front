@@ -71,6 +71,11 @@ export type CharacterStatusWhereUniqueInput = {
   id: Scalars['String'];
 };
 
+export enum Date {
+  Day1 = 'DAY1',
+  Day2 = 'DAY2'
+}
+
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -452,7 +457,9 @@ export type Query = {
   findItemCompletedCharacterStatuses: Array<CharacterStatus>;
   findUser?: Maybe<User>;
   findUsers: Array<User>;
+  getGameAttenders: GameAttenders;
   getObtainmentStatuses: Array<ObtainmentStatus>;
+  getRanking: Array<User>;
 };
 
 
@@ -511,6 +518,12 @@ export type QueryGetObtainmentStatusesArgs = {
   where: UserWhereUniqueInput;
 };
 
+
+export type QueryGetRankingArgs = {
+  date: Date;
+  rankingTarget: RankingTarget;
+};
+
 export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
@@ -567,6 +580,7 @@ export type Subscription = {
 
 
 export type SubscriptionUpdatedRankingArgs = {
+  date: Date;
   rankingTarget: RankingTarget;
 };
 
