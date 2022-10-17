@@ -460,6 +460,7 @@ export type Query = {
   getGameAttenders: GameAttenders;
   getObtainmentStatuses: Array<ObtainmentStatus>;
   getRanking: Array<User>;
+  getRankingPosition: Scalars['Int'];
 };
 
 
@@ -522,6 +523,11 @@ export type QueryGetObtainmentStatusesArgs = {
 export type QueryGetRankingArgs = {
   date: Date;
   rankingTarget: RankingTarget;
+};
+
+
+export type QueryGetRankingPositionArgs = {
+  where: UserWhereUniqueInput;
 };
 
 export enum QueryMode {
@@ -717,6 +723,13 @@ export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
+export type FindRankingPositionQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type FindRankingPositionQuery = { __typename?: 'Query', getRankingPosition: number };
+
 export type FindUserConsumablePointQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -891,6 +904,15 @@ export const FindGiftSalesDataDocument = gql`
 
 export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
+};
+export const FindRankingPositionDocument = gql`
+    query FindRankingPosition($userId: String!) {
+  getRankingPosition(where: {id: $userId})
+}
+    `;
+
+export function useFindRankingPositionQuery(options: Omit<Urql.UseQueryArgs<FindRankingPositionQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindRankingPositionQuery, FindRankingPositionQueryVariables>({ query: FindRankingPositionDocument, ...options });
 };
 export const FindUserConsumablePointDocument = gql`
     query FindUserConsumablePoint($id: String!) {
