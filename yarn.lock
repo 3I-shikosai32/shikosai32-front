@@ -3343,7 +3343,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.7"
 
-"@storybook/addons@6.5.12":
+"@storybook/addons@6.5.12", "@storybook/addons@>=6.0.28":
   version "6.5.12"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.5.12.tgz#891767b5f88ea99b956cf19e9e2893594068adc7"
   integrity sha512-y3cgxZq41YGnuIlBJEuJjSFdMsm8wnvlNOGUP9Q+Er2dgfx8rJz4Q22o4hPjpvpaj4XdBtxCJXI2NeFpN59+Cw==
@@ -4737,7 +4737,15 @@
     "@graphql-typed-document-node/core" "^3.1.1"
     wonka "^6.0.0"
 
-"@urql/devtools@2.0.3":
+"@urql/core@^3.0.0":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@urql/core/-/core-3.0.4.tgz#6eee0908f98c6f3d677e3abbe6f04e9fdbc0a498"
+  integrity sha512-7c12WLHKjmxcxM8nrVdtaYHQnS0WXSfYCf5lg28eRL2ySbo2rOPINLblblDo8UwGTeyrNzjSRVd0I0NlTN6XTA==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.1.1"
+    wonka "^6.0.0"
+
+"@urql/devtools@2.0.3", "@urql/devtools@>=2.0.0":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@urql/devtools/-/devtools-2.0.3.tgz#780998c37386c72af9402a8f88c1b388e62f28cd"
   integrity sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==
@@ -4756,6 +4764,17 @@
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@urql/introspection/-/introspection-0.3.3.tgz#5bcedfebd515161eecf9b193169c2765bf5674f1"
   integrity sha512-tekSLLqWnusfV6V7xaEnLJQSdXOD/lWy7f8JYQwrX+88Md+voGSCSx5WJXI7KLBN3Tat2OV08tAr8UROykls4Q==
+
+"@urql/storybook-addon@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@urql/storybook-addon/-/storybook-addon-2.0.1.tgz#684988a12b68edd8964d1ab17e86aefeddfdbc71"
+  integrity sha512-xREwiqOJ7h48a2rI7lBXRRkecNMFN3MembiXfrdL7c3NVqgM4CYbJN5zg/Za9Nt4vAxUwNrFNu0AYw7cC1mYlA==
+  dependencies:
+    "@urql/core" "^3.0.0"
+    wonka "^6.0.0"
+  optionalDependencies:
+    "@storybook/addons" ">=6.0.28"
+    "@urql/devtools" ">=2.0.0"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
