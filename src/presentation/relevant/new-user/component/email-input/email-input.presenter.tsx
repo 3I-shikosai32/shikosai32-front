@@ -20,7 +20,7 @@ export const EmailInputPresenter: FC<EmailInputPresenterProps> = ({ isValueMissi
       <InputLabelName>メール</InputLabelName>
     </InputLabel>
     <InputOverlay>
-      <Input type="text" value={value} onChange={onChange} required />
+      <Input type="email" value={value} onChange={onChange} required />
     </InputOverlay>
     <InputMessage type="error" on={isValueMissing}>
       メールアドレスを入力してください
