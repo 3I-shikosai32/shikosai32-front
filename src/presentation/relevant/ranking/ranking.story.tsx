@@ -19,6 +19,13 @@ const meta: ComponentMeta<typeof Ranking> = {
   },
   args: {
     rankingData: dummyRankingData,
+    rankedCurrentUserBio: {
+      id: 'this-is-current-user-id-123',
+      name: 'じぶんのユーザー名',
+      iconUrl: '/icons/fox.png',
+      point: 123,
+      place: 1,
+    },
   },
 };
 

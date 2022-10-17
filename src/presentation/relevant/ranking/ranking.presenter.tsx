@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { ProjectedCategorizedRanking } from './component/projected-categorized-ranking/projected-categorized-ranking.presenter';
+import { RankShareCard } from './component/rank-share-card/rank-share-card.presenter';
 import type { RankingData } from '@/model/ranking/ranking-data.model';
 import { RankingPeriod } from '@/model/ranking/ranking-period.model';
+import type { RankedUserBio } from '@/model/user/ranked-user-bio.model';
 import Toggle from '@/presentation/primitive/component/toggle/toggle.presenter';
 import twMerge from '@/presentation/style/twmerge';
 
@@ -14,9 +16,10 @@ const rankingPeriodDictionary: Record<RankingPeriod, boolean> = {
 
 export type RankingProps = {
   rankingData: RankingData;
+  rankedCurrentUserBio?: RankedUserBio;
 };
 
-export const Ranking: FC<RankingProps> = ({ rankingData }) => {
+export const Ranking: FC<RankingProps> = ({ rankingData, rankedCurrentUserBio }) => {
   const [currentPeriod, setCurrentPeriod] = useState<RankingPeriod>(RankingPeriod.DAY1);
   // TODO: 現在の日付に近い方の日程(`DAY1`, `DAY2`)をマウント時に設定する`useEffect`の処理を追加する
 
@@ -58,7 +61,12 @@ export const Ranking: FC<RankingProps> = ({ rankingData }) => {
       </div>
       <div className="flex w-full max-w-7xl flex-row flex-wrap items-start justify-center gap-4 px-2">
         <ProjectedCategorizedRanking className="w-full max-w-6xl" categories={rankingData[currentPeriod]} switchInterval={8000} />
+        {rankedCurrentUserBio && <RankShareCard {...rankedCurrentUserBio} />}
       </div>
     </div>
   );
+};
+
+Ranking.defaultProps = {
+  rankedCurrentUserBio: undefined,
 };
