@@ -24,7 +24,7 @@ export const Ranking: FC<RankingProps> = ({ rankingData, rankedCurrentUserBio })
   // TODO: 現在の日付に近い方の日程(`DAY1`, `DAY2`)をマウント時に設定する`useEffect`の処理を追加する
 
   return (
-    <div className="flex flex-col items-center justify-start gap-4">
+    <div className="flex flex-col items-center justify-start gap-4 pb-6">
       <div className="m-0 -mb-36 flex w-screen flex-col items-center justify-start gap-6 bg-gradient-to-br p-4 py-12 pb-36 text-center text-white gradient-ranking">
         <h1 className="font-branding text-5xl font-bold">Ranking</h1>
         <p>
