@@ -1,0 +1,6 @@
+mutation JoinGame($userId: String!, $game: Game!) {
+  joinGame(game: $game, where: { id: $userId }) {
+    id
+    participateGame
+  }
+}

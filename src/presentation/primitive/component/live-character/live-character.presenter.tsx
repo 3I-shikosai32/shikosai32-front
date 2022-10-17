@@ -10,7 +10,7 @@ import twMerge from '@/presentation/style/twmerge';
 export type LiveCharacterProps = ComponentPropsWithRef<'figure'> &
   HTMLMotionProps<'figure'> & {
     name: string;
-    images: Array<UserCharacterStatus['avaterUrl'] | Item['url']>;
+    images: Array<UserCharacterStatus['avaterUrl'] | Item['layerurl']>;
     displayName?: boolean;
   };
 

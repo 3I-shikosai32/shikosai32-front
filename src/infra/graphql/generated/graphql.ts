@@ -127,11 +127,11 @@ export enum Game {
 
 export type GameAttenders = {
   __typename?: 'GameAttenders';
-  coin_dropping: Array<User>;
-  ice_raze: Array<User>;
+  coinDropping: Array<User>;
+  iceRaze: Array<User>;
   poker: Array<User>;
   president: Array<User>;
-  we_didnt_playtest: Array<User>;
+  weDidntPlaytest: Array<User>;
   xeno: Array<User>;
 };
 
@@ -239,9 +239,10 @@ export type IntFilter = {
 export type Item = {
   __typename?: 'Item';
   character: Character;
+  iconUrl: Scalars['String'];
   id: Scalars['String'];
   layer: Scalars['Int'];
-  url: Scalars['String'];
+  layerUrl: Scalars['String'];
   userIds: Array<Scalars['String']>;
   users: Array<User>;
 };
@@ -291,9 +292,10 @@ export type ItemWhereInput = {
   NOT?: InputMaybe<Array<ItemWhereInput>>;
   OR?: InputMaybe<Array<ItemWhereInput>>;
   character?: InputMaybe<EnumCharacterFilter>;
+  iconUrl?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   layer?: InputMaybe<IntFilter>;
-  url?: InputMaybe<StringFilter>;
+  layerUrl?: InputMaybe<StringFilter>;
   userIds?: InputMaybe<StringNullableListFilter>;
   users?: InputMaybe<UserListRelationFilter>;
 };
@@ -331,7 +333,7 @@ export type MutationCreateUserArgs = {
 
 export type MutationExchangeGiftArgs = {
   data: GiftHistoryCreateInput;
-  exchangeQuantity: Scalars['Float'];
+  exchangeQuantity: Scalars['Int'];
 };
 
 
@@ -594,7 +596,7 @@ export type UserCreateInput = {
 
 export type UserIncrementPointInput = {
   id: Scalars['String'];
-  increment: Scalars['Float'];
+  increment: Scalars['Int'];
 };
 
 export type UserListRelationFilter = {
@@ -641,15 +643,15 @@ export type UserWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export type GameAttenderBioDataFragment = { __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
+export type DetailedGameAttenderDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } };
 
-export type GiftDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
+export type GameAttenderBioDataFragment = { __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
 export type GiftHistoryDataFragment = { __typename?: 'GiftHistory', id: string, isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } };
 
-export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
+export type GiftSalesDataFragment = { __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number };
 
-export type UserExchangeDataFragment = { __typename?: 'User', consumablePoint: number };
+export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
@@ -659,6 +661,30 @@ export type CreateUserMutationVariables = Exact<{
 
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', createdAt: Date, id: string, name: string } };
+
+export type ExchangeGiftMutationVariables = Exact<{
+  userId: Scalars['String'];
+  giftId: Scalars['String'];
+  amount: Scalars['Int'];
+}>;
+
+
+export type ExchangeGiftMutation = { __typename?: 'Mutation', exchangeGift: Array<{ __typename?: 'GiftHistory', id: string }> };
+
+export type ExitGameMutationVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type ExitGameMutation = { __typename?: 'Mutation', exitGame: { __typename?: 'User', id: string, participateGame: Game } };
+
+export type JoinGameMutationVariables = Exact<{
+  userId: Scalars['String'];
+  game: Game;
+}>;
+
+
+export type JoinGameMutation = { __typename?: 'Mutation', joinGame: { __typename?: 'User', id: string, participateGame: Game } };
 
 export type CheckUserExistanceQueryVariables = Exact<{
   id: Scalars['String'];
@@ -672,12 +698,17 @@ export type FindAllUsersNameQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ __typename?: 'User', name: string }> };
 
-export type FindGiftExchangeInfoQueryVariables = Exact<{
-  userId: Scalars['String'];
+export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+
+export type FindUserConsumablePointQueryVariables = Exact<{
+  id: Scalars['String'];
 }>;
 
 
-export type FindGiftExchangeInfoQuery = { __typename?: 'Query', user?: { __typename?: 'User', consumablePoint: number } | null, gifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+export type FindUserConsumablePointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, consumablePoint: number } | null };
 
 export type FindUserMetaDataQueryVariables = Exact<{
   id: Scalars['String'];
@@ -686,26 +717,36 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
+export type UpdatedDetailedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpdatedDetailedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, xeno: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, iceRaze: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, poker: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, president: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string, avatarUrl: string, items: Array<{ __typename?: 'Item', layer: number, layerUrl: string }> } }> } };
+
 export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coin_dropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, ice_raze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, we_didnt_playtest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
+export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
+export const DetailedGameAttenderDataFragmentDoc = gql`
+    fragment DetailedGameAttenderData on User {
+  id
+  name
+  characterStatus {
+    iconUrl
+    avatarUrl
+    items {
+      layer
+      layerUrl
+    }
+  }
+}
+    `;
 export const GameAttenderBioDataFragmentDoc = gql`
     fragment GameAttenderBioData on User {
   id
   characterStatus {
     iconUrl
   }
-}
-    `;
-export const GiftDataFragmentDoc = gql`
-    fragment GiftData on Gift {
-  id
-  name
-  iconUrl
-  price
-  remaining
 }
     `;
 export const UserBioDataFragmentDoc = gql`
@@ -731,9 +772,13 @@ export const GiftHistoryDataFragmentDoc = gql`
   deliveredAt
 }
     ${UserBioDataFragmentDoc}`;
-export const UserExchangeDataFragmentDoc = gql`
-    fragment UserExchangeData on User {
-  consumablePoint
+export const GiftSalesDataFragmentDoc = gql`
+    fragment GiftSalesData on Gift {
+  id
+  name
+  iconUrl
+  price
+  remaining
 }
     `;
 export const UserMetaDataFragmentDoc = gql`
@@ -762,6 +807,44 @@ export const CreateUserDocument = gql`
 export function useCreateUserMutation() {
   return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
 };
+export const ExchangeGiftDocument = gql`
+    mutation ExchangeGift($userId: String!, $giftId: String!, $amount: Int!) {
+  exchangeGift(
+    data: {giftId: $giftId, userId: $userId, isDelivered: false}
+    exchangeQuantity: $amount
+  ) {
+    id
+  }
+}
+    `;
+
+export function useExchangeGiftMutation() {
+  return Urql.useMutation<ExchangeGiftMutation, ExchangeGiftMutationVariables>(ExchangeGiftDocument);
+};
+export const ExitGameDocument = gql`
+    mutation ExitGame($userId: String!) {
+  exitGame(where: {id: $userId}) {
+    id
+    participateGame
+  }
+}
+    `;
+
+export function useExitGameMutation() {
+  return Urql.useMutation<ExitGameMutation, ExitGameMutationVariables>(ExitGameDocument);
+};
+export const JoinGameDocument = gql`
+    mutation JoinGame($userId: String!, $game: Game!) {
+  joinGame(game: $game, where: {id: $userId}) {
+    id
+    participateGame
+  }
+}
+    `;
+
+export function useJoinGameMutation() {
+  return Urql.useMutation<JoinGameMutation, JoinGameMutationVariables>(JoinGameDocument);
+};
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($id: String!) {
   findUser(where: {id: $id}) {
@@ -784,20 +867,28 @@ export const FindAllUsersNameDocument = gql`
 export function useFindAllUsersNameQuery(options?: Omit<Urql.UseQueryArgs<FindAllUsersNameQueryVariables>, 'query'>) {
   return Urql.useQuery<FindAllUsersNameQuery, FindAllUsersNameQueryVariables>({ query: FindAllUsersNameDocument, ...options });
 };
-export const FindGiftExchangeInfoDocument = gql`
-    query FindGiftExchangeInfo($userId: String!) {
-  user: findUser(where: {id: $userId}) {
-    ...UserExchangeData
-  }
-  gifts: findGifts {
-    ...GiftData
+export const FindGiftSalesDataDocument = gql`
+    query FindGiftSalesData {
+  findGifts {
+    ...GiftSalesData
   }
 }
-    ${UserExchangeDataFragmentDoc}
-${GiftDataFragmentDoc}`;
+    ${GiftSalesDataFragmentDoc}`;
 
-export function useFindGiftExchangeInfoQuery(options: Omit<Urql.UseQueryArgs<FindGiftExchangeInfoQueryVariables>, 'query'>) {
-  return Urql.useQuery<FindGiftExchangeInfoQuery, FindGiftExchangeInfoQueryVariables>({ query: FindGiftExchangeInfoDocument, ...options });
+export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
+};
+export const FindUserConsumablePointDocument = gql`
+    query FindUserConsumablePoint($id: String!) {
+  findUser(where: {id: $id}) {
+    id
+    consumablePoint
+  }
+}
+    `;
+
+export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<FindUserConsumablePointQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserConsumablePointQuery, FindUserConsumablePointQueryVariables>({ query: FindUserConsumablePointDocument, ...options });
 };
 export const FindUserMetaDataDocument = gql`
     query FindUserMetaData($id: String!) {
@@ -810,16 +901,44 @@ export const FindUserMetaDataDocument = gql`
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
 };
+export const UpdatedDetailedGameAttendersDocument = gql`
+    subscription UpdatedDetailedGameAttenders {
+  updatedGameAttenders {
+    coinDropping {
+      ...DetailedGameAttenderData
+    }
+    xeno {
+      ...DetailedGameAttenderData
+    }
+    iceRaze {
+      ...DetailedGameAttenderData
+    }
+    poker {
+      ...DetailedGameAttenderData
+    }
+    president {
+      ...DetailedGameAttenderData
+    }
+    weDidntPlaytest {
+      ...DetailedGameAttenderData
+    }
+  }
+}
+    ${DetailedGameAttenderDataFragmentDoc}`;
+
+export function useUpdatedDetailedGameAttendersSubscription<TData = UpdatedDetailedGameAttendersSubscription>(options: Omit<Urql.UseSubscriptionArgs<UpdatedDetailedGameAttendersSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<UpdatedDetailedGameAttendersSubscription, TData>) {
+  return Urql.useSubscription<UpdatedDetailedGameAttendersSubscription, TData, UpdatedDetailedGameAttendersSubscriptionVariables>({ query: UpdatedDetailedGameAttendersDocument, ...options }, handler);
+};
 export const UpdatedGameAttendersDocument = gql`
     subscription UpdatedGameAttenders {
   updatedGameAttenders {
-    coin_dropping {
+    coinDropping {
       ...GameAttenderBioData
     }
     xeno {
       ...GameAttenderBioData
     }
-    ice_raze {
+    iceRaze {
       ...GameAttenderBioData
     }
     poker {
@@ -828,7 +947,7 @@ export const UpdatedGameAttendersDocument = gql`
     president {
       ...GameAttenderBioData
     }
-    we_didnt_playtest {
+    weDidntPlaytest {
       ...GameAttenderBioData
     }
   }

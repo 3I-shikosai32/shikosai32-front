@@ -1,3 +1,0 @@
-fragment UserExchangeData on User {
-  consumablePoint
-}
