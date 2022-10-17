@@ -12,7 +12,7 @@ import {
 
 type NameInputPresenterProps = {
   isValueMissing: boolean;
-  isValid: boolean;
+  isValid: boolean | undefined;
 } & Pick<InputProps, 'value'> &
   Required<Pick<InputProps, 'onChange'>>;
 

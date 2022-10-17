@@ -10,6 +10,7 @@ import { Send } from './component/send/send.container';
 import { useFormState } from './hook/use-form.hook';
 import useCreateUserUseCase from '@/use-case/user/use-create-user.use-case';
 import { useCurrentUserBioUseCase } from '@/use-case/user/use-current-user-bio.use-case';
+import { useFindAllUsersNameUseCase } from '@/use-case/user/use-find-all-users-name.use-case';
 
 const NewUser: FC = () => {
   di(useCurrentUserBioUseCase);
@@ -23,9 +24,11 @@ const NewUser: FC = () => {
 
   const { executeMutation } = useCreateUserUseCase();
 
-  if (user === null) {
-    return <HttpError500 />;
-  }
+  const existingNames = useFindAllUsersNameUseCase();
+
+  // if (user === null) {
+  //   return <HttpError500 />;
+  // }
 
   return (
     <>
@@ -42,6 +45,7 @@ const NewUser: FC = () => {
             setFormValue={(name) => {
               updateFromValue({ name });
             }}
+            existingNames={existingNames ?? undefined}
           />
           <EmailInput
             formValue={formValue}
