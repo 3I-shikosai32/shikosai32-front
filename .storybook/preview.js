@@ -4,6 +4,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import 'tailwindcss/tailwind.css';
 import '../src/presentation/style/stylesheet/storybook.scss';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { addDecorator } from '@storybook/react';
+import { urqlDecorator } from '@urql/storybook-addon';
 
 const OriginalNextImage = NextImage.default;
 
@@ -11,6 +13,8 @@ Object.defineProperty(NextImage, 'default', {
   configurable: true,
   value: (props) => <OriginalNextImage {...props} unoptimized />,
 });
+
+addDecorator(urqlDecorator);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
