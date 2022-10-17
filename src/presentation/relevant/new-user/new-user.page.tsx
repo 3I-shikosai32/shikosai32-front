@@ -26,9 +26,9 @@ const NewUser: FC = () => {
 
   const existingNames = useFindAllUsersNameUseCase();
 
-  // if (user === null) {
-  //   return <HttpError500 />;
-  // }
+  if (user === null) {
+    return <HttpError500 />;
+  }
 
   return (
     <>
