@@ -13,6 +13,7 @@ const meta: ComponentMeta<typeof RankedUserItem> = {
     iconUrl: '/icons/fox.png',
     point: 50,
     place: 7,
+    forceEmphasizedRank: false,
     className: 'bg-white max-w-sm',
   },
   argTypes: {
@@ -35,6 +36,10 @@ const meta: ComponentMeta<typeof RankedUserItem> = {
     point: {
       description: 'ユーザーのポイントを指定する。',
       control: { type: 'number' },
+    },
+    forceEmphasizedRank: {
+      description: '順位にかかわらず、順位を強調表示するかどうかを指定する。',
+      control: { type: 'boolean' },
     },
     className: {
       description: 'サイズを変更するために用意されている。',
@@ -59,5 +64,11 @@ export const SecondPlace: Story = {
 export const ThirdPlace: Story = {
   args: {
     place: 3,
+  },
+};
+export const ForcedEmphasizedRank: Story = {
+  args: {
+    place: 27,
+    forceEmphasizedRank: true,
   },
 };
