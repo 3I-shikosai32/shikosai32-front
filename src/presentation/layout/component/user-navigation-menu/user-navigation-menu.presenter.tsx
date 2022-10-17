@@ -73,7 +73,7 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
             </>
           ) : (
             <NavigationLink>
-              <Link className="gap-2 font-normal" href="/auth/sign-up">
+              <Link className="gap-2 font-normal" href="/auth">
                 <LinkIcon>
                   <RiUser3Fill />
                 </LinkIcon>
