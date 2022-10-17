@@ -25,6 +25,7 @@ export const Auth: FC = () => {
             if (isLoading) {
               Router.push('/auth/is-new-user');
             }
+            setIsLoading(false);
           }}
         >
           <ButtonIcon>
