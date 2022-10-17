@@ -1,5 +1,4 @@
-import { useMemo, useCallback } from 'react';
-import type { SubscriptionHandler } from 'urql';
+import { useMemo } from 'react';
 import {
   useUpdatedGameAttendersSubscription,
   GameAttenderBioDataFragment,
@@ -37,12 +36,12 @@ export type UseRealtimeGameAttendersUseCaseResult = {
 export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttendersUseCaseProps): UseRealtimeGameAttendersUseCaseResult => {
   const [initialResult] = useFindGameAttendersQuery();
   const [updatedResult] = useUpdatedGameAttendersSubscription();
+  if (initialResult.error || updatedResult.error)
+    throw new Error('useRealtimeGameAttendersUseCase: error', initialResult.error || updatedResult.error);
   const fetchResult = useMemo(
     () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
     [updatedResult.data, initialResult.data],
   );
-  // eslint-disable-next-line no-console
-  console.log({ initialResult, updatedResult, fetchResult, game });
   return {
     attenders: fetchResultTranspiler({ fetchResult, game }),
   };
