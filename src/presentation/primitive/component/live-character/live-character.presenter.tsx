@@ -11,9 +11,10 @@ export type LiveCharacterProps = ComponentPropsWithRef<'figure'> &
   HTMLMotionProps<'figure'> & {
     name: string;
     images: Array<UserCharacterStatus['avaterUrl'] | Item['layerUrl']>;
+    displayName?: boolean;
   };
 
-export const LiveCharacter = forwardRef<HTMLElement, LiveCharacterProps>(({ name, images, className, ...props }, ref) => (
+export const LiveCharacter = forwardRef<HTMLElement, LiveCharacterProps>(({ name, images, className, displayName, ...props }, ref) => (
   <motion.figure
     ref={ref}
     transition={{ duration: 1.0, type: 'spring', stiffness: 100, damping: 5 }}
@@ -54,7 +55,12 @@ export const LiveCharacter = forwardRef<HTMLElement, LiveCharacterProps>(({ name
         ))}
       </ol>
     </motion.div>
-    <p className="-mt-2 text-xs">{name}</p>
+    {displayName && <p className="-mt-2 text-xs">{name}</p>}
   </motion.figure>
 ));
+
 LiveCharacter.displayName = 'LiveCharacter';
+
+LiveCharacter.defaultProps = {
+  displayName: true,
+};
