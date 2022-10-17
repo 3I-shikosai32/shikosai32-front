@@ -1,0 +1,5 @@
+query FindAllUsersName {
+  findUsers {
+    name
+  }
+}

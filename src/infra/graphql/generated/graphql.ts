@@ -667,6 +667,11 @@ export type CheckUserExistanceQueryVariables = Exact<{
 
 export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
 
+export type FindAllUsersNameQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ __typename?: 'User', name: string }> };
+
 export type FindGiftExchangeInfoQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
@@ -767,6 +772,17 @@ export const CheckUserExistanceDocument = gql`
 
 export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
   return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
+};
+export const FindAllUsersNameDocument = gql`
+    query FindAllUsersName {
+  findUsers {
+    name
+  }
+}
+    `;
+
+export function useFindAllUsersNameQuery(options?: Omit<Urql.UseQueryArgs<FindAllUsersNameQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindAllUsersNameQuery, FindAllUsersNameQueryVariables>({ query: FindAllUsersNameDocument, ...options });
 };
 export const FindGiftExchangeInfoDocument = gql`
     query FindGiftExchangeInfo($userId: String!) {
