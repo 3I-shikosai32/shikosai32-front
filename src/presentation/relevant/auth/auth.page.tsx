@@ -12,7 +12,7 @@ import { useCheckUserExistanceUseCase } from '@/use-case/user/use-check-user-exi
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 
 export const Auth: FC = () => {
-  const [isProcessingAuthentication, setIsProcessingAuthentication] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [shouldShowErrorModal, setShouldShowErrorModal] = useState(false);
   const currentUser = useCurrentUserIdUseCase(); // Firebase Authの認証情報由来のid
   const hasUserAuthenticated = useMemo(() => !!currentUser, [currentUser]); // ユーザーがFirebase Authでログイン済みかどうか
@@ -21,11 +21,12 @@ export const Auth: FC = () => {
     id: currentUser?.id,
   });
   useEffect(() => {
-    if (hasUserAuthenticated && hasUserRegisteredInfo) {
-      Router.push('/');
-    }
-    if (hasUserAuthenticated && !hasUserRegisteredInfo) {
-      Router.push('/auth/new-user');
+    if (hasUserAuthenticated) {
+      if (hasUserRegisteredInfo) {
+        Router.push('/');
+      } else {
+        Router.push('/auth/new-user');
+      }
     }
   }, [hasUserAuthenticated, hasUserRegisteredInfo]);
   return (
@@ -38,17 +39,17 @@ export const Auth: FC = () => {
       </h1>
       <div className="my-5">
         <Button
-          disabled={isProcessingAuthentication}
+          disabled={isAuthenticating}
           className="bg-secondary-300"
           onClick={async () => {
-            setIsProcessingAuthentication(true);
+            setIsAuthenticating(true);
             try {
               await loginWithGoogle();
             } catch (e) {
               // ログイン処理が失敗したときに、ダイアログを表示する
               setShouldShowErrorModal(true);
             } finally {
-              setIsProcessingAuthentication(false);
+              setIsAuthenticating(false);
             }
           }}
         >
