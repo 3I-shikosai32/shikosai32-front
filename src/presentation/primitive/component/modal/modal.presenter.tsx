@@ -71,7 +71,7 @@ export const ModalOverlay: FC<ModalOverlayProps> = ({ className, children, ...pr
   </Dialog.Overlay>
 );
 
-export type ModalProps = Pick<ComponentPropsWithoutRef<typeof Dialog.Root>, 'open' | 'onOpenChange'> & {
+export type ModalProps = Pick<ComponentPropsWithoutRef<typeof Dialog.Root>, 'open' | 'onOpenChange' | 'defaultOpen'> & {
   trigger?: ReactElement<ComponentPropsWithoutRef<'button'> | ButtonProps>;
   children: ReactElement<ModalOverlayProps>;
 };
