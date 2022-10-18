@@ -9,7 +9,7 @@ export const useUserNavigationMenu = (): UserNavigationMenuStateProps => {
 
   return {
     userIconUrl: user?.characterStatus.iconUrl,
-    isLoggedIn: !!user,
+    isLoggedIn: currentUser !== null,
     showAdminLink: user?.role === UserRole.Admin,
   };
 };
