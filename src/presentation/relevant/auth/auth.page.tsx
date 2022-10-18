@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { FC, useState, useMemo, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { RiUser3Fill } from 'react-icons/ri';
