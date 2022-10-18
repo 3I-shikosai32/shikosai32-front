@@ -14,7 +14,7 @@ import type { ModalProps } from '@/presentation/primitive/component/modal/modal.
 export type SignupProgressNotificationModalProps = Pick<ModalProps, 'open' | 'onOpenChange'>;
 
 export const SignupProgressNotificationModal: FC<SignupProgressNotificationModalProps> = ({ open, onOpenChange }) => (
-  <Modal open={open} onOpenChange={onOpenChange}>
+  <Modal defaultOpen={false} open={open} onOpenChange={onOpenChange}>
     <ModalOverlay>
       <ModalContent>
         <ModalTitle>まだ登録が完了していません！</ModalTitle>
