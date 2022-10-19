@@ -23,7 +23,7 @@ export const RankingPage = () => {
       id: currentUserMetaData.id,
       name: currentUserMetaData.name,
       iconUrl: currentUserMetaData.characterStatus.iconUrl,
-      point: NaN, // TODO: ポイントを取得する
+      point: undefined, // TODO: ポイントを取得する
       place,
     };
   }, [currentUserMetaData, place]);
