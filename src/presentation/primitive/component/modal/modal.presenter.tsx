@@ -71,15 +71,19 @@ export const ModalOverlay: FC<ModalOverlayProps> = ({ className, children, ...pr
   </Dialog.Overlay>
 );
 
-export type ModalProps = Pick<ComponentPropsWithoutRef<typeof Dialog.Root>, 'open' | 'onOpenChange'> & {
-  trigger: ReactElement<ComponentPropsWithoutRef<'button'> | ButtonProps>;
+export type ModalProps = Pick<ComponentPropsWithoutRef<typeof Dialog.Root>, 'open' | 'onOpenChange' | 'defaultOpen'> & {
+  trigger?: ReactElement<ComponentPropsWithoutRef<'button'> | ButtonProps>;
   children: ReactElement<ModalOverlayProps>;
 };
 
 // モーダルのトリガーとなるボタンとモーダルの中身を受け取り、モーダルを表示する本体となるコンポーネント
 export const Modal: FC<ModalProps> = ({ open, onOpenChange, trigger, children }) => (
   <Dialog.Root open={open} onOpenChange={onOpenChange}>
-    <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+    {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
     <Dialog.Portal>{children}</Dialog.Portal>
   </Dialog.Root>
 );
+
+Modal.defaultProps = {
+  trigger: undefined,
+};
