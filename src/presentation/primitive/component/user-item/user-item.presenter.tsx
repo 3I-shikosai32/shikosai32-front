@@ -46,7 +46,7 @@ export const UserItemTips: FC<UserItemTipsProps> = ({ children, className, ...pr
 export type UserItemProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
   children: Array<ReactElement<UserItemIconProps> | ReactElement<UserItemBioProps> | ReactElement<UserItemTipsProps>>;
 };
-export const UserItem = forwardRef<HTMLDivElement, UserItemBioProps>(({ children, className, ...props }, ref) => (
+export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(({ children, className, ...props }, ref) => (
   <div ref={ref} className={twMerge('flex flex-grow flex-row flex-nowrap justify-start items-center gap-3 p-0', className)} {...props}>
     {children}
   </div>
