@@ -82,9 +82,11 @@ export const XenoGamePage: FC = () => {
 
       <table className="mt-4 border-separate border-spacing-y-2 border-spacing-x-1 border border-transparent text-center">
         <thead>
-          <th>-</th>
-          <th className="w-1/4">名前</th>
-          <th>効果</th>
+          <tr>
+            <th>-</th>
+            <th className="w-1/4">名前</th>
+            <th>効果</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
