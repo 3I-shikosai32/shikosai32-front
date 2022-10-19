@@ -66,6 +66,12 @@ export const ThirdPlace: Story = {
     place: 3,
   },
 };
+export const NoProvidedPoint: Story = {
+  args: {
+    point: undefined,
+  },
+};
+
 export const ForcedEmphasizedRank: Story = {
   args: {
     place: 27,
