@@ -1,4 +1,4 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["react-magnetic-di/babel-plugin"]
+  "plugins": ["react-magnetic-di/babel-plugin","superjson-next"]
 }

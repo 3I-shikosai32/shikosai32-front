@@ -1,9 +1,10 @@
-import { useMemo, useCallback } from 'react';
-import type { SubscriptionHandler } from 'urql';
+import { useMemo } from 'react';
 import {
   useUpdatedDetailedGameAttendersSubscription,
   DetailedGameAttenderDataFragment,
   UpdatedDetailedGameAttendersSubscription,
+  useFindDetailedGameAttendersQuery,
+  FindDetailedGameAttendersQuery,
 } from '@/infra/graphql/generated/graphql';
 import type { DetailedGameAttenders, DetailedGameAttender } from '@/model/game/detailed-game-attenders.model';
 import type { Game } from '@/model/game/game.model';
@@ -20,6 +21,16 @@ const userTranspiler = (user: DetailedGameAttenderDataFragment): DetailedGameAtt
   itemLayerUrls: user.characterStatus.items.sort((item1, item2) => item1.layer - item2.layer).map((item) => item.layerUrl),
 });
 
+type DetailedGameAttendersFetchResult =
+  | FindDetailedGameAttendersQuery['getGameAttenders']
+  | UpdatedDetailedGameAttendersSubscription['updatedGameAttenders'];
+const fetchResultTranspiler = ({ fetchResult, game }: { fetchResult?: DetailedGameAttendersFetchResult; game: Game }): DetailedGameAttenders => {
+  const gameKey = GameAttendersGameKeyDictionaryToGql[game];
+  if (!(fetchResult && fetchResult[gameKey])) return [];
+  const attenders: DetailedGameAttenders = fetchResult[gameKey].map(userTranspiler);
+  return attenders;
+};
+
 export type UseRealtimeDetailedGameAttendersUseCaseProps = {
   game: Game;
 };
@@ -31,18 +42,14 @@ export type UseRealtimeDetailedGameAttendersUseCaseResult = {
 export const useRealtimeDetailedGameAttendersUseCase = ({
   game,
 }: UseRealtimeDetailedGameAttendersUseCaseProps): UseRealtimeDetailedGameAttendersUseCaseResult => {
-  const reducer = useCallback<SubscriptionHandler<UpdatedDetailedGameAttendersSubscription, DetailedGameAttenders>>(
-    (_, data) => {
-      const gameKey = GameAttendersGameKeyDictionaryToGql[game];
-      if (!(data && data.updatedGameAttenders && data.updatedGameAttenders[gameKey])) return [];
-      const attenders: DetailedGameAttenders = data.updatedGameAttenders[gameKey].map(userTranspiler);
-      return attenders;
-    },
-    [game],
-  );
+  const [initialResult] = useFindDetailedGameAttendersQuery();
+  const [updatedResult] = useUpdatedDetailedGameAttendersSubscription();
 
-  const [res] = useUpdatedDetailedGameAttendersSubscription({}, reducer);
+  const fetchResult = useMemo(
+    () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
+    [updatedResult.data, initialResult.data],
+  );
   return {
-    attenders: useMemo(() => res.data || [], [res.data]),
+    attenders: fetchResultTranspiler({ fetchResult, game }),
   };
 };
