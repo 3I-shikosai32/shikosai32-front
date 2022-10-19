@@ -30,7 +30,7 @@ export const RankedUserProjectedList: FC<RankedUserProjectedListProps> = ({ clas
         <MotionRankedUserItem
           key={user.id}
           layout
-          className="mr-2 max-w-sm shrink-0"
+          className="max-w-sm shrink-0"
           {...user}
           transition={{ duration: 0.25 }}
           initial={{ opacity: 0, scale: 0.75, y: 10 }}
@@ -42,6 +42,11 @@ export const RankedUserProjectedList: FC<RankedUserProjectedListProps> = ({ clas
           exit={{ opacity: 0, scale: 0.75, y: 10 }}
         />
       ))}
+      {users.length === 0 && (
+        <div className="flex items-center justify-center ">
+          <p className="text-neutral-500">ユーザーが見つかりませんでした</p>
+        </div>
+      )}
     </AnimatePresence>
   </MotionCard>
 );
