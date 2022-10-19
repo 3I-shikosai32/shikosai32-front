@@ -1,0 +1,8 @@
+subscription UpdatedRanking($date: Date!, $rankingTarget: RankingTarget!){
+  updatedRanking(date: $date, rankingTarget: $rankingTarget) {
+    point
+    user {
+      ...UserBioData
+    }
+  }
+}

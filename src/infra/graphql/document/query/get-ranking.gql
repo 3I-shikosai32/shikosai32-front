@@ -1,0 +1,9 @@
+# Welcome to Altair GraphQL Client.
+query GetRanking($date: Date!, $rankingTarget: RankingTarget!){
+  getRanking(date: $date, rankingTarget: $rankingTarget) {
+    point
+    user {
+      ...UserBioData
+    }
+  }
+}
