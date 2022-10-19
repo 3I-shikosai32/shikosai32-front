@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import { Layout } from './layout.container';
 import { useAudioControlMenu } from '@/presentation/layout/component/audio-control-menu/hook/use-audio-control-menu.hook';
+import { useSignupProgressNotificationModal } from '@/presentation/layout/component/signup-progress-notification-modal/hook/use-signup-progress-notification-modal.hook';
 import { useUserNavigationMenu } from '@/presentation/layout/component/user-navigation-menu/hook/use-user-navigation-menu.hook';
 
 type Story = ComponentStoryObj<typeof Layout>;
@@ -27,6 +28,9 @@ const injectedHooks = [
     ],
     duration: 100,
     currentTime: 0,
+  })),
+  injectable(useSignupProgressNotificationModal, () => ({
+    open: false,
   })),
 ];
 

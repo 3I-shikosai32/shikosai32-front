@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { FC, useState, useMemo, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { RiUser3Fill } from 'react-icons/ri';
@@ -8,18 +8,12 @@ import { Card } from '../../primitive/component/card/card.presenter';
 import { Link, LinkIcon } from '../../primitive/component/link/link.presenter';
 import { loginWithGoogle } from '@/infra/firebase/auth';
 import { Modal, ModalTitle, ModalDescription, ModalOverlay, ModalContent } from '@/presentation/primitive/component/modal/modal.presenter';
-import { useCheckUserExistanceUseCase } from '@/use-case/user/use-check-user-existance.use-case';
-import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
+import { useCurrentUserAuthenticationStatusUseCase } from '@/use-case/user/use-current-user-authentication-status.use-case';
 
 export const Auth: FC = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [shouldShowErrorModal, setShouldShowErrorModal] = useState(false);
-  const currentUser = useCurrentUserIdUseCase(); // Firebase Authの認証情報由来のid
-  const hasUserAuthenticated = useMemo(() => !!currentUser, [currentUser]); // ユーザーがFirebase Authでログイン済みかどうか
-  // ユーザーが各種情報を登録済みかどうか
-  const hasUserRegisteredInfo = useCheckUserExistanceUseCase({
-    id: currentUser?.id,
-  });
+  const { hasUserAuthenticated, hasUserRegisteredInfo } = useCurrentUserAuthenticationStatusUseCase();
   useEffect(() => {
     if (hasUserAuthenticated) {
       if (hasUserRegisteredInfo) {
