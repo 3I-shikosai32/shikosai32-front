@@ -1,9 +1,10 @@
-import { useMemo, useCallback } from 'react';
-import type { SubscriptionHandler } from 'urql';
+import { useMemo } from 'react';
 import {
   useUpdatedGameAttendersSubscription,
   GameAttenderBioDataFragment,
   UpdatedGameAttendersSubscription,
+  useFindGameAttendersQuery,
+  FindGameAttendersQuery,
 } from '@/infra/graphql/generated/graphql';
 import type { GameAttendersDictionary } from '@/model/game/game-attenders-dictionary.model';
 import type { GameAttenders } from '@/model/game/game-attenders.model';
@@ -16,6 +17,14 @@ const userTranspiler = (user: GameAttenderBioDataFragment): GameAttendersDiction
   iconUrl: user.characterStatus.iconUrl,
 });
 
+type GameAttendersFetchResult = FindGameAttendersQuery['getGameAttenders'] | UpdatedGameAttendersSubscription['updatedGameAttenders'];
+const fetchResultTranspiler = ({ fetchResult, game }: { fetchResult?: GameAttendersFetchResult; game: Game }): GameAttendersDictionary[Game] => {
+  const gameKey = GameAttendersGameKeyDictionaryToGql[game];
+  if (!(fetchResult && fetchResult[gameKey])) return [];
+  const attenders: GameAttenders = fetchResult[gameKey].map(userTranspiler);
+  return attenders;
+};
+
 export type UseRealtimeGameAttendersUseCaseProps = {
   game: Game;
 };
@@ -25,18 +34,15 @@ export type UseRealtimeGameAttendersUseCaseResult = {
 };
 
 export const useRealtimeGameAttendersUseCase = ({ game }: UseRealtimeGameAttendersUseCaseProps): UseRealtimeGameAttendersUseCaseResult => {
-  const reducer = useCallback<SubscriptionHandler<UpdatedGameAttendersSubscription, GameAttenders>>(
-    (_, data) => {
-      const gameKey = GameAttendersGameKeyDictionaryToGql[game];
-      if (!(data && data.updatedGameAttenders && data.updatedGameAttenders[gameKey])) return [];
-      const attenders: GameAttenders = data.updatedGameAttenders[gameKey].map(userTranspiler);
-      return attenders;
-    },
-    [game],
+  const [initialResult] = useFindGameAttendersQuery();
+  const [updatedResult] = useUpdatedGameAttendersSubscription();
+  if (initialResult.error || updatedResult.error)
+    throw new Error('useRealtimeGameAttendersUseCase: error', initialResult.error || updatedResult.error);
+  const fetchResult = useMemo(
+    () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
+    [updatedResult.data, initialResult.data],
   );
-
-  const [res] = useUpdatedGameAttendersSubscription({}, reducer);
   return {
-    attenders: useMemo(() => res.data || [], [res.data]),
+    attenders: fetchResultTranspiler({ fetchResult, game }),
   };
 };
