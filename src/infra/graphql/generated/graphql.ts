@@ -459,7 +459,8 @@ export type Query = {
   findUsers: Array<User>;
   getGameAttenders: GameAttenders;
   getObtainmentStatuses: Array<ObtainmentStatus>;
-  getRanking: Array<User>;
+  getRanking: Array<Ranking>;
+  getRankingPosition: Scalars['Int'];
 };
 
 
@@ -524,10 +525,21 @@ export type QueryGetRankingArgs = {
   rankingTarget: RankingTarget;
 };
 
+
+export type QueryGetRankingPositionArgs = {
+  where: UserWhereUniqueInput;
+};
+
 export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
 }
+
+export type Ranking = {
+  __typename?: 'Ranking';
+  point: Scalars['Int'];
+  user: User;
+};
 
 export enum RankingTarget {
   Cat = 'CAT',
@@ -575,7 +587,7 @@ export type StringNullableListFilter = {
 export type Subscription = {
   __typename?: 'Subscription';
   updatedGameAttenders: GameAttenders;
-  updatedRanking: Array<User>;
+  updatedRanking: Array<Ranking>;
 };
 
 
@@ -706,6 +718,11 @@ export type CheckUserExistanceQueryVariables = Exact<{
 
 
 export type CheckUserExistanceQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string } | null };
+
+export type FindAllUsersNameQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ __typename?: 'User', name: string }> };
 
 export type FindDetailedGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -874,6 +891,17 @@ export const CheckUserExistanceDocument = gql`
 
 export function useCheckUserExistanceQuery(options: Omit<Urql.UseQueryArgs<CheckUserExistanceQueryVariables>, 'query'>) {
   return Urql.useQuery<CheckUserExistanceQuery, CheckUserExistanceQueryVariables>({ query: CheckUserExistanceDocument, ...options });
+};
+export const FindAllUsersNameDocument = gql`
+    query FindAllUsersName {
+  findUsers {
+    name
+  }
+}
+    `;
+
+export function useFindAllUsersNameQuery(options?: Omit<Urql.UseQueryArgs<FindAllUsersNameQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindAllUsersNameQuery, FindAllUsersNameQueryVariables>({ query: FindAllUsersNameDocument, ...options });
 };
 export const FindDetailedGameAttendersDocument = gql`
     query FindDetailedGameAttenders {

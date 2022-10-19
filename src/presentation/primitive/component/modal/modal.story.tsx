@@ -10,6 +10,10 @@ type Story = ComponentStoryObj<typeof Modal>;
 const meta: ComponentMeta<typeof Modal> = {
   component: Modal,
   argTypes: {
+    defaultOpen: {
+      description: 'このモーダルの初期状態での開閉状態を指定できる。',
+      control: { type: 'boolean' },
+    },
     open: {
       description:
         'このモーダルの開閉状態を指定できる。**開閉を`state`で管理する必要がない場合は、指定しなくてもよい。**その場合でも、`trigger`ボタンとモーダル外クリックによる開閉は可能。',
