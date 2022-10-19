@@ -739,6 +739,13 @@ export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
+export type FindRankingPositionQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type FindRankingPositionQuery = { __typename?: 'Query', getRankingPosition: number };
+
 export type FindUserConsumablePointQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -753,6 +760,14 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
+export type GetRankingQueryVariables = Exact<{
+  date: Date;
+  rankingTarget: RankingTarget;
+}>;
+
+
+export type GetRankingQuery = { __typename?: 'Query', getRanking: Array<{ __typename?: 'Ranking', point: number, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } }> };
+
 export type UpdatedDetailedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -762,6 +777,14 @@ export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: n
 
 
 export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
+
+export type UpdatedRankingSubscriptionVariables = Exact<{
+  date: Date;
+  rankingTarget: RankingTarget;
+}>;
+
+
+export type UpdatedRankingSubscription = { __typename?: 'Subscription', updatedRanking: Array<{ __typename?: 'Ranking', point: number, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } }> };
 
 export const DetailedGameAttenderDataFragmentDoc = gql`
     fragment DetailedGameAttenderData on User {
@@ -970,6 +993,15 @@ export const FindGiftSalesDataDocument = gql`
 export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
 };
+export const FindRankingPositionDocument = gql`
+    query FindRankingPosition($userId: String!) {
+  getRankingPosition(where: {id: $userId})
+}
+    `;
+
+export function useFindRankingPositionQuery(options: Omit<Urql.UseQueryArgs<FindRankingPositionQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindRankingPositionQuery, FindRankingPositionQueryVariables>({ query: FindRankingPositionDocument, ...options });
+};
 export const FindUserConsumablePointDocument = gql`
     query FindUserConsumablePoint($id: String!) {
   findUser(where: {id: $id}) {
@@ -992,6 +1024,20 @@ export const FindUserMetaDataDocument = gql`
 
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
+};
+export const GetRankingDocument = gql`
+    query GetRanking($date: Date!, $rankingTarget: RankingTarget!) {
+  getRanking(date: $date, rankingTarget: $rankingTarget) {
+    point
+    user {
+      ...UserBioData
+    }
+  }
+}
+    ${UserBioDataFragmentDoc}`;
+
+export function useGetRankingQuery(options: Omit<Urql.UseQueryArgs<GetRankingQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetRankingQuery, GetRankingQueryVariables>({ query: GetRankingDocument, ...options });
 };
 export const UpdatedDetailedGameAttendersDocument = gql`
     subscription UpdatedDetailedGameAttenders {
@@ -1048,4 +1094,18 @@ export const UpdatedGameAttendersDocument = gql`
 
 export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttendersSubscription>(options: Omit<Urql.UseSubscriptionArgs<UpdatedGameAttendersSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<UpdatedGameAttendersSubscription, TData>) {
   return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>({ query: UpdatedGameAttendersDocument, ...options }, handler);
+};
+export const UpdatedRankingDocument = gql`
+    subscription UpdatedRanking($date: Date!, $rankingTarget: RankingTarget!) {
+  updatedRanking(date: $date, rankingTarget: $rankingTarget) {
+    point
+    user {
+      ...UserBioData
+    }
+  }
+}
+    ${UserBioDataFragmentDoc}`;
+
+export function useUpdatedRankingSubscription<TData = UpdatedRankingSubscription>(options: Omit<Urql.UseSubscriptionArgs<UpdatedRankingSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<UpdatedRankingSubscription, TData>) {
+  return Urql.useSubscription<UpdatedRankingSubscription, TData, UpdatedRankingSubscriptionVariables>({ query: UpdatedRankingDocument, ...options }, handler);
 };

@@ -1,20 +1,19 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
-import { RankedUserItem } from './ranked-user-item.presenter';
+import { RankShareCard } from './rank-share-card.presenter';
 
-type Story = ComponentStoryObj<typeof RankedUserItem>;
+type Story = ComponentStoryObj<typeof RankShareCard>;
 
-const meta: ComponentMeta<typeof RankedUserItem> = {
-  component: RankedUserItem,
+const meta: ComponentMeta<typeof RankShareCard> = {
+  component: RankShareCard,
   args: {
     id: '1',
-    name: 'ユーザー名',
+    name: 'じぶんのユーザー名',
     iconUrl: '/icons/fox.png',
-    point: 50,
-    place: 7,
-    forceEmphasizedRank: false,
-    className: 'bg-white max-w-sm',
+    point: 123,
+    place: 1,
+    className: 'w-fit',
   },
   argTypes: {
     id: {
@@ -37,10 +36,6 @@ const meta: ComponentMeta<typeof RankedUserItem> = {
       description: 'ユーザーのポイントを指定する。',
       control: { type: 'number' },
     },
-    forceEmphasizedRank: {
-      description: '順位にかかわらず、順位を強調表示するかどうかを指定する。',
-      control: { type: 'boolean' },
-    },
     className: {
       description: 'サイズを変更するために用意されている。',
       control: { type: 'text' },
@@ -51,6 +46,7 @@ const meta: ComponentMeta<typeof RankedUserItem> = {
 export default meta;
 
 export const Default: Story = {};
+
 export const FirstPlace: Story = {
   args: {
     place: 1,
@@ -59,22 +55,24 @@ export const FirstPlace: Story = {
 export const SecondPlace: Story = {
   args: {
     place: 2,
+    point: 96,
   },
 };
 export const ThirdPlace: Story = {
   args: {
     place: 3,
+    point: 80,
+  },
+};
+export const OrdinaryPlace: Story = {
+  args: {
+    place: 27,
+    point: 39,
   },
 };
 export const NoProvidedPoint: Story = {
   args: {
-    point: undefined,
-  },
-};
-
-export const ForcedEmphasizedRank: Story = {
-  args: {
     place: 27,
-    forceEmphasizedRank: true,
+    point: undefined,
   },
 };

@@ -8,7 +8,7 @@ export type IconProps = Pick<ComponentPropsWithoutRef<typeof Image>, 'src' | 'cl
 };
 
 const Icon: FC<IconProps> = ({ className, src, alt }) => (
-  <div className={twMerge('relative aspect-square h-12 rounded-full shadow-z16 overflow-hidden bg-white', className)}>
+  <div className={twMerge('relative shrink-0 aspect-square h-12 rounded-full shadow-z16 overflow-hidden bg-white', className)}>
     <Image className="h-full w-full" src={src} alt={alt} layout="fill" objectFit="cover" />
   </div>
 );

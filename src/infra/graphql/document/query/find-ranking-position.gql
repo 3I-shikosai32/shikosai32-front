@@ -1,0 +1,3 @@
+query FindRankingPosition($userId: String!){
+    getRankingPosition(where: {id: $userId})
+}

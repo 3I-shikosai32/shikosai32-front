@@ -59,8 +59,8 @@ export type SelectorGroupProps = Omit<ComponentPropsWithoutRef<typeof Select.Gro
   children: Array<ReactElement<SelectorItemProps>> | ReactElement<SelectorItemProps>;
 };
 
-export const SelectorGroup: FC<SelectorGroupProps> = ({ children, label, ...props }) => (
-  <Select.Group className="flex flex-col gap-0" {...props}>
+export const SelectorGroup: FC<SelectorGroupProps> = ({ className, children, label, ...props }) => (
+  <Select.Group className={twMerge('flex flex-col gap-0', className)} {...props}>
     <Select.Label className="text-xs text-neutral-400">{label}</Select.Label>
     {children}
   </Select.Group>

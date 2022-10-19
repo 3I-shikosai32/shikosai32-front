@@ -1,4 +1,5 @@
-import type { FC, ComponentPropsWithoutRef, ReactElement } from 'react';
+import type { FC, ComponentPropsWithoutRef, ComponentPropsWithRef, ReactElement } from 'react';
+import { forwardRef } from 'react';
 import type { UserBio } from '@/model/user/user-bio.model';
 import { Icon } from '@/presentation/primitive/component/icon/icon.presenter';
 import { Separator } from '@/presentation/primitive/component/sepatator/separator.presenter';
@@ -42,11 +43,12 @@ export const UserItemTips: FC<UserItemTipsProps> = ({ children, className, ...pr
   </>
 );
 
-export type UserItemProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
+export type UserItemProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
   children: Array<ReactElement<UserItemIconProps> | ReactElement<UserItemBioProps> | ReactElement<UserItemTipsProps>>;
 };
-export const UserItem: FC<UserItemProps> = ({ children, className, ...props }) => (
-  <div className={twMerge('flex flex-grow flex-row flex-nowrap justify-start items-center gap-3 p-0', className)} {...props}>
+export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(({ children, className, ...props }, ref) => (
+  <div ref={ref} className={twMerge('flex flex-grow flex-row flex-nowrap justify-start items-center gap-3 p-0', className)} {...props}>
     {children}
   </div>
-);
+));
+UserItem.displayName = 'UserItem';
