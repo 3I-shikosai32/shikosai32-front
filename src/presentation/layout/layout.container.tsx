@@ -2,6 +2,7 @@ import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react';
 import { CommonMeta, CommonMetaProps } from './component/common-meta/common-meta.presenter';
 import { Footer } from './component/footer/footer.presenter';
 import { Header } from './component/header/header.presenter';
+import { SignUpProgressNotificationModalContainer } from './component/signup-progress-notification-modal/signup-progress-notification-modal.container';
 import twMerge from '@/presentation/style/twmerge';
 
 export type LayoutProps = ComponentPropsWithoutRef<'main'> &
@@ -17,5 +18,6 @@ export const Layout: FC<LayoutProps> = ({ children, title, className, ...props }
       {children}
     </main>
     <Footer className="m-0 w-full grow-0" />
+    <SignUpProgressNotificationModalContainer />
   </div>
 );
