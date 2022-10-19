@@ -70,3 +70,9 @@ export const OrdinaryPlace: Story = {
     point: 39,
   },
 };
+export const NoProvidedPoint: Story = {
+  args: {
+    place: 27,
+    point: undefined,
+  },
+};

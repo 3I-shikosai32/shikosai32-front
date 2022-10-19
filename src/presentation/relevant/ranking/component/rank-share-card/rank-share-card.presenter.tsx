@@ -16,7 +16,9 @@ export const RankShareCard: FC<RankShareCardProps> = ({ id, name, iconUrl, place
     <RankedUserItem forceEmphasizedRank {...{ id, name, iconUrl, place, point }} />
     <TwitterShareButton
       url="https://3i.shikosai.net"
-      title={`"${name}"がOZで ✨${place}位✨ の座を手にしました！\nきみはこの ✨${point}Pt✨ の記録を超えることができるかな？OZでチャレンジしてみよう！`}
+      title={`"${name}"がOZで ✨${place}位✨ の座を手にしました！\nきみはこの${
+        point ? ` ✨${point}Pt✨ の` : ''
+      }記録を超えることができるかな？OZでチャレンジしてみよう！`}
       related={['3i_shikosai32']}
       hashtags={['茨香祭32', 'shikosai32', 'OZat3I']} // TODO: OZ固有のハッシュタグをちゃんと考える！
     >
