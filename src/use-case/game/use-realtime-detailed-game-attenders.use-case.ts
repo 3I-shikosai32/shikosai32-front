@@ -44,8 +44,7 @@ export const useRealtimeDetailedGameAttendersUseCase = ({
 }: UseRealtimeDetailedGameAttendersUseCaseProps): UseRealtimeDetailedGameAttendersUseCaseResult => {
   const [initialResult] = useFindDetailedGameAttendersQuery();
   const [updatedResult] = useUpdatedDetailedGameAttendersSubscription();
-  if (initialResult.error || updatedResult.error)
-    throw new Error('useRealtimeDetailedGameAttendersUseCase: error', initialResult.error || updatedResult.error);
+
   const fetchResult = useMemo(
     () => updatedResult.data?.updatedGameAttenders || initialResult.data?.getGameAttenders,
     [updatedResult.data, initialResult.data],
