@@ -315,7 +315,6 @@ export type Mutation = {
   incrementPoint: Array<User>;
   joinGame: User;
   pullGacha: Item;
-  updateUserBio: User;
 };
 
 
@@ -354,18 +353,12 @@ export type MutationIncrementPointArgs = {
 
 export type MutationJoinGameArgs = {
   game: Game;
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
 export type MutationPullGachaArgs = {
-  where: UserWhereUniqueInput;
-};
-
-
-export type MutationUpdateUserBioArgs = {
-  data: UserUpdateBioInput;
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 export type NestedBoolFilter = {
@@ -502,7 +495,7 @@ export type QueryFindItemCompletedCharacterStatusesArgs = {
 
 
 export type QueryFindUserArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
@@ -516,7 +509,7 @@ export type QueryFindUsersArgs = {
 
 
 export type QueryGetObtainmentStatusesArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
@@ -527,7 +520,7 @@ export type QueryGetRankingArgs = {
 
 
 export type QueryGetRankingPositionArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 export enum QueryMode {
@@ -598,6 +591,7 @@ export type SubscriptionUpdatedRankingArgs = {
 
 export type User = {
   __typename?: 'User';
+  authId: Scalars['String'];
   characterStatus: CharacterStatus;
   consumablePoint: Scalars['Int'];
   createdAt: Scalars['DateTime'];
@@ -613,9 +607,9 @@ export type User = {
 };
 
 export type UserCreateInput = {
+  authId: Scalars['String'];
   character: Character;
   email: Scalars['String'];
-  id: Scalars['String'];
   name: Scalars['String'];
   role?: InputMaybe<Role>;
 };
@@ -643,15 +637,11 @@ export type UserRelationFilter = {
   isNot?: InputMaybe<UserWhereInput>;
 };
 
-export type UserUpdateBioInput = {
-  name?: InputMaybe<Scalars['String']>;
-  role?: InputMaybe<Role>;
-};
-
 export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
   OR?: InputMaybe<Array<UserWhereInput>>;
+  authId?: InputMaybe<StringFilter>;
   consumablePoint?: InputMaybe<IntFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
@@ -663,6 +653,10 @@ export type UserWhereInput = {
   role?: InputMaybe<EnumRoleFilter>;
   totalPointDay1?: InputMaybe<IntFilter>;
   totalPointDay2?: InputMaybe<IntFilter>;
+};
+
+export type UserWhereUniqueAuthIdInput = {
+  authId: Scalars['String'];
 };
 
 export type UserWhereUniqueInput = {
@@ -894,7 +888,7 @@ export function useExitGameMutation() {
 };
 export const JoinGameDocument = gql`
     mutation JoinGame($userId: String!, $game: Game!) {
-  joinGame(game: $game, where: {id: $userId}) {
+  joinGame(game: $game, where: {authId: $userId}) {
     id
     participateGame
   }
@@ -906,7 +900,7 @@ export function useJoinGameMutation() {
 };
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     id
   }
 }
@@ -995,7 +989,7 @@ export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindG
 };
 export const FindRankingPositionDocument = gql`
     query FindRankingPosition($userId: String!) {
-  getRankingPosition(where: {id: $userId})
+  getRankingPosition(where: {authId: $userId})
 }
     `;
 
@@ -1004,7 +998,7 @@ export function useFindRankingPositionQuery(options: Omit<Urql.UseQueryArgs<Find
 };
 export const FindUserConsumablePointDocument = gql`
     query FindUserConsumablePoint($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     id
     consumablePoint
   }
@@ -1016,7 +1010,7 @@ export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<
 };
 export const FindUserMetaDataDocument = gql`
     query FindUserMetaData($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     ...UserMetaData
   }
 }
