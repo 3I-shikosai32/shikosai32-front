@@ -1,5 +1,5 @@
 # Welcome to Altair GraphQL Client.
-query GetRanking($date: Date!, $rankingTarget: RankingTarget!){
+query GetRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!){
   getRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {

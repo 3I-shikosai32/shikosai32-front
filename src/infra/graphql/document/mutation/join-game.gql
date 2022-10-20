@@ -1,5 +1,5 @@
 mutation JoinGame($userId: String!, $game: Game!) {
-  joinGame(game: $game, where: { id: $userId }) {
+  joinGame(game: $game, where: { authId: $userId }) {
     id
     participateGame
   }
