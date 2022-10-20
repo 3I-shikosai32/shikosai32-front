@@ -4,7 +4,7 @@ import { Button, ButtonIcon } from "@/presentation/primitive/component/button/bu
 
 
 const Point: FC = () => (
-	<div className="mx-[10px] mt-[25px] w-[95%] rounded-3xl bg-white shadow-xl">
+	<div className="mx-[10px] mt-[25px] w-[90%] rounded-3xl bg-white shadow-xl">
 		<div className="flex justify-center px-[20px] ">
 			<div>
 				<div className="text-center text-[40px] font-bold">残り消費Pt</div>
@@ -15,7 +15,7 @@ const Point: FC = () => (
 			</div>
 		</div>
 		<div className="my-[10px] flex justify-center">
-			<Button className="bg-exchange">
+			<Button className="bg-gradient-to-r from-[#E07272] to-[#FFB661]">
 				<ButtonIcon>
 					<BsFillGiftFill />
 				</ButtonIcon>

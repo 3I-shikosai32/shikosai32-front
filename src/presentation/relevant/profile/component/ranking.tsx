@@ -8,7 +8,7 @@ const Ranking: FC = () => {
 	const shareUrl = 'http://github.com';
 	const title = 'GitHub';
 	return (
-		<div className="mx-[15px] mt-[25px] w-[95%]">
+		<div className="mx-[15px] mt-[25px] w-[90%]">
 			<div className="rounded-3xl bg-white px-[20px] pt-[15px] pb-[5px] shadow-xl">
 				<div className="">
 					<div className="text-center font-body text-[40px] font-bold">あなたの順位</div>

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 const Congrat: FC = () => (
-	<div className="mx-[10px] mt-[100px] w-[95%]">
+	<div className="mx-[10px] mt-[100px] w-[90%]">
 		<div className="flex justify-center rounded-3xl border border-primary bg-primary-100 px-[20px]">
 			<div className="font-pixel">
 				<div className="text-center text-[54px]">おめでとう!</div>
