@@ -71,11 +71,6 @@ export type CharacterStatusWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export enum Date {
-  Day1 = 'DAY1',
-  Day2 = 'DAY2'
-}
-
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -315,7 +310,6 @@ export type Mutation = {
   incrementPoint: Array<User>;
   joinGame: User;
   pullGacha: Item;
-  updateUserBio: User;
 };
 
 
@@ -354,18 +348,12 @@ export type MutationIncrementPointArgs = {
 
 export type MutationJoinGameArgs = {
   game: Game;
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
 export type MutationPullGachaArgs = {
-  where: UserWhereUniqueInput;
-};
-
-
-export type MutationUpdateUserBioArgs = {
-  data: UserUpdateBioInput;
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 export type NestedBoolFilter = {
@@ -502,7 +490,7 @@ export type QueryFindItemCompletedCharacterStatusesArgs = {
 
 
 export type QueryFindUserArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
@@ -516,18 +504,18 @@ export type QueryFindUsersArgs = {
 
 
 export type QueryGetObtainmentStatusesArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 
 export type QueryGetRankingArgs = {
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 };
 
 
 export type QueryGetRankingPositionArgs = {
-  where: UserWhereUniqueInput;
+  where: UserWhereUniqueAuthIdInput;
 };
 
 export enum QueryMode {
@@ -540,6 +528,11 @@ export type Ranking = {
   point: Scalars['Int'];
   user: User;
 };
+
+export enum RankingPeriod {
+  Day1 = 'DAY1',
+  Day2 = 'DAY2'
+}
 
 export enum RankingTarget {
   Cat = 'CAT',
@@ -592,12 +585,13 @@ export type Subscription = {
 
 
 export type SubscriptionUpdatedRankingArgs = {
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 };
 
 export type User = {
   __typename?: 'User';
+  authId: Scalars['String'];
   characterStatus: CharacterStatus;
   consumablePoint: Scalars['Int'];
   createdAt: Scalars['DateTime'];
@@ -613,9 +607,9 @@ export type User = {
 };
 
 export type UserCreateInput = {
+  authId: Scalars['String'];
   character: Character;
   email: Scalars['String'];
-  id: Scalars['String'];
   name: Scalars['String'];
   role?: InputMaybe<Role>;
 };
@@ -643,15 +637,11 @@ export type UserRelationFilter = {
   isNot?: InputMaybe<UserWhereInput>;
 };
 
-export type UserUpdateBioInput = {
-  name?: InputMaybe<Scalars['String']>;
-  role?: InputMaybe<Role>;
-};
-
 export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
   OR?: InputMaybe<Array<UserWhereInput>>;
+  authId?: InputMaybe<StringFilter>;
   consumablePoint?: InputMaybe<IntFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
@@ -663,6 +653,10 @@ export type UserWhereInput = {
   role?: InputMaybe<EnumRoleFilter>;
   totalPointDay1?: InputMaybe<IntFilter>;
   totalPointDay2?: InputMaybe<IntFilter>;
+};
+
+export type UserWhereUniqueAuthIdInput = {
+  authId: Scalars['String'];
 };
 
 export type UserWhereUniqueInput = {
@@ -761,7 +755,7 @@ export type FindUserMetaDataQueryVariables = Exact<{
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
 export type GetRankingQueryVariables = Exact<{
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 }>;
 
@@ -779,7 +773,7 @@ export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: n
 export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
 export type UpdatedRankingSubscriptionVariables = Exact<{
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 }>;
 
@@ -894,7 +888,7 @@ export function useExitGameMutation() {
 };
 export const JoinGameDocument = gql`
     mutation JoinGame($userId: String!, $game: Game!) {
-  joinGame(game: $game, where: {id: $userId}) {
+  joinGame(game: $game, where: {authId: $userId}) {
     id
     participateGame
   }
@@ -906,7 +900,7 @@ export function useJoinGameMutation() {
 };
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     id
   }
 }
@@ -995,7 +989,7 @@ export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindG
 };
 export const FindRankingPositionDocument = gql`
     query FindRankingPosition($userId: String!) {
-  getRankingPosition(where: {id: $userId})
+  getRankingPosition(where: {authId: $userId})
 }
     `;
 
@@ -1004,7 +998,7 @@ export function useFindRankingPositionQuery(options: Omit<Urql.UseQueryArgs<Find
 };
 export const FindUserConsumablePointDocument = gql`
     query FindUserConsumablePoint($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     id
     consumablePoint
   }
@@ -1016,7 +1010,7 @@ export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<
 };
 export const FindUserMetaDataDocument = gql`
     query FindUserMetaData($id: String!) {
-  findUser(where: {id: $id}) {
+  findUser(where: {authId: $id}) {
     ...UserMetaData
   }
 }
@@ -1026,7 +1020,7 @@ export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUse
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
 };
 export const GetRankingDocument = gql`
-    query GetRanking($date: Date!, $rankingTarget: RankingTarget!) {
+    query GetRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
   getRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {
@@ -1096,7 +1090,7 @@ export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttenders
   return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>({ query: UpdatedGameAttendersDocument, ...options }, handler);
 };
 export const UpdatedRankingDocument = gql`
-    subscription UpdatedRanking($date: Date!, $rankingTarget: RankingTarget!) {
+    subscription UpdatedRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
   updatedRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {
