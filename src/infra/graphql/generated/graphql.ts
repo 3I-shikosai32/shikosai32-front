@@ -71,11 +71,6 @@ export type CharacterStatusWhereUniqueInput = {
   id: Scalars['String'];
 };
 
-export enum Date {
-  Day1 = 'DAY1',
-  Day2 = 'DAY2'
-}
-
 export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
@@ -514,7 +509,7 @@ export type QueryGetObtainmentStatusesArgs = {
 
 
 export type QueryGetRankingArgs = {
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 };
 
@@ -533,6 +528,11 @@ export type Ranking = {
   point: Scalars['Int'];
   user: User;
 };
+
+export enum RankingPeriod {
+  Day1 = 'DAY1',
+  Day2 = 'DAY2'
+}
 
 export enum RankingTarget {
   Cat = 'CAT',
@@ -585,7 +585,7 @@ export type Subscription = {
 
 
 export type SubscriptionUpdatedRankingArgs = {
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 };
 
@@ -755,7 +755,7 @@ export type FindUserMetaDataQueryVariables = Exact<{
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
 export type GetRankingQueryVariables = Exact<{
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 }>;
 
@@ -773,7 +773,7 @@ export type UpdatedGameAttendersSubscriptionVariables = Exact<{ [key: string]: n
 export type UpdatedGameAttendersSubscription = { __typename?: 'Subscription', updatedGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
 export type UpdatedRankingSubscriptionVariables = Exact<{
-  date: Date;
+  date: RankingPeriod;
   rankingTarget: RankingTarget;
 }>;
 
@@ -1020,7 +1020,7 @@ export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUse
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
 };
 export const GetRankingDocument = gql`
-    query GetRanking($date: Date!, $rankingTarget: RankingTarget!) {
+    query GetRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
   getRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {
@@ -1090,7 +1090,7 @@ export function useUpdatedGameAttendersSubscription<TData = UpdatedGameAttenders
   return Urql.useSubscription<UpdatedGameAttendersSubscription, TData, UpdatedGameAttendersSubscriptionVariables>({ query: UpdatedGameAttendersDocument, ...options }, handler);
 };
 export const UpdatedRankingDocument = gql`
-    subscription UpdatedRanking($date: Date!, $rankingTarget: RankingTarget!) {
+    subscription UpdatedRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
   updatedRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {

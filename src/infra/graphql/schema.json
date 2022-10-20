@@ -567,29 +567,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "Date",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "DAY1",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "DAY2",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
         "kind": "SCALAR",
         "name": "DateTime",
         "description": "A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.",
@@ -4718,7 +4695,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "Date",
+                    "name": "RankingPeriod",
                     "ofType": null
                   }
                 },
@@ -4866,6 +4843,29 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "RankingPeriod",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "DAY1",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DAY2",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -5276,7 +5276,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "Date",
+                    "name": "RankingPeriod",
                     "ofType": null
                   }
                 },
