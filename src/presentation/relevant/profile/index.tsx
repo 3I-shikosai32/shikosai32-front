@@ -4,7 +4,6 @@ import Congrat from './component/congrat';
 import Item, { ItemType } from './component/item'
 import Point from './component/point';
 import Ranking, { RankingType } from './component/ranking';
-import useGetUser from './hooks/useGetUser';
 import { Character } from '@/infra/graphql/generated/graphql';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 
@@ -20,7 +19,6 @@ const rankingState: RankingType = {
 	name: "hoge",
 	rank: 3,
 	character: Character.Cat,
-	point: 5,
 }
 
 const itemState: ItemType = {
