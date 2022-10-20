@@ -4,7 +4,7 @@ import {
   GetRankingQuery,
   useUpdatedRankingSubscription,
   UpdatedRankingSubscription,
-  Date as RankingPeriodInGql,
+  RankingPeriod as RankingPeriodInGql,
   RankingTarget as RankingCategoryInGql,
 } from '@/infra/graphql/generated/graphql';
 

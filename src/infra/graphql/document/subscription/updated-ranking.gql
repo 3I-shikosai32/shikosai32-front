@@ -1,4 +1,4 @@
-subscription UpdatedRanking($date: Date!, $rankingTarget: RankingTarget!){
+subscription UpdatedRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!){
   updatedRanking(date: $date, rankingTarget: $rankingTarget) {
     point
     user {

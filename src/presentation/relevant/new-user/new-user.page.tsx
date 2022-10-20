@@ -66,7 +66,7 @@ const NewUser: FC = () => {
             if (user?.id && formValue.name && formValue.email && formValue.character) {
               await executeMutation({
                 data: {
-                  id: user.id,
+                  authId: user.id,
                   name: formValue.name,
                   email: formValue.email,
                   character: formValue.character,
