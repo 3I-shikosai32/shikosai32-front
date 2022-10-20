@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { useState, useEffect } from "react";
 import { RiTwitterLine } from "react-icons/ri";
 import { TwitterShareButton } from "react-share"
 import type { Character } from "@/infra/graphql/generated/graphql";
@@ -11,14 +10,8 @@ export type RankingType = {
 	name: string,
 	rank: number,
 	character: Character | null,
-	point: number,
 }
 const Ranking: FC<{ data: RankingType }> = ({ data }) => {
-	const [state, setState] = useState<RankingType>();
-	useEffect(() => {
-		setState({ name: data.name, rank: data.rank, character: data.character, point: data.point })
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
 	const shareUrl = 'http://github.com';
 	const title = 'GitHub';
 	return (
@@ -30,10 +23,6 @@ const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 					<div className="mb-[50px] flex translate-y-[-20px] justify-center">
 						<div className={twMerge("mr-[10px] translate-y-[55px] text-5xl", data.rank === 1 && "text-gold", data.rank === 2 && "text-silver", data.rank === 3 && "text-[#d8b041]")}>#{data.rank}</div>
 						<Icon src={`/icons/${data.character?.toLocaleLowerCase()}.png`} className="h-[10px] w-[20px] translate-y-10 p-10" />
-						<div className="ml-[10px] translate-y-[60px] text-center">
-							<div>{state?.point}pt</div>
-							<div className="font-body text-3xl font-bold">{state?.name}</div>
-						</div>
 					</div>
 				</div>
 				<div className="my-[10px] flex justify-center">
