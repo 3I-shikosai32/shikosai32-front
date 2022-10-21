@@ -4,7 +4,7 @@ import { BsFillGiftFill } from "react-icons/bs";
 import { Button, ButtonIcon } from "@/presentation/primitive/component/button/button.presenter";
 
 
-const Point: FC = () => {
+const Point: FC<{ point: number | null | undefined }> = ({ point }) => {
 	const router = useRouter()
 	return (
 		<div className="mx-[10px] mt-[25px] w-[90%] rounded-3xl bg-white pt-[20px] shadow-xl">
@@ -12,7 +12,7 @@ const Point: FC = () => {
 				<div>
 					<div className="text-center text-[40px] font-bold">残り消費Pt</div>
 					<div className="text-center text-3xl">
-						<span className="text-5xl">34</span>
+						<span className="text-5xl">{point || 0}</span>
 						<span>pt</span>
 					</div>
 				</div>
