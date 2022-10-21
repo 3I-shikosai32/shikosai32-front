@@ -71,7 +71,7 @@ export const XenoGamePage: FC = () => {
     <GamePlayground {...props} className="w-screen grow text-game-xeno-g1 gradient-game-xeno">
       <GamePlaygroundTitle className="font-pixel-latin">Xeno</GamePlaygroundTitle>
       <GamePlaygroundDifficultyIndicator difficulty={5} />
-      <GamePlaygroundDescription>ここにゲームの簡潔な説明を挿入</GamePlaygroundDescription>
+      {/* <GamePlaygroundDescription>ここにゲームの簡潔な説明を挿入</GamePlaygroundDescription> */}
       <GamePlaygroundSeparator />
       <span>
         1人1枚ずつカードを持ち、自分のターン開始時に山札から 1枚引いてどちらかを捨てる。
