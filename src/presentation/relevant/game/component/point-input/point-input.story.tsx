@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 import type { ComponentStoryObj, ComponentMeta } from '@storybook/react';
 
 import { PointInput } from './point-input.presenter';
@@ -13,6 +15,7 @@ const meta: ComponentMeta<typeof PointInput> = {
     min: 0,
     max: 20,
     step: 2,
+    onChange: action('onChange'),
   },
   argTypes: {
     required: {
