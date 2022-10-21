@@ -8,6 +8,7 @@ export type RankingType = {
 	name: string | undefined,
 	rank: number | undefined,
 	character: Character | undefined,
+	quantitiy: number | undefined
 }
 const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 	const shareUrl = 'http://github.com';
@@ -19,7 +20,7 @@ const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 					<div className="flex translate-y-[-20px] justify-center pt-[30px]">
 						<div>
 							<div className="text-center font-body text-[40px] font-bold">あなたの順位</div>
-							<div className="text-center text-sm ">全参加者128人の中で...</div>
+							<div className="text-center text-sm ">全参加者{data.quantitiy}人の中で...</div>
 							<div className="mb-[30px] flex translate-y-[-20px] justify-center">
 								<div className={twMerge("mr-[10px] translate-y-[55px] text-5xl", data.rank === 1 && "text-gold", data.rank === 2 && "text-silver", data.rank === 3 && "text-[#d8b041]")}>#{data.rank}</div>
 								<Icon src={`/icons/${data.character?.toLocaleLowerCase()}.png`} className="h-[10px] w-[20px] translate-y-10 p-10" />
