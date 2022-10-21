@@ -21,7 +21,7 @@ export const useSignupProgressNotificationModal = (): Pick<SignupProgressNotific
 
   const shouldShowModal = useMemo(() => {
     if (!hasComponentMounted) return false; // Hydrationが失敗しないようにするため
-    return hasUserAuthenticated && !hasUserRegisteredInfo && !isCurrentlyAtAuthPage;
+    return hasUserAuthenticated && hasUserRegisteredInfo === false && hasUserRegisteredInfo !== null && !isCurrentlyAtAuthPage;
   }, [hasUserAuthenticated, hasUserRegisteredInfo, isCurrentlyAtAuthPage, hasComponentMounted]);
   return {
     open: shouldShowModal,
