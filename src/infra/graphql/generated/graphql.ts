@@ -769,6 +769,13 @@ export type GetRankingQueryVariables = Exact<{
 
 export type GetRankingQuery = { __typename?: 'Query', getRanking: Array<{ __typename?: 'Ranking', point: number, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } }> };
 
+export type GetTotalPointQueryVariables = Exact<{
+  where: UserWhereUniqueAuthIdInput;
+}>;
+
+
+export type GetTotalPointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', totalPointDay1: number, totalPointDay2: number } | null };
+
 export type UpdatedDetailedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1053,6 +1060,18 @@ export const GetRankingDocument = gql`
 
 export function useGetRankingQuery(options: Omit<Urql.UseQueryArgs<GetRankingQueryVariables>, 'query'>) {
   return Urql.useQuery<GetRankingQuery, GetRankingQueryVariables>({ query: GetRankingDocument, ...options });
+};
+export const GetTotalPointDocument = gql`
+    query getTotalPoint($where: UserWhereUniqueAuthIdInput!) {
+  findUser(where: $where) {
+    totalPointDay1
+    totalPointDay2
+  }
+}
+    `;
+
+export function useGetTotalPointQuery(options: Omit<Urql.UseQueryArgs<GetTotalPointQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetTotalPointQuery, GetTotalPointQueryVariables>({ query: GetTotalPointDocument, ...options });
 };
 export const UpdatedDetailedGameAttendersDocument = gql`
     subscription UpdatedDetailedGameAttenders {

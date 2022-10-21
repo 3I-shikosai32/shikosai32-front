@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { FC } from "react";
-import type { GetObtainmentStatusesResult } from '../hooks/useGetObtainment'
+import type { GetObtainmentStatusesResult } from '../hook/useGetObtainment'
 
 export type ItemType = {
 	name: string | undefined,
