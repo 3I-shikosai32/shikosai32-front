@@ -1,0 +1,8 @@
+query GetObtainmentStatuses($where: UserWhereUniqueAuthIdInput!) {
+  getObtainmentStatuses(where: $where) {
+    item {
+      iconUrl
+    }
+    obtained
+  }
+}
