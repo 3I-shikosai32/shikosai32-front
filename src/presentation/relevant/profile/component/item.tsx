@@ -2,7 +2,8 @@ import Image from "next/image";
 import type { FC } from "react";
 
 export type ItemType = {
-	name: string
+	name: string | undefined,
+	url: string | undefined
 }
 
 const Item: FC<{ data: ItemType }> = ({ data }) => (
@@ -14,7 +15,7 @@ const Item: FC<{ data: ItemType }> = ({ data }) => (
 				<div className="mt-[30px] text-center font-pixel text-[30px] text-primary-700">4つ獲得済み!</div>
 				<div className="flex justify-center ">
 					<div className="mb-0 h-[200px] w-[250px] translate-y-[-20px]">
-						<Image src="/character/fox/base.png" width={250} height={200} alt="My icon" layout="responsive" />
+						<Image src={data.url ? data.url : ""} width={250} height={200} alt="My icon" layout="responsive" />
 					</div>
 				</div>
 				<div className="translate-y-[-50px] text-center text-[30px] font-bold">
