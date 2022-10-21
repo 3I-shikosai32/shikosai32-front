@@ -754,6 +754,13 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
+export type GetObtainmentStatusesQueryVariables = Exact<{
+  where: UserWhereUniqueAuthIdInput;
+}>;
+
+
+export type GetObtainmentStatusesQuery = { __typename?: 'Query', getObtainmentStatuses: Array<{ __typename?: 'ObtainmentStatus', obtained: boolean, item: { __typename?: 'Item', iconUrl: string } }> };
+
 export type GetRankingQueryVariables = Exact<{
   date: RankingPeriod;
   rankingTarget: RankingTarget;
@@ -1018,6 +1025,20 @@ export const FindUserMetaDataDocument = gql`
 
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
+};
+export const GetObtainmentStatusesDocument = gql`
+    query GetObtainmentStatuses($where: UserWhereUniqueAuthIdInput!) {
+  getObtainmentStatuses(where: $where) {
+    item {
+      iconUrl
+    }
+    obtained
+  }
+}
+    `;
+
+export function useGetObtainmentStatusesQuery(options: Omit<Urql.UseQueryArgs<GetObtainmentStatusesQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetObtainmentStatusesQuery, GetObtainmentStatusesQueryVariables>({ query: GetObtainmentStatusesDocument, ...options });
 };
 export const GetRankingDocument = gql`
     query GetRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
