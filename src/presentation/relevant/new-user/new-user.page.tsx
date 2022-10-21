@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import type { FC } from 'react';
+import { useEffect } from 'react';
 import { di } from 'react-magnetic-di';
-import { HttpError500 } from '../../http-error/http-error-500.page';
 import { CharacterSelector } from './component/character-selector/character-selector.container';
 import { EmailInput } from './component/email-input/email-input.container';
 import { NameInput } from './component/name-input/name-input.container';
 import { Send } from './component/send/send.container';
 import { useFormState } from './hook/use-form.hook';
 import useCreateUserUseCase from '@/use-case/user/use-create-user.use-case';
+import { useCurrentUserAuthenticationStatusUseCase } from '@/use-case/user/use-current-user-authentication-status.use-case';
 import { useCurrentUserBioUseCase } from '@/use-case/user/use-current-user-bio.use-case';
 import { useFindAllUsersNameUseCase } from '@/use-case/user/use-find-all-users-name.use-case';
 
@@ -26,9 +27,25 @@ const NewUser: FC = () => {
 
   const existingNames = useFindAllUsersNameUseCase();
 
-  if (user === null) {
-    return <HttpError500 />;
-  }
+  const { hasUserAuthenticated, hasUserRegisteredInfo } = useCurrentUserAuthenticationStatusUseCase();
+  useEffect(() => {
+    switch (hasUserAuthenticated) {
+      case true:
+        switch (hasUserRegisteredInfo) {
+          case true:
+            Router.push('/games');
+            break;
+          default:
+            break;
+        }
+        break;
+      case false:
+        Router.push('/auth');
+        break;
+      default:
+        break;
+    }
+  }, [hasUserAuthenticated, hasUserRegisteredInfo]);
 
   return (
     <>
