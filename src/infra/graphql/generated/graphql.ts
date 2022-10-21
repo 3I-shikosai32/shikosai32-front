@@ -698,6 +698,13 @@ export type ExitGameMutationVariables = Exact<{
 
 export type ExitGameMutation = { __typename?: 'Mutation', exitGame: { __typename?: 'User', id: string, participateGame: Game } };
 
+export type IncrementPointMutationVariables = Exact<{
+  users: Array<UserIncrementPointInput> | UserIncrementPointInput;
+}>;
+
+
+export type IncrementPointMutation = { __typename?: 'Mutation', incrementPoint: Array<{ __typename?: 'User', authId: string, name: string, consumablePoint: number }> };
+
 export type JoinGameMutationVariables = Exact<{
   userId: Scalars['String'];
   game: Game;
@@ -885,6 +892,19 @@ export const ExitGameDocument = gql`
 
 export function useExitGameMutation() {
   return Urql.useMutation<ExitGameMutation, ExitGameMutationVariables>(ExitGameDocument);
+};
+export const IncrementPointDocument = gql`
+    mutation IncrementPoint($users: [UserIncrementPointInput!]!) {
+  incrementPoint(users: $users) {
+    authId
+    name
+    consumablePoint
+  }
+}
+    `;
+
+export function useIncrementPointMutation() {
+  return Urql.useMutation<IncrementPointMutation, IncrementPointMutationVariables>(IncrementPointDocument);
 };
 export const JoinGameDocument = gql`
     mutation JoinGame($userId: String!, $game: Game!) {

@@ -13,11 +13,13 @@ export const PointInput: FC<PointInputProps> = forwardRef<HTMLInputElement, Poin
   const incrementHandler = useCallback(() => {
     if (localRef.current) {
       localRef.current.stepUp();
+      localRef.current.dispatchEvent(new Event('change', { bubbles: true }));
     }
   }, [localRef]);
   const decrementHandler = useCallback(() => {
     if (localRef.current) {
       localRef.current.stepDown();
+      localRef.current.dispatchEvent(new Event('change', { bubbles: true }));
     }
   }, [localRef]);
   return (
