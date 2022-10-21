@@ -13,12 +13,12 @@ import useGetUserQuantity from './hook/useGetUserQuantity';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 
 const Profile: FC = () => {
-	const uid = useCurrentUserIdUseCase()
+	const uid = useCurrentUserIdUseCase();
 	const user = useGetUser(uid);
 	const rank = useFindRanking(uid);
 	const obtainmentStatuses = useGetObtainmentStatuses(uid);
 	const consumablePoint = useConsumablePoint(uid);
-	const totalPoint = useGetTotalPoint(uid);
+	const totalpoint = useGetTotalPoint(uid);
 	const itemQuantity = obtainmentStatuses?.filter((status) => status.obtained).length;
 	const userQuantity = useGetUserQuantity();
 
@@ -32,7 +32,7 @@ const Profile: FC = () => {
 		rank,
 		character: user.character,
 		quantitiy: userQuantity,
-		point: totalPoint
+		point: totalpoint
 	}
 
 	const itemState: ItemType = {
@@ -40,6 +40,7 @@ const Profile: FC = () => {
 		url: user.url,
 		quantity: itemQuantity,
 		obtainmentStatuses,
+		character: user.character
 	}
 	return (
 		<>
