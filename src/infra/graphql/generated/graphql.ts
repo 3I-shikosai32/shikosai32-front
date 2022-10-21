@@ -675,6 +675,14 @@ export type UserBioDataFragment = { __typename?: 'User', id: string, name: strin
 
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
+export type ChangeDeliveryStateCharacterStatusMutationVariables = Exact<{
+  delivered: Scalars['Boolean'];
+  where: CharacterStatusWhereUniqueInput;
+}>;
+
+
+export type ChangeDeliveryStateCharacterStatusMutation = { __typename?: 'Mutation', changeDeliveryStateCharacterStatus: { __typename?: 'CharacterStatus', userId: string } };
+
 export type CreateUserMutationVariables = Exact<{
   data: UserCreateInput;
 }>;
@@ -721,7 +729,7 @@ export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ _
 export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', id: string } } }> };
+export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, iconUrl: string, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', id: string } }, itemCompletedHistory?: { __typename?: 'ItemCompletedHistory', isDelivered: boolean } | null }> };
 
 export type FindDetailedGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -852,6 +860,17 @@ export const UserMetaDataFragmentDoc = gql`
   }
 }
     `;
+export const ChangeDeliveryStateCharacterStatusDocument = gql`
+    mutation ChangeDeliveryStateCharacterStatus($delivered: Boolean!, $where: CharacterStatusWhereUniqueInput!) {
+  changeDeliveryStateCharacterStatus(delivered: $delivered, where: $where) {
+    userId
+  }
+}
+    `;
+
+export function useChangeDeliveryStateCharacterStatusMutation() {
+  return Urql.useMutation<ChangeDeliveryStateCharacterStatusMutation, ChangeDeliveryStateCharacterStatusMutationVariables>(ChangeDeliveryStateCharacterStatusDocument);
+};
 export const CreateUserDocument = gql`
     mutation CreateUser($data: UserCreateInput!) {
   createUser(data: $data) {
@@ -935,6 +954,10 @@ export const FindItemCompletedCharacterStatusesDocument = gql`
         id
       }
     }
+    itemCompletedHistory {
+      isDelivered
+    }
+    iconUrl
   }
 }
     `;
