@@ -1,5 +1,5 @@
-import { useFindRankingPositionQuery } from "@/infra/graphql/generated/graphql";
-import type { UseCurrentUserIdUseCaseResult } from "@/use-case/user/use-current-user-id.use-case";
+import { useFindRankingPositionQuery } from '@/infra/graphql/generated/graphql';
+import type { UseCurrentUserIdUseCaseResult } from '@/use-case/user/use-current-user-id.use-case';
 
 const useFindRanking = (user: UseCurrentUserIdUseCaseResult) => {
 	const [result] = useFindRankingPositionQuery({
@@ -11,4 +11,4 @@ const useFindRanking = (user: UseCurrentUserIdUseCaseResult) => {
 	const rank = data?.getRankingPosition;
 	return rank;
 }
-export default useFindRanking
+export default useFindRanking;
