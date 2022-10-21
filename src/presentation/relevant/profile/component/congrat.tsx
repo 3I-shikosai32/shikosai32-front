@@ -10,4 +10,4 @@ const Congrat: FC = () => (
 		</div>
 	</div>
 )
-export default Congrat
+export default Congrat;
