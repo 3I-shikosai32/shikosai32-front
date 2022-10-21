@@ -26,11 +26,12 @@ const useGamePage = (game: Game): UseGamePageResult => {
   const { exitGame } = useExitGameUseCase();
   const onAttendanceChangeHandler = useCallback<GamePlaygroundProps['onAttendanceChange']>(
     (isUserAttending) => {
+      // 新しい参加状態を受け取る
       if (doesUserExist && currentUser !== null) {
         if (isUserAttending) {
-          exitGame({ user: { id: currentUser.id } });
-        } else {
           joinGame({ user: { id: currentUser.id }, game });
+        } else {
+          exitGame({ user: { id: currentUser.id } });
         }
       }
     },
