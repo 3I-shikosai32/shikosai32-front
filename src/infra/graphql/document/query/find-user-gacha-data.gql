@@ -1,0 +1,5 @@
+query FindUserGachaData($id: String!) {
+  findUser(where: { authId: $id }) {
+    ...UserGachaData
+  }
+}
