@@ -3,7 +3,7 @@ import { useFindItemCompletedCharacterStatusesQuery } from '@/infra/graphql/gene
 const useFindCompletedCharacter = () => {
   const [result] = useFindItemCompletedCharacterStatusesQuery();
   const { data } = result;
-  return data;
+  return data?.findItemCompletedCharacterStatuses;
 };
 
 export default useFindCompletedCharacter;
