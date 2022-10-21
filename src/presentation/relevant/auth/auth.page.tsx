@@ -16,10 +16,17 @@ export const Auth: FC = () => {
   const { hasUserAuthenticated, hasUserRegisteredInfo } = useCurrentUserAuthenticationStatusUseCase();
   useEffect(() => {
     if (hasUserAuthenticated) {
-      if (hasUserRegisteredInfo) {
-        Router.push('/');
-      } else {
-        Router.push('/auth/new-user');
+      switch (hasUserRegisteredInfo) {
+        case true:
+          Router.push('/games');
+          break;
+        case false:
+          Router.push('/auth/new-user');
+          break;
+        case undefined:
+        case null:
+        default:
+          break;
       }
     }
   }, [hasUserAuthenticated, hasUserRegisteredInfo]);
