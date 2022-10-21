@@ -1,5 +1,5 @@
-query CheckUserExistance($id: String!) {
-  findUser(where: { authId: $id }) {
+query CheckUserExistance($authId: String!) {
+  findUser(where: { authId: $authId }) {
     id
   }
 }

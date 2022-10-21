@@ -714,7 +714,7 @@ export type JoinGameMutationVariables = Exact<{
 export type JoinGameMutation = { __typename?: 'Mutation', joinGame: { __typename?: 'User', id: string, participateGame: Game } };
 
 export type CheckUserExistanceQueryVariables = Exact<{
-  id: Scalars['String'];
+  authId: Scalars['String'];
 }>;
 
 
@@ -919,8 +919,8 @@ export function useJoinGameMutation() {
   return Urql.useMutation<JoinGameMutation, JoinGameMutationVariables>(JoinGameDocument);
 };
 export const CheckUserExistanceDocument = gql`
-    query CheckUserExistance($id: String!) {
-  findUser(where: {authId: $id}) {
+    query CheckUserExistance($authId: String!) {
+  findUser(where: {authId: $authId}) {
     id
   }
 }
