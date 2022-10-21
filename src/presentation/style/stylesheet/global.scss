@@ -5,8 +5,27 @@ body {
   margin: 0;
   font-family: Inter, 'Noto Sans JP', sans-serif;
   overflow-x: hidden;
+  overflow-y: auto;
+  overflow: overlay;
 }
 
+::-webkit-scrollbar{
+	width: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	background-image: linear-gradient(
+    rgb(28,58,148),
+    rgb(73,125,189),
+    rgb(122,153,217));
+  
+}
 #__next {
   height: 100%;
 }
