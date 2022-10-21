@@ -1,0 +1,11 @@
+query FindItemCompletedCharacterStatuses {
+  findItemCompletedCharacterStatuses {
+    character
+    user {
+      name
+      characterStatus {
+        id  
+      }
+    }
+  }
+}

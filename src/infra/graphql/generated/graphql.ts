@@ -718,6 +718,11 @@ export type FindAllUsersNameQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ __typename?: 'User', name: string }> };
 
+export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', id: string } } }> };
+
 export type FindDetailedGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -919,6 +924,23 @@ export const FindAllUsersNameDocument = gql`
 
 export function useFindAllUsersNameQuery(options?: Omit<Urql.UseQueryArgs<FindAllUsersNameQueryVariables>, 'query'>) {
   return Urql.useQuery<FindAllUsersNameQuery, FindAllUsersNameQueryVariables>({ query: FindAllUsersNameDocument, ...options });
+};
+export const FindItemCompletedCharacterStatusesDocument = gql`
+    query FindItemCompletedCharacterStatuses {
+  findItemCompletedCharacterStatuses {
+    character
+    user {
+      name
+      characterStatus {
+        id
+      }
+    }
+  }
+}
+    `;
+
+export function useFindItemCompletedCharacterStatusesQuery(options?: Omit<Urql.UseQueryArgs<FindItemCompletedCharacterStatusesQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindItemCompletedCharacterStatusesQuery, FindItemCompletedCharacterStatusesQueryVariables>({ query: FindItemCompletedCharacterStatusesDocument, ...options });
 };
 export const FindDetailedGameAttendersDocument = gql`
     query FindDetailedGameAttenders {
