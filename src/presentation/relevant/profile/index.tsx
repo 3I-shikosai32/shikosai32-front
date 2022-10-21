@@ -31,7 +31,8 @@ const Profile: FC = () => {
 		name: user.name,
 		rank,
 		character: user.character,
-		quantitiy: userQuantity
+		quantitiy: userQuantity,
+		point: totalPoint
 	}
 
 	const itemState: ItemType = {

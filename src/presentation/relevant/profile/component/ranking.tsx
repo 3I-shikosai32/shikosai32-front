@@ -8,7 +8,8 @@ export type RankingType = {
 	name: string | undefined,
 	rank: number | undefined,
 	character: Character | undefined,
-	quantitiy: number | undefined
+	quantitiy: number | undefined,
+	point: number | undefined,
 }
 const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 	const shareUrl = 'http://github.com';
@@ -25,7 +26,7 @@ const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 								<div className={twMerge("mr-[10px] translate-y-[55px] text-5xl", data.rank === 1 && "text-gold", data.rank === 2 && "text-silver", data.rank === 3 && "text-[#d8b041]")}>#{data.rank}</div>
 								<Icon src={`/icons/${data.character?.toLocaleLowerCase()}.png`} className="h-[10px] w-[20px] translate-y-10 p-10" />
 								<div className="ml-[10px] translate-y-[40px] text-center">
-									<div>57Ptをわが物とし栄冠を載するのは...</div>
+									<div>{data.point}Ptをわが物とし栄冠を載するのは...</div>
 									<div className="font-body text-3xl font-bold">{data.name}</div>
 								</div>
 							</div>
