@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Router from 'next/router';
-import type { FC } from 'react';
-import { useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { di } from 'react-magnetic-di';
 import { CharacterSelector } from './component/character-selector/character-selector.container';
 import { EmailInput } from './component/email-input/email-input.container';
@@ -47,6 +46,8 @@ const NewUser: FC = () => {
     }
   }, [hasUserAuthenticated, hasUserRegisteredInfo]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <>
       <div className="flex flex-col justify-center">
@@ -79,8 +80,11 @@ const NewUser: FC = () => {
         />
         <Send
           formValue={formValue}
+          isLoading={isLoading}
           onClick={async () => {
             if (user?.id && formValue.name && formValue.email && formValue.character) {
+              setIsLoading(true);
+
               await executeMutation({
                 data: {
                   authId: user.id,
