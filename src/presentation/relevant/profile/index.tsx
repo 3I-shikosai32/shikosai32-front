@@ -4,29 +4,31 @@ import Congrat from './component/congrat';
 import Item, { ItemType } from './component/item'
 import Point from './component/point';
 import Ranking, { RankingType } from './component/ranking';
-import { Character } from '@/infra/graphql/generated/graphql';
+import useFindRanking from './hooks/useFindRanking';
+import useGetUser from './hooks/useGetUser';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 
 
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const characterState: CharacterType = {
-	name: "hoge",
-	character: Character.Cat,
-}
-
-const rankingState: RankingType = {
-	name: "hoge",
-	rank: 3,
-	character: Character.Cat,
-}
-
-const itemState: ItemType = {
-	name: "hoge"
-}
-
 const Profile: FC = () => {
 	const uid = useCurrentUserIdUseCase()
+	const { name, character, url } = useGetUser(uid);
+	const { rank } = useFindRanking(uid);
+
+	const characterState: CharacterType = {
+		name,
+		character
+	}
+
+	const rankingState: RankingType = {
+		name,
+		rank,
+		character
+	}
+
+	const itemState: ItemType = {
+		name,
+		url
+	}
 	return (
 		<>
 			<CharacterComponets data={characterState} />
