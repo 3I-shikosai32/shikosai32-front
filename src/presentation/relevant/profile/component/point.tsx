@@ -7,7 +7,7 @@ import { Button, ButtonIcon } from "@/presentation/primitive/component/button/bu
 const Point: FC = () => {
 	const router = useRouter()
 	return (
-		<div className="mx-[10px] mt-[25px] w-[90%] rounded-3xl bg-white shadow-xl">
+		<div className="mx-[10px] mt-[25px] w-[90%] rounded-3xl bg-white pt-[20px] shadow-xl">
 			<div className="flex justify-center px-[20px] ">
 				<div>
 					<div className="text-center text-[40px] font-bold">残り消費Pt</div>
