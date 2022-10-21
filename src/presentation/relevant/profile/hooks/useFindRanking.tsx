@@ -8,9 +8,7 @@ const useFindRanking = (user: UseCurrentUserIdUseCaseResult) => {
 		requestPolicy: 'cache-and-network',
 	});
 	const { data } = result;
-	const rank = data?.getRankingPosition
-	return {
-		rank
-	}
+	const rank = data?.getRankingPosition;
+	return rank;
 }
 export default useFindRanking
