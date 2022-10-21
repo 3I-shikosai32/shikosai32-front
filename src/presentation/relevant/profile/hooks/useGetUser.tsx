@@ -8,7 +8,7 @@ const useGetUser = (user: UseCurrentUserIdUseCaseResult) => {
 		pause: !user?.id,
 		requestPolicy: 'cache-and-network',
 	});
-	const { data, fetching, error } = result;
+	const { data } = result;
 	const name = data?.findUser?.name;
 	const character = data?.findUser?.characterStatus.character;
 	const url = data?.findUser?.characterStatus.iconUrl;
@@ -16,8 +16,6 @@ const useGetUser = (user: UseCurrentUserIdUseCaseResult) => {
 		name,
 		character,
 		url,
-		fetching,
-		error
 	}
 }
 export default useGetUser
