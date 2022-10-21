@@ -17,14 +17,14 @@ export type RankingType = {
 const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 	const [point, setPoint] = useState<number | undefined>(0);
 	const [quantitiy, setQuantity] = useState<number | undefined>(0);
-	const shareUrl = 'http://github.com';
-	const title = 'GitHub';
+	const shareUrl = 'https://3i.shikosai.net/';
+	const title = '3I-shikosai';
 	useEffect(() => {
 		setPoint(data.point);
 		setQuantity(data.quantitiy);
 	}, [data.point, data.quantitiy]);
 	return (
-		<div className='mx-[15px] mt-[25px] w-[90%]'>
+		<div className='mx-[15px] mt-[60px] w-[90%]'>
 			<div className='rounded-3xl bg-white px-[20px] pt-[15px] shadow-xl'>
 				<div>
 					<div className='flex translate-y-[-20px] justify-center pt-[30px]'>
