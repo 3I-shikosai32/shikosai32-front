@@ -1,10 +1,10 @@
-import { useGetObtainmentStatusesQuery } from "@/infra/graphql/generated/graphql";
-import type { UseCurrentUserIdUseCaseResult } from "@/use-case/user/use-current-user-id.use-case";
+import { useGetObtainmentStatusesQuery } from '@/infra/graphql/generated/graphql';
+import type { UseCurrentUserIdUseCaseResult } from '@/use-case/user/use-current-user-id.use-case';
 
 export type GetObtainmentStatusesResult = {
 	iconUrl: string
 	obtained: boolean
-}[] | undefined
+}[] | undefined;
 
 const useGetObtainmentStatuses = (user: UseCurrentUserIdUseCaseResult): GetObtainmentStatusesResult => {
 	const [{ data }] = useGetObtainmentStatusesQuery({
@@ -14,11 +14,11 @@ const useGetObtainmentStatuses = (user: UseCurrentUserIdUseCaseResult): GetObtai
 	});
 
 
-	const obtainmentStatuses = data?.getObtainmentStatuses
+	const obtainmentStatuses = data?.getObtainmentStatuses;
 
 	return obtainmentStatuses?.map((status) => ({
 		iconUrl: status.item.iconUrl,
 		obtained: status.obtained,
-	}))
+	}));
 }
-export default useGetObtainmentStatuses
+export default useGetObtainmentStatuses;
