@@ -45,7 +45,9 @@ const Profile: FC = () => {
 	return (
 		<>
 			<CharacterComponets data={characterState} />
-			<Congrat />
+			{
+				itemQuantity === 4 && <Congrat />
+			}
 			<Ranking data={rankingState} />
 			<Point point={consumablePoint} />
 			<Item data={itemState} />
