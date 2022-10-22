@@ -1,0 +1,6 @@
+query getTotalPoint($where: UserWhereUniqueAuthIdInput!){
+   findUser(where: $where) {
+    totalPointDay1
+    totalPointDay2
+  }
+}
