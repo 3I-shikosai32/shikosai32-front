@@ -715,6 +715,13 @@ export type JoinGameMutationVariables = Exact<{
 
 export type JoinGameMutation = { __typename?: 'Mutation', joinGame: { __typename?: 'User', id: string, participateGame: Game } };
 
+export type PullGachaMutationVariables = Exact<{
+  authId: Scalars['String'];
+}>;
+
+
+export type PullGachaMutation = { __typename?: 'Mutation', pullGacha: { __typename?: 'Item', id: string, iconUrl: string } };
+
 export type CheckUserExistanceQueryVariables = Exact<{
   authId: Scalars['String'];
 }>;
@@ -959,6 +966,18 @@ export const JoinGameDocument = gql`
 
 export function useJoinGameMutation() {
   return Urql.useMutation<JoinGameMutation, JoinGameMutationVariables>(JoinGameDocument);
+};
+export const PullGachaDocument = gql`
+    mutation PullGacha($authId: String!) {
+  pullGacha(where: {authId: $authId}) {
+    id
+    iconUrl
+  }
+}
+    `;
+
+export function usePullGachaMutation() {
+  return Urql.useMutation<PullGachaMutation, PullGachaMutationVariables>(PullGachaDocument);
 };
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($authId: String!) {

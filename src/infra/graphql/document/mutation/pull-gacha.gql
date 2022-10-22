@@ -1,0 +1,6 @@
+mutation PullGacha($authId: String!) {
+  pullGacha(where: {authId: $authId}) {
+    id
+    iconUrl
+  }
+}
