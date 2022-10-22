@@ -1,0 +1,15 @@
+query FindItemCompletedCharacterStatuses {
+  findItemCompletedCharacterStatuses {
+    character
+    user {
+      name
+    }
+    itemCompletedHistory {
+      createdAt
+      deliveredAt
+      isDelivered
+    }
+    iconUrl
+    id
+  }
+}
