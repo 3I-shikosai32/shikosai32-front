@@ -26,7 +26,7 @@ export const GamePlayground: FC<GamePlaygroundProps> = ({ disabled, attenders, i
           imageUrl: [attender.avatarUrl, ...attender.itemLayerUrls],
         }))
         .map(({ name, imageUrl }) => (
-          <LiveCharacter key={name} name={name} images={imageUrl} />
+          <LiveCharacter className="w-24 md:w-32" key={name} name={name} images={imageUrl} />
         ))}
     </GameStatusIndicator>
     <div className="flex grow-0 flex-col items-stretch justify-start gap-1 px-4 text-start text-white lg:max-w-sm">{children}</div>
