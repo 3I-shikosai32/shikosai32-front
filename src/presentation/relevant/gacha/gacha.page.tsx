@@ -13,7 +13,7 @@ export const GachaPage: FC = () => {
 
   useEffect(() => {
     if (hasUserRegisteredInfo === false) {
-      // Router.push('/');
+      Router.push('/');
     }
   }, [hasUserAuthenticated, hasUserRegisteredInfo]);
 
