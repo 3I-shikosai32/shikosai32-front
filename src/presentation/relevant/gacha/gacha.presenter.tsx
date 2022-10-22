@@ -45,7 +45,7 @@ export const Gacha: FC<GachaProps> = ({ name, pullableGachaTimes, images, itemIc
   );
 
   return (
-    <div className="flex flex-col items-center justify-center gap-0 bg-gradient-to-b from-[#FEECFE] to-secondary-100/0 p-4 font-pixel ">
+    <div className="flex w-full flex-col items-center justify-center gap-0 overflow-hidden bg-gradient-to-b from-[#FEECFE] to-secondary-100/0 p-4 font-pixel ">
       <div className="grid w-full max-w-sm grid-cols-1 grid-rows-1">
         <div className="relative col-span-full row-span-full m-0 -mx-10 flex flex-row items-center justify-center p-0">
           {/* 768 x 1195 */}
@@ -83,7 +83,7 @@ export const Gacha: FC<GachaProps> = ({ name, pullableGachaTimes, images, itemIc
                       }}
                       exit={{ opacity: 0, y: 30 }}
                       key={iconUrl}
-                      className="relative flex aspect-square h-16 items-center justify-center rounded-base bg-gradient-to-b from-primary-300 to-secondary-300 shadow-z4"
+                      className="relative flex aspect-square h-16 items-center justify-center rounded-base bg-gradient-to-b from-white to-primary-100 shadow-z4"
                     >
                       <figure className="relative aspect-square h-3/4">
                         <Image src={iconUrl} width={256} height={256} alt="きせかえアイテムの画像" />
@@ -100,14 +100,19 @@ export const Gacha: FC<GachaProps> = ({ name, pullableGachaTimes, images, itemIc
             <div className="flex h-12 w-24 items-center justify-center rounded-base border-2 border-neutral-300 bg-neutral-900 p-4 text-center text-neutral-100 shadow-z4">
               残り{pullableGachaTimes}回
             </div>
-            <Button outlined className="h-12 w-24 bg-neutral-100 p-4 font-pixel" disabled={isPulling} onClick={onGachaButtonClickHandler}>
+            <Button
+              outlined
+              className="h-12 w-24 bg-neutral-100 p-4 font-pixel"
+              disabled={isPulling || pullableGachaTimes < 1}
+              onClick={onGachaButtonClickHandler}
+            >
               ガチャを回す
             </Button>
           </div>
           <Modal open={isModalOpen} onOpenChange={onModalOpenChangeHandler}>
             <ModalOverlay>
-              <ModalContent>
-                <ModalTitle>ガチャの結果は...?</ModalTitle>
+              <ModalContent className="border-2 border-gold bg-gradient-to-b from-white to-[#feefd2] text-center">
+                <ModalTitle className="font-pixel text-primary drop-shadow-md">ガチャの結果は...?</ModalTitle>
                 {!!lootedItemIconUrl && (
                   <motion.div
                     transition={{ duration: 1.0, type: 'spring', stiffness: 150, damping: 5 }}
@@ -118,19 +123,21 @@ export const Gacha: FC<GachaProps> = ({ name, pullableGachaTimes, images, itemIc
                       y: 0,
                     }}
                     exit={{ opacity: 0, scale: 0.5, y: 50 }}
-                    className="relative flex aspect-square h-48 items-center justify-center rounded-base bg-neutral-100"
+                    className="relative flex aspect-square h-48 items-center justify-center rounded-base bg-white"
                   >
                     <figure className="relative aspect-square h-3/4">
                       <Image src={lootedItemIconUrl} width={256} height={256} alt="きせかえアイテムの画像" />
                     </figure>
                   </motion.div>
                 )}
-                <ModalDescription>
+                <ModalDescription className="font-pixel">
                   手に入れたきせかえアイテムは
                   <br />
                   自動で装着されました！
                 </ModalDescription>
-                <Button onClick={() => onModalOpenChangeHandler(false)}>閉じる</Button>
+                <Button outlined onClick={() => onModalOpenChangeHandler(false)}>
+                  閉じる
+                </Button>
               </ModalContent>
             </ModalOverlay>
           </Modal>
