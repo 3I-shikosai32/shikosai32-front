@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import {
   useGetRankingQuery,
   GetRankingQuery,
-  useUpdatedRankingSubscription,
   UpdatedRankingSubscription,
   RankingPeriod as RankingPeriodInGql,
   RankingTarget as RankingCategoryInGql,
