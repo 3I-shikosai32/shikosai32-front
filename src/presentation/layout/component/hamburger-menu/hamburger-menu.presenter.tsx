@@ -29,7 +29,7 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({ className, ...props }) =
         <Link href="/ranking">ランキング</Link>
         <Link href="/games">ゲーム一覧</Link>
         <Link href="/gifts">景品交換</Link>
-        <Link href="/staff">スタッフ</Link>
+        <Link href="/gacha">ガチャ</Link>
       </ModalContent>
       <span className="text-sm font-bold">画面外をタップして閉じる</span>
     </ModalOverlay>
