@@ -9,6 +9,8 @@ query FindItemCompletedCharacterStatuses {
     }
     itemCompletedHistory {
       isDelivered
+      createdAt
+      deliveredAt
     }
     iconUrl
   }

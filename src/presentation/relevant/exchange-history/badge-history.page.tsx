@@ -15,11 +15,11 @@ const badgeHistoryPage: FC = () => {
 						key={user.user.characterStatus.id}
 						isDelivered={user.itemCompletedHistory?.isDelivered ? user.itemCompletedHistory?.isDelivered : false}
 						className="max-w-3xl"
-						createdAt={new Date("2022-10-21T18:04:22.137Z")}
-						deliveredAt={new Date("2022-10-21T18:04:22.137Z")}
+						createdAt={user.itemCompletedHistory?.createdAt ? user.itemCompletedHistory?.createdAt : new Date()}
+						deliveredAt={user.itemCompletedHistory?.deliveredAt ? user.itemCompletedHistory.deliveredAt : new Date()}
 						exchangedItem={user.character}
 						id="this-is-transaction-id-12345"
-						onSubmit={() => { executeMutation({ delivered: user.itemCompletedHistory?.isDelivered, where: user.user.characterStatus.id }) }}
+						onSubmit={() => { executeMutation({ delivered: user.itemCompletedHistory?.isDelivered ? user.itemCompletedHistory?.isDelivered : false, where: { id: user.user.characterStatus.id } }) }}
 						receiver={{
 							iconUrl: user.iconUrl,
 							id: user.user.characterStatus.id,

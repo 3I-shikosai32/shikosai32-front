@@ -729,7 +729,7 @@ export type FindAllUsersNameQuery = { __typename?: 'Query', findUsers: Array<{ _
 export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, iconUrl: string, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', id: string } }, itemCompletedHistory?: { __typename?: 'ItemCompletedHistory', isDelivered: boolean } | null }> };
+export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, iconUrl: string, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', id: string } }, itemCompletedHistory?: { __typename?: 'ItemCompletedHistory', isDelivered: boolean, createdAt: Date, deliveredAt?: Date | null } | null }> };
 
 export type FindDetailedGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -956,6 +956,8 @@ export const FindItemCompletedCharacterStatusesDocument = gql`
     }
     itemCompletedHistory {
       isDelivered
+      createdAt
+      deliveredAt
     }
     iconUrl
   }
