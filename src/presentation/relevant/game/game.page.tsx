@@ -26,11 +26,12 @@ const useGamePage = (game: Game): UseGamePageResult => {
   const { exitGame } = useExitGameUseCase();
   const onAttendanceChangeHandler = useCallback<GamePlaygroundProps['onAttendanceChange']>(
     (isUserAttending) => {
+      // 新しい参加状態を受け取る
       if (doesUserExist && currentUser !== null) {
         if (isUserAttending) {
-          exitGame({ user: { id: currentUser.id } });
-        } else {
           joinGame({ user: { id: currentUser.id }, game });
+        } else {
+          exitGame({ user: { id: currentUser.id } });
         }
       }
     },
@@ -71,7 +72,7 @@ export const XenoGamePage: FC = () => {
     <GamePlayground {...props} className="w-screen grow text-game-xeno-g1 gradient-game-xeno">
       <GamePlaygroundTitle className="font-pixel-latin">Xeno</GamePlaygroundTitle>
       <GamePlaygroundDifficultyIndicator difficulty={5} />
-      <GamePlaygroundDescription>ここにゲームの簡潔な説明を挿入</GamePlaygroundDescription>
+      {/* <GamePlaygroundDescription>ここにゲームの簡潔な説明を挿入</GamePlaygroundDescription> */}
       <GamePlaygroundSeparator />
       <span>
         1人1枚ずつカードを持ち、自分のターン開始時に山札から 1枚引いてどちらかを捨てる。
