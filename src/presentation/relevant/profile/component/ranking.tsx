@@ -18,7 +18,7 @@ const Ranking: FC<{ data: RankingType }> = ({ data }) => {
 	const [point, setPoint] = useState<number | undefined>(0);
 	const [quantitiy, setQuantity] = useState<number | undefined>(0);
 	const shareUrl = 'https://3i.shikosai.net/';
-	const title = '3I-shikosai';
+	const title = 'ぜひ3Iのブースにきてね';
 	useEffect(() => {
 		setPoint(data.point);
 		setQuantity(data.quantitiy);
