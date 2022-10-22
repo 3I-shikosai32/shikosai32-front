@@ -12,10 +12,10 @@ export const GachaPage: FC = () => {
   const { hasUserAuthenticated, hasUserRegisteredInfo } = useCurrentUserAuthenticationStatusUseCase();
 
   useEffect(() => {
-    if (hasUserAuthenticated === false || hasUserRegisteredInfo === false) {
+    if (hasUserRegisteredInfo === false) {
       Router.push('/');
     }
-  }, [hasUserAuthenticated, hasUserRegisteredInfo]);
+  }, [hasUserRegisteredInfo]);
 
   const { refetch, userGachaData } = useUserGachaDataUseCase({
     id: currentUser?.id,
