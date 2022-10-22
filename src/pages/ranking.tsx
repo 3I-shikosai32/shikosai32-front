@@ -3,7 +3,7 @@ import { Layout } from '@/presentation/layout/layout.container';
 import { RankingPage } from '@/presentation/relevant/ranking/ranking.page';
 
 const IndexPage: NextPage = () => (
-  <Layout title="OZ | ランキング">
+  <Layout title="ランキング | OZ">
     <RankingPage />
   </Layout>
 );
