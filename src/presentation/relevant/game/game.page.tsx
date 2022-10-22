@@ -14,6 +14,7 @@ import { useRealtimeDetailedGameAttendersUseCase } from '@/use-case/game/use-rea
 import { useCheckUserExistanceUseCase } from '@/use-case/user/use-check-user-existance.use-case';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 import { useExitGameUseCase } from '@/use-case/user/use-exit-game.use-case';
+import { useFindUserMetaDataUseCase } from '@/use-case/user/use-find-user-meta-data.use-case';
 import { useJoinGameUseCase } from '@/use-case/user/use-join-game.use-case';
 
 type UseGamePageResult = Pick<GamePlaygroundProps, 'attenders' | 'isAttending' | 'disabled' | 'onAttendanceChange'>;
@@ -21,28 +22,29 @@ type UseGamePageResult = Pick<GamePlaygroundProps, 'attenders' | 'isAttending' |
 const useGamePage = (game: Game): UseGamePageResult => {
   const { attenders } = useRealtimeDetailedGameAttendersUseCase({ game });
   const currentUser = useCurrentUserIdUseCase();
+  const currentUserMetaData = useFindUserMetaDataUseCase({ id: currentUser?.id });
   const doesUserExist = useCheckUserExistanceUseCase({ id: currentUser?.id });
   const { joinGame } = useJoinGameUseCase();
   const { exitGame } = useExitGameUseCase();
   const onAttendanceChangeHandler = useCallback<GamePlaygroundProps['onAttendanceChange']>(
     (isUserAttending) => {
       // 新しい参加状態を受け取る
-      if (doesUserExist && currentUser !== null) {
+      if (doesUserExist && currentUser !== null && currentUserMetaData !== null) {
         if (isUserAttending) {
-          joinGame({ user: { id: currentUser.id }, game });
+          joinGame({ user: { id: currentUser.id }, game }); // Firebase Auth Id
         } else {
-          exitGame({ user: { id: currentUser.id } });
+          exitGame({ user: { id: currentUserMetaData.id } }); // Database Id
         }
       }
     },
-    [joinGame, exitGame, doesUserExist, currentUser, game],
+    [joinGame, exitGame, doesUserExist, currentUser, currentUserMetaData, game],
   );
   const isCurrentUserAttending = useMemo((): boolean => {
-    if (currentUser === null || !doesUserExist) {
+    if (currentUserMetaData === null || !doesUserExist) {
       return false;
     }
-    return attenders.some((attender) => attender.id === currentUser.id);
-  }, [attenders, currentUser, doesUserExist]);
+    return attenders.some((attender) => attender.id === currentUserMetaData.id);
+  }, [attenders, currentUserMetaData, doesUserExist]);
   return {
     attenders,
     isAttending: isCurrentUserAttending,
