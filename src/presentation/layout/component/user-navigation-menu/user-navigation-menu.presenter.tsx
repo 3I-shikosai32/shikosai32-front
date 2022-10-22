@@ -85,11 +85,51 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
             <>
               <hr className="m-0 h-px w-full bg-neutral-200" />
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="/admin/game">
+                <Link className="gap-2 font-normal" href="/games/admin/coin-dropping">
                   <LinkIcon>
                     <TbClipboardText />
                   </LinkIcon>
-                  ゲームの管理
+                  水中コイン落とし の管理
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/games/admin/xeno">
+                  <LinkIcon>
+                    <TbClipboardText />
+                  </LinkIcon>
+                  Xeno の管理
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/games/admin/iceraze">
+                  <LinkIcon>
+                    <TbClipboardText />
+                  </LinkIcon>
+                  Ice Raze の管理
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/games/admin/poker">
+                  <LinkIcon>
+                    <TbClipboardText />
+                  </LinkIcon>
+                  ポーカー の管理
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/games/admin/president">
+                  <LinkIcon>
+                    <TbClipboardText />
+                  </LinkIcon>
+                  大富豪 の管理
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/games/admin/we-didnt-playtest">
+                  <LinkIcon>
+                    <TbClipboardText />
+                  </LinkIcon>
+                  テストプレイなんてしてないよ の管理
                 </Link>
               </NavigationLink>
               <NavigationLink>
