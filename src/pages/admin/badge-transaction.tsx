@@ -3,7 +3,7 @@ import { BadgeTransaction } from '../../presentation/relevant/badge-transaction/
 import { Layout } from '@/presentation/layout/layout.container';
 
 const BadgeTransactionPage: NextPage = () => (
-  <Layout title="バッジ交換履歴 | OZ">
+  <Layout title="バッジ受渡履歴 | OZ">
     <BadgeTransaction />
   </Layout>
 );

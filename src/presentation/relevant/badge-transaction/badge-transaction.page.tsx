@@ -10,7 +10,7 @@ export const BadgeTransaction: FC = () => {
 
   return (
     <Card className="my-10 mx-3">
-      <h1 className="text-3xl font-bold">バッジ交換履歴</h1>
+      <h1 className="text-3xl font-bold">バッジ受渡履歴</h1>
       <span>
         それぞれが使用するキャラクターの４つのきせかえアイテムをすべて集めたユーザーが表示されています。ユーザーのアイコンと同じデザインの缶バッジを手渡してください。
       </span>
