@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import {
   useGetRankingQuery,
   GetRankingQuery,
-  useUpdatedRankingSubscription,
   UpdatedRankingSubscription,
   RankingPeriod as RankingPeriodInGql,
   RankingTarget as RankingCategoryInGql,
@@ -57,25 +56,28 @@ export const useRealtimeRankingCategoryDataUseCase = ({
       rankingTarget: rankingCategoryConversionRecord[category],
     },
   });
-  const [updatedResult] = useUpdatedRankingSubscription({
-    variables: {
-      date: rankingPeriodConversionRecord[period],
-      rankingTarget: rankingCategoryConversionRecord[category],
-    },
-  });
+  // const [updatedResult] = useUpdatedRankingSubscription({
+  //   variables: {
+  //     date: rankingPeriodConversionRecord[period],
+  //     rankingTarget: rankingCategoryConversionRecord[category],
+  //   },
+  // });
 
   const result = useMemo<UseRealtimeRankingCategoryDataUseCaseResult['rankingCategoryData']>(() => {
-    if (initialResult.error || updatedResult.error) {
+    // if (initialResult.error || updatedResult.error) {
+    //   return null;
+    // }
+    if (initialResult.error) {
       return null;
     }
-    if (updatedResult.data) {
-      return rankingCategoryTranspiler(updatedResult.data.updatedRanking);
-    }
+    // if (updatedResult.data) {
+    //   return rankingCategoryTranspiler(updatedResult.data.updatedRanking);
+    // }
     if (initialResult.data) {
       return rankingCategoryTranspiler(initialResult.data.getRanking);
     }
     return undefined;
-  }, [initialResult.data, updatedResult.data, initialResult.error, updatedResult.error]);
+  }, [initialResult.data, initialResult.error]);
 
   return {
     rankingCategoryData: result,

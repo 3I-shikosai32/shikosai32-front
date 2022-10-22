@@ -714,6 +714,13 @@ export type ExitGameMutationVariables = Exact<{
 
 export type ExitGameMutation = { __typename?: 'Mutation', exitGame: { __typename?: 'User', id: string, participateGame: Game } };
 
+export type IncrementPointMutationVariables = Exact<{
+  users: Array<UserIncrementPointInput> | UserIncrementPointInput;
+}>;
+
+
+export type IncrementPointMutation = { __typename?: 'Mutation', incrementPoint: Array<{ __typename?: 'User', authId: string, name: string, consumablePoint: number }> };
+
 export type JoinGameMutationVariables = Exact<{
   userId: Scalars['String'];
   game: Game;
@@ -723,7 +730,7 @@ export type JoinGameMutationVariables = Exact<{
 export type JoinGameMutation = { __typename?: 'Mutation', joinGame: { __typename?: 'User', id: string, participateGame: Game } };
 
 export type CheckUserExistanceQueryVariables = Exact<{
-  id: Scalars['String'];
+  authId: Scalars['String'];
 }>;
 
 
@@ -784,6 +791,13 @@ export type FindUserMetaDataQueryVariables = Exact<{
 
 export type FindUserMetaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } } | null };
 
+export type GetObtainmentStatusesQueryVariables = Exact<{
+  where: UserWhereUniqueAuthIdInput;
+}>;
+
+
+export type GetObtainmentStatusesQuery = { __typename?: 'Query', getObtainmentStatuses: Array<{ __typename?: 'ObtainmentStatus', obtained: boolean, item: { __typename?: 'Item', iconUrl: string } }> };
+
 export type GetRankingQueryVariables = Exact<{
   date: RankingPeriod;
   rankingTarget: RankingTarget;
@@ -791,6 +805,13 @@ export type GetRankingQueryVariables = Exact<{
 
 
 export type GetRankingQuery = { __typename?: 'Query', getRanking: Array<{ __typename?: 'Ranking', point: number, user: { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } }> };
+
+export type GetTotalPointQueryVariables = Exact<{
+  where: UserWhereUniqueAuthIdInput;
+}>;
+
+
+export type GetTotalPointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', totalPointDay1: number, totalPointDay2: number } | null };
 
 export type UpdatedDetailedGameAttendersSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
@@ -938,6 +959,19 @@ export const ExitGameDocument = gql`
 export function useExitGameMutation() {
   return Urql.useMutation<ExitGameMutation, ExitGameMutationVariables>(ExitGameDocument);
 };
+export const IncrementPointDocument = gql`
+    mutation IncrementPoint($users: [UserIncrementPointInput!]!) {
+  incrementPoint(users: $users) {
+    authId
+    name
+    consumablePoint
+  }
+}
+    `;
+
+export function useIncrementPointMutation() {
+  return Urql.useMutation<IncrementPointMutation, IncrementPointMutationVariables>(IncrementPointDocument);
+};
 export const JoinGameDocument = gql`
     mutation JoinGame($userId: String!, $game: Game!) {
   joinGame(game: $game, where: {authId: $userId}) {
@@ -951,8 +985,8 @@ export function useJoinGameMutation() {
   return Urql.useMutation<JoinGameMutation, JoinGameMutationVariables>(JoinGameDocument);
 };
 export const CheckUserExistanceDocument = gql`
-    query CheckUserExistance($id: String!) {
-  findUser(where: {authId: $id}) {
+    query CheckUserExistance($authId: String!) {
+  findUser(where: {authId: $authId}) {
     id
   }
 }
@@ -1115,6 +1149,20 @@ export const FindUserMetaDataDocument = gql`
 export function useFindUserMetaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserMetaDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserMetaDataQuery, FindUserMetaDataQueryVariables>({ query: FindUserMetaDataDocument, ...options });
 };
+export const GetObtainmentStatusesDocument = gql`
+    query GetObtainmentStatuses($where: UserWhereUniqueAuthIdInput!) {
+  getObtainmentStatuses(where: $where) {
+    item {
+      iconUrl
+    }
+    obtained
+  }
+}
+    `;
+
+export function useGetObtainmentStatusesQuery(options: Omit<Urql.UseQueryArgs<GetObtainmentStatusesQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetObtainmentStatusesQuery, GetObtainmentStatusesQueryVariables>({ query: GetObtainmentStatusesDocument, ...options });
+};
 export const GetRankingDocument = gql`
     query GetRanking($date: RankingPeriod!, $rankingTarget: RankingTarget!) {
   getRanking(date: $date, rankingTarget: $rankingTarget) {
@@ -1128,6 +1176,18 @@ export const GetRankingDocument = gql`
 
 export function useGetRankingQuery(options: Omit<Urql.UseQueryArgs<GetRankingQueryVariables>, 'query'>) {
   return Urql.useQuery<GetRankingQuery, GetRankingQueryVariables>({ query: GetRankingDocument, ...options });
+};
+export const GetTotalPointDocument = gql`
+    query getTotalPoint($where: UserWhereUniqueAuthIdInput!) {
+  findUser(where: $where) {
+    totalPointDay1
+    totalPointDay2
+  }
+}
+    `;
+
+export function useGetTotalPointQuery(options: Omit<Urql.UseQueryArgs<GetTotalPointQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetTotalPointQuery, GetTotalPointQueryVariables>({ query: GetTotalPointDocument, ...options });
 };
 export const UpdatedDetailedGameAttendersDocument = gql`
     subscription UpdatedDetailedGameAttenders {
