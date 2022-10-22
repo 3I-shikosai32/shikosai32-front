@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Router from 'next/router';
-import type { FC } from 'react';
-import { useEffect, useMemo } from 'react';
+import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Gacha } from './gacha.presenter';
 import { useCurrentUserAuthenticationStatusUseCase } from '@/use-case/user/use-current-user-authentication-status.use-case';
 import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
+import { usePullGachaUseCase } from '@/use-case/user/use-pull-gacha.use-case';
 import { useUserGachaDataUseCase } from '@/use-case/user/use-user-gacha-data.use-case';
 
 export const GachaPage: FC = () => {
@@ -15,11 +15,22 @@ export const GachaPage: FC = () => {
     if (hasUserRegisteredInfo === false) {
       Router.push('/');
     }
-  }, [hasUserRegisteredInfo]);
+  }, [hasUserAuthenticated, hasUserRegisteredInfo]);
 
   const { refetch, userGachaData } = useUserGachaDataUseCase({
     id: currentUser?.id,
   });
+
+  const { lootedItem, pullGacha } = usePullGachaUseCase();
+
+  const onGachaPulledHandler = useCallback(async () => {
+    if (userGachaData && userGachaData.pullableGachaTimes > 0) {
+      await pullGacha({
+        id: currentUser?.id,
+      });
+      refetch();
+    }
+  }, [pullGacha, currentUser, refetch, userGachaData]);
 
   const isLoading = useMemo(() => {
     if (hasUserAuthenticated === undefined || hasUserRegisteredInfo === undefined || userGachaData === undefined) return true;
@@ -36,12 +47,6 @@ export const GachaPage: FC = () => {
       </div>
     </figure>
   ) : (
-    // <Gacha name={userGachaData.name} pullableGachaTimes={userGachaData.pullableGachaTimes} images={userGachaData.images} itemIconUrls={userGachaData.itemIconUrls} />
-    <Gacha
-      {...userGachaData}
-      onGachaPulled={() => {
-        console.log('pulled!!!!!');
-      }}
-    />
+    <Gacha {...userGachaData} lootedItemIconUrl={lootedItem?.iconUrl} onGachaPulled={onGachaPulledHandler} />
   );
 };
