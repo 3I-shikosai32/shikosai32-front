@@ -1,0 +1,7 @@
+mutation IncrementPoint($users: [UserIncrementPointInput!]!) {
+  incrementPoint(users: $users) {
+    authId
+    name
+    consumablePoint
+  }
+}
