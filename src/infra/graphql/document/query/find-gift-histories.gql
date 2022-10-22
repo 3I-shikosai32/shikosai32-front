@@ -1,0 +1,17 @@
+query FindGiftHistories($cursor: GiftHistoryWhereUniqueInput, $orderBy: [GiftHistoryOrderInput!], $take: Int) {
+  findGiftHistories(cursor: $cursor, orderBy: $orderBy, take: $take) {
+    createdAt
+    deliveredAt
+    id
+    isDelivered
+    exchangedGift {
+      name
+    }
+    user {
+      name
+      characterStatus {
+        iconUrl
+      }
+    }
+  }
+}
