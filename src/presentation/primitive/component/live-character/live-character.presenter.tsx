@@ -39,7 +39,7 @@ export const LiveCharacter = forwardRef<HTMLElement, LiveCharacterProps>(({ name
       }}
       className="flex aspect-square w-full grow-0 items-center justify-center overflow-visible"
     >
-      <ol className="grid w-full shrink-0 scale-[200%] grid-cols-1 grid-rows-1">
+      <ol className="grid w-full shrink-0 scale-[150%] grid-cols-1 grid-rows-1">
         {images.map((imageUrl) => (
           <li key={imageUrl} className="relative col-span-full row-span-full">
             {/* キャラクタ画像の解像度 545 x 401, コンテナの横幅に合わせて拡大 `responsive` */}
@@ -55,7 +55,7 @@ export const LiveCharacter = forwardRef<HTMLElement, LiveCharacterProps>(({ name
         ))}
       </ol>
     </motion.div>
-    {displayName && <p className="-mt-2 text-xs">{name}</p>}
+    {displayName && <p className="relative z-10 -mt-2 rounded-base bg-white/75 px-2 backdrop-blur-md">{name}</p>}
   </motion.figure>
 ));
 
