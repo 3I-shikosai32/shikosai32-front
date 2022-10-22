@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import CharacterComponets, { CharacterType } from './component/character';
 import Congrat from './component/congrat';
-import Item, { ItemType } from './component/item'
 import Point from './component/point';
 import Ranking, { RankingType } from './component/ranking';
 import useConsumablePoint from './hook/useConsumablePoint';
@@ -34,14 +33,6 @@ const Profile: FC = () => {
 		quantitiy: userQuantity,
 		point: totalpoint
 	}
-
-	const itemState: ItemType = {
-		name: user.name,
-		url: user.url,
-		quantity: itemQuantity,
-		obtainmentStatuses,
-		character: user.character
-	}
 	return (
 		<>
 			<CharacterComponets data={characterState} />
@@ -50,7 +41,6 @@ const Profile: FC = () => {
 			}
 			<Ranking data={rankingState} />
 			<Point point={consumablePoint} />
-			<Item data={itemState} />
 		</>
 	)
 }
