@@ -1,6 +1,8 @@
+import { isBefore } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
 import { motion } from 'framer-motion';
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ProjectedCategorizedRanking } from './component/projected-categorized-ranking/projected-categorized-ranking.presenter';
 import { RankShareCard } from './component/rank-share-card/rank-share-card.presenter';
 import type { RankingData } from '@/model/ranking/ranking-data.model';
@@ -21,7 +23,15 @@ export type RankingProps = {
 
 export const Ranking: FC<RankingProps> = ({ rankingData, rankedCurrentUserBio }) => {
   const [currentPeriod, setCurrentPeriod] = useState<RankingPeriod>(RankingPeriod.DAY1);
-  // TODO: 現在の日付に近い方の日程(`DAY1`, `DAY2`)をマウント時に設定する`useEffect`の処理を追加する
+
+  useEffect(() => {
+    const now = new Date();
+    if (isBefore(now, zonedTimeToUtc(new Date(2022, 10, 23, 0, 0, 0), 'Asia/Tokyo'))) {
+      setCurrentPeriod(RankingPeriod.DAY1);
+    } else {
+      setCurrentPeriod(RankingPeriod.DAY2);
+    }
+  }, [setCurrentPeriod]);
 
   return (
     <div className="flex flex-col items-center justify-start gap-4 pb-6">
