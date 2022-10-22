@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { FC } from 'react';
 import { useMemo } from 'react';
 import { GamePlayground } from './component/game-playground/game-playground.presenter';
@@ -6,6 +5,7 @@ import type { GamePlaygroundProps } from './component/game-playground/game-playg
 import { PointInputForm, PointInputFormProps } from './component/point-input-form/point-input-form.presenter';
 
 import type { UserBio } from '@/model/user/user-bio.model';
+import { LoadingScreen } from '@/presentation/primitive/component/loading-screen/loading-screen.presenter';
 import { UserKickForm, UserKickFormProps } from '@/presentation/relevant/game/component/user-kick-form/user-kick-form.presenter';
 
 export type GameAdminProps = Pick<UserKickFormProps, 'onKick'> &
@@ -21,14 +21,7 @@ export const GameAdmin: FC<GameAdminProps> = ({ isLoading, detailedGameAttenders
     [detailedGameAttenders],
   );
   return isLoading ? (
-    <figure className="grid max-w-md flex-none select-none grid-cols-1 grid-rows-1">
-      <div className="relative col-span-full row-span-full">
-        <Image src="/heroes/concept.png" className="select-none" width={1176} height={1342} alt="OZ at 3Iのロゴ画像" />
-      </div>
-      <div className="col-span-full row-span-full flex items-center justify-center">
-        <div className="relative z-10 bg-neutral-900/75 p-6 text-center font-pixel-latin text-white backdrop-blur-md">Loading...</div>
-      </div>
-    </figure>
+    <LoadingScreen />
   ) : (
     <div className="flex w-full flex-col items-center justify-start gap-4 ">
       <GamePlayground
