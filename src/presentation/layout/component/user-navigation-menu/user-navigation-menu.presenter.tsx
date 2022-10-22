@@ -133,11 +133,19 @@ export const UserNavigationMenu: FC<UserNavigationMenuProps & UserNavigationMenu
                 </Link>
               </NavigationLink>
               <NavigationLink>
-                <Link className="gap-2 font-normal" href="/admin/history">
+                <Link className="gap-2 font-normal" href="/admin/gift-transaction">
                   <LinkIcon>
                     <BiTimeFive />
                   </LinkIcon>
                   景品交換履歴
+                </Link>
+              </NavigationLink>
+              <NavigationLink>
+                <Link className="gap-2 font-normal" href="/admin/badge-transaction">
+                  <LinkIcon>
+                    <BiTimeFive />
+                  </LinkIcon>
+                  バッジ受渡履歴
                 </Link>
               </NavigationLink>
             </>
