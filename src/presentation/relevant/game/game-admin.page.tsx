@@ -1,6 +1,6 @@
-import Router from 'next/router';
 import type { FC } from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
+import { useRoleGuard } from '../../primitive/hook/role-guard/role-guard.hook';
 import {
   GamePlaygroundTitle,
   GamePlaygroundDescription,
@@ -13,26 +13,13 @@ import { Game } from '@/model/game/game.model';
 
 import { UserRole } from '@/model/user/user-role.model';
 import { useRealtimeDetailedGameAttendersUseCase } from '@/use-case/game/use-realtime-detailed-game-attenders.use-case';
-import { useCurrentUserAuthenticationStatusUseCase } from '@/use-case/user/use-current-user-authentication-status.use-case';
-import { useCurrentUserIdUseCase } from '@/use-case/user/use-current-user-id.use-case';
 import { useExitGameUseCase } from '@/use-case/user/use-exit-game.use-case';
-import { useFindUserMetaDataUseCase } from '@/use-case/user/use-find-user-meta-data.use-case';
 import { useIncrementPointUseCase } from '@/use-case/user/use-increment-point.use-case';
 
 type UseGameAdminPageResult = Pick<GameAdminProps, 'isLoading' | 'detailedGameAttenders' | 'onKick' | 'onSubmit'>;
 
 const useGameAdminPage = (game: Game): UseGameAdminPageResult => {
-  // `Role`が`Admin`でない場合は、`/`にリダイレクトする
-  const currentUser = useCurrentUserIdUseCase();
-  const { hasUserAuthenticated, hasUserRegisteredInfo } = useCurrentUserAuthenticationStatusUseCase();
-  const currentUserMetaData = useFindUserMetaDataUseCase({ id: currentUser?.id });
-
-  const isLoading = useMemo(() => {
-    if (hasUserAuthenticated === undefined || hasUserRegisteredInfo === undefined || currentUserMetaData === null) return true;
-    if (currentUserMetaData.role === UserRole.Admin) return false;
-    Router.push('/');
-    return true;
-  }, [hasUserAuthenticated, hasUserRegisteredInfo, currentUserMetaData]);
+  const isLoading = useRoleGuard((currentUserRole) => currentUserRole === UserRole.Admin);
 
   const { attenders: detailedGameAttenders } = useRealtimeDetailedGameAttendersUseCase({ game });
   const { exitGame } = useExitGameUseCase();
