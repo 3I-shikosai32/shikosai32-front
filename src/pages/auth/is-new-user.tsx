@@ -3,7 +3,7 @@ import { Layout } from '../../presentation/layout/layout.container';
 import { IsNewUser } from '../../presentation/relevant/is-new-user/is-new-user.page';
 
 const IsNewUserPage: NextPage = () => (
-  <Layout title="loading... | OZ">
+  <Layout title="Loading... | OZ">
     <IsNewUser />
   </Layout>
 );
