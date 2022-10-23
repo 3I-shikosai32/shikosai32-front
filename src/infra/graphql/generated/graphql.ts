@@ -677,6 +677,22 @@ export type UserGachaDataFragment = { __typename?: 'User', authId: string, name:
 
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
+export type ChangeDeliveryStateCharacterStatusMutationVariables = Exact<{
+  delivered: Scalars['Boolean'];
+  where: CharacterStatusWhereUniqueInput;
+}>;
+
+
+export type ChangeDeliveryStateCharacterStatusMutation = { __typename?: 'Mutation', changeDeliveryStateCharacterStatus: { __typename?: 'CharacterStatus', id: string } };
+
+export type ChangeDeliveryStateGiftHistoryMutationVariables = Exact<{
+  data: GiftHistoryChangeDeliveryStateInput;
+  where: GiftHistoryWhereUniqueInput;
+}>;
+
+
+export type ChangeDeliveryStateGiftHistoryMutation = { __typename?: 'Mutation', changeDeliveryStateGiftHistory: { __typename?: 'GiftHistory', id: string } };
+
 export type CreateUserMutationVariables = Exact<{
   data: UserCreateInput;
 }>;
@@ -744,10 +760,26 @@ export type FindGameAttendersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindGameAttendersQuery = { __typename?: 'Query', getGameAttenders: { __typename?: 'GameAttenders', coinDropping: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, xeno: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, iceRaze: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, poker: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, president: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }>, weDidntPlaytest: Array<{ __typename?: 'User', id: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } }> } };
 
+export type FindGiftHistoriesQueryVariables = Exact<{
+  cursor?: InputMaybe<GiftHistoryWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<GiftHistoryOrderInput> | GiftHistoryOrderInput>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type FindGiftHistoriesQuery = { __typename?: 'Query', findGiftHistories: Array<{ __typename?: 'GiftHistory', createdAt: Date, deliveredAt?: Date | null, id: string, isDelivered: boolean, exchangedGift: { __typename?: 'Gift', name: string }, user: { __typename?: 'User', name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } } }> };
+
 export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
+
+export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{
+  orderBy?: InputMaybe<Array<CharacterStatusOrderInput> | CharacterStatusOrderInput>;
+}>;
+
+
+export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, iconUrl: string, id: string, user: { __typename?: 'User', name: string }, itemCompletedHistory?: { __typename?: 'ItemCompletedHistory', createdAt: Date, deliveredAt?: Date | null, isDelivered: boolean } | null }> };
 
 export type FindRankingPositionQueryVariables = Exact<{
   userId: Scalars['String'];
@@ -903,6 +935,28 @@ export const UserMetaDataFragmentDoc = gql`
   }
 }
     `;
+export const ChangeDeliveryStateCharacterStatusDocument = gql`
+    mutation ChangeDeliveryStateCharacterStatus($delivered: Boolean!, $where: CharacterStatusWhereUniqueInput!) {
+  changeDeliveryStateCharacterStatus(delivered: $delivered, where: $where) {
+    id
+  }
+}
+    `;
+
+export function useChangeDeliveryStateCharacterStatusMutation() {
+  return Urql.useMutation<ChangeDeliveryStateCharacterStatusMutation, ChangeDeliveryStateCharacterStatusMutationVariables>(ChangeDeliveryStateCharacterStatusDocument);
+};
+export const ChangeDeliveryStateGiftHistoryDocument = gql`
+    mutation ChangeDeliveryStateGiftHistory($data: GiftHistoryChangeDeliveryStateInput!, $where: GiftHistoryWhereUniqueInput!) {
+  changeDeliveryStateGiftHistory(data: $data, where: $where) {
+    id
+  }
+}
+    `;
+
+export function useChangeDeliveryStateGiftHistoryMutation() {
+  return Urql.useMutation<ChangeDeliveryStateGiftHistoryMutation, ChangeDeliveryStateGiftHistoryMutationVariables>(ChangeDeliveryStateGiftHistoryDocument);
+};
 export const CreateUserDocument = gql`
     mutation CreateUser($data: UserCreateInput!) {
   createUser(data: $data) {
@@ -1057,6 +1111,29 @@ export const FindGameAttendersDocument = gql`
 export function useFindGameAttendersQuery(options?: Omit<Urql.UseQueryArgs<FindGameAttendersQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGameAttendersQuery, FindGameAttendersQueryVariables>({ query: FindGameAttendersDocument, ...options });
 };
+export const FindGiftHistoriesDocument = gql`
+    query FindGiftHistories($cursor: GiftHistoryWhereUniqueInput, $orderBy: [GiftHistoryOrderInput!], $take: Int) {
+  findGiftHistories(cursor: $cursor, orderBy: $orderBy, take: $take) {
+    createdAt
+    deliveredAt
+    id
+    isDelivered
+    exchangedGift {
+      name
+    }
+    user {
+      name
+      characterStatus {
+        iconUrl
+      }
+    }
+  }
+}
+    `;
+
+export function useFindGiftHistoriesQuery(options?: Omit<Urql.UseQueryArgs<FindGiftHistoriesQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindGiftHistoriesQuery, FindGiftHistoriesQueryVariables>({ query: FindGiftHistoriesDocument, ...options });
+};
 export const FindGiftSalesDataDocument = gql`
     query FindGiftSalesData {
   findGifts {
@@ -1067,6 +1144,27 @@ export const FindGiftSalesDataDocument = gql`
 
 export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindGiftSalesDataQueryVariables>, 'query'>) {
   return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
+};
+export const FindItemCompletedCharacterStatusesDocument = gql`
+    query FindItemCompletedCharacterStatuses($orderBy: [CharacterStatusOrderInput!]) {
+  findItemCompletedCharacterStatuses(orderBy: $orderBy) {
+    character
+    user {
+      name
+    }
+    itemCompletedHistory {
+      createdAt
+      deliveredAt
+      isDelivered
+    }
+    iconUrl
+    id
+  }
+}
+    `;
+
+export function useFindItemCompletedCharacterStatusesQuery(options?: Omit<Urql.UseQueryArgs<FindItemCompletedCharacterStatusesQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindItemCompletedCharacterStatusesQuery, FindItemCompletedCharacterStatusesQueryVariables>({ query: FindItemCompletedCharacterStatusesDocument, ...options });
 };
 export const FindRankingPositionDocument = gql`
     query FindRankingPosition($userId: String!) {

@@ -16,7 +16,6 @@ const meta: ComponentMeta<typeof GiftTransactionItem> = {
       name: 'ベビースターラーメン',
     },
     receiver: {
-      id: 'this-is-user-id-12345',
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
     },

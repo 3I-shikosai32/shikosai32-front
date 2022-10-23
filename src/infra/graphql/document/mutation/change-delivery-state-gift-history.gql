@@ -1,0 +1,5 @@
+mutation ChangeDeliveryStateGiftHistory($data: GiftHistoryChangeDeliveryStateInput!, $where: GiftHistoryWhereUniqueInput!) {
+  changeDeliveryStateGiftHistory(data: $data, where: $where) {
+    id
+  }
+}

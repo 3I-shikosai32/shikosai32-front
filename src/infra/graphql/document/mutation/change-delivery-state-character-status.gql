@@ -1,0 +1,5 @@
+mutation ChangeDeliveryStateCharacterStatus($delivered: Boolean!, $where: CharacterStatusWhereUniqueInput!) {
+  changeDeliveryStateCharacterStatus(delivered: $delivered, where: $where) {
+    id
+  }
+}
