@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { Card } from '../../primitive/component/card/card.presenter';
+import { LoadingScreen } from '../../primitive/component/loading-screen/loading-screen.presenter';
 import { useRoleGuard } from '../../primitive/hook/role-guard/role-guard.hook';
 import { BadgeTransactionItem } from './component/badge-transaction-item/badge-transaction-item.presenter';
 import { UserRole } from '@/model/user/user-role.model';
@@ -11,6 +12,10 @@ export const BadgeTransaction: FC = () => {
 
   const { badgeHistories } = useFindItemCompletedCharacterStatusesUseCase();
   const { changeDeliveryStateCharacterStatus } = useChangeDeliveryStateCharacterStatusUseCase();
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Card className="my-10 mx-3 max-w-4xl">
