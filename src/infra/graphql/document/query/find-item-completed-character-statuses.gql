@@ -1,5 +1,5 @@
-query FindItemCompletedCharacterStatuses {
-  findItemCompletedCharacterStatuses {
+query FindItemCompletedCharacterStatuses($orderBy: [CharacterStatusOrderInput!]) {
+  findItemCompletedCharacterStatuses(orderBy: $orderBy) {
     character
     user {
       name

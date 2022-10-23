@@ -765,7 +765,9 @@ export type FindGiftSalesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FindGiftSalesDataQuery = { __typename?: 'Query', findGifts: Array<{ __typename?: 'Gift', id: string, name: string, iconUrl: string, price: number, remaining: number }> };
 
-export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{ [key: string]: never; }>;
+export type FindItemCompletedCharacterStatusesQueryVariables = Exact<{
+  orderBy?: InputMaybe<Array<CharacterStatusOrderInput> | CharacterStatusOrderInput>;
+}>;
 
 
 export type FindItemCompletedCharacterStatusesQuery = { __typename?: 'Query', findItemCompletedCharacterStatuses: Array<{ __typename?: 'CharacterStatus', character: Character, iconUrl: string, id: string, user: { __typename?: 'User', name: string }, itemCompletedHistory?: { __typename?: 'ItemCompletedHistory', createdAt: Date, deliveredAt?: Date | null, isDelivered: boolean } | null }> };
@@ -1097,8 +1099,8 @@ export function useFindGiftSalesDataQuery(options?: Omit<Urql.UseQueryArgs<FindG
   return Urql.useQuery<FindGiftSalesDataQuery, FindGiftSalesDataQueryVariables>({ query: FindGiftSalesDataDocument, ...options });
 };
 export const FindItemCompletedCharacterStatusesDocument = gql`
-    query FindItemCompletedCharacterStatuses {
-  findItemCompletedCharacterStatuses {
+    query FindItemCompletedCharacterStatuses($orderBy: [CharacterStatusOrderInput!]) {
+  findItemCompletedCharacterStatuses(orderBy: $orderBy) {
     character
     user {
       name

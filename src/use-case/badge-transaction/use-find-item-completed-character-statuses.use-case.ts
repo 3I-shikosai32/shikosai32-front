@@ -1,4 +1,4 @@
-import { useFindItemCompletedCharacterStatusesQuery } from '@/infra/graphql/generated/graphql';
+import { SortOrder, useFindItemCompletedCharacterStatusesQuery } from '@/infra/graphql/generated/graphql';
 import type { BadgeTransaction } from '@/model/transaction/badge-transaction.model';
 
 export type UseBadgeSalesDataUseCaseResult = {
@@ -7,6 +7,13 @@ export type UseBadgeSalesDataUseCaseResult = {
 
 export const useFindItemCompletedCharacterStatusesUseCase = (): UseBadgeSalesDataUseCaseResult => {
   const [{ data, fetching, error }] = useFindItemCompletedCharacterStatusesQuery({
+    variables: {
+      orderBy: {
+        itemCompletedHistory: {
+          createdAt: SortOrder.Desc,
+        },
+      },
+    },
     requestPolicy: 'cache-and-network',
   });
 

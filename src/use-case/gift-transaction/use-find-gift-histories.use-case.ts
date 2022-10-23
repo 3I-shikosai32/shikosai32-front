@@ -1,4 +1,4 @@
-import { useFindGiftHistoriesQuery } from '@/infra/graphql/generated/graphql';
+import { SortOrder, useFindGiftHistoriesQuery } from '@/infra/graphql/generated/graphql';
 import type { GiftTransaction } from '@/model/transaction/gift-transaction.model';
 
 export type UseGiftSalesDataUseCaseResult = {
@@ -7,6 +7,13 @@ export type UseGiftSalesDataUseCaseResult = {
 
 export const useFindGiftHistoriesUseCase = (): UseGiftSalesDataUseCaseResult => {
   const [{ data, fetching, error }] = useFindGiftHistoriesQuery({
+    variables: {
+      orderBy: [
+        {
+          createdAt: SortOrder.Desc,
+        },
+      ],
+    },
     requestPolicy: 'cache-and-network',
   });
 
