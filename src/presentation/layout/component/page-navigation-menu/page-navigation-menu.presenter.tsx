@@ -39,8 +39,8 @@ export const PageNavigationMenu: FC<PageNavigationMenuProps> = ({ className, ...
     </NavigationItem>
     <NavigationItem className="hidden shrink-0 grow basis-24 items-center justify-center whitespace-nowrap md:flex">
       <NavigationLink>
-        <Link className="text-center text-neutral-700 drop-shadow-none" href="/staff">
-          スタッフ
+        <Link className="text-center text-neutral-700 drop-shadow-none" href="/gacha">
+          ガチャ
         </Link>
       </NavigationLink>
     </NavigationItem>

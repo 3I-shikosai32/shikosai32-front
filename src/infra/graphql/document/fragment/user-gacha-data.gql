@@ -1,0 +1,17 @@
+fragment UserGachaData on User {
+  authId
+  name
+  pullableGachaTimes
+  characterStatus {
+    id
+    avatarUrl
+    character
+    iconUrl
+    items {
+      id
+      iconUrl
+      layer
+      layerUrl
+    }
+  }
+}

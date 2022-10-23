@@ -10,7 +10,7 @@ export const useCheckUserExistanceUseCase = ({ id }: UseCheckUserExistanceUseCas
     pause: !id,
     requestPolicy: 'cache-and-network',
   });
-  if (result.error) return null;
+  if (result.error || !id) return null;
   if (result.fetching) return undefined;
   return !!id && !!result.data?.findUser?.id;
 };

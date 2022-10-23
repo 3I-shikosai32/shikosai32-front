@@ -673,6 +673,8 @@ export type GiftSalesDataFragment = { __typename?: 'Gift', id: string, name: str
 
 export type UserBioDataFragment = { __typename?: 'User', id: string, name: string, characterStatus: { __typename?: 'CharacterStatus', iconUrl: string } };
 
+export type UserGachaDataFragment = { __typename?: 'User', authId: string, name: string, pullableGachaTimes: number, characterStatus: { __typename?: 'CharacterStatus', id: string, avatarUrl: string, character: Character, iconUrl: string, items: Array<{ __typename?: 'Item', id: string, iconUrl: string, layer: number, layerUrl: string }> } };
+
 export type UserMetaDataFragment = { __typename?: 'User', id: string, name: string, email: string, role: Role, characterStatus: { __typename?: 'CharacterStatus', id: string, character: Character, iconUrl: string } };
 
 export type ChangeDeliveryStateCharacterStatusMutationVariables = Exact<{
@@ -728,6 +730,13 @@ export type JoinGameMutationVariables = Exact<{
 
 
 export type JoinGameMutation = { __typename?: 'Mutation', joinGame: { __typename?: 'User', id: string, participateGame: Game } };
+
+export type PullGachaMutationVariables = Exact<{
+  authId: Scalars['String'];
+}>;
+
+
+export type PullGachaMutation = { __typename?: 'Mutation', pullGacha: { __typename?: 'Item', id: string, iconUrl: string } };
 
 export type CheckUserExistanceQueryVariables = Exact<{
   authId: Scalars['String'];
@@ -785,6 +794,13 @@ export type FindUserConsumablePointQueryVariables = Exact<{
 
 
 export type FindUserConsumablePointQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', id: string, consumablePoint: number } | null };
+
+export type FindUserGachaDataQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type FindUserGachaDataQuery = { __typename?: 'Query', findUser?: { __typename?: 'User', authId: string, name: string, pullableGachaTimes: number, characterStatus: { __typename?: 'CharacterStatus', id: string, avatarUrl: string, character: Character, iconUrl: string, items: Array<{ __typename?: 'Item', id: string, iconUrl: string, layer: number, layerUrl: string }> } } | null };
 
 export type FindUserMetaDataQueryVariables = Exact<{
   id: Scalars['String'];
@@ -887,6 +903,25 @@ export const GiftSalesDataFragmentDoc = gql`
   remaining
 }
     `;
+export const UserGachaDataFragmentDoc = gql`
+    fragment UserGachaData on User {
+  authId
+  name
+  pullableGachaTimes
+  characterStatus {
+    id
+    avatarUrl
+    character
+    iconUrl
+    items {
+      id
+      iconUrl
+      layer
+      layerUrl
+    }
+  }
+}
+    `;
 export const UserMetaDataFragmentDoc = gql`
     fragment UserMetaData on User {
   id
@@ -985,6 +1020,18 @@ export const JoinGameDocument = gql`
 
 export function useJoinGameMutation() {
   return Urql.useMutation<JoinGameMutation, JoinGameMutationVariables>(JoinGameDocument);
+};
+export const PullGachaDocument = gql`
+    mutation PullGacha($authId: String!) {
+  pullGacha(where: {authId: $authId}) {
+    id
+    iconUrl
+  }
+}
+    `;
+
+export function usePullGachaMutation() {
+  return Urql.useMutation<PullGachaMutation, PullGachaMutationVariables>(PullGachaDocument);
 };
 export const CheckUserExistanceDocument = gql`
     query CheckUserExistance($authId: String!) {
@@ -1139,6 +1186,17 @@ export const FindUserConsumablePointDocument = gql`
 
 export function useFindUserConsumablePointQuery(options: Omit<Urql.UseQueryArgs<FindUserConsumablePointQueryVariables>, 'query'>) {
   return Urql.useQuery<FindUserConsumablePointQuery, FindUserConsumablePointQueryVariables>({ query: FindUserConsumablePointDocument, ...options });
+};
+export const FindUserGachaDataDocument = gql`
+    query FindUserGachaData($id: String!) {
+  findUser(where: {authId: $id}) {
+    ...UserGachaData
+  }
+}
+    ${UserGachaDataFragmentDoc}`;
+
+export function useFindUserGachaDataQuery(options: Omit<Urql.UseQueryArgs<FindUserGachaDataQueryVariables>, 'query'>) {
+  return Urql.useQuery<FindUserGachaDataQuery, FindUserGachaDataQueryVariables>({ query: FindUserGachaDataDocument, ...options });
 };
 export const FindUserMetaDataDocument = gql`
     query FindUserMetaData($id: String!) {
