@@ -5,6 +5,7 @@ import {
   UpdatedRankingSubscription,
   RankingPeriod as RankingPeriodInGql,
   RankingTarget as RankingCategoryInGql,
+  useUpdatedRankingSubscription,
 } from '@/infra/graphql/generated/graphql';
 
 import type { RankingCategory } from '@/model/ranking/ranking-category.model';
@@ -56,28 +57,28 @@ export const useRealtimeRankingCategoryDataUseCase = ({
       rankingTarget: rankingCategoryConversionRecord[category],
     },
   });
-  // const [updatedResult] = useUpdatedRankingSubscription({
-  //   variables: {
-  //     date: rankingPeriodConversionRecord[period],
-  //     rankingTarget: rankingCategoryConversionRecord[category],
-  //   },
-  // });
+  const [updatedResult] = useUpdatedRankingSubscription({
+    variables: {
+      date: rankingPeriodConversionRecord[period],
+      rankingTarget: rankingCategoryConversionRecord[category],
+    },
+  });
 
   const result = useMemo<UseRealtimeRankingCategoryDataUseCaseResult['rankingCategoryData']>(() => {
-    // if (initialResult.error || updatedResult.error) {
-    //   return null;
-    // }
+    if (updatedResult.error) {
+      return null;
+    }
     if (initialResult.error) {
       return null;
     }
-    // if (updatedResult.data) {
-    //   return rankingCategoryTranspiler(updatedResult.data.updatedRanking);
-    // }
+    if (updatedResult.data) {
+      return rankingCategoryTranspiler(updatedResult.data.updatedRanking);
+    }
     if (initialResult.data) {
       return rankingCategoryTranspiler(initialResult.data.getRanking);
     }
     return undefined;
-  }, [initialResult.data, initialResult.error]);
+  }, [initialResult.data, initialResult.error, updatedResult.data, updatedResult.error]);
 
   return {
     rankingCategoryData: result,
