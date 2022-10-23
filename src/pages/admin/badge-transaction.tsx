@@ -1,0 +1,11 @@
+import type { NextPage } from 'next';
+import { BadgeTransaction } from '../../presentation/relevant/badge-transaction/badge-transaction.page';
+import { Layout } from '@/presentation/layout/layout.container';
+
+const BadgeTransactionPage: NextPage = () => (
+  <Layout title="バッジ受渡履歴 | OZ">
+    <BadgeTransaction />
+  </Layout>
+);
+
+export default BadgeTransactionPage;

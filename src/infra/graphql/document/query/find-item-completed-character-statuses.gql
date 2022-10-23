@@ -1,0 +1,15 @@
+query FindItemCompletedCharacterStatuses($orderBy: [CharacterStatusOrderInput!]) {
+  findItemCompletedCharacterStatuses(orderBy: $orderBy) {
+    character
+    user {
+      name
+    }
+    itemCompletedHistory {
+      createdAt
+      deliveredAt
+      isDelivered
+    }
+    iconUrl
+    id
+  }
+}

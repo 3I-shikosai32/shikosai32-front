@@ -13,7 +13,6 @@ const meta: ComponentMeta<typeof BadgeTransactionItem> = {
     createdAt: new Date(),
     deliveredAt: new Date(),
     receiver: {
-      id: 'this-is-user-id-12345',
       name: 'ユーザー名',
       iconUrl: '/icons/fox.png',
     },
