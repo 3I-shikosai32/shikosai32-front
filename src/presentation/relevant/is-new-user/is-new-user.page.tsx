@@ -14,3 +14,4 @@ export const IsNewUser: FC = () => {
 
   return <NewUserDetectorContainer id={user.id} />;
 };
+IsNewUser.displayName = 'IsNewUser';
