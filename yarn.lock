@@ -8190,7 +8190,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-transform-remove-imports@npm:^1.5.4":
+"babel-plugin-transform-remove-imports@npm:^1.5.4, babel-plugin-transform-remove-imports@npm:^1.7.0":
   version: 1.7.0
   resolution: "babel-plugin-transform-remove-imports@npm:1.7.0"
   peerDependencies:
@@ -19631,6 +19631,7 @@ __metadata:
     "@urql/storybook-addon": ^2.0.1
     autoprefixer: 10.4.12
     babel-plugin-superjson-next: ^0.4.4
+    babel-plugin-transform-remove-imports: ^1.7.0
     chromatic: 6.10.0
     css-loader: 6.7.1
     daisyui: 2.31.0

@@ -83,6 +83,7 @@
     "@typescript-eslint/parser": "5.38.0",
     "autoprefixer": "10.4.12",
     "babel-plugin-superjson-next": "^0.4.4",
+    "babel-plugin-transform-remove-imports": "^1.7.0",
     "chromatic": "6.10.0",
     "css-loader": "6.7.1",
     "eslint": "8.24.0",
