@@ -108,5 +108,9 @@
     "typescript": "4.8.3"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "shikosai32-front@0.1.0"
+  "_id": "shikosai32-front@0.1.0",
+  "volta": {
+    "node": "18.14.2",
+    "yarn": "1.22.19"
+  }
 }
