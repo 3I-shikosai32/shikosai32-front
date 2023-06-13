@@ -11726,10 +11726,10 @@ next-remove-imports@1.0.7:
     babel-loader "^8.2.2"
     babel-plugin-transform-remove-imports "^1.5.4"
 
-next-urql@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/next-urql/-/next-urql-4.0.0.tgz#4057c452b00cf011a83227cb9944e44c207daf49"
-  integrity sha512-c/dLhNg9bP+ku7GJDAYlsNnKEazrjcDnRx8/mBsGnjMj4c0yM+p2PBGbirWXkYL7Z2ogOHnSqHTt8swB9sJvQg==
+next-urql@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/next-urql/-/next-urql-5.0.2.tgz#37a895b1844f3ab7c091526e0894caddd3abcf82"
+  integrity sha512-/ntMdlDNhduT1xmnZ0ZgH9Vtbaz/Gnx5VdTyExHjRqKpKnqZU49vHiik/qctscwFnPBVTRNxQ1BjhrOtfsm8oQ==
   dependencies:
     react-ssr-prepass "^1.4.0"
 
