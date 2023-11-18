@@ -13161,10 +13161,10 @@ react-remove-scroll@2.5.4:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-share@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/react-share/-/react-share-4.4.1.tgz#4bfb0b512e26afedfea2fb66eb13c95c28fb216a"
-  integrity sha512-AJ9m9RiJssqvYg7MoJUc9J0D7b/liWrsfQ99ndKc5vJ4oVHHd4Fy87jBlKEQPibT40oYA3AQ/a9/oQY6/yaigw==
+react-share@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-share/-/react-share-5.0.1.tgz#3986fba993377aa4a5eb20f40a3a16f881d2088c"
+  integrity sha512-k0S22lb86xNtr3uO3xFgX3NK30B+W1hVDdmK+FpyO2qMzumyqfUM55vLeXqJGvT7WvIMYxW7aoAYkpZwExAd5g==
   dependencies:
     classnames "^2.3.2"
     jsonp "^0.2.1"
