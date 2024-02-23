@@ -17,7 +17,7 @@ jobs:
       - name: Build Storybook with `yarn run sb:build`
         run: yarn run sb:build
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@v11
         with:
           storybookBuildDir: ./.storybook/static
           token: ${{ secrets.GITHUB_TOKEN }}
