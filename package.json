@@ -84,7 +84,7 @@
     "autoprefixer": "10.4.12",
     "babel-plugin-superjson-next": "^0.4.4",
     "chromatic": "6.10.0",
-    "css-loader": "6.7.1",
+    "css-loader": "7.1.2",
     "eslint": "8.24.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
