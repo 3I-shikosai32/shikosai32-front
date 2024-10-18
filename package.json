@@ -83,7 +83,7 @@
     "@typescript-eslint/parser": "5.38.0",
     "autoprefixer": "10.4.12",
     "babel-plugin-superjson-next": "^0.4.4",
-    "chromatic": "6.10.0",
+    "chromatic": "11.12.6",
     "css-loader": "6.7.1",
     "eslint": "8.24.0",
     "eslint-config-airbnb": "19.0.4",
