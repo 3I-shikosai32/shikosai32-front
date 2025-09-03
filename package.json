@@ -45,7 +45,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.4.0",
-    "react-magnetic-di": "^2.2.8",
+    "react-magnetic-di": "^3.0.0",
     "react-merge-refs": "^2.0.1",
     "react-share": "^4.4.1",
     "recoil": "0.7.5",
