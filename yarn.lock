@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@0no-co/graphql.web@^1.0.13":
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.3.4.tgz#ab0f1094f5f56f6344fb231f7c1dc9d79c554b76"
+  integrity sha512-imSwulOeDQodRy/olQmVEo2PiY6ntjkZ9eiGdw6lMYylh/tay9b7MusyJBmEnkL8GiKRKr6ltr+D42mY5bd8Bg==
+
 "@adobe/css-tools@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.0.1.tgz#b38b444ad3aa5fedbb15f2f746dcd934226a12dd"
@@ -4767,7 +4772,7 @@
     "@typescript-eslint/types" "5.38.0"
     eslint-visitor-keys "^3.3.0"
 
-"@urql/core@>=3.0.0", "@urql/core@^3.0.3":
+"@urql/core@>=3.0.0":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@urql/core/-/core-3.0.3.tgz#da054babb4d4aed26dc4503806b310ba6dd6eea1"
   integrity sha512-raQP51ERNtg5BvlN8x8mHVRvk4K0ugWQ69n53BdkjKpXVV5kuWp7trnwriGv1fQKa8HuiGNSCfyslUucc0OVQg==
@@ -4782,6 +4787,14 @@
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     wonka "^6.0.0"
+
+"@urql/core@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@urql/core/-/core-6.0.3.tgz#a47ff4460dd9bb68ee4e0abef4e9cbf121c4794e"
+  integrity sha512-0F39XWR21+IVLJfsqBvLShvoSzxT6h6wWXwrDhN8j9J+IEVOpQIUNHwpgjsp+2ePzn9aCH+rpDonn3HOAUnn9A==
+  dependencies:
+    "@0no-co/graphql.web" "^1.0.13"
+    wonka "^6.3.2"
 
 "@urql/devtools@2.0.3", "@urql/devtools@>=2.0.0":
   version "2.0.3"
@@ -15289,13 +15302,13 @@ urql-custom-scalars-exchange@^1.0.1:
   resolved "https://registry.yarnpkg.com/urql-custom-scalars-exchange/-/urql-custom-scalars-exchange-1.0.1.tgz#b89db93f5943932e0f8d67a500e35da4449e98c8"
   integrity sha512-NSxUaw1ZWu72iJ/t4qy6hbm33HKthIglLl8JzHEtEQgE1ICxl5kXmzmZWL5ycxlNRgCOvU2nqzrplIhBo7q3UQ==
 
-urql@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/urql/-/urql-3.0.3.tgz#275631f487558354e090d9ffc4ea2030bd56c34a"
-  integrity sha512-aVUAMRLdc5AOk239DxgXt6ZxTl/fEmjr7oyU5OGo8uvpqu42FkeJErzd2qBzhAQ3DyusoZIbqbBLPlnKo/yy2A==
+urql@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/urql/-/urql-5.0.4.tgz#f0391bb9e441b4e6c005abab7614ae9f9c13c54b"
+  integrity sha512-OKNx8hUtt6RPSfsMsTsvas9rvMNN7BPMTvbXCwbiuO/mYa8Y+G4pxTzMJL7Sf1jXwR9gMpQheJ21LQy+nUjMkw==
   dependencies:
-    "@urql/core" "^3.0.3"
-    wonka "^6.0.0"
+    "@urql/core" "^6.0.3"
+    wonka "^6.3.2"
 
 use-callback-ref@^1.3.0:
   version "1.3.0"
@@ -15748,6 +15761,11 @@ widest-line@^3.1.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/wonka/-/wonka-6.0.0.tgz#38cd39a517fc3ff721ea3bf353642b353bf48860"
   integrity sha512-TEiIOqkhQXbcmL1RrjxPCzTX15V5FSyJvZRSiTxvgTgrJMaOVKmzGTdRVh349CfaNo9dsIhWDyg1/GNq4NWrEg==
+
+wonka@^6.3.2:
+  version "6.3.6"
+  resolved "https://registry.yarnpkg.com/wonka/-/wonka-6.3.6.tgz#a70e2e54ed6aaa8e20bb57d916166cdc3d385f2d"
+  integrity sha512-MXH+6mDHAZ2GuMpgKS055FR6v0xVP3XwquxIMYXgiW+FejHQlMGlvVRZT4qMCxR+bEo/FCtIdKxwej9WV3YQag==
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
